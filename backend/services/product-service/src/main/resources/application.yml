@@ -3,8 +3,8 @@ spring:
     name: ${SERVICE_NAME:product-service}
   datasource:
     url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:product_db}
-    username: ${DB_USER:tekno}
-    password: ${DB_PASSWORD:tekno123}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
