@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ${SERVICE_NAME:product-service}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:product_db}
+    username: ${DB_USER:tekno}
+    password: ${DB_PASSWORD:tekno123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate # Database schema is managed outside (e.g. EF Migrations/Flyway)
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: ${PORT:8080}
