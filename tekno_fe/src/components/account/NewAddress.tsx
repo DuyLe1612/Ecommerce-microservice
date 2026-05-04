@@ -11,6 +11,8 @@ import { toast } from "sonner";
 type Props = {
   onCreated?: () => void;
   onClose?: () => void;
+  initialRecipientName?: string;
+  initialPhoneNumber?: string;
 };
 
 type FieldErrors = Partial<
@@ -36,9 +38,9 @@ const backendFieldMap: Record<string, keyof FieldErrors> = {
 
 /* ---------------- COMPONENT ---------------- */
 
-export default function NewAddress({ onCreated, onClose }: Props) {
-  const [recipientName, setRecipientName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+export default function NewAddress({ onCreated, onClose, initialRecipientName = "", initialPhoneNumber = "" }: Props) {
+  const [recipientName, setRecipientName] = useState(initialRecipientName);
+  const [phoneNumber, setPhoneNumber] = useState(initialPhoneNumber);
   const [addressLine, setAddressLine] = useState("");
   const [isDefault, setIsDefault] = useState(false);
 
@@ -201,19 +203,6 @@ export default function NewAddress({ onCreated, onClose }: Props) {
             />
           </Field>
 
-          <Field
-            label="Address"
-            required
-            error={fieldErrors.addressLine}
-            colSpan
-          >
-            <input
-              className={inputClass(fieldErrors.addressLine)}
-              value={addressLine}
-              onChange={(e) => setAddressLine(e.target.value)}
-            />
-          </Field>
-
           <Select
             label="Province"
             required
@@ -254,6 +243,19 @@ export default function NewAddress({ onCreated, onClose }: Props) {
               Set as default address
             </span>
           </div>
+
+          <Field
+            label="Detail Address"
+            required
+            error={fieldErrors.addressLine}
+            colSpan
+          >
+            <input
+              className={inputClass(fieldErrors.addressLine)}
+              value={addressLine}
+              onChange={(e) => setAddressLine(e.target.value)}
+            />
+          </Field>
         </div>
 
         <div className="flex gap-3 justify-end">
