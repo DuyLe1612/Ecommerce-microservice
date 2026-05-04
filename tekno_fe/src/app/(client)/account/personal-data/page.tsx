@@ -8,19 +8,20 @@ import {
 import { Label } from "@/components/ui/label";
 import {
   CirclePlus,
-  Edit,
   MailIcon,
-  MapPinHouse,
-  Milestone,
   Phone,
   Plug,
   SquarePen,
   UserRound,
+  X,
+  Loader2,
+  MapPinHouse
 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -54,11 +55,12 @@ import NewAddress from "@/components/account/NewAddress";
 import { toast } from "sonner";
 
 export default function Page() {
-  const [profile, setProfile] = useState<Profile>();
+  const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openAddressSheet, setOpenAddressSheet] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState<ProfileAddress | null>(null);
   const [addresses, setAddresses] = useState<ProfileAddress[]>([]);
 
   // Local state để edit
@@ -80,7 +82,6 @@ export default function Page() {
 
       await deleteProfileAddress(token, addressId);
 
-      // Refresh addresses list
       const updatedAddresses = addresses.filter(
         (addr) => addr.id !== addressId
       );
@@ -91,6 +92,34 @@ export default function Page() {
       toast.error(e?.message || "Xóa địa chỉ thất bại");
     } finally {
       setDeleting(false);
+    }
+  };
+
+  const handleAddressCreated = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const list = await getProfileAddresses(token);
+      setAddresses(Array.isArray(list) ? list : []);
+    } catch (e) {
+      console.error("Fetch addresses error:", e);
+    }
+  };
+
+  const handleAddressUpdated = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const list = await getProfileAddresses(token);
+      setAddresses(Array.isArray(list) ? list : []);
+
+      setOpenEditDialog(false);
+      setSelectedAddress(null);
+      toast.success("Address updated successfully");
+    } catch (e) {
+      console.error("Fetch addresses error:", e);
     }
   };
 
@@ -105,18 +134,18 @@ export default function Page() {
     getProfile(token)
       .then((res) => {
         setProfile(res);
-        setFullname(res.fullName);
-        setEmail(res.email);
-        setPhoneNumber(res.phoneNumber);
+        setFullname(res.fullName || "");
+        setEmail(res.email || "");
+        setPhoneNumber(res.phoneNumber || "");
       })
       .catch((err) => {
         console.error("Fetch profile error:", err);
+        toast.error("Không thể tải thông tin hồ sơ");
       })
       .finally(() => {
         setLoading(false);
       });
 
-    // fetch addresses
     (async () => {
       try {
         const list = await getProfileAddresses(token);
@@ -128,17 +157,33 @@ export default function Page() {
     })();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <p className="text-gray-500 animate-pulse">Loading...</p>
+      </div>
+    );
+  }
 
   const handleSave = async () => {
-    // mở modal yêu cầu nhập password trước khi lưu
     setOpenPasswordModal(true);
+  };
+
+  const handleCancelEdit = () => {
+    setFullname(profile?.fullName || "");
+    setEmail(profile?.email || "");
+    setPhoneNumber(profile?.phoneNumber || "");
+    setEditing(false);
   };
 
   const confirmSave = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
-    if (!currentPassword.trim()) return;
+    if (!currentPassword.trim()) {
+      toast.error("Please enter your current password to confirm changes");
+      return;
+    }
 
     try {
       setSaving(true);
@@ -146,161 +191,146 @@ export default function Page() {
         fullname,
         newEmail: email,
         phoneNumber,
-        currentPassword, // truyền password vào payload
+        currentPassword,
       };
 
       await updateProfileAll(token, payload);
 
+      setProfile({ ...profile, fullName: fullname, email: email, phoneNumber: phoneNumber });
+
       setEditing(false);
       setOpenPasswordModal(false);
       setCurrentPassword("");
-    } catch (err) {
+      toast.success("Profile updated successfully!");
+    } catch (err: any) {
       console.error("Update failed:", err);
+      toast.error(err.message || "An error occurred while saving");
     } finally {
       setSaving(false);
     }
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <TitleAccount title="Identification" des="Verify your identity" />
+    <div className="flex flex-col gap-6">
+      <TitleAccount title="Personal Data" des="Manage your identity information" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border rounded-lg bg-gray-50/50">
         {/* Full Name */}
-        <div className="grid w-full items-center gap-3">
-          <Label htmlFor="name">Full Name</Label>
+        <div className="grid w-full items-center gap-2">
+          <Label htmlFor="name" className={editing ? "text-primary font-medium" : "text-gray-600"}>Full Name</Label>
           <InputGroup>
             <InputGroupInput
               disabled={!editing}
               type="text"
               id="name"
-              placeholder="Full name"
+              placeholder="Enter your full name..."
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
+              className={editing ? "bg-white focus:ring-primary" : "bg-gray-100/50"}
             />
             <InputGroupAddon>
-              <UserRound />
+              <UserRound className="w-4 h-4 text-gray-500" />
             </InputGroupAddon>
           </InputGroup>
         </div>
 
         {/* Email */}
-        <div className="grid w-full items-center gap-3">
-          <Label htmlFor="email">Email Address</Label>
+        <div className="grid w-full items-center gap-2">
+          <Label htmlFor="email" className={editing ? "text-primary font-medium" : "text-gray-600"}>Email Address</Label>
           <InputGroup>
             <InputGroupInput
               disabled={!editing}
               type="email"
               id="email"
-              placeholder="Email"
+              placeholder="Enter your email..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={editing ? "bg-white focus:ring-primary" : "bg-gray-100/50"}
             />
             <InputGroupAddon>
-              <MailIcon />
+              <MailIcon className="w-4 h-4 text-gray-500" />
             </InputGroupAddon>
           </InputGroup>
         </div>
 
         {/* Phone */}
-        <div className="grid w-full items-center gap-3">
-          <Label htmlFor="phone">Phone number</Label>
+        <div className="grid w-full items-center gap-2 md:col-span-2 lg:col-span-1">
+          <Label htmlFor="phone" className={editing ? "text-primary font-medium" : "text-gray-600"}>Phone Number</Label>
           <InputGroup>
             <InputGroupInput
               disabled={!editing}
-              type="number"
+              type="tel"
               id="phone"
-              placeholder="Phone number"
+              placeholder="Enter your phone number..."
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              className={editing ? "bg-white focus:ring-primary" : "bg-gray-100/50"}
             />
             <InputGroupAddon>
-              <Phone />
+              <Phone className="w-4 h-4 text-gray-500" />
             </InputGroupAddon>
           </InputGroup>
         </div>
-
-        {/* Address - không cho sửa */}
-        {/* <div className="grid w-full items-center gap-3">
-          <Label htmlFor="address">Address</Label>
-          <InputGroup>
-            <InputGroupInput
-              disabled
-              type="text"
-              id="address"
-              placeholder="Address"
-              defaultValue={profile?.addresses[0].addressLine1 ?? ""}
-            />
-            <InputGroupAddon>
-              <MapPinHouse />
-            </InputGroupAddon>
-          </InputGroup>
-        </div> */}
-
-        {/* Postal Code - không cho sửa */}
-        {/* <div className="grid w-full items-center gap-3">
-          <Label htmlFor="postal">Postal Code</Label>
-          <InputGroup>
-            <InputGroupInput
-              disabled
-              type="text"
-              id="postal"
-              placeholder="Postal code"
-              defaultValue={profile?.addresses[0].postalCode ?? ""}
-            />
-            <InputGroupAddon>
-              <Milestone />
-            </InputGroupAddon>
-          </InputGroup>
-        </div> */}
       </div>
 
-      <div>
+      <div className="flex justify-end mt-2">
         {editing ? (
-          <button
-            onClick={handleSave}
-            className="w-full px-10 py-2 flex items-center justify-center gap-2 my-2 bg-primary text-white rounded-md hover:bg-primary/90"
-          >
-            Lưu
-          </button>
+          <div className="flex w-full sm:w-auto gap-3">
+            <Button
+              variant="outline"
+              onClick={handleCancelEdit}
+              className="flex-1 sm:flex-none px-6"
+            >
+              <X className="w-4 h-4 mr-2" />
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSave}
+              className="flex-1 sm:flex-none px-8 bg-primary hover:bg-primary/90"
+            >
+              Save
+            </Button>
+          </div>
         ) : (
-          <button
+          <Button
+            variant="outline"
             onClick={() => setEditing(true)}
-            className="w-full px-10 py-2 flex items-center justify-center gap-2 my-2 hover:border hover:border-primary hoverEffects rounded-md"
+            className="w-full sm:w-auto px-8"
           >
-            <SquarePen />
-            Chỉnh sửa
-          </button>
+            <SquarePen className="w-4 h-4 mr-2" />
+            Edit Profile
+          </Button>
         )}
       </div>
 
-      {/* Modal nhỏ yêu cầu nhập password trước khi lưu */}
+      {/* Modal xác thực Password */}
       <Dialog open={openPasswordModal} onOpenChange={setOpenPasswordModal}>
-        <DialogContent className="sm:max-w-[360px]">
+        <DialogContent className="sm:max-w-[400px]">
           <DialogHeader>
-            <DialogTitle>Confirm changes</DialogTitle>
+            <DialogTitle>Confirm Changes</DialogTitle>
             <DialogDescription>
-              Enter your current password to save profile changes.
+              For security reasons, please enter your current password to save these changes.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="grid w-full items-center gap-3">
-            <Label htmlFor="currentPassword">Current password</Label>
+          <div className="grid w-full items-center gap-3 py-4">
+            <Label htmlFor="currentPassword">Your Password</Label>
             <InputGroup>
               <InputGroupInput
                 id="currentPassword"
                 type="password"
-                placeholder="Enter password"
+                placeholder="Enter your password..."
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && currentPassword.trim() && confirmSave()}
               />
               <InputGroupAddon>
-                <Plug />
+                <Plug className="w-4 h-4 text-gray-500" />
               </InputGroupAddon>
             </InputGroup>
           </div>
 
-          <div className="flex justify-end gap-2 mt-4">
+          <DialogFooter className="flex gap-2 sm:justify-end">
             <Button
               variant="outline"
               type="button"
@@ -315,29 +345,37 @@ export default function Page() {
               type="button"
               onClick={confirmSave}
               disabled={saving || !currentPassword.trim()}
+              className="bg-primary hover:bg-primary/90 min-w-[100px]"
             >
-              {saving ? "Saving..." : "Save"}
+              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : "Confirm"}
             </Button>
-          </div>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      {/* Addresses list */}
-      <div className="mt-2">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-lg font-semibold">My Addresses</h3>
+      <div className="mt-6 border-t pt-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+          <div>
+            <h3 className="text-lg font-semibold">Shipping Addresses</h3>
+            <p className="text-sm text-gray-500">Manage your shipping addresses</p>
+          </div>
           <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger className="text-md border rounded-md p-3 border-gray-400">
-              <div className="flex items-center gap-2">
-                <CirclePlus className="w-5 h-5" />
-                New address
-              </div>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="flex items-center gap-2">
+                <CirclePlus className="w-4 h-4" />
+                Add New Address
+              </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Create new address</DialogTitle>
+                <DialogTitle>Add Shipping Address</DialogTitle>
                 <DialogDescription>
-                  <NewAddress onClose={() => setOpen(false)} />
+                  <NewAddress
+                    onClose={() => setOpen(false)}
+                    onCreated={handleAddressCreated}
+                    initialRecipientName={profile?.fullName}
+                    initialPhoneNumber={profile?.phoneNumber}
+                  />
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
@@ -345,81 +383,115 @@ export default function Page() {
         </div>
 
         {addresses.length === 0 ? (
-          <p className="text-sm text-gray-500">No addresses found.</p>
+          <div className="flex flex-col items-center justify-center p-8 border border-dashed rounded-lg bg-gray-50">
+            <MapPinHouse className="w-8 h-8 text-gray-300 mb-2" />
+            <p className="text-sm text-gray-500 text-center">
+              You haven't saved any addresses yet.
+            </p>
+          </div>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className="grid grid-cols-1 gap-3">
             {addresses.map((addr) => (
               <div
                 key={addr.id}
-                className="border rounded-md p-3 flex flex-col gap-1 bg-white"
+                className="border rounded-lg p-4 flex flex-col gap-2 bg-white hover:border-primary/50 transition-colors"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-medium">
-                    {addr.recipientName} · {addr.phoneNumber}
-                  </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-semibold text-gray-900">
+                      {addr.recipientName}
+                    </span>
+                    <span className="text-gray-300">|</span>
+                    <span className="text-gray-600">{addr.phoneNumber}</span>
                     {addr.isDefault && (
-                      <span className="text-xs px-2 py-1 rounded bg-green-100 text-green-700">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium ml-2">
                         Default
                       </span>
                     )}
-                    <Sheet
-                      open={openAddressSheet}
-                      onOpenChange={setOpenAddressSheet}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {/* Dialog Chỉnh sửa địa chỉ */}
+                    <Dialog
+                      open={openEditDialog && selectedAddress?.id === addr.id}
+                      onOpenChange={(isOpen) => {
+                        setOpenEditDialog(isOpen);
+                        if (!isOpen) setSelectedAddress(null);
+                      }}
                     >
-                      <SheetTrigger className="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
-                        Edit
-                      </SheetTrigger>
-                      <SheetContent>
-                        <SheetHeader>
-                          <SheetTitle>Edit address {addr.id} </SheetTitle>
-                          <SheetDescription>
-                            Make changes to your profile here. Click save when
-                            you&apos;re done.
-                          </SheetDescription>
-                        </SheetHeader>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                          onClick={() => setSelectedAddress(addr)}
+                        >
+                          Edit
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[500px]">
+                        <DialogHeader>
+                          <DialogTitle>Edit Address</DialogTitle>
+                          <DialogDescription>
+                            Update your shipping information below.
+                          </DialogDescription>
+                        </DialogHeader>
+                        {/* Component Form chỉnh sửa */}
                         <EditAddress
                           address={addr}
-                          onClose={() => setOpenAddressSheet(false)}
+                          onUpdated={handleAddressUpdated}
+                          onClose={() => {
+                            setOpenEditDialog(false);
+                            setSelectedAddress(null);
+                          }}
                         />
-                      </SheetContent>
-                    </Sheet>
+                      </DialogContent>
+                    </Dialog>
 
+                    {/* Dialog xác nhận xóa địa chỉ */}
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="destructive" size="sm">
-                          Xóa
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                        >
+                          Delete
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
-                          <AlertDialogTitle>
-                            Xác nhận xóa địa chỉ
-                          </AlertDialogTitle>
+                          <AlertDialogTitle>Confirm Delete Address</AlertDialogTitle>
                           <AlertDialogDescription>
-                            Bạn có chắc chắn muốn xóa địa chỉ "
-                            {addr.addressLine}, {addr.wardName},{" "}
-                            {addr.districtName}, {addr.provinceName}" không?
-                            Hành động này không thể hoàn tác.
+                            Are you sure you want to delete the address "
+                            {addr.addressLine}, {addr.wardName}, {addr.districtName},{" "}
+                            {addr.provinceName}"? This action cannot be undone.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel disabled={deleting}>
-                            Hủy
+                            Cancel
                           </AlertDialogCancel>
                           <AlertDialogAction
                             onClick={() => handleDeleteAddress(addr.id)}
                             disabled={deleting}
-                            className="bg-red-600 hover:bg-red-700"
+                            className="bg-red-600 hover:bg-red-700 text-white"
                           >
-                            {deleting ? "Đang xóa..." : "Xóa"}
+                            {deleting ? (
+                              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                            ) : null}
+                            {deleting ? "Deleting..." : "Delete"}
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
                   </div>
                 </div>
-                <div className="text-sm text-gray-700">{addr.addressLine}</div>
+
+                {/* Thông tin chi tiết địa chỉ */}
+                <div className="text-sm text-gray-700 mt-1">
+                  {addr.addressLine}
+                </div>
                 <div className="text-sm text-gray-500">
                   {addr.wardName}, {addr.districtName}, {addr.provinceName}
                 </div>
