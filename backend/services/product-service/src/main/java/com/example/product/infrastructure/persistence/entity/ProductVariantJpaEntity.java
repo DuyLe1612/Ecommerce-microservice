@@ -31,6 +31,7 @@ public class ProductVariantJpaEntity {
     @Column(name = "\"Price\"", nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
 
+    @Builder.Default
     @Column(name = "\"Stock\"", nullable = false)
     private Integer stock = 0;
 

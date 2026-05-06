@@ -24,9 +24,14 @@ public class ProductImageJpaEntity {
     @Column(name = "\"ImageUrl\"", nullable = false, columnDefinition = "text")
     private String imageUrl;
 
+    @Column(name = "\"PublicId\"", columnDefinition = "text")
+    private String publicId;
+
+    @Builder.Default
     @Column(name = "\"IsPrimary\"", nullable = false)
     private Boolean isPrimary = false;
 
+    @Builder.Default
     @Column(name = "\"SortOrder\"", nullable = false)
     private Integer sortOrder = 0;
 }

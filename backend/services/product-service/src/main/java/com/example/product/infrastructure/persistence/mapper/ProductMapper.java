@@ -1,6 +1,7 @@
 package com.example.product.infrastructure.persistence.mapper;
 
 import com.example.product.domain.model.product.*;
+import com.example.product.domain.enums.ProductStatus;
 import com.example.product.domain.valueobject.Money;
 import com.example.product.domain.valueobject.Sku;
 import com.example.product.infrastructure.persistence.entity.*;

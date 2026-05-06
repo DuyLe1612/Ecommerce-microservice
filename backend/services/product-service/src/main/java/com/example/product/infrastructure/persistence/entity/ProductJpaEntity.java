@@ -51,12 +51,15 @@ public class ProductJpaEntity {
     @Column(name = "\"Overview\"", columnDefinition = "text")
     private String overview;
 
+    @Builder.Default
     @Column(name = "\"TotalSold\"", nullable = false)
     private Integer totalSold = 0;
 
+    @Builder.Default
     @Column(name = "\"AverageRating\"", nullable = false)
     private Double averageRating = 0.0;
 
+    @Builder.Default
     @Column(name = "\"TotalReviews\"", nullable = false)
     private Integer totalReviews = 0;
 
@@ -68,9 +71,11 @@ public class ProductJpaEntity {
     @Column(name = "\"UpdatedAt\"", nullable = false)
     private LocalDateTime updatedAt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProductVariantJpaEntity> variants = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProductImageJpaEntity> images = new ArrayList<>();
 }

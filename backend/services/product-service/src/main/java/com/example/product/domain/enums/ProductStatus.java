@@ -1,4 +1,4 @@
-package com.example.product.domain.model.product;
+package com.example.product.domain.enums;
 
 public enum ProductStatus {
     DRAFT,

@@ -5,6 +5,7 @@ import com.example.product.domain.valueobject.Money;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import com.example.product.domain.enums.*;
 
 /**
  * Aggregate Root for Product
