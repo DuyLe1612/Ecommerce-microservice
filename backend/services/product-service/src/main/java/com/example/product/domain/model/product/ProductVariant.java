@@ -1,5 +1,6 @@
 package com.example.product.domain.model.product;
 
+import com.example.product.domain.enums.ProductStatus;
 import com.example.product.domain.valueobject.Money;
 import com.example.product.domain.valueobject.Sku;
 
