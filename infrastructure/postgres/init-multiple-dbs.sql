@@ -5,3 +5,5 @@ CREATE DATABASE payment_db;
 CREATE DATABASE cart_db;
 CREATE DATABASE review_db;
 CREATE DATABASE notification_db;
+CREATE DATABASE promotion_db;
+CREATE DATABASE coupon_db;
