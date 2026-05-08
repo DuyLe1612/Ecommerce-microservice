@@ -1,5 +1,3 @@
-version: "3.9"
-
 name: ecommerce-microservices
 
 services:
@@ -13,6 +11,9 @@ services:
     depends_on:
       - auth-service
       - product-service
+      - search-service
+      - promotion-service
+      - coupon-service
       - order-service
       - payment-service
       - cart-service
@@ -62,11 +63,11 @@ services:
 
   auth-service:
     build:
-      context: ../services/auth-service
+      context: ../backend/services/auth-service
       dockerfile: Dockerfile
     container_name: auth-service
     env_file:
-      - ../services/auth-service/.env.example
+      - ../backend/services/auth-service/.env.example
     command: sh -c "echo auth-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
@@ -77,12 +78,57 @@ services:
 
   product-service:
     build:
-      context: ../services/product-service
+      context: ../backend/services/product-service
       dockerfile: Dockerfile
     container_name: product-service
     env_file:
-      - ../services/product-service/.env.example
+      - ../backend/services/product-service/.env.example
     command: sh -c "echo product-service scaffold ready; tail -f /dev/null"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce-net
+
+  search-service:
+    build:
+      context: ../backend/services/search-service
+      dockerfile: Dockerfile
+    container_name: search-service
+    env_file:
+      - ../backend/services/search-service/.env.example
+    command: sh -c "echo search-service scaffold ready; tail -f /dev/null"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce-net
+
+  promotion-service:
+    build:
+      context: ../backend/services/promotion-service
+      dockerfile: Dockerfile
+    container_name: promotion-service
+    env_file:
+      - ../backend/services/promotion-service/.env.example
+    command: sh -c "echo promotion-service scaffold ready; tail -f /dev/null"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce-net
+
+  coupon-service:
+    build:
+      context: ../backend/services/coupon-service
+      dockerfile: Dockerfile
+    container_name: coupon-service
+    env_file:
+      - ../backend/services/coupon-service/.env.example
+    command: sh -c "echo coupon-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
       - redis
@@ -92,11 +138,11 @@ services:
 
   order-service:
     build:
-      context: ../services/order-service
+      context: ../backend/services/order-service
       dockerfile: Dockerfile
     container_name: order-service
     env_file:
-      - ../services/order-service/.env.example
+      - ../backend/services/order-service/.env.example
     command: sh -c "echo order-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
@@ -107,11 +153,11 @@ services:
 
   payment-service:
     build:
-      context: ../services/payment-service
+      context: ../backend/services/payment-service
       dockerfile: Dockerfile
     container_name: payment-service
     env_file:
-      - ../services/payment-service/.env.example
+      - ../backend/services/payment-service/.env.example
     command: sh -c "echo payment-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
@@ -122,11 +168,11 @@ services:
 
   cart-service:
     build:
-      context: ../services/cart-service
+      context: ../backend/services/cart-service
       dockerfile: Dockerfile
     container_name: cart-service
     env_file:
-      - ../services/cart-service/.env.example
+      - ../backend/services/cart-service/.env.example
     command: sh -c "echo cart-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
@@ -137,11 +183,11 @@ services:
 
   review-service:
     build:
-      context: ../services/review-service
+      context: ../backend/services/review-service
       dockerfile: Dockerfile
     container_name: review-service
     env_file:
-      - ../services/review-service/.env.example
+      - ../backend/services/review-service/.env.example
     command: sh -c "echo review-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
@@ -152,11 +198,11 @@ services:
 
   notification-service:
     build:
-      context: ../services/notification-service
+      context: ../backend/services/notification-service
       dockerfile: Dockerfile
     container_name: notification-service
     env_file:
-      - ../services/notification-service/.env.example
+      - ../backend/services/notification-service/.env.example
     command: sh -c "echo notification-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
