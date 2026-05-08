@@ -2,7 +2,7 @@ import { ProfileAddress } from "@/type/address";
 import { ApiResponse } from "@/type/share";
 import { toast } from "sonner";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api";
 
 export type Profile = {
   id: string;
@@ -41,7 +41,7 @@ export async function getProfile(token: string) : Promise<Profile> {
     });
     const result = await res.json();
     
-    return result.data as Profile;
+    return result as Profile; 
   } catch (error) {
     console.error("Error in getProfile:", error);
     throw error;
@@ -59,7 +59,7 @@ export type UpdateProfileAllPayload = {
 
 export async function updateProfileAll(token: string, payload: UpdateProfileAllPayload): Promise<any> {
   try {
-    const res = await fetch(`${API_BASE_URL}/profile/all`, {
+    const res = await fetch(`${API_BASE_URL}/profile`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

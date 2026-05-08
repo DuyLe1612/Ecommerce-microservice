@@ -17,6 +17,12 @@ export class User {
   @Column({ default: 'customer' })
   role: string;
 
+  @Column({ nullable: true })
+  fullName: string;
+
+  @Column({ nullable: true })
+  phoneNumber: string;
+
   @Column({ type: 'text', nullable: true, select: false })
   refreshToken: string | null;
 
