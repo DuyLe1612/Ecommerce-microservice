@@ -24,7 +24,13 @@
 - auth-service
   - Auth, profile, identity
 - product-service
-  - Catalog, categories, brands, blog, promotions, coupons, ads
+  - Product domain write model, categories, brands, blog, media
+- search-service
+  - Product search, listing, recommendation read model
+- promotion-service
+  - Promotions and advertisements
+- coupon-service
+  - Coupons and coupon lifecycle
 - order-service
   - Orders and order lifecycle
 - payment-service
@@ -39,6 +45,9 @@
 ## 4) Data isolation
 - auth-service -> auth_db
 - product-service -> product_db
+- search-service -> search_db
+- promotion-service -> promotion_db
+- coupon-service -> coupon_db
 - order-service -> order_db
 - payment-service -> payment_db
 - cart-service -> cart_db
@@ -70,7 +79,9 @@ Reference event flow:
 2. payment-service consumes `OrderCreated`, creates payment attempt.
 3. payment-service publishes `PaymentSuccess` or `PaymentFailed`.
 4. order-service consumes payment event, updates order status.
-5. notification-service consumes final status event and sends message.
+5. coupon-service consumes `OrderCompleted` to update coupon usage metrics.
+6. search-service consumes product/promotion/coupon events to refresh query projections.
+7. notification-service consumes final status event and sends message.
 
 ## 6) Gateway boundaries
 Gateway should do:
