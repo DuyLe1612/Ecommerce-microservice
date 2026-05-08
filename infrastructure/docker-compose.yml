@@ -19,6 +19,8 @@ services:
       - cart-service
       - review-service
       - notification-service
+      - promotion-service
+      - coupon-service
     networks:
       - ecommerce-net
 
@@ -204,6 +206,34 @@ services:
     env_file:
       - ../backend/services/notification-service/.env.example
     command: sh -c "echo notification-service scaffold ready; tail -f /dev/null"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce-net
+
+  promotion-service:
+    build:
+      context: ../backend/services/promotion-service
+      dockerfile: Dockerfile
+    container_name: promotion-service
+    env_file:
+      - ../backend/services/promotion-service/.env.example
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce-net
+
+  coupon-service:
+    build:
+      context: ../backend/services/coupon-service
+      dockerfile: Dockerfile
+    container_name: coupon-service
+    env_file:
+      - ../backend/services/coupon-service/.env.example
     depends_on:
       - postgres
       - redis
