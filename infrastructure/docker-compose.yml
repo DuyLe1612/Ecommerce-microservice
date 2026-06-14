@@ -38,6 +38,12 @@ services:
       - ./postgres/init-multiple-dbs.sql:/docker-entrypoint-initdb.d/init-multiple-dbs.sql
     networks:
       - ecommerce-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tekno -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   redis:
     image: redis:7-alpine
@@ -62,6 +68,12 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
       - ecommerce-net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
   auth-service:
     build:
@@ -156,15 +168,34 @@ services:
   payment-service:
     build:
       context: ../backend/services/payment-service
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  
     container_name: payment-service
-    env_file:
-      - ../backend/services/payment-service/.env.example
-    command: sh -c "echo payment-service scaffold ready; tail -f /dev/null"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/payment_db
+      SPRING_DATASOURCE_USERNAME: tekno
+      SPRING_DATASOURCE_PASSWORD: tekno123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: tekno
+      SPRING_RABBITMQ_PASSWORD: tekno123
+      PAYMENT_EXTERNAL_AUTH_MODE: mock
+      PAYMENT_EXTERNAL_AUTH_JWT_SECRET: ${JWT_SECRET:-your-256-bit-secret-key-for-jwt-signing-minimum-32-chars}
+      PAYMENT_EXTERNAL_ORDER_MODE: mock
+      JWT_SECRET: ${JWT_SECRET:-your-256-bit-secret-key-for-jwt-signing-minimum-32-chars}
     depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8086/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
     networks:
       - ecommerce-net
 
