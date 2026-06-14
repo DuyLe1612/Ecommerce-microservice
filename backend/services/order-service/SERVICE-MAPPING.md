@@ -1,11 +1,13 @@
 # Service Mapping - order-service
 
 ## Folder should contain
+
 - API module(s): order lifecycle and admin order management
 - persistence: order_db for orders, items, status transitions, history
 - integration: checkout orchestrator, status policy, admin reports (temporary)
 
 ## API ownership (from OpenAPI)
+
 - POST /api/orders/create
 - GET /api/orders/history
 - GET /api/orders/{orderNumber}
@@ -32,10 +34,12 @@
 - POST /api/admin/statistics/invalidate-cache
 
 ## Sync calls to other services
+
 - cart-service: fetch selected items for order creation.
 - promotion-service: validate coupon snapshot and discount eligibility.
 - payment-service: query payment status in synchronous fallback path only.
 
 ## Async integration
+
 - Publish: OrderCreated, OrderCancelled, OrderShipped, OrderDelivered, OrderCompleted.
 - Consume: PaymentSuccess, PaymentFailed, PaymentRefunded.
