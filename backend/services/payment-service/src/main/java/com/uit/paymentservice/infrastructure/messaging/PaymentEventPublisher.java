@@ -27,7 +27,7 @@ public class PaymentEventPublisher {
         try {
             String routingKey = resolveRoutingKey(event);
             rabbitTemplate.convertAndSend(EXCHANGE, routingKey, event);
-            log.debug("Published event: {} with key: {}", event.getClass().getSimpleName(), routingKey);
+            log.info("Published event: {} with key: {}", event.getClass().getSimpleName(), routingKey);
         } catch (Exception ex) {
             log.warn("Failed to publish event {}: {}", event.getClass().getSimpleName(), ex.getMessage());
         }

@@ -1,0 +1,17 @@
+package com.uit.orderservice.domain.repository;
+
+import com.uit.orderservice.domain.model.Order;
+import com.uit.orderservice.domain.model.OrderStatus;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+public interface OrderRepository {
+    Order save(Order order);
+    Optional<Order> findById(Long id);
+    Optional<Order> findByOrderNumber(String orderNumber);
+    List<Order> findByUserId(Long userId);
+    List<Order> findByStatus(OrderStatus status);
+    boolean hasDeliveredOrderWithProduct(Long userId, Long productId);
+}
