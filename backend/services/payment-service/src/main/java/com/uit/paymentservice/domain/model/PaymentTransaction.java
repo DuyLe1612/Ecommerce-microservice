@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class PaymentTransaction {
 
     private Long id;
@@ -35,14 +36,14 @@ public class PaymentTransaction {
     protected PaymentTransaction() {}
 
     public static PaymentTransaction create(Long orderId, Long userId, BigDecimal amount,
-            String currency, PaymentGatewayType gatewayType, String idempotencyKey, LocalDateTime expiredAt) {
+            String currency, PaymentGatewayType gatewayType,PaymentStatus status, String idempotencyKey, LocalDateTime expiredAt) {
         PaymentTransaction tx = new PaymentTransaction();
         tx.orderId = orderId;
         tx.userId = userId;
         tx.amount = amount;
         tx.currency = currency;
         tx.gatewayType = gatewayType;
-        tx.status = PaymentStatus.PENDING;
+        tx.status = status;
         tx.idempotencyKey = idempotencyKey;
         tx.retryCount = 0;
         tx.createdAt = LocalDateTime.now();
@@ -52,10 +53,7 @@ public class PaymentTransaction {
     }
 
     public void markProcessing(String simulatedRedirectUrl) {
-        if (this.status != PaymentStatus.PENDING) {
-            throw new IllegalStateException(
-                "Cannot transition from " + this.status + " to PROCESSING");
-        }
+
         this.status = PaymentStatus.PROCESSING;
         this.simulatedRedirectUrl = simulatedRedirectUrl;
         this.updatedAt = LocalDateTime.now();

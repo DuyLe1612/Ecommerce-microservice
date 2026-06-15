@@ -1,6 +1,6 @@
 spring:
-  profiles:
-    active: test
+  application:
+    name: payment-service-test
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
     driver-class-name: org.h2.Driver
@@ -19,10 +19,8 @@ spring:
 
 payment:
   external:
-    auth:
-      mode: mock
     order:
-      mode: mock
+      base-url: http://localhost:8087
   simulator:
     vnpay:
       failure-rate: 0.0
@@ -45,4 +43,4 @@ payment:
 
 logging:
   level:
-    com.uit.paymentservice: DEBUG
+    com.uit.paymentservice: INFO

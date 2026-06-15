@@ -1,7 +1,7 @@
 package com.uit.paymentservice.presentation.rest;
 
+import com.uit.paymentservice.application.command.HandleCallbackCommand;
 import com.uit.paymentservice.domain.model.PaymentGatewayType;
-import com.uit.paymentservice.infrastructure.gateway.PaymentGatewayFactory;
 import com.uit.paymentservice.presentation.dto.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,10 +18,10 @@ import java.util.Map;
 @Tag(name = "Payment Callbacks", description = "Gateway IPN (Instant Payment Notification) and return URL handlers")
 public class PaymentCallbackController {
 
-    private final PaymentGatewayFactory gatewayFactory;
+    private final HandleCallbackCommand handleCallbackCommand;
 
-    public PaymentCallbackController(PaymentGatewayFactory gatewayFactory) {
-        this.gatewayFactory = gatewayFactory;
+    public PaymentCallbackController(HandleCallbackCommand handleCallbackCommand) {
+        this.handleCallbackCommand = handleCallbackCommand;
     }
 
     @Operation(
@@ -49,17 +49,8 @@ public class PaymentCallbackController {
 
         try {
             PaymentGatewayType type = PaymentGatewayType.valueOf(gatewayType.toUpperCase());
-            var gateway = gatewayFactory.get(type);
-            if (gateway == null) {
-                return ResponseEntity.badRequest().body("{\"error\":\"Unsupported gateway\"}");
-            }
-
-            var result = gateway.processCallback(params);
-            if (result.success()) {
-                return ResponseEntity.ok("{\"returnCode\":1,\"returnMessage\":\"OK\"}");
-            } else {
-                return ResponseEntity.ok("{\"returnCode\":0,\"returnMessage\":\"Failed\"}");
-            }
+            handleCallbackCommand.execute(type, params);
+            return ResponseEntity.ok("{\"returnCode\":1,\"returnMessage\":\"OK\"}");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"error\":\"" + e.getMessage() + "\"}");
         }
@@ -81,14 +72,12 @@ public class PaymentCallbackController {
             @Parameter(description = "VNPay callback parameters")
             @RequestParam Map<String, String> params) {
 
-        var gateway = gatewayFactory.get(PaymentGatewayType.VNPAY);
-        if (gateway == null) {
-            return ResponseEntity.badRequest().body("RspCode=99&Message=ERROR");
+        try {
+            handleCallbackCommand.execute(PaymentGatewayType.VNPAY, params);
+            return ResponseEntity.ok("RspCode=00&Message=OK");
+        } catch (Exception e) {
+            return ResponseEntity.ok("RspCode=99&Message=ERROR");
         }
-
-        var result = gateway.processCallback(params);
-        String responseCode = result.success() ? "00" : "99";
-        return ResponseEntity.ok("RspCode=" + responseCode + "&Message=OK");
     }
 
     @Operation(

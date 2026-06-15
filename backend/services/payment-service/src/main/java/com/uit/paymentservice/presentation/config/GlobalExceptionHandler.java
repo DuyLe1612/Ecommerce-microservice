@@ -1,8 +1,6 @@
 package com.uit.paymentservice.presentation.config;
 
 import com.uit.paymentservice.application.exception.*;
-import com.uit.paymentservice.infrastructure.external.MockAuthServiceClient.AuthenticationException;
-import com.uit.paymentservice.infrastructure.external.RealAuthServiceClient.AuthServiceUnavailableException;
 import com.uit.paymentservice.infrastructure.external.RealOrderServiceClient.OrderServiceUnavailableException;
 import com.uit.paymentservice.presentation.dto.ApiResponse;
 import org.slf4j.Logger;
@@ -70,18 +68,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Object>> handleGatewaySimulationError(GatewaySimulationException ex) {
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
             .body(ApiResponse.error("GATEWAY_SIMULATION_ERROR", ex.getMessage()));
-    }
-
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<ApiResponse<Object>> handleAuthenticationException(AuthenticationException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-            .body(ApiResponse.error("UNAUTHORIZED", ex.getMessage()));
-    }
-
-    @ExceptionHandler(AuthServiceUnavailableException.class)
-    public ResponseEntity<ApiResponse<Object>> handleAuthServiceUnavailable(AuthServiceUnavailableException ex) {
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-            .body(ApiResponse.error("AUTH_SERVICE_UNAVAILABLE", ex.getMessage()));
     }
 
     @ExceptionHandler(OrderServiceUnavailableException.class)

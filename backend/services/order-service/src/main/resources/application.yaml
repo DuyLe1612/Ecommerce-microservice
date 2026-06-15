@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:order_db}
+    username: ${DB_USER:tekno}
+    password: ${DB_PASSWORD:tekno123}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      connection-timeout: 20000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:tekno}
+    password: ${RABBITMQ_PASSWORD:tekno123}
+
+server:
+  port: ${PORT:8087}
+
+# External service integration (product-service)
+order:
+  external:
+    product:
+      mode: ${ORDER_EXTERNAL_PRODUCT_MODE:mock}
+      base-url: ${ORDER_EXTERNAL_PRODUCT_BASE_URL:http://localhost:8080}
+      connect-timeout-ms: ${ORDER_EXTERNAL_PRODUCT_CONNECT_TIMEOUT:3000}
+      read-timeout-ms: ${ORDER_EXTERNAL_PRODUCT_READ_TIMEOUT:5000}
+
+# Bind to payment-service queues for consuming payment events
+rabbitmq:
+  queues:
+    payment-succeeded: order-service.payment.succeeded
+    payment-failed: order-service.payment.failed
+    payment-refunded: order-service.payment.refunded
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.uit.orderservice: INFO
+    org.flywaydb: DEBUG

@@ -11,7 +11,6 @@ services:
     depends_on:
       - auth-service
       - product-service
-      - search-service
       - promotion-service
       - coupon-service
       - order-service
@@ -19,8 +18,6 @@ services:
       - cart-service
       - review-service
       - notification-service
-      - promotion-service
-      - coupon-service
     networks:
       - ecommerce-net
 
@@ -66,6 +63,7 @@ services:
       - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq/init-rabbitmq.sh:/docker-entrypoint-initdb.d/init-rabbitmq.sh:ro
     networks:
       - ecommerce-net
     healthcheck:
@@ -73,8 +71,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-      start_period: 20s
+      start_period: 30s
 
+  # ── Auth Service ────────────────────────────────────────────────────────────
   auth-service:
     build:
       context: ../backend/services/auth-service
@@ -90,6 +89,7 @@ services:
     networks:
       - ecommerce-net
 
+  # ── Product Service ─────────────────────────────────────────────────────────
   product-service:
     build:
       context: ../backend/services/product-service
@@ -98,21 +98,6 @@ services:
     env_file:
       - ../backend/services/product-service/.env.example
     command: sh -c "echo product-service scaffold ready; tail -f /dev/null"
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
-    networks:
-      - ecommerce-net
-
-  search-service:
-    build:
-      context: ../backend/services/search-service
-      dockerfile: Dockerfile
-    container_name: search-service
-    env_file:
-      - ../backend/services/search-service/.env.example
-    command: sh -c "echo search-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
       - redis
@@ -156,35 +141,29 @@ services:
       dockerfile: Dockerfile
     container_name: order-service
     env_file:
-      - ../backend/services/order-service/.env.example
-    command: sh -c "echo order-service scaffold ready; tail -f /dev/null"
+      - ../backend/services/order-service/.env
     depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     networks:
       - ecommerce-net
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8087/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
+  # ── Payment Service ─────────────────────────────────────────────────────────
   payment-service:
     build:
       context: ../backend/services/payment-service
-      dockerfile: Dockerfile  
+      dockerfile: Dockerfile
     container_name: payment-service
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/payment_db
-      SPRING_DATASOURCE_USERNAME: tekno
-      SPRING_DATASOURCE_PASSWORD: tekno123
-      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
-      SPRING_FLYWAY_ENABLED: "true"
-      SPRING_RABBITMQ_HOST: rabbitmq
-      SPRING_RABBITMQ_PORT: 5672
-      SPRING_RABBITMQ_USERNAME: tekno
-      SPRING_RABBITMQ_PASSWORD: tekno123
-      PAYMENT_EXTERNAL_AUTH_MODE: mock
-      PAYMENT_EXTERNAL_AUTH_JWT_SECRET: ${JWT_SECRET:-your-256-bit-secret-key-for-jwt-signing-minimum-32-chars}
-      PAYMENT_EXTERNAL_ORDER_MODE: mock
-      JWT_SECRET: ${JWT_SECRET:-your-256-bit-secret-key-for-jwt-signing-minimum-32-chars}
+    env_file:
+      - ../backend/services/payment-service/.env
     depends_on:
       postgres:
         condition: service_healthy
@@ -237,34 +216,6 @@ services:
     env_file:
       - ../backend/services/notification-service/.env.example
     command: sh -c "echo notification-service scaffold ready; tail -f /dev/null"
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
-    networks:
-      - ecommerce-net
-
-  promotion-service:
-    build:
-      context: ../backend/services/promotion-service
-      dockerfile: Dockerfile
-    container_name: promotion-service
-    env_file:
-      - ../backend/services/promotion-service/.env.example
-    depends_on:
-      - postgres
-      - redis
-      - rabbitmq
-    networks:
-      - ecommerce-net
-
-  coupon-service:
-    build:
-      context: ../backend/services/coupon-service
-      dockerfile: Dockerfile
-    container_name: coupon-service
-    env_file:
-      - ../backend/services/coupon-service/.env.example
     depends_on:
       - postgres
       - redis

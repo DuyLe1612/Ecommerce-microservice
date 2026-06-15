@@ -96,7 +96,7 @@ public class PaymentTransactionJpaEntity {
 
     public PaymentTransaction toDomain() {
         PaymentTransaction tx = PaymentTransaction.create(
-            orderId, userId, amount, currency, gatewayType, idempotencyKey, expiredAt
+            orderId, userId, amount, currency, gatewayType,status, idempotencyKey, expiredAt
         );
         tx.setId(id);
         tx.setGatewayTransactionId(gatewayTransactionId);

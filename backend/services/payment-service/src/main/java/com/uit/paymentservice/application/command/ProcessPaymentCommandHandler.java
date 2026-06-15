@@ -1,6 +1,7 @@
 package com.uit.paymentservice.application.command;
 
 import com.uit.paymentservice.domain.model.PaymentGatewayType;
+import com.uit.paymentservice.domain.model.PaymentStatus;
 import com.uit.paymentservice.domain.model.PaymentTransaction;
 import com.uit.paymentservice.domain.repository.PaymentRepository;
 import com.uit.paymentservice.infrastructure.external.OrderServiceClient;
@@ -55,7 +56,7 @@ public class ProcessPaymentCommandHandler {
         Optional<PaymentTransaction> existing = paymentRepository.findByIdempotencyKey(idempotencyKey);
         if (existing.isPresent()) {
             PaymentTransaction tx = existing.get();
-            if (tx.getStatus() != com.uit.paymentservice.domain.model.PaymentStatus.FAILED) {
+            if (tx.getStatus() != PaymentStatus.FAILED) {
                 log.info("Returning idempotent response for key: {}", idempotencyKey);
                 throw new IdempotentResponseException(tx);
             }
@@ -88,6 +89,7 @@ public class ProcessPaymentCommandHandler {
             command.amount(),
             command.currency(),
             command.gatewayType(),
+            PaymentStatus.PROCESSING,
             idempotencyKey,
             expiredAt
         );
@@ -140,7 +142,7 @@ public class ProcessPaymentCommandHandler {
             return new ProcessPaymentResponse(
                 tx.getId(),
                 idempotencyKey,
-                com.uit.paymentservice.domain.model.PaymentStatus.PROCESSING.name(),
+                PaymentStatus.PROCESSING.name(),
                 result.redirectUrl(),
                 command.gatewayType().name(),
                 tx.getExpiredAt()
