@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -23,6 +24,7 @@ public class ProductVariantJpaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ProductId\"", nullable = false)
+    @JsonIgnoreProperties({"variants", "images"})
     private ProductJpaEntity product;
 
     @Column(name = "\"Sku\"", nullable = false, length = 100, unique = true)
