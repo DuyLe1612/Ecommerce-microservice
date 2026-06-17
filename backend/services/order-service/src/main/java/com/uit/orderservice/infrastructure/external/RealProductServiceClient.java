@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Real implementation of ProductServiceClient that calls the actual product-service
@@ -113,4 +114,37 @@ public class RealProductServiceClient implements ProductServiceClient {
             String status,
             String error
     ) {}
+
+    @Override
+    public void reserveStock(Long orderId, List<StockReservationItem> items) {
+        log.info("[REAL] Reserving stock: orderId={}, {} items", orderId, items.size());
+        for (StockReservationItem item : items) {
+            try {
+                Map<String, Object> body = Map.of(
+                    "variantId", item.productId(),
+                    "orderId", orderId,
+                    "quantity", item.quantity()
+                );
+                webClient.post()
+                    .uri("/internal/products/stock/reserve")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue(body)
+                    .retrieve()
+                    .onStatus(HttpStatusCode::isError, resp ->
+                        resp.bodyToMono(String.class).map(err ->
+                            new RuntimeException("Stock reservation failed for productId="
+                                + item.productId() + ": " + err)))
+                    .bodyToMono(Void.class)
+                    .timeout(TIMEOUT)
+                    .block();
+                log.debug("[REAL] Stock reserved: productId={}, qty={}", item.productId(), item.quantity());
+            } catch (RuntimeException ex) {
+                log.error("[REAL] Stock reservation failed: orderId={}, productId={}: {}",
+                    orderId, item.productId(), ex.getMessage());
+                throw new com.uit.orderservice.application.exception.ProductServiceUnavailableException(
+                    "Stock reservation failed for productId=" + item.productId()
+                        + ": " + ex.getMessage(), ex);
+            }
+        }
+    }
 }

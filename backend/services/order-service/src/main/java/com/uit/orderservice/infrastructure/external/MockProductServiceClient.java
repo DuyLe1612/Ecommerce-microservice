@@ -66,4 +66,10 @@ public class MockProductServiceClient implements ProductServiceClient {
         log.info("[MOCK] Validation complete: allValid={}, results={}", allValid, results.size());
         return new BatchProductValidationResult(allValid, results);
     }
+
+    @Override
+    public void reserveStock(Long orderId, List<StockReservationItem> items) {
+        log.info("[MOCK] Stock reservation accepted: orderId={}, items={}", orderId, items.size());
+        // Mock always succeeds — no stock tracking in mock mode
+    }
 }

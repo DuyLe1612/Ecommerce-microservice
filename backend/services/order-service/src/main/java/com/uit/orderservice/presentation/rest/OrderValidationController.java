@@ -41,24 +41,22 @@ public class OrderValidationController {
 
         try {
             var order = orderService.getOrderById(orderId);
-            if (!order.userId().equals(userId)) {
-                return ResponseEntity.ok(Map.of(
-                    "exists", true,
-                    "userId", order.userId(),
-                    "expectedAmount", order.totalAmount(),
-                    "currency", order.currency(),
-                    "status", order.status()
-                ));
-            }
             return ResponseEntity.ok(Map.of(
-                "exists", true,
-                "userId", order.userId(),
-                "expectedAmount", order.totalAmount(),
-                "currency", order.currency(),
-                "status", order.status()
+                "exists",          true,
+                "ownershipValid",  order.userId().equals(userId),
+                "userId",          order.userId(),
+                "expectedAmount",  order.totalAmount(),
+                "currency",        order.currency(),
+                "status",          order.status()
             ));
         } catch (OrderService.OrderNotFoundException e) {
-            return ResponseEntity.ok(Map.of("exists", false));
+            return ResponseEntity.ok(Map.of(
+                "exists",         false,
+                "userId",         userId,
+                "expectedAmount", amount,
+                "currency",       "VND",
+                "status",         "NOT_FOUND"
+            ));
         }
     }
 }

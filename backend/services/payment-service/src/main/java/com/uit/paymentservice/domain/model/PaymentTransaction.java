@@ -53,7 +53,7 @@ public class PaymentTransaction {
     }
 
     public void markProcessing(String simulatedRedirectUrl) {
-
+        
         this.status = PaymentStatus.PROCESSING;
         this.simulatedRedirectUrl = simulatedRedirectUrl;
         this.updatedAt = LocalDateTime.now();

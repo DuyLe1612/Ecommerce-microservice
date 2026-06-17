@@ -38,4 +38,13 @@ public interface ProductServiceClient {
     ) {
         public boolean valid() { return exists && inStock; }
     }
+
+    /**
+     * Reserve stock for the given order. Called synchronously after order persisted.
+     * Throws ProductServiceUnavailableException if product-service cannot be reached.
+     * Throws RuntimeException with message if stock is insufficient.
+     */
+    void reserveStock(Long orderId, List<StockReservationItem> items);
+
+    record StockReservationItem(Long productId, int quantity) {}
 }

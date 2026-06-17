@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,11 +73,36 @@ public class PaymentController {
                 required = true,
                 example = "550e8400-e29b-41d4-a716-446655440000")
             @RequestHeader("Idempotency-Key") String idempotencyKey,
+            @RequestHeader(value = "Authorization", required = false) String authHeader,
             @Parameter(description = "User ID — set by API gateway after auth")
-            @RequestHeader(value = "X-User-Id", required = false) Long userId) {
+            @RequestHeader(value = "X-User-Id", required = false) Long xUserId) {
+
+        // Resolve userId: prefer Authorization mock token, fall back to X-User-Id header
+        Long userId = resolveUserId(authHeader, xUserId);
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ApiResponse.error("UNAUTHORIZED", "User identity required: provide Authorization header or X-User-Id"));
+        }
 
         ProcessPaymentResponse response = processPaymentHandler.execute(command, userId, idempotencyKey);
         return ResponseEntity.ok(ApiResponse.success(response));
+    }
+
+    private Long resolveUserId(String authHeader, Long xUserId) {
+        if (authHeader != null && authHeader.startsWith("Bearer mock-user-")) {
+            try {
+                // Extract userId from mock token: mock-user-{userId}-{role}
+                String token = authHeader.substring(7); // remove "Bearer "
+                String[] parts = token.split("-");
+                // Format: mock, user, {userId}, {role}
+                if (parts.length >= 4) {
+                    return Long.parseLong(parts[2]);
+                }
+            } catch (NumberFormatException ignored) {
+                // Fall through to xUserId
+            }
+        }
+        return xUserId;
     }
 
     @Operation(
