@@ -1,8 +1,14 @@
 package com.example.product.presentation.internal;
 
 import com.example.product.application.dto.ApiResponse;
+import com.example.product.application.dto.ProductDetailResponse;
 import com.example.product.application.dto.ProductVariantResponse;
+import com.example.product.application.usecase.GetProductBySlugUseCase;
+import com.example.product.application.usecase.StockManagementUseCase;
+import com.example.product.application.dto.StockReserveRequest;
+import com.example.product.domain.exception.DomainException;
 import com.example.product.infrastructure.persistence.repository.ProductVariantRepository;
+import com.example.product.infrastructure.persistence.repository.SpringDataProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +21,13 @@ import java.util.List;
 public class ProductInternalController {
 
     private final ProductVariantRepository variantRepository;
+    private final GetProductBySlugUseCase getProductBySlugUseCase;
+    private final StockManagementUseCase stockManagementUseCase;
+    private final SpringDataProductRepository springDataProductRepository;
 
     @GetMapping("/{slug}")
-    public ApiResponse<Object> getProductBySlugInternal(@PathVariable String slug) {
-        return ApiResponse.success(null);
+    public ApiResponse<ProductDetailResponse> getProductBySlugInternal(@PathVariable String slug) {
+        return ApiResponse.success(getProductBySlugUseCase.execute(slug));
     }
 
     /**
@@ -77,5 +86,42 @@ public class ProductInternalController {
             String error
     ) {
         public boolean valid() { return exists && inStock; }
+    }
+
+    // Reserve stock for order
+    @PostMapping("/stock/reserve")
+    public ResponseEntity<ApiResponse<Object>> reserveStock(@RequestBody StockReserveRequest request) {
+        try {
+            stockManagementUseCase.reserveStock(request.getVariantId(), request.getOrderId(), request.getQuantity());
+            return ResponseEntity.ok(new ApiResponse<>(true, null, "Stock reserved"));
+        } catch (DomainException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+    // Confirm reservation after payment
+    @PostMapping("/stock/confirm/{orderId}")
+    public ResponseEntity<ApiResponse<Object>> confirmStock(@PathVariable Long orderId) {
+        stockManagementUseCase.confirmReservation(orderId);
+        return ResponseEntity.ok(new ApiResponse<>(true, null, "Stock confirmed"));
+    }
+
+    // Release reservation on cancel
+    @PostMapping("/stock/release/{orderId}")
+    public ResponseEntity<ApiResponse<Object>> releaseStock(@PathVariable Long orderId) {
+        stockManagementUseCase.releaseReservation(orderId);
+        return ResponseEntity.ok(new ApiResponse<>(true, null, "Stock released"));
+    }
+
+    // Check available stock
+    @GetMapping("/stock/{variantId}")
+    public ResponseEntity<ApiResponse<Integer>> getAvailableStock(@PathVariable Long variantId) {
+        return ResponseEntity.ok(ApiResponse.success(stockManagementUseCase.getAvailableStock(variantId)));
+    }
+
+    // Check if product exists (for coupon/promotion service)  
+    @GetMapping("/{productId}/exists")
+    public ResponseEntity<Boolean> productExists(@PathVariable Long productId) {
+        return ResponseEntity.ok(springDataProductRepository.existsById(productId));
     }
 }

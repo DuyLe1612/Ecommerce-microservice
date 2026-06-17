@@ -15,12 +15,14 @@ import java.util.Map;
 public class CloudinaryGatewayImpl implements CloudinaryGateway {
     
     private final Cloudinary cloudinary;
+    private final String apiKey;
 
     public CloudinaryGatewayImpl(
             @Value("${cloudinary.cloud_name}") String cloudName,
             @Value("${cloudinary.api_key}") String apiKey,
             @Value("${cloudinary.api_secret}") String apiSecret) {
-        cloudinary = new Cloudinary(ObjectUtils.asMap(
+        this.apiKey = apiKey;
+        this.cloudinary = new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", cloudName,
                 "api_key", apiKey,
                 "api_secret", apiSecret));
@@ -28,6 +30,14 @@ public class CloudinaryGatewayImpl implements CloudinaryGateway {
 
     @Override
     public CloudinaryUploadResponse upload(MultipartFile file, String folder) {
+        if ("dummy".equals(apiKey)) {
+            return new CloudinaryUploadResponse(
+                "https://via.placeholder.com/400x400?text=" + file.getOriginalFilename(),
+                "mock/" + System.currentTimeMillis(),
+                file.getOriginalFilename()
+            );
+        }
+
         try {
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
                 "folder", folder

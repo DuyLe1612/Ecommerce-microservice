@@ -2,6 +2,7 @@ package com.example.product.domain.repository;
 
 import com.example.product.application.dto.ProductAdminRequest;
 import com.example.product.application.dto.ProductImageReorderRequest;
+import com.example.product.application.dto.ProductImageUpdateRequest;
 import com.example.product.application.dto.ProductVariantRequest;
 import com.example.product.domain.event.ProductEventV1;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ public interface ProductCommandRepository {
     ProductEventV1 updateProduct(Long id, ProductAdminRequest request);
     ProductEventV1 deleteProduct(Long id);
     Object uploadImage(Long productId, MultipartFile file, Boolean isPrimary);
+    Object updateImage(Long imageId, ProductImageUpdateRequest request);
     void deleteImage(Long imageId);
     void reorderImages(ProductImageReorderRequest request);
     Object addVariant(ProductVariantRequest request);
