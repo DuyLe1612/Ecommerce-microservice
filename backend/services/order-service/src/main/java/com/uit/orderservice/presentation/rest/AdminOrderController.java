@@ -59,6 +59,7 @@ public class AdminOrderController {
     public ResponseEntity<OrderResponse> cancelOrder(
             @PathVariable Long orderId,
             @RequestParam(required = false) String reason) {
-        return ResponseEntity.ok(orderService.cancelOrder(orderId, 0L, reason));
+        // Pass null userId → admin cancel, no ownership check
+        return ResponseEntity.ok(orderService.cancelOrder(orderId, null, reason));
     }
 }

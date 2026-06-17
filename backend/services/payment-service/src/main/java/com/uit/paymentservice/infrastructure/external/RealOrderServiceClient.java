@@ -53,54 +53,19 @@ public class RealOrderServiceClient implements OrderServiceClient {
                             .retrieve()
                             .body(Map.class);
 
-            if (body == null) {
-                throw new OrderServiceUnavailableException(
-                        "Empty response from order-service"
-                );
+            if (body == null || !Boolean.TRUE.equals(body.get("exists"))) {
+                return new OrderValidationResult(false, userId, requestedAmount, "VND", "NOT_FOUND");
             }
 
-            boolean exists =
-                    Boolean.TRUE.equals(body.get("exists"));
+            Long orderUserId    = Long.valueOf(body.get("userId").toString());
+            BigDecimal expected = new BigDecimal(body.get("expectedAmount").toString());
+            String currency     = String.valueOf(body.getOrDefault("currency", "VND"));
+            String status       = String.valueOf(body.getOrDefault("status", "PENDING_PAYMENT"));
 
-            if (!exists) {
-                return new OrderValidationResult(
-                        false,
-                        userId,
-                        requestedAmount,
-                        "VND",
-                        "NOT_FOUND"
-                );
-            }
+            log.debug("Order validation result: orderId={}, ownershipValid={}, status={}",
+                orderId, body.get("ownershipValid"), status);
 
-            Long orderUserId =
-                    Long.valueOf(body.get("userId").toString());
-
-            BigDecimal expectedAmount =
-                    new BigDecimal(body.get("expectedAmount").toString());
-
-            String currency =
-                    String.valueOf(
-                            body.getOrDefault("currency", "VND")
-                    );
-
-            String status =
-                    String.valueOf(
-                            body.getOrDefault("status", "PENDING")
-                    );
-
-            log.debug(
-                    "Validation success: orderId={}, status={}",
-                    orderId,
-                    status
-            );
-
-            return new OrderValidationResult(
-                    true,
-                    orderUserId,
-                    expectedAmount,
-                    currency,
-                    status
-            );
+            return new OrderValidationResult(true, orderUserId, expected, currency, status);
 
         } catch (RestClientException ex) {
 

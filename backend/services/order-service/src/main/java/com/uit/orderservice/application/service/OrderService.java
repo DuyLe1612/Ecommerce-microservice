@@ -66,8 +66,23 @@ public class OrderService {
         );
 
         order = orderRepository.save(order);
-        log.info("Order created: id={}, orderNumber={}", order.getId(), order.getOrderNumber());
+        log.info("Order persisted: id={}, orderNumber={}", order.getId(), order.getOrderNumber());
 
+        // Step 4: Reserve stock — if this fails, cancel the order and surface the error
+        try {
+            List<ProductServiceClient.StockReservationItem> reservationItems = request.items().stream()
+                .map(i -> new ProductServiceClient.StockReservationItem(i.productId(), i.quantity()))
+                .toList();
+            productServiceClient.reserveStock(order.getId(), reservationItems);
+            log.info("Stock reserved for orderId={}", order.getId());
+        } catch (Exception ex) {
+            log.error("Stock reservation failed for orderId={}, cancelling: {}", order.getId(), ex.getMessage());
+            order.markCancelled("Stock reservation failed: " + ex.getMessage());
+            orderRepository.save(order);
+            throw new RuntimeException("Order cancelled — could not reserve stock: " + ex.getMessage(), ex);
+        }
+
+        // Step 5: Publish OrderCreated event (after successful DB save AND stock reservation)
         eventPublisher.publish(new OrderCreatedEvent(
             order.getId(), order.getOrderNumber(), order.getUserId(),
             order.getTotalAmount().amount(), order.getTotalAmount().currency(),
@@ -136,17 +151,21 @@ public class OrderService {
         Order order = orderRepository.findById(orderId)
             .orElseThrow(() -> new OrderNotFoundException(orderId));
 
-        if (!order.isOwnedBy(userId)) {
+        // null userId = admin cancel, skip ownership check
+        if (userId != null && !order.isOwnedBy(userId)) {
             throw new UnauthorizedOrderAccessException(
                 "User " + userId + " does not own order " + orderId);
         }
 
-        order.markCancelled(reason != null ? reason : "Cancelled by customer");
+        String cancelReason = reason != null ? reason : (userId != null ? "Cancelled by customer" : "Cancelled by admin");
+        order.markCancelled(cancelReason);
         order = orderRepository.save(order);
 
         eventPublisher.publish(new OrderCancelledEvent(
-            order.getId(), order.getOrderNumber(), order.getUserId(), reason));
-        log.info("Order {} cancelled by user {}", orderId, userId);
+            order.getId(), order.getOrderNumber(), order.getUserId(), cancelReason));
+
+        log.info("Order {} cancelled by {}", orderId,
+            userId != null ? "user " + userId : "admin");
 
         return toResponse(order);
     }
