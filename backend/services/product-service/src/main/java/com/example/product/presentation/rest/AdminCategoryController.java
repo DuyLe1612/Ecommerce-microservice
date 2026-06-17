@@ -3,6 +3,9 @@ package com.example.product.presentation.rest;
 import com.example.product.application.dto.ApiResponse;
 import com.example.product.application.dto.CategoryAdminRequest;
 import com.example.product.application.dto.CategoryAttributeRequest;
+import com.example.product.application.dto.CategoryAttributeWithCategoryRequest;
+import com.example.product.application.dto.AttributeValueRequest;
+import com.example.product.application.usecase.GetCategoryTreeUseCase;
 import com.example.product.application.util.SlugUtil;
 import com.example.product.infrastructure.messaging.ProductEventPublisher;
 import com.example.product.infrastructure.persistence.entity.CategoryAttributeJpaEntity;
@@ -31,6 +34,107 @@ public class AdminCategoryController {
     private final CategoryClosureRepository categoryClosureRepository;
     private final CategoryAttributeRepository categoryAttributeRepository;
     private final ProductEventPublisher eventPublisher;
+    private final GetCategoryTreeUseCase getCategoryTreeUseCase;
+
+    @GetMapping
+    public ApiResponse<Object> getAllCategories() {
+        return ApiResponse.success(categoryRepository.findAll());
+    }
+
+    @GetMapping("/list")
+    public ApiResponse<Object> getCategoriesList() {
+        return ApiResponse.success(categoryRepository.findAll());
+    }
+
+    @GetMapping("/tree")
+    public ApiResponse<Object> getCategoryTree() {
+        return ApiResponse.success(getCategoryTreeUseCase.execute());
+    }
+
+    @GetMapping("/{slug}")
+    public ApiResponse<Object> getCategoryBySlug(@PathVariable String slug) {
+        return categoryRepository.findBySlug(slug)
+            .map(c -> ApiResponse.success((Object) c))
+            .orElse(ApiResponse.error("Category not found"));
+    }
+
+    @GetMapping("/{categoryId}/attributes")
+    public ApiResponse<Object> getCategoryAttributes(@PathVariable Long categoryId) {
+        var attrs = categoryAttributeRepository.findByCategoryId(categoryId);
+        return ApiResponse.success(attrs);
+    }
+
+    @GetMapping("/attributes/global")
+    public ApiResponse<Object> getGlobalAttributes() {
+        return ApiResponse.success(categoryAttributeRepository.findAll());
+    }
+
+    @GetMapping("/attributes/{attributeId}")
+    public ApiResponse<Object> getAttributeById(@PathVariable Long attributeId) {
+        return categoryAttributeRepository.findById(attributeId)
+            .map(a -> ApiResponse.success((Object) a))
+            .orElse(ApiResponse.error("Attribute not found"));
+    }
+
+    @PutMapping("/attributes/{attributeId}")
+    public ApiResponse<Object> updateAttribute(
+            @PathVariable Long attributeId,
+            @RequestBody CategoryAttributeRequest request) {
+        var attr = categoryAttributeRepository.findById(attributeId)
+            .orElseThrow(() -> new RuntimeException("Attribute not found"));
+        attr.setName(request.getName());
+        if (request.getValues() != null) {
+            attr.setValuesCsv(String.join(",", request.getValues()));
+        }
+        return ApiResponse.success(categoryAttributeRepository.save(attr));
+    }
+
+    @DeleteMapping("/attributes/{attributeId}")
+    public ApiResponse<Object> deleteAttribute(@PathVariable Long attributeId) {
+        categoryAttributeRepository.deleteById(attributeId);
+        return ApiResponse.success(null);
+    }
+
+    @PostMapping("/attributes")
+    public ApiResponse<Object> createAttribute(@RequestBody CategoryAttributeWithCategoryRequest request) {
+        var category = categoryRepository.findById(request.getCategoryId())
+            .orElseThrow(() -> new RuntimeException("Category not found"));
+        var attr = CategoryAttributeJpaEntity.builder()
+            .category(category)
+            .name(request.getName())
+            .valuesCsv(request.getValues() != null ? String.join(",", request.getValues()) : null)
+            .build();
+        return ApiResponse.success(categoryAttributeRepository.save(attr));
+    }
+
+    @PostMapping("/attributes/values")
+    public ApiResponse<Object> addAttributeValue(
+            @RequestBody AttributeValueRequest request) {
+        var attr = categoryAttributeRepository.findById(request.getAttributeId())
+            .orElseThrow(() -> new RuntimeException("Attribute not found"));
+        String existing = attr.getValuesCsv() != null ? attr.getValuesCsv() : "";
+        String updated = existing.isBlank() ? request.getValue() : existing + "," + request.getValue();
+        attr.setValuesCsv(updated);
+        return ApiResponse.success(categoryAttributeRepository.save(attr));
+    }
+
+    @PutMapping("/attributes/values/{valueId}")
+    public ApiResponse<Object> updateAttributeValue(
+            @PathVariable Long valueId,
+            @RequestBody AttributeValueRequest request) {
+        var attr = categoryAttributeRepository.findById(valueId)
+            .orElseThrow(() -> new RuntimeException("Attribute not found"));
+        if (request.getValuesCsv() != null) {
+            attr.setValuesCsv(request.getValuesCsv());
+        }
+        return ApiResponse.success(categoryAttributeRepository.save(attr));
+    }
+
+    @DeleteMapping("/attributes/values/{valueId}")
+    public ApiResponse<Object> deleteAttributeValue(@PathVariable Long valueId) {
+        categoryAttributeRepository.deleteById(valueId);
+        return ApiResponse.success(null);
+    }
 
     @PostMapping
     public ApiResponse<Object> createCategory(@RequestBody CategoryAdminRequest request) {

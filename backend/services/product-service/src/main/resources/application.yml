@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   application:
     name: ${SERVICE_NAME:product-service}
   datasource:
@@ -7,7 +11,7 @@ spring:
     password: ${DB_PASSWORD:postgres}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}

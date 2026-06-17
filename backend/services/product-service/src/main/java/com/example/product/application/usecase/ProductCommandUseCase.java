@@ -2,6 +2,7 @@ package com.example.product.application.usecase;
 
 import com.example.product.application.dto.ProductAdminRequest;
 import com.example.product.application.dto.ProductImageReorderRequest;
+import com.example.product.application.dto.ProductImageUpdateRequest;
 import com.example.product.application.dto.ProductVariantRequest;
 import com.example.product.domain.event.ProductEventV1;
 import com.example.product.domain.repository.ProductCommandRepository;
@@ -53,6 +54,10 @@ public class ProductCommandUseCase {
         ProductEventV1 event = ProductEventV1.builder().eventVersion("v1").eventType("product.updated").productId(productId).build();
         eventPublisher.publishProductUpdated(event);
         return saved;
+    }
+
+    public Object updateImage(Long imageId, ProductImageUpdateRequest request) {
+        return repository.updateImage(imageId, request);
     }
 
     public void deleteImage(Long imageId) {

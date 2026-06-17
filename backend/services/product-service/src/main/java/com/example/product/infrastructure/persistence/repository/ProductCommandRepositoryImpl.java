@@ -2,6 +2,7 @@ package com.example.product.infrastructure.persistence.repository;
 
 import com.example.product.application.dto.ProductAdminRequest;
 import com.example.product.application.dto.ProductImageReorderRequest;
+import com.example.product.application.dto.ProductImageUpdateRequest;
 import com.example.product.application.dto.ProductVariantRequest;
 import com.example.product.domain.event.ProductEventV1;
 import com.example.product.domain.repository.ProductCommandRepository;
@@ -14,6 +15,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import com.example.product.domain.model.product.Product;
+import com.example.product.domain.valueobject.Money;
+import com.example.product.domain.exception.DomainException;
+import com.example.product.infrastructure.persistence.mapper.ProductMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +35,17 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
     private final ProductImageRepository imageRepository;
     private final ProductAttributeRepository attributeRepository;
     private final CloudinaryGateway cloudinaryGateway;
+    private final ProductMapper productMapper;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    private void evictProductCache(String slug) {
+        var cache = cacheManager.getCache("product_detail"); // Assume this is Constants.CACHE_PRODUCT_DETAIL
+        if (cache != null && slug != null) {
+            cache.evict(slug);
+        }
+    }
 
     @Override
     public List<?> listProducts() {
@@ -42,16 +60,23 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
     @Override
     @Transactional
     public ProductEventV1 createProduct(ProductAdminRequest request) {
-        ProductJpaEntity product = new ProductJpaEntity();
-        product.setName(request.getName());
-        product.setSlug(request.getSlug() != null ? request.getSlug() : slugifyOrNull(request.getName()));
-        product.setCategoryId(request.getCategoryId());
-        product.setBrandId(request.getBrandId());
-        product.setBasePrice(request.getBasePrice());
-        product.setDescription(request.getDescription());
-        product.setStatus(request.getStatus() != null ? request.getStatus() : "draft");
-
-        ProductJpaEntity saved = productRepository.save(product);
+        Money basePrice = new Money(request.getBasePrice(), "VND");
+        Product product = new Product(
+            request.getCategoryId(),
+            request.getBrandId(),
+            request.getName(),
+            request.getSlug() != null ? request.getSlug() : slugifyOrNull(request.getName()),
+            basePrice
+        );
+        
+        if (productRepository.existsBySlug(product.getSlug())) {
+            throw new DomainException("Slug already exists: " + product.getSlug());
+        }
+        
+        ProductJpaEntity entity = productMapper.toEntity(product);
+        entity.setDescription(request.getDescription());
+        entity.setStatus(request.getStatus() != null ? request.getStatus() : "DRAFT");
+        ProductJpaEntity saved = productRepository.save(entity);
         saveAttributes(saved, request.getAttributes());
         return toEvent(saved, "product.created");
     }
@@ -59,17 +84,32 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
     @Override
     @Transactional
     public ProductEventV1 updateProduct(Long id, ProductAdminRequest request) {
-        ProductJpaEntity product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-        if (request.getName() != null) product.setName(request.getName());
-        if (request.getSlug() != null) product.setSlug(request.getSlug());
-        if (request.getCategoryId() != null) product.setCategoryId(request.getCategoryId());
-        if (request.getBrandId() != null) product.setBrandId(request.getBrandId());
-        if (request.getBasePrice() != null) product.setBasePrice(request.getBasePrice());
-        if (request.getDescription() != null) product.setDescription(request.getDescription());
-        if (request.getStatus() != null) product.setStatus(request.getStatus());
-        ProductJpaEntity saved = productRepository.save(product);
+        ProductJpaEntity existing = productRepository.findById(id)
+                .orElseThrow(() -> new DomainException("Product not found"));
+                
+        String newSlug = request.getSlug() != null ? request.getSlug() : existing.getSlug();
+        if (productRepository.existsBySlugAndIdNot(newSlug, id)) {
+            throw new DomainException("Slug already exists: " + newSlug);
+        }
+        
+        Money basePrice = new Money(request.getBasePrice() != null ? request.getBasePrice() : existing.getBasePrice(), "VND");
+        Product product = new Product(
+            request.getCategoryId() != null ? request.getCategoryId() : existing.getCategoryId(),
+            request.getBrandId() != null ? request.getBrandId() : existing.getBrandId(),
+            request.getName() != null ? request.getName() : existing.getName(),
+            newSlug,
+            basePrice
+        );
+        
+        ProductJpaEntity entity = productMapper.toEntity(product);
+        entity.setId(id);
+        entity.setDescription(request.getDescription() != null ? request.getDescription() : existing.getDescription());
+        entity.setStatus(request.getStatus() != null ? request.getStatus() : existing.getStatus());
+        entity.setCreatedAt(existing.getCreatedAt()); // Preserve createdAt
+        
+        ProductJpaEntity saved = productRepository.save(entity);
         saveAttributes(saved, request.getAttributes());
+        evictProductCache(saved.getSlug());
         return toEvent(saved, "product.updated");
     }
 
@@ -80,6 +120,7 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         attributeRepository.deleteByProductId(id);
         productRepository.deleteById(id);
+        evictProductCache(product.getSlug());
         return toEvent(product, "product.deleted");
     }
 
@@ -106,6 +147,24 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
                 .isPrimary(primaryFlag)
                 .sortOrder(nextSortOrder)
                 .build();
+        return imageRepository.save(image);
+    }
+
+    @Override
+    @Transactional
+    public Object updateImage(Long imageId, ProductImageUpdateRequest request) {
+        ProductImageJpaEntity image = imageRepository.findById(imageId)
+            .orElseThrow(() -> new RuntimeException("Image not found: " + imageId));
+        
+        if (Boolean.TRUE.equals(request.getIsPrimary()) && !Boolean.TRUE.equals(image.getIsPrimary())) {
+            List<ProductImageJpaEntity> siblings = imageRepository.findByProductId(image.getProduct().getId());
+            siblings.forEach(img -> img.setIsPrimary(false));
+            imageRepository.saveAll(siblings);
+            image.setIsPrimary(true);
+        }
+        if (request.getSortOrder() != null) {
+            image.setSortOrder(request.getSortOrder());
+        }
         return imageRepository.save(image);
     }
 

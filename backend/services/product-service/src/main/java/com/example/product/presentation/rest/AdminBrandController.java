@@ -17,7 +17,24 @@ public class AdminBrandController {
 
     private final BrandRepository brandRepository;
 
-    @PostMapping
+    @GetMapping
+    public ApiResponse<Object> getAllBrands() {
+        return ApiResponse.success(brandRepository.findAll());
+    }
+
+    @GetMapping("/list")
+    public ApiResponse<Object> getBrandsList() {
+        return ApiResponse.success(brandRepository.findAll());
+    }
+
+    @GetMapping("/{slug}")
+    public ApiResponse<Object> getBrandBySlug(@PathVariable String slug) {
+        return brandRepository.findBySlug(slug)
+            .map(b -> ApiResponse.success((Object) b))
+            .orElse(ApiResponse.error("Brand not found"));
+    }
+
+    @PostMapping("/create")
     public ApiResponse<Object> createBrand(@RequestBody BrandRequest request) {
         BrandJpaEntity brand = BrandJpaEntity.builder()
             .name(request.getName())
@@ -43,7 +60,7 @@ public class AdminBrandController {
         return ApiResponse.success(brandRepository.save(brand));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ApiResponse<Object> deleteBrand(@PathVariable Long id) {
         brandRepository.deleteById(id);
         return ApiResponse.success(null);
