@@ -3,6 +3,8 @@ package com.example.product.infrastructure.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "product_image")
 @Getter
@@ -19,6 +21,7 @@ public class ProductImageJpaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ProductId\"", nullable = false)
+    @JsonIgnoreProperties({"variants", "images"})
     private ProductJpaEntity product;
 
     @Column(name = "\"ImageUrl\"", nullable = false, columnDefinition = "text")

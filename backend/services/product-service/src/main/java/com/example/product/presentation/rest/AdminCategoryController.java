@@ -211,6 +211,8 @@ public class AdminCategoryController {
         CategoryClosureJpaEntity entity = new CategoryClosureJpaEntity();
         entity.setId(new CategoryClosureId(ancestorId, descendantId));
         entity.setDepth(depth);
+        entity.setAncestor(categoryRepository.getReferenceById(ancestorId));
+        entity.setDescendant(categoryRepository.getReferenceById(descendantId));
         return entity;
     }
 
