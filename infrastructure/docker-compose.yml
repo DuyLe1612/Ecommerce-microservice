@@ -11,6 +11,7 @@ services:
     depends_on:
       - auth-service
       - product-service
+      - search-service
       - promotion-service
       - coupon-service
       - order-service
@@ -105,6 +106,20 @@ services:
     networks:
       - ecommerce-net
 
+  search-service:
+    build:
+      context: ../backend/services/search-service
+      dockerfile: Dockerfile
+    container_name: search-service
+    env_file:
+      - ../backend/services/search-service/.env.example
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - ecommerce-net
+
   promotion-service:
     build:
       context: ../backend/services/promotion-service
@@ -112,7 +127,6 @@ services:
     container_name: promotion-service
     env_file:
       - ../backend/services/promotion-service/.env.example
-    command: sh -c "echo promotion-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
       - redis
@@ -127,7 +141,6 @@ services:
     container_name: coupon-service
     env_file:
       - ../backend/services/coupon-service/.env.example
-    command: sh -c "echo coupon-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
       - redis
@@ -141,7 +154,7 @@ services:
       dockerfile: Dockerfile
     container_name: order-service
     env_file:
-      - ../backend/services/order-service/.env
+      - ../backend/services/order-service/.env.example
     depends_on:
       postgres:
         condition: service_healthy
@@ -150,7 +163,7 @@ services:
     networks:
       - ecommerce-net
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8087/actuator/health"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -163,7 +176,7 @@ services:
       dockerfile: Dockerfile
     container_name: payment-service
     env_file:
-      - ../backend/services/payment-service/.env
+      - ../backend/services/payment-service/.env.example
     depends_on:
       postgres:
         condition: service_healthy
@@ -185,7 +198,6 @@ services:
     container_name: cart-service
     env_file:
       - ../backend/services/cart-service/.env.example
-    command: sh -c "echo cart-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
       - redis
@@ -215,7 +227,6 @@ services:
     container_name: notification-service
     env_file:
       - ../backend/services/notification-service/.env.example
-    command: sh -c "echo notification-service scaffold ready; tail -f /dev/null"
     depends_on:
       - postgres
       - redis
