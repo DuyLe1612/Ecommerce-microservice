@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-# product-service
-
-Scaffold service for domain isolation.
-
-## Responsibilities
-- Implement APIs owned by product-service according to docs/api-docs.md
-- Use only its own database
-- Communicate with other services via HTTP or RabbitMQ
-=======
 # promotion-service
 
-Owns promotions, coupons, and advertisements domain.
->>>>>>> origin/main
+Owns promotion and advertisement APIs.
+
+## Responsibilities
+- Public advertisement listing endpoints.
+- Admin promotion and advertisement management.
+- Product/category scope validation through product-service.
+- Redis caching for active advertisements.
+- RabbitMQ events for promotion and advertisement state changes.

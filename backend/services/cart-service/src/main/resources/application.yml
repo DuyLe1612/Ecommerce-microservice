@@ -1,0 +1,33 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: ${SERVICE_NAME:cart-service}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:cart_db}
+    username: ${DB_USER:tekno}
+    password: ${DB_PASSWORD:tekno123}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: ${PORT:8080}
+
+cart:
+  ttl-days: ${CART_TTL_DAYS:7}
+
+services:
+  product:
+    url: ${PRODUCT_SERVICE_URL:http://product-service:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

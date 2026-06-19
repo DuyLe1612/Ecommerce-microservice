@@ -133,11 +133,14 @@ public class AdvertisementService {
         if (productId == null) return;
         try {
             // Assume product-service exposes an internal endpoint to check product existence
-            productWebClient.get()
-                    .uri("/api/internal/products/" + productId + "/exists")
+            Boolean exists = productWebClient.get()
+                    .uri("/internal/products/" + productId + "/exists")
                     .retrieve()
                     .bodyToMono(Boolean.class)
                     .block();
+            if (!Boolean.TRUE.equals(exists)) {
+                throw new RuntimeException("Product not found with id: " + productId);
+            }
         } catch (WebClientResponseException.NotFound e) {
             throw new RuntimeException("Product not found with id: " + productId);
         } catch (Exception e) {

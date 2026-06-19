@@ -110,7 +110,7 @@ public class CouponService {
         if (productId == null) return;
         try {
             Boolean exists = productWebClient.get()
-                    .uri("/api/internal/products/" + productId + "/exists")
+                    .uri("/internal/products/" + productId + "/exists")
                     .retrieve()
                     .bodyToMono(Boolean.class)
                     .block();
