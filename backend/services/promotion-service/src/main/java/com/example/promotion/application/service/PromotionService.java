@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -141,11 +142,14 @@ public class PromotionService {
         if (productIds != null && !productIds.isEmpty()) {
             for (Integer productId : productIds) {
                 try {
-                    productWebClient.get()
-                            .uri("/api/internal/products/" + productId + "/exists")
+                    Boolean exists = productWebClient.get()
+                            .uri("/internal/products/" + productId + "/exists")
                             .retrieve()
                             .bodyToMono(Boolean.class)
                             .block();
+                    if (!Boolean.TRUE.equals(exists)) {
+                        throw new RuntimeException("Product not found");
+                    }
                 } catch (Exception e) {
                     throw new RuntimeException("Failed to validate product id " + productId + ": " + e.getMessage());
                 }
@@ -155,11 +159,14 @@ public class PromotionService {
         if (categoryIds != null && !categoryIds.isEmpty()) {
             for (Integer categoryId : categoryIds) {
                 try {
-                    productWebClient.get()
-                            .uri("/api/internal/categories/" + categoryId + "/exists")
+                    Map<?, ?> response = productWebClient.get()
+                            .uri("/internal/categories/" + categoryId)
                             .retrieve()
-                            .bodyToMono(Boolean.class)
+                            .bodyToMono(Map.class)
                             .block();
+                    if (response == null || !Boolean.TRUE.equals(response.get("success"))) {
+                        throw new RuntimeException("Category not found");
+                    }
                 } catch (Exception e) {
                     throw new RuntimeException("Failed to validate category id " + categoryId + ": " + e.getMessage());
                 }

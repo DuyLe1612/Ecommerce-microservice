@@ -1,0 +1,37 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: ${SERVICE_NAME:notification-service}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:notification_db}
+    username: ${DB_USER:tekno}
+    password: ${DB_PASSWORD:tekno123}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST:rabbitmq}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:tekno}
+    password: ${RABBITMQ_PASSWORD:tekno123}
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:1025}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+
+server:
+  port: ${PORT:8080}
+
+notification:
+  email:
+    enabled: ${EMAIL_ENABLED:false}
+    from: ${EMAIL_FROM:no-reply@tekno.local}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
