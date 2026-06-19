@@ -21,7 +21,6 @@ import java.util.Map;
  * over HTTP using WebClient. Activated when order.external.product.mode=real.
  */
 @Component
-@ConditionalOnProperty(name = "order.external.product.mode", havingValue = "real")
 public class RealProductServiceClient implements ProductServiceClient {
 
     private static final Logger log = LoggerFactory.getLogger(RealProductServiceClient.class);
