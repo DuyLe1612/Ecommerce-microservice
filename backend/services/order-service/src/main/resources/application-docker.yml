@@ -1,10 +1,6 @@
 spring:
-  config:
-    import: optional:file:.env[.properties]
-  application:
-    name: order-service
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:order_db}
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:order_db}
     username: ${DB_USER:tekno}
     password: ${DB_PASSWORD:tekno123}
     hikari:
@@ -19,24 +15,38 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+    baseline-on-migrate: true
   rabbitmq:
-    host: ${RABBITMQ_HOST:localhost}
+    host: ${RABBITMQ_HOST:rabbitmq}
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USERNAME:tekno}
     password: ${RABBITMQ_PASSWORD:tekno123}
+    listener:
+      simple:
+        acknowledge-mode: auto
+        concurrency: 3
+        max-concurrency: 10
+        prefetch: 10
+  redis:
+    host: ${REDIS_HOST:redis}
+    port: ${REDIS_PORT:6379}
+    timeout: 5000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
 
 server:
   port: ${PORT:8087}
 
-# External service integration (product-service)
 order:
   external:
     product:
-      base-url: ${ORDER_EXTERNAL_PRODUCT_BASE_URL:http://localhost:8080}
+      base-url: ${ORDER_EXTERNAL_PRODUCT_BASE_URL:http://product-service:8080}
       connect-timeout-ms: ${ORDER_EXTERNAL_PRODUCT_CONNECT_TIMEOUT:3000}
       read-timeout-ms: ${ORDER_EXTERNAL_PRODUCT_READ_TIMEOUT:5000}
 
-# Bind to payment-service queues for consuming payment events
 rabbitmq:
   queues:
     payment-succeeded: order-service.payment.succeeded
