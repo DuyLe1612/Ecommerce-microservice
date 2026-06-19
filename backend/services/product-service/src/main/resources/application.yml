@@ -35,7 +35,7 @@ cloudinary:
   api_secret: ${CLOUDINARY_API_SECRET:secret}
 
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8082}
 
 management:
   endpoints:

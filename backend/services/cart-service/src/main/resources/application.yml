@@ -17,14 +17,14 @@ spring:
       port: ${REDIS_PORT:6379}
 
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8088}
 
 cart:
   ttl-days: ${CART_TTL_DAYS:7}
 
 services:
   product:
-    url: ${PRODUCT_SERVICE_URL:http://product-service:8080}
+    url: ${PRODUCT_SERVICE_URL:http://product-service:8082}
 
 management:
   endpoints:
