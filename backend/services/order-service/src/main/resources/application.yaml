@@ -32,7 +32,6 @@ server:
 order:
   external:
     product:
-      mode: ${ORDER_EXTERNAL_PRODUCT_MODE:mock}
       base-url: ${ORDER_EXTERNAL_PRODUCT_BASE_URL:http://localhost:8080}
       connect-timeout-ms: ${ORDER_EXTERNAL_PRODUCT_CONNECT_TIMEOUT:3000}
       read-timeout-ms: ${ORDER_EXTERNAL_PRODUCT_READ_TIMEOUT:5000}
