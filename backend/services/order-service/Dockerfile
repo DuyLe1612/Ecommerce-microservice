@@ -1,21 +1,17 @@
 # syntax=docker/dockerfile:1
 
 # ── Build stage ───────────────────────────────────────────────────────────────
-FROM eclipse-temurin:21-jdk-alpine AS builder
+FROM maven:3.9-eclipse-temurin-21 AS builder
 
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml first — enables layer caching for dependencies
+# Copy pom.xml first — enables layer caching for dependencies
 COPY pom.xml .
-COPY mvnw mvnw.cmd ./
-COPY .mvn .mvn
-
-# Download dependencies (cached layer — only re-runs if pom.xml changes)
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copy source and build
 COPY src src
-RUN ./mvnw package -DskipTests -B
+RUN mvn clean package -DskipTests -B
 
 # ── Runtime stage ─────────────────────────────────────────────────────────────
 FROM eclipse-temurin:21-jre-alpine
@@ -36,8 +32,9 @@ USER appuser
 EXPOSE 8087
 
 ENV JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseG1GC"
+ENV SPRING_PROFILES_ACTIVE=docker
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
     CMD wget -qO- http://localhost:8087/actuator/health || exit 1
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
