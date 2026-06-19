@@ -32,9 +32,9 @@ USER appuser
 EXPOSE 8087
 
 ENV JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseG1GC"
-ENV SPRING_PROFILES_ACTIVE=docker
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
     CMD wget -qO- http://localhost:8087/actuator/health || exit 1
 
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+# Note: SPRING_PROFILES_ACTIVE is set via docker-compose environment
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dspring.profiles.active=${SPRING_PROFILES_ACTIVE:-docker} -jar app.jar"]

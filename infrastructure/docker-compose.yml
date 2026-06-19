@@ -50,12 +50,6 @@ services:
   postgres:
     image: postgres:16-alpine
     container_name: postgres
-    profiles:
-      - infra
-      - order-only
-      - payment-only
-      - order-payment
-      - full-stack
     environment:
       POSTGRES_USER: tekno
       POSTGRES_PASSWORD: tekno123
@@ -77,12 +71,6 @@ services:
   redis:
     image: redis:7-alpine
     container_name: redis
-    profiles:
-      - infra
-      - order-only
-      - payment-only
-      - order-payment
-      - full-stack
     ports:
       - "6379:6379"
     volumes:
@@ -93,12 +81,6 @@ services:
   rabbitmq:
     image: rabbitmq:3.13-management-alpine
     container_name: rabbitmq
-    profiles:
-      - infra
-      - order-only
-      - payment-only
-      - order-payment
-      - full-stack
     environment:
       RABBITMQ_DEFAULT_USER: tekno
       RABBITMQ_DEFAULT_PASS: tekno123
@@ -196,14 +178,22 @@ services:
       context: ../backend/services/order-service
       dockerfile: Dockerfile
     container_name: order-service
-    profiles:
-      - order-only
-      - order-payment
-      - full-stack
     ports:
       - "8087:8087"
-    env_file:
-      - ../backend/services/order-service/.env.example
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8087
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=order_db
+      - DB_USER=tekno
+      - DB_PASSWORD=tekno123
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=tekno
+      - RABBITMQ_PASSWORD=tekno123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
       postgres:
         condition: service_healthy
@@ -212,7 +202,7 @@ services:
     networks:
       - ecommerce-net
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:8087/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -224,14 +214,20 @@ services:
       context: ../backend/services/payment-service
       dockerfile: Dockerfile
     container_name: payment-service
-    profiles:
-      - payment-only
-      - order-payment
-      - full-stack
     ports:
       - "8086:8086"
-    env_file:
-      - ../backend/services/payment-service/.env.example
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8086
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=payment_db
+      - DB_USER=tekno
+      - DB_PASSWORD=tekno123
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=tekno
+      - RABBITMQ_PASSWORD=tekno123
     depends_on:
       postgres:
         condition: service_healthy
@@ -251,8 +247,18 @@ services:
       context: ../backend/services/cart-service
       dockerfile: Dockerfile
     container_name: cart-service
-    env_file:
-      - ../backend/services/cart-service/.env.example
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8085
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=cart_db
+      - DB_USER=tekno
+      - DB_PASSWORD=tekno123
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=tekno
+      - RABBITMQ_PASSWORD=tekno123
     depends_on:
       - postgres
       - redis
