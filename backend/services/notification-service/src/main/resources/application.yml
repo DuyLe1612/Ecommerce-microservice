@@ -23,7 +23,7 @@ spring:
     password: ${SMTP_PASSWORD:}
 
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8090}
 
 notification:
   email:

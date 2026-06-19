@@ -17,5 +17,5 @@ RUN npm install --omit=dev
 
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 8080
+EXPOSE 8081
 CMD ["node", "dist/main"]
