@@ -92,6 +92,8 @@ export async function processPayment(
   payload: PaymentPayload
 ): Promise<{
   paymentUrl: string;
+  transactionId: number;
+  gatewayType: string;
 }> {
   const res = await fetch(`${API_BASE_URL}/payment/process`, {
     method: "POST",
@@ -108,5 +110,28 @@ export async function processPayment(
     throw new Error(json?.message || "Payment failed");
   }
 
-  return json.data; // backend trả về paymentUrl
+  return json.data;
+}
+
+export async function triggerSimulatorCallback(
+  transactionId: number,
+  gatewayType: string,
+  success: boolean = true
+): Promise<void> {
+  const res = await fetch(`${API_BASE_URL}/simulator/trigger-callback`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      transactionId,
+      gatewayType,
+      success,
+    }),
+  });
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => ({}));
+    throw new Error(json?.message || "Simulator callback failed");
+  }
 }

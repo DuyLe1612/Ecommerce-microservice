@@ -1,7 +1,7 @@
 --
 -- PostgreSQL database dump
 --
-
+\connect auth_db
 \restrict DUrJY5fzZAz3xF5mnANTryAS4XIzfbuRuUgRfPrTn18WE8wXC1oAUkIYsEN28hY
 
 -- Dumped from database version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
@@ -63,7 +63,7 @@ CREATE TABLE public.addresses (
 );
 
 
-ALTER TABLE public.addresses OWNER TO postgres;
+ALTER TABLE public.addresses OWNER TO tekno;
 
 --
 -- TOC entry 217 (class 1259 OID 26739)
@@ -79,7 +79,7 @@ CREATE SEQUENCE public.addresses_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.addresses_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.addresses_id_seq OWNER TO tekno;
 
 --
 -- TOC entry 3490 (class 0 OID 0)
@@ -102,7 +102,7 @@ CREATE TABLE public.districts (
 );
 
 
-ALTER TABLE public.districts OWNER TO postgres;
+ALTER TABLE public.districts OWNER TO tekno;
 
 --
 -- TOC entry 219 (class 1259 OID 26750)
@@ -115,7 +115,7 @@ CREATE TABLE public.provinces (
 );
 
 
-ALTER TABLE public.provinces OWNER TO postgres;
+ALTER TABLE public.provinces OWNER TO tekno;
 
 --
 -- TOC entry 216 (class 1259 OID 26725)
@@ -135,7 +135,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO tekno;
 
 --
 -- TOC entry 221 (class 1259 OID 26764)
@@ -149,7 +149,7 @@ CREATE TABLE public.wards (
 );
 
 
-ALTER TABLE public.wards OWNER TO postgres;
+ALTER TABLE public.wards OWNER TO tekno;
 
 --
 -- TOC entry 3315 (class 2604 OID 26743)

@@ -191,10 +191,16 @@ export default function PaymentPage() {
         orderId: Number(orderId),
       };
 
-      const { paymentUrl } = await processPayment(token, payload);
-      localStorage.setItem("Payment URL:", paymentUrl);
+      const { paymentUrl, transactionId, gatewayType } = await processPayment(token, payload);
       if (!paymentUrl) throw new Error("No payment URL returned");
-      window.location.href = paymentUrl;
+
+      // For demo: store transaction data and redirect to result page
+      // The result page will call the simulator to trigger the callback
+      const resultUrl = new URL(`${window.location.origin}/payment/result`);
+      resultUrl.searchParams.set("OrderId", String(orderId));
+      resultUrl.searchParams.set("transactionId", String(transactionId));
+      resultUrl.searchParams.set("gatewayType", gatewayType);
+      window.location.href = resultUrl.toString();
     } catch (e: any) {
       toast.error(e?.message || "Payment error");
     }

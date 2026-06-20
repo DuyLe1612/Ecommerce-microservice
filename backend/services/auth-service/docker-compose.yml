@@ -7,13 +7,13 @@ services:
       dockerfile: Dockerfile
     container_name: tekno_auth_service
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
-      - PORT=8080
-      - DB_URI=postgresql://postgres:1@postgres_db:5432/auth_db
+      - PORT=8081
+      - DB_URI=postgresql://tekno:tekno123@postgres:5432/auth_db
       - JWT_SECRET=67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0
       - JWT_REFRESH_SECRET=6b89ddaabd0476a190aec107bf9a1ce861520718bf45102fcd83ae84289e7917
-      - CORS_ORIGIN=http://localhost:3000,http://localhost:8080
+      - CORS_ORIGIN=http://localhost:3000,http://localhost:8081
     env_file:
       - .env
     depends_on:
