@@ -3,6 +3,7 @@ package com.example.notification.infrastructure.messaging;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import org.springframework.retry.interceptor.RetryOperationsInterceptor;
 @Configuration
 public class RabbitMQConfig {
     public static final String DLX = "notification.events.dlx";
+    public static final String AUTH_EVENTS = "auth.events";
     public static final String USER_EVENTS = "user.events";
     public static final String PAYMENT_EVENTS = "payment.events";
     public static final String ORDER_EVENTS = "order.events";
@@ -23,8 +25,16 @@ public class RabbitMQConfig {
     public static final String PAYMENT_FAILED_QUEUE = "notification.payment.failed";
     public static final String ORDER_SHIPPED_QUEUE = "notification.order.shipped";
     public static final String ORDER_DELIVERED_QUEUE = "notification.order.delivered";
+    public static final String ORDER_CANCELLED_QUEUE = "notification.order.cancelled";
     public static final String REVIEW_APPROVED_QUEUE = "notification.review.approved";
 
+    @Bean
+    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
+        return new RabbitAdmin(connectionFactory);
+    }
+
+    @Bean
+    public TopicExchange authEventsExchange() { return ExchangeBuilder.topicExchange(AUTH_EVENTS).durable(true).build(); }
     @Bean
     public TopicExchange userEventsExchange() { return ExchangeBuilder.topicExchange(USER_EVENTS).durable(true).build(); }
     @Bean
@@ -47,6 +57,8 @@ public class RabbitMQConfig {
     @Bean
     public Queue orderDeliveredQueue() { return queue(ORDER_DELIVERED_QUEUE); }
     @Bean
+    public Queue orderCancelledQueue() { return queue(ORDER_CANCELLED_QUEUE); }
+    @Bean
     public Queue reviewApprovedQueue() { return queue(REVIEW_APPROVED_QUEUE); }
 
     @Bean
@@ -60,11 +72,23 @@ public class RabbitMQConfig {
     @Bean
     public Queue orderDeliveredDlq() { return dlq(ORDER_DELIVERED_QUEUE); }
     @Bean
+    public Queue orderCancelledDlq() { return dlq(ORDER_CANCELLED_QUEUE); }
+    @Bean
     public Queue reviewApprovedDlq() { return dlq(REVIEW_APPROVED_QUEUE); }
 
     @Bean
     public Binding bindUserRegistered(Queue userRegisteredQueue, TopicExchange userEventsExchange) {
         return BindingBuilder.bind(userRegisteredQueue).to(userEventsExchange).with("user.registered");
+    }
+
+    @Bean
+    public Binding bindAuthUserRegistered(Queue userRegisteredQueue, TopicExchange authEventsExchange) {
+        return BindingBuilder.bind(userRegisteredQueue).to(authEventsExchange).with("user.registered");
+    }
+
+    @Bean
+    public Binding bindAuthUserRegisteredEventName(Queue userRegisteredQueue, TopicExchange authEventsExchange) {
+        return BindingBuilder.bind(userRegisteredQueue).to(authEventsExchange).with("UserRegistered");
     }
 
     @Bean
@@ -85,6 +109,11 @@ public class RabbitMQConfig {
     @Bean
     public Binding bindOrderDelivered(Queue orderDeliveredQueue, TopicExchange orderEventsExchange) {
         return BindingBuilder.bind(orderDeliveredQueue).to(orderEventsExchange).with("order.delivered");
+    }
+
+    @Bean
+    public Binding bindOrderCancelled(Queue orderCancelledQueue, TopicExchange orderEventsExchange) {
+        return BindingBuilder.bind(orderCancelledQueue).to(orderEventsExchange).with("order.cancelled");
     }
 
     @Bean
@@ -115,6 +144,11 @@ public class RabbitMQConfig {
     @Bean
     public Binding bindOrderDeliveredDlq(Queue orderDeliveredDlq, TopicExchange notificationDlx) {
         return BindingBuilder.bind(orderDeliveredDlq).to(notificationDlx).with(dlqRoutingKey(ORDER_DELIVERED_QUEUE));
+    }
+
+    @Bean
+    public Binding bindOrderCancelledDlq(Queue orderCancelledDlq, TopicExchange notificationDlx) {
+        return BindingBuilder.bind(orderCancelledDlq).to(notificationDlx).with(dlqRoutingKey(ORDER_CANCELLED_QUEUE));
     }
 
     @Bean
