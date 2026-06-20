@@ -95,13 +95,38 @@ services:
       context: ../backend/services/product-service
       dockerfile: Dockerfile
     container_name: product-service
-    env_file:
-      - ../backend/services/product-service/.env.example
-    command: sh -c "echo product-service scaffold ready; tail -f /dev/null"
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8080
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=product_db
+      - DB_USER=tekno
+      - DB_PASSWORD=tekno123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=tekno
+      - RABBITMQ_PASSWORD=tekno123
+      - CLOUDINARY_CLOUD_NAME=demo
+      - CLOUDINARY_API_KEY=dummy
+      - CLOUDINARY_API_SECRET=dummy
     depends_on:
-      - postgres
-      - redis
-      - rabbitmq
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     networks:
       - ecommerce-net
 
