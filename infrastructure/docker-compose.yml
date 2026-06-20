@@ -95,6 +95,8 @@ services:
       context: ../backend/services/product-service
       dockerfile: Dockerfile
     container_name: product-service
+    env_file:
+      - ../backend/services/product-service/.env
     ports:
       - "8082:8080"
     environment:
@@ -111,9 +113,6 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_USER=tekno
       - RABBITMQ_PASSWORD=tekno123
-      - CLOUDINARY_CLOUD_NAME=demo
-      - CLOUDINARY_API_KEY=dummy
-      - CLOUDINARY_API_SECRET=dummy
     depends_on:
       postgres:
         condition: service_healthy
