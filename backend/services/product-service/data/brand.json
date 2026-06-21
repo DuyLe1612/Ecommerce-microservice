@@ -1,0 +1,155 @@
+[
+  {
+    "Id": 8,
+    "Name": "Xiaomi",
+    "Slug": "xiaomi",
+    "Country": "China",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/xiaomi-1.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 9,
+    "Name": "OnePlus",
+    "Slug": "oneplus",
+    "Country": "China",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/oneplus-2.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 10,
+    "Name": "LG",
+    "Slug": "lg",
+    "Country": "Korea",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/lg.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 11,
+    "Name": "Logitech",
+    "Slug": "logitech",
+    "Country": "Switzerland",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/logitech-gaming-2.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 12,
+    "Name": "Razer",
+    "Slug": "razer",
+    "Country": "USA",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/razer-1.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 14,
+    "Name": "Anker",
+    "Slug": "anker",
+    "Country": "China",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/anker-logo-1.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 15,
+    "Name": "Baseus",
+    "Slug": "baseus",
+    "Country": "China",
+    "LogoPath": "https://mms.img.susercontent.com/vn-11134216-7r98o-lnicyi57m5x6fd",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 16,
+    "Name": "Spigen",
+    "Slug": "spigen",
+    "Country": "USA",
+    "LogoPath": "https://spigen.vn/wp-content/uploads/2023/09/Spigen_Header_New_Logo.png",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 17,
+    "Name": "UAG",
+    "Slug": "uag",
+    "Country": "USA",
+    "LogoPath": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlpSaYkZMxWktmvmvOx7mDurTEDu0KXqz1HQ&s",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 18,
+    "Name": "Vivo",
+    "Slug": "vivo",
+    "Country": "Thailand",
+    "LogoPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1765014433/tekno/brand/logo/cdjh3psjxbtuvpwejnc1.png",
+    "CreatedAt": "2025-12-06T09:47:13.746Z",
+    "UpdatedAt": "2025-12-06T09:47:13.746Z"
+  },
+  {
+    "Id": 2,
+    "Name": "Apple",
+    "Slug": "apple",
+    "Country": "Japan",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/apple-13.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 3,
+    "Name": "Asus",
+    "Slug": "asus",
+    "Country": "Japan",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/asus-4.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 5,
+    "Name": "Lenovo",
+    "Slug": "lenovo",
+    "Country": "Japan",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/lenovo-2.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 7,
+    "Name": "Google",
+    "Slug": "google",
+    "Country": "Japan",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/google-1.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 6,
+    "Name": "Samsung",
+    "Slug": "samsung",
+    "Country": "Korea",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/samsung-8.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 4,
+    "Name": "HP",
+    "Slug": "hp",
+    "Country": "USA",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/HP-5.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 1,
+    "Name": "Dell",
+    "Slug": "dell",
+    "Country": "USA",
+    "LogoPath": "https://cdn.worldvectorlogo.com/logos/dell-2.svg",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  }
+]

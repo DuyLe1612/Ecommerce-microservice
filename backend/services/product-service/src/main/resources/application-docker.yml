@@ -5,8 +5,13 @@ spring:
     password: ${DB_PASSWORD:tekno123}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
   rabbitmq:
     host: ${RABBITMQ_HOST:rabbitmq}
     port: ${RABBITMQ_PORT:5672}

@@ -98,14 +98,14 @@ public class ProductQueryUseCase {
         brandRepository.findById(e.getBrandId()).ifPresent(b -> {
             BrandSummaryResponse brand = new BrandSummaryResponse();
             brand.setId(b.getId()); brand.setName(b.getName()); brand.setSlug(b.getSlug());
-            brand.setLogoUrl(b.getLogoUrl());
+            brand.setLogoUrl(b.getLogoPath());
             r.setBrand(brand);
         });
 
         r.setImages(e.getImages().stream().map(img -> {
             ProductImageResponse dto = new ProductImageResponse();
             dto.setId(img.getId()); dto.setImageUrl(img.getImageUrl());
-            dto.setPublicId(img.getPublicId()); dto.setIsPrimary(img.getIsPrimary());
+            dto.setIsPrimary(img.getIsPrimary());
             dto.setSortOrder(img.getSortOrder());
             return dto;
         }).toList());
@@ -114,18 +114,28 @@ public class ProductQueryUseCase {
             ProductVariantResponse dto = new ProductVariantResponse();
             dto.setId(v.getId()); dto.setSku(v.getSku());
             dto.setPrice(v.getPrice()); dto.setStock(v.getStock()); dto.setStatus(v.getStatus());
+            dto.setVariantSpecsJson(v.getVariantSpecsJson());
+            
+            if (v.getAttributeValues() != null) {
+                java.util.List<VariantAttributeValueRequest> attrValues = v.getAttributeValues().stream()
+                    .map(attr -> {
+                        VariantAttributeValueRequest attrReq = new VariantAttributeValueRequest();
+                        attrReq.setAttributeId(attr.getAttributeId());
+                        attrReq.setValueId(attr.getValueId());
+                        return attrReq;
+                    })
+                    .collect(java.util.stream.Collectors.toList());
+                dto.setAttributeValues(attrValues);
+            }
+            
             return dto;
         }).toList());
 
-        java.util.List<com.example.product.infrastructure.persistence.entity.ProductAttributeJpaEntity> attrs =
-            productAttributeRepository.findByProductId(e.getId());
-        r.setAttributes(attrs.stream().collect(
-            java.util.stream.Collectors.toMap(
-                com.example.product.infrastructure.persistence.entity.ProductAttributeJpaEntity::getName,
-                com.example.product.infrastructure.persistence.entity.ProductAttributeJpaEntity::getValue,
-                (a, b) -> b
-            )
-        ));
+        r.setDiscountPercent(e.getDiscountPercent());
+        r.setOverview(e.getOverview());
+        r.setSpecs(e.getSpecs());
+        r.setAverageRating(e.getAverageRating());
+        r.setTotalReviews(e.getTotalReviews());
         return r;
     }
 }

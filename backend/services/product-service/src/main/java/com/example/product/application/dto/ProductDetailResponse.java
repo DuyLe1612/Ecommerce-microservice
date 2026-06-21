@@ -18,5 +18,9 @@ public class ProductDetailResponse {
     private List<ProductVariantResponse> variants;
     private CategorySummaryResponse category;
     private BrandSummaryResponse brand;
-    private Map<String, String> attributes;
+    private java.math.BigDecimal discountPercent;
+    private String overview;
+    private Map<String, Object> specs;
+    private Double averageRating;
+    private Integer totalReviews;
 }
