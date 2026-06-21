@@ -51,3 +51,8 @@ management:
 logging:
   pattern:
     level: "service=product-service traceId=%X{correlationId} %5p"
+
+app:
+  seed:
+    products:
+      enabled: ${SEED_PRODUCTS_ENABLED:true}
