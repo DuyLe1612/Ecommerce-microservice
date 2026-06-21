@@ -21,7 +21,7 @@ spring:
   cache:
     type: redis
     redis:
-      time-to-live: 300000
+      time-to-live: 120000
 
 cloudinary:
   cloud_name: ${CLOUDINARY_CLOUD_NAME}
@@ -29,7 +29,7 @@ cloudinary:
   api_secret: ${CLOUDINARY_API_SECRET}
 
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8084}
 
 management:
   endpoints:

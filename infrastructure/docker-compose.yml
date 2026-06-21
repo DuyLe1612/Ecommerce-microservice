@@ -163,6 +163,8 @@ services:
       context: ../backend/services/promotion-service
       dockerfile: Dockerfile
     container_name: promotion-service
+    ports:
+      - "8084:8084"
     env_file:
       - ../backend/services/promotion-service/.env.example
     depends_on:
@@ -186,6 +188,8 @@ services:
       context: ../backend/services/coupon-service
       dockerfile: Dockerfile
     container_name: coupon-service
+    ports:
+      - "8085:8085"
     env_file:
       - ../backend/services/coupon-service/.env.example
     depends_on:
@@ -277,6 +281,10 @@ services:
       context: ../backend/services/cart-service
       dockerfile: Dockerfile
     container_name: cart-service
+    env_file:
+      - ../backend/services/cart-service/.env.example
+    ports:
+      - "8088:8088"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=8088
@@ -289,6 +297,7 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=tekno
       - RABBITMQ_PASSWORD=tekno123
+      - PRODUCT_SERVICE_URL=http://product-service:8080
     depends_on:
       postgres:
         condition: service_healthy
@@ -333,6 +342,8 @@ services:
       context: ../backend/services/notification-service
       dockerfile: Dockerfile
     container_name: notification-service
+    ports:
+      - "8090:8090"
     env_file:
       - ../backend/services/notification-service/.env.example
     depends_on:

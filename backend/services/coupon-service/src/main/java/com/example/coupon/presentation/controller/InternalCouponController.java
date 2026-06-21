@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/internal/coupons")
+@RequestMapping("/internal/coupons")
 @RequiredArgsConstructor
 public class InternalCouponController {
 
