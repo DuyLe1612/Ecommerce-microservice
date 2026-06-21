@@ -26,7 +26,7 @@ public class EventPublisher {
                 
         log.info("Publishing event: {}", event);
         try {
-            rabbitTemplate.convertAndSend(EXCHANGE_NAME, "advertisement." + eventType.toLowerCase(), event);
+            rabbitTemplate.convertAndSend(EXCHANGE_NAME, resolveAdvertisementRoutingKey(eventType), event);
         } catch (Exception e) {
             log.error("Failed to publish event: {}", event, e);
         }
@@ -42,9 +42,25 @@ public class EventPublisher {
                 
         log.info("Publishing event: {}", event);
         try {
-            rabbitTemplate.convertAndSend(EXCHANGE_NAME, "promotion." + eventType.toLowerCase(), event);
+            rabbitTemplate.convertAndSend(EXCHANGE_NAME, resolvePromotionRoutingKey(eventType), event);
         } catch (Exception e) {
             log.error("Failed to publish event: {}", event, e);
         }
+    }
+
+    private String resolveAdvertisementRoutingKey(String eventType) {
+        return switch (eventType) {
+            case "AdvertisementActivated" -> "advertisement.activated";
+            case "AdvertisementDeactivated" -> "advertisement.deactivated";
+            default -> "advertisement." + eventType.toLowerCase();
+        };
+    }
+
+    private String resolvePromotionRoutingKey(String eventType) {
+        return switch (eventType) {
+            case "PromotionActivated" -> "promotion.activated";
+            case "PromotionPaused" -> "promotion.paused";
+            default -> "promotion." + eventType.toLowerCase();
+        };
     }
 }

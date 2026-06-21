@@ -13,6 +13,7 @@ public class NotificationTemplateService {
             case "PaymentFailed" -> "Payment failed";
             case "OrderShipped" -> "Your order has shipped";
             case "OrderDelivered" -> "Your order was delivered";
+            case "OrderCancelled" -> "Your order was cancelled";
             case "ReviewApproved" -> "Your review was approved";
             default -> "Tekno notification";
         };

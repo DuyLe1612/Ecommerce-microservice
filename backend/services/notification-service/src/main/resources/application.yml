@@ -31,6 +31,9 @@ notification:
     from: ${EMAIL_FROM:no-reply@tekno.local}
 
 management:
+  health:
+    mail:
+      enabled: ${MAIL_HEALTH_ENABLED:${EMAIL_ENABLED:false}}
   endpoints:
     web:
       exposure:

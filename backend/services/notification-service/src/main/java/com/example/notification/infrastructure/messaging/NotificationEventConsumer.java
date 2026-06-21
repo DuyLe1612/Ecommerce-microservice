@@ -38,6 +38,11 @@ public class NotificationEventConsumer {
         process("OrderDelivered", payload, message);
     }
 
+    @RabbitListener(queues = RabbitMQConfig.ORDER_CANCELLED_QUEUE)
+    public void orderCancelled(Map<String, Object> payload, Message message) {
+        process("OrderCancelled", payload, message);
+    }
+
     @RabbitListener(queues = RabbitMQConfig.REVIEW_APPROVED_QUEUE)
     public void reviewApproved(Map<String, Object> payload, Message message) {
         process("ReviewApproved", payload, message);
