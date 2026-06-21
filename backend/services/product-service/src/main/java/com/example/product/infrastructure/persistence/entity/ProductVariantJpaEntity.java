@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "product_variant")
+@Table(name = "\"product_variant\"")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -43,4 +43,13 @@ public class ProductVariantJpaEntity {
     @CreationTimestamp
     @Column(name = "\"CreatedAt\"", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "\"VariantSpecsJson\"", columnDefinition = "jsonb")
+    @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.JSON)
+    private java.util.Map<String, Object> variantSpecsJson;
+
+    @Builder.Default
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "\"VariantId\"")
+    private java.util.List<ProductVariantAttributeJpaEntity> attributeValues = new java.util.ArrayList<>();
 }

@@ -10,12 +10,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.product.infrastructure.persistence.entity.BlogPostTagJpaEntity;
+import com.example.product.infrastructure.persistence.repository.BlogPostTagRepository;
+import org.springframework.data.domain.PageRequest;
+
 @RestController
 @RequestMapping("/api/blog")
 @RequiredArgsConstructor
 public class BlogController {
 
     private final BlogRepository blogRepository;
+    private final BlogPostTagRepository blogPostTagRepository;
 
     @GetMapping
     public ApiResponse<Object> listBlog() {
@@ -35,15 +40,15 @@ public class BlogController {
         if (blog.isEmpty()) {
             return ApiResponse.error("Blog not found");
         }
-        String tags = blog.get().getTags();
-        if (tags == null || tags.isBlank()) {
+        List<BlogPostTagJpaEntity> tags = blogPostTagRepository.findByBlogPostId(id);
+        if (tags == null || tags.isEmpty()) {
             return ApiResponse.success(blogRepository.findTop5ByStatusAndIdNotOrderByPublishedAtDesc("PUBLISHED", id));
         }
-        String firstTag = tags.split(",")[0].trim();
+        String firstTag = tags.get(0).getTag();
         if (firstTag.isEmpty()) {
             return ApiResponse.success(blogRepository.findTop5ByStatusAndIdNotOrderByPublishedAtDesc("PUBLISHED", id));
         }
-        List<BlogJpaEntity> related = blogRepository.findTop5ByStatusAndTagsContainingIgnoreCaseOrderByPublishedAtDesc("PUBLISHED", firstTag);
+        List<BlogJpaEntity> related = blogRepository.findTop5ByStatusAndTagsContainingIgnoreCaseOrderByPublishedAtDesc("PUBLISHED", firstTag, PageRequest.of(0, 5));
         related.removeIf(item -> item.getId().equals(id));
         return ApiResponse.success(related);
     }
@@ -58,6 +63,6 @@ public class BlogController {
         if (tag == null || tag.isBlank()) {
             return ApiResponse.success(Collections.emptyList());
         }
-        return ApiResponse.success(blogRepository.findTop10ByStatusAndTagsContainingIgnoreCaseOrderByPublishedAtDesc("PUBLISHED", tag));
+        return ApiResponse.success(blogRepository.findTop10ByStatusAndTagsContainingIgnoreCaseOrderByPublishedAtDesc("PUBLISHED", tag, PageRequest.of(0, 10)));
     }
 }

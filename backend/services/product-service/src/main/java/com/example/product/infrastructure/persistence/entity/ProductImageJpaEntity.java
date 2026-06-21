@@ -6,7 +6,7 @@ import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "product_image")
+@Table(name = "\"product_image\"")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,9 +26,6 @@ public class ProductImageJpaEntity {
 
     @Column(name = "\"ImageUrl\"", nullable = false, columnDefinition = "text")
     private String imageUrl;
-
-    @Column(name = "\"PublicId\"", columnDefinition = "text")
-    private String publicId;
 
     @Builder.Default
     @Column(name = "\"IsPrimary\"", nullable = false)

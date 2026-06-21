@@ -39,7 +39,7 @@ public class AdminBrandController {
         BrandJpaEntity brand = BrandJpaEntity.builder()
             .name(request.getName())
             .slug(request.getSlug() != null ? request.getSlug() : SlugUtil.slugify(request.getName()))
-            .logoUrl(request.getLogoUrl())
+            .logoPath(request.getLogoUrl())
             .build();
         return ApiResponse.success(brandRepository.save(brand));
     }
@@ -55,7 +55,7 @@ public class AdminBrandController {
             brand.setSlug(request.getSlug());
         }
         if (request.getLogoUrl() != null) {
-            brand.setLogoUrl(request.getLogoUrl());
+            brand.setLogoPath(request.getLogoUrl());
         }
         return ApiResponse.success(brandRepository.save(brand));
     }

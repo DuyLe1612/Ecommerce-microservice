@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import com.example.product.application.dto.VariantAttributeValueRequest;
+import com.example.product.infrastructure.persistence.entity.ProductVariantAttributeJpaEntity;
 
 @Repository
 @RequiredArgsConstructor
@@ -77,7 +80,6 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
         entity.setDescription(request.getDescription());
         entity.setStatus(request.getStatus() != null ? request.getStatus() : "DRAFT");
         ProductJpaEntity saved = productRepository.save(entity);
-        saveAttributes(saved, request.getAttributes());
         return toEvent(saved, "product.created");
     }
 
@@ -108,7 +110,6 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
         entity.setCreatedAt(existing.getCreatedAt()); // Preserve createdAt
         
         ProductJpaEntity saved = productRepository.save(entity);
-        saveAttributes(saved, request.getAttributes());
         evictProductCache(saved.getSlug());
         return toEvent(saved, "product.updated");
     }
@@ -118,7 +119,6 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
     public ProductEventV1 deleteProduct(Long id) {
         ProductJpaEntity product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
-        attributeRepository.deleteByProductId(id);
         productRepository.deleteById(id);
         evictProductCache(product.getSlug());
         return toEvent(product, "product.deleted");
@@ -143,7 +143,6 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
         ProductImageJpaEntity image = ProductImageJpaEntity.builder()
                 .product(product)
                 .imageUrl(upload.getUrl())
-                .publicId(upload.getPublicId())
                 .isPrimary(primaryFlag)
                 .sortOrder(nextSortOrder)
                 .build();
@@ -173,9 +172,10 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
     public void deleteImage(Long imageId) {
         ProductImageJpaEntity image = imageRepository.findById(imageId)
                 .orElseThrow(() -> new RuntimeException("Image not found"));
-        if (image.getPublicId() != null && !image.getPublicId().isBlank()) {
-            cloudinaryGateway.destroy(image.getPublicId());
-        }
+        // TODO: Extract publicId from image.getImageUrl() if Cloudinary deletion is required.
+        // if (image.getPublicId() != null && !image.getPublicId().isBlank()) {
+        //     cloudinaryGateway.destroy(image.getPublicId());
+        // }
         imageRepository.deleteById(imageId);
     }
 
@@ -201,13 +201,37 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
         }
         ProductJpaEntity product = productRepository.findById(request.getProductId())
                 .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        if (request.getAttributeValues() != null && !request.getAttributeValues().isEmpty()) {
+            List<ProductAttributeJpaEntity> validAttributes = attributeRepository.findByCategoryIdOrIsGlobalTrue(product.getCategoryId());
+            List<Long> validAttributeIds = validAttributes.stream().map(ProductAttributeJpaEntity::getId).collect(Collectors.toList());
+            for (VariantAttributeValueRequest attrReq : request.getAttributeValues()) {
+                if (!validAttributeIds.contains(attrReq.getAttributeId())) {
+                    throw new DomainException("Attribute " + attrReq.getAttributeId() + " is not valid for this product's category");
+                }
+            }
+        }
+
         ProductVariantJpaEntity variant = ProductVariantJpaEntity.builder()
                 .product(product)
                 .sku(request.getSku())
                 .price(request.getPrice())
                 .stock(request.getStock() != null ? request.getStock() : 0)
                 .status(request.getStatus() != null ? request.getStatus() : "available")
+                .variantSpecsJson(request.getVariantSpecsJson())
                 .build();
+
+        if (request.getAttributeValues() != null) {
+            List<ProductVariantAttributeJpaEntity> attrEntities = request.getAttributeValues().stream()
+                    .map(attr -> new ProductVariantAttributeJpaEntity(
+                            null,
+                            attr.getAttributeId(),
+                            attr.getValueId()
+                    ))
+                    .collect(Collectors.toList());
+            variant.setAttributeValues(attrEntities);
+        }
+
         return variantRepository.save(variant);
     }
 
@@ -216,10 +240,35 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
     public Object updateVariant(Long variantId, ProductVariantRequest request) {
         ProductVariantJpaEntity variant = variantRepository.findById(variantId)
                 .orElseThrow(() -> new RuntimeException("Variant not found"));
+                
+        if (request.getAttributeValues() != null && !request.getAttributeValues().isEmpty()) {
+            List<ProductAttributeJpaEntity> validAttributes = attributeRepository.findByCategoryIdOrIsGlobalTrue(variant.getProduct().getCategoryId());
+            List<Long> validAttributeIds = validAttributes.stream().map(ProductAttributeJpaEntity::getId).collect(Collectors.toList());
+            for (VariantAttributeValueRequest attrReq : request.getAttributeValues()) {
+                if (!validAttributeIds.contains(attrReq.getAttributeId())) {
+                    throw new DomainException("Attribute " + attrReq.getAttributeId() + " is not valid for this product's category");
+                }
+            }
+        }
+
         if (request.getSku() != null) variant.setSku(request.getSku());
         if (request.getPrice() != null) variant.setPrice(request.getPrice());
         if (request.getStock() != null) variant.setStock(request.getStock());
         if (request.getStatus() != null) variant.setStatus(request.getStatus());
+        if (request.getVariantSpecsJson() != null) variant.setVariantSpecsJson(request.getVariantSpecsJson());
+        
+        if (request.getAttributeValues() != null) {
+            variant.getAttributeValues().clear();
+            List<ProductVariantAttributeJpaEntity> attrEntities = request.getAttributeValues().stream()
+                    .map(attr -> new ProductVariantAttributeJpaEntity(
+                            variant.getId(),
+                            attr.getAttributeId(),
+                            attr.getValueId()
+                    ))
+                    .collect(Collectors.toList());
+            variant.getAttributeValues().addAll(attrEntities);
+        }
+        
         return variantRepository.save(variant);
     }
 
@@ -234,20 +283,7 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
         return variantRepository.findById(variantId).orElse(null);
     }
 
-    private void saveAttributes(ProductJpaEntity product, Map<String, String> attributes) {
-        attributeRepository.deleteByProductId(product.getId());
-        if (attributes == null || attributes.isEmpty()) return;
-        List<ProductAttributeJpaEntity> items = new ArrayList<>();
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            ProductAttributeJpaEntity attr = ProductAttributeJpaEntity.builder()
-                    .product(product)
-                    .name(entry.getKey())
-                    .value(entry.getValue())
-                    .build();
-            items.add(attr);
-        }
-        attributeRepository.saveAll(items);
-    }
+
 
     private ProductEventV1 toEvent(ProductJpaEntity product, String eventType) {
         return ProductEventV1.builder()

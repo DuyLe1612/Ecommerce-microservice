@@ -14,5 +14,7 @@ public class ProductAdminRequest {
     private BigDecimal basePrice;
     private String description;
     private String status;
-    private Map<String, String> attributes;
+    private java.math.BigDecimal discountPercent;
+    private String overview;
+    private Map<String, Object> specs;
 }

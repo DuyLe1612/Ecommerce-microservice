@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
+import com.example.product.infrastructure.persistence.entity.BlogPostTagJpaEntity;
+import com.example.product.infrastructure.persistence.repository.BlogPostTagRepository;
+import org.springframework.transaction.annotation.Transactional;
+
 @RestController
 @RequestMapping("/api/admin/blog")
 @PreAuthorize("hasRole('ADMIN')")
@@ -19,6 +23,7 @@ import java.util.StringJoiner;
 public class AdminBlogController {
 
     private final BlogRepository blogRepository;
+    private final BlogPostTagRepository blogPostTagRepository;
 
     @GetMapping("/{id}")
     public ApiResponse<Object> getBlog(@PathVariable Long id) {
@@ -28,20 +33,28 @@ public class AdminBlogController {
     }
 
     @PostMapping
+    @Transactional
     public ApiResponse<Object> createBlog(@RequestBody BlogRequest request) {
         BlogJpaEntity blog = BlogJpaEntity.builder()
             .title(request.getTitle())
             .slug(request.getSlug() != null ? request.getSlug() : SlugUtil.slugify(request.getTitle()))
             .summary(request.getSummary())
             .content(request.getContent())
-            .tags(joinTags(request.getTags()))
+            .featuredImageUrl(request.getFeaturedImageUrl() != null ? request.getFeaturedImageUrl() : "...")
+            .authorId(request.getAuthorId() != null ? request.getAuthorId() : 1L)
             .status(request.getStatus() != null ? request.getStatus() : "DRAFT")
             .publishedAt("PUBLISHED".equalsIgnoreCase(request.getStatus()) ? LocalDateTime.now() : null)
+            .productIds(request.getProductIds() != null ? request.getProductIds() : "[]")
             .build();
-        return ApiResponse.success((Object)blogRepository.save(blog));
+        blog = blogRepository.save(blog);
+        
+        saveTags(blog.getId(), request.getTags());
+        
+        return ApiResponse.success((Object)blog);
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ApiResponse<Object> updateBlog(@PathVariable Long id, @RequestBody BlogRequest request) {
         BlogJpaEntity blog = blogRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Blog not found"));
@@ -57,8 +70,17 @@ public class AdminBlogController {
         if (request.getContent() != null) {
             blog.setContent(request.getContent());
         }
+        if (request.getFeaturedImageUrl() != null) {
+            blog.setFeaturedImageUrl(request.getFeaturedImageUrl());
+        }
+        if (request.getAuthorId() != null) {
+            blog.setAuthorId(request.getAuthorId());
+        }
+        if (request.getProductIds() != null) {
+            blog.setProductIds(request.getProductIds());
+        }
         if (request.getTags() != null) {
-            blog.setTags(joinTags(request.getTags()));
+            saveTags(blog.getId(), request.getTags());
         }
         if (request.getStatus() != null) {
             blog.setStatus(request.getStatus());
@@ -95,16 +117,17 @@ public class AdminBlogController {
         return ApiResponse.success((Object)blogRepository.save(blog));
     }
 
-    private String joinTags(java.util.List<String> tags) {
-        if (tags == null || tags.isEmpty()) {
-            return null;
-        }
-        StringJoiner joiner = new StringJoiner(",");
-        for (String tag : tags) {
-            if (tag != null && !tag.isBlank()) {
-                joiner.add(tag.trim());
+    private void saveTags(Long blogId, java.util.List<String> tags) {
+        blogPostTagRepository.deleteByBlogPostId(blogId);
+        if (tags != null && !tags.isEmpty()) {
+            for (String tag : tags) {
+                if (tag != null && !tag.isBlank()) {
+                    blogPostTagRepository.save(BlogPostTagJpaEntity.builder()
+                        .blogPostId(blogId)
+                        .tag(tag.trim())
+                        .build());
+                }
             }
         }
-        return joiner.toString();
     }
 }

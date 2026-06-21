@@ -75,3 +75,14 @@
 ## Async integration
 - Publish: ProductCreated, ProductUpdated, ProductDeleted.
 - Consume: PromotionActivated, PromotionPaused for denormalized price projection.
+
+## Database Schema Highlights
+The service uses a standard e-commerce domain structure (PostgreSQL):
+- **product**: Base product entity. Contains `Specs` JSONB, `Overview`, `DiscountPercent`.
+- **product_variant**: SKU-level variant. Contains `VariantSpecsJson` JSONB.
+- **product_image**: Ordered gallery images.
+- **category**: Hierarchical categories using `ParentId`.
+- **brand**: Brands mapped to products.
+- **product_attribute** / **attribute_value** / **product_variant_attribute**: EAV model for variant configuration mapping (ties variants to precise attribute values). Attributes are bounded to Category or IsGlobal=true.
+- **blog_post** / **blog_post_tags**: Post content and its categorizations.
+- **stock_reservation**: Essential for internal API to support checkout.

@@ -29,6 +29,8 @@ public class MockAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
+        String rolesHeader = request.getHeader("X-User-Roles");
+        String userIdHeader = request.getHeader("X-User-Id");
         
         if (authHeader != null && authHeader.startsWith("Bearer mock-user-")) {
             String token = authHeader.substring(7);
@@ -42,6 +44,21 @@ public class MockAuthFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
+        } else if (rolesHeader != null && !rolesHeader.isEmpty()) {
+            // Support gateway headers
+            String[] roles = rolesHeader.split(",");
+            List<SimpleGrantedAuthority> authorities = java.util.Arrays.stream(roles)
+                .map(String::trim)
+                .map(SimpleGrantedAuthority::new)
+                .toList();
+                
+            String principal = (userIdHeader != null) ? "user-" + userIdHeader : "unknown-user";
+            var auth = new UsernamePasswordAuthenticationToken(
+                principal,
+                null,
+                authorities
+            );
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
         
         filterChain.doFilter(request, response);

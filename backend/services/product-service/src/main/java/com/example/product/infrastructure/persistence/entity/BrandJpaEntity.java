@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "brand")
+@Table(name = "\"brand\"")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,22 +18,26 @@ public class BrandJpaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "\"Id\"")
     private Long id;
 
-    @Column(nullable = false, length = 150)
+    @Column(name = "\"Name\"", nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, unique = true, length = 200)
+    @Column(name = "\"Slug\"", nullable = false, unique = true, length = 120)
     private String slug;
 
-    @Column(name = "LogoUrl", columnDefinition = "text")
-    private String logoUrl;
+    @Column(name = "\"Country\"", length = 50)
+    private String country;
+
+    @Column(name = "\"LogoPath\"", length = 255)
+    private String logoPath;
 
     @CreationTimestamp
-    @Column(name = "CreatedAt", nullable = false, updatable = false)
+    @Column(name = "\"CreatedAt\"", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "UpdatedAt", nullable = false)
+    @Column(name = "\"UpdatedAt\"", nullable = false)
     private LocalDateTime updatedAt;
 }

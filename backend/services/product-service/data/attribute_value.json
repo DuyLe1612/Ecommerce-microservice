@@ -1,0 +1,497 @@
+[
+  {
+    "Id": 1,
+    "AttributeId": 1,
+    "Value": "Black"
+  },
+  {
+    "Id": 2,
+    "AttributeId": 1,
+    "Value": "White"
+  },
+  {
+    "Id": 3,
+    "AttributeId": 1,
+    "Value": "Silver"
+  },
+  {
+    "Id": 4,
+    "AttributeId": 1,
+    "Value": "Blue"
+  },
+  {
+    "Id": 5,
+    "AttributeId": 1,
+    "Value": "Red"
+  },
+  {
+    "Id": 6,
+    "AttributeId": 2,
+    "Value": "12"
+  },
+  {
+    "Id": 7,
+    "AttributeId": 2,
+    "Value": "24"
+  },
+  {
+    "Id": 8,
+    "AttributeId": 2,
+    "Value": "36"
+  },
+  {
+    "Id": 10,
+    "AttributeId": 10,
+    "Value": "13 inch"
+  },
+  {
+    "Id": 11,
+    "AttributeId": 10,
+    "Value": "15 inch"
+  },
+  {
+    "Id": 12,
+    "AttributeId": 10,
+    "Value": "17 inch"
+  },
+  {
+    "Id": 13,
+    "AttributeId": 11,
+    "Value": "Intel i5"
+  },
+  {
+    "Id": 14,
+    "AttributeId": 11,
+    "Value": "Intel i7"
+  },
+  {
+    "Id": 15,
+    "AttributeId": 11,
+    "Value": "AMD Ryzen 5"
+  },
+  {
+    "Id": 16,
+    "AttributeId": 11,
+    "Value": "AMD Ryzen 7"
+  },
+  {
+    "Id": 17,
+    "AttributeId": 12,
+    "Value": "8GB"
+  },
+  {
+    "Id": 18,
+    "AttributeId": 12,
+    "Value": "16GB"
+  },
+  {
+    "Id": 19,
+    "AttributeId": 12,
+    "Value": "32GB"
+  },
+  {
+    "Id": 20,
+    "AttributeId": 13,
+    "Value": "256GB SSD"
+  },
+  {
+    "Id": 21,
+    "AttributeId": 13,
+    "Value": "512GB SSD"
+  },
+  {
+    "Id": 22,
+    "AttributeId": 13,
+    "Value": "1TB SSD"
+  },
+  {
+    "Id": 23,
+    "AttributeId": 14,
+    "Value": "RTX 4060"
+  },
+  {
+    "Id": 24,
+    "AttributeId": 14,
+    "Value": "RTX 4070"
+  },
+  {
+    "Id": 25,
+    "AttributeId": 14,
+    "Value": "GTX 1650"
+  },
+  {
+    "Id": 30,
+    "AttributeId": 20,
+    "Value": "5.5 inch"
+  },
+  {
+    "Id": 31,
+    "AttributeId": 20,
+    "Value": "6.1 inch"
+  },
+  {
+    "Id": 32,
+    "AttributeId": 20,
+    "Value": "6.7 inch"
+  },
+  {
+    "Id": 33,
+    "AttributeId": 21,
+    "Value": "3000"
+  },
+  {
+    "Id": 34,
+    "AttributeId": 21,
+    "Value": "4000"
+  },
+  {
+    "Id": 35,
+    "AttributeId": 21,
+    "Value": "5000"
+  },
+  {
+    "Id": 36,
+    "AttributeId": 22,
+    "Value": "12MP"
+  },
+  {
+    "Id": 37,
+    "AttributeId": 22,
+    "Value": "48MP"
+  },
+  {
+    "Id": 38,
+    "AttributeId": 22,
+    "Value": "108MP"
+  },
+  {
+    "Id": 39,
+    "AttributeId": 23,
+    "Value": "4GB"
+  },
+  {
+    "Id": 40,
+    "AttributeId": 23,
+    "Value": "6GB"
+  },
+  {
+    "Id": 41,
+    "AttributeId": 23,
+    "Value": "8GB"
+  },
+  {
+    "Id": 42,
+    "AttributeId": 24,
+    "Value": "64GB"
+  },
+  {
+    "Id": 43,
+    "AttributeId": 24,
+    "Value": "128GB"
+  },
+  {
+    "Id": 44,
+    "AttributeId": 24,
+    "Value": "256GB"
+  },
+  {
+    "Id": 60,
+    "AttributeId": 60,
+    "Value": "USB"
+  },
+  {
+    "Id": 61,
+    "AttributeId": 60,
+    "Value": "USB-C"
+  },
+  {
+    "Id": 62,
+    "AttributeId": 61,
+    "Value": "Wired"
+  },
+  {
+    "Id": 63,
+    "AttributeId": 61,
+    "Value": "Wireless"
+  },
+  {
+    "Id": 50,
+    "AttributeId": 50,
+    "Value": "21 inch"
+  },
+  {
+    "Id": 51,
+    "AttributeId": 50,
+    "Value": "24 inch"
+  },
+  {
+    "Id": 52,
+    "AttributeId": 50,
+    "Value": "27 inch"
+  },
+  {
+    "Id": 53,
+    "AttributeId": 51,
+    "Value": "60Hz"
+  },
+  {
+    "Id": 54,
+    "AttributeId": 51,
+    "Value": "120Hz"
+  },
+  {
+    "Id": 55,
+    "AttributeId": 51,
+    "Value": "144Hz"
+  },
+  {
+    "Id": 56,
+    "AttributeId": 52,
+    "Value": "1080p"
+  },
+  {
+    "Id": 57,
+    "AttributeId": 52,
+    "Value": "1440p"
+  },
+  {
+    "Id": 58,
+    "AttributeId": 52,
+    "Value": "4K"
+  },
+  {
+    "Id": 70,
+    "AttributeId": 70,
+    "Value": "Red"
+  },
+  {
+    "Id": 71,
+    "AttributeId": 70,
+    "Value": "Blue"
+  },
+  {
+    "Id": 72,
+    "AttributeId": 70,
+    "Value": "Brown"
+  },
+  {
+    "Id": 73,
+    "AttributeId": 73,
+    "Value": "Wired"
+  },
+  {
+    "Id": 74,
+    "AttributeId": 73,
+    "Value": "Wireless"
+  },
+  {
+    "Id": 80,
+    "AttributeId": 80,
+    "Value": "800"
+  },
+  {
+    "Id": 81,
+    "AttributeId": 80,
+    "Value": "1600"
+  },
+  {
+    "Id": 82,
+    "AttributeId": 81,
+    "Value": "Wired"
+  },
+  {
+    "Id": 83,
+    "AttributeId": 81,
+    "Value": "Wireless"
+  },
+  {
+    "Id": 90,
+    "AttributeId": 90,
+    "Value": "In-Ear"
+  },
+  {
+    "Id": 91,
+    "AttributeId": 90,
+    "Value": "Over-Ear"
+  },
+  {
+    "Id": 92,
+    "AttributeId": 91,
+    "Value": "3.5mm"
+  },
+  {
+    "Id": 93,
+    "AttributeId": 91,
+    "Value": "USB-C"
+  },
+  {
+    "Id": 94,
+    "AttributeId": 91,
+    "Value": "Bluetooth"
+  },
+  {
+    "Id": 100,
+    "AttributeId": 100,
+    "Value": "USB-C"
+  },
+  {
+    "Id": 101,
+    "AttributeId": 101,
+    "Value": "65"
+  },
+  {
+    "Id": 110,
+    "AttributeId": 110,
+    "Value": "Silicone"
+  },
+  {
+    "Id": 111,
+    "AttributeId": 110,
+    "Value": "Leather"
+  },
+  {
+    "Id": 112,
+    "AttributeId": 110,
+    "Value": "Plastic"
+  },
+  {
+    "Id": 113,
+    "AttributeId": 111,
+    "Value": "IPhone 17"
+  },
+  {
+    "Id": 114,
+    "AttributeId": 111,
+    "Value": "Samsung Galaxy S24"
+  },
+  {
+    "Id": 115,
+    "AttributeId": 112,
+    "Value": "Yes"
+  },
+  {
+    "Id": 116,
+    "AttributeId": 113,
+    "Value": "2x"
+  },
+  {
+    "Id": 117,
+    "AttributeId": 113,
+    "Value": "4x"
+  },
+  {
+    "Id": 118,
+    "AttributeId": 113,
+    "Value": "8x"
+  },
+  {
+    "Id": 119,
+    "AttributeId": 117,
+    "Value": "13.5 inch OLED cảm ứng"
+  },
+  {
+    "Id": 120,
+    "AttributeId": 11,
+    "Value": "Intel Core i5-1335U"
+  },
+  {
+    "Id": 121,
+    "AttributeId": 12,
+    "Value": "8GB LPDDR4x"
+  },
+  {
+    "Id": 122,
+    "AttributeId": 118,
+    "Value": "512GB SSD NVMe"
+  },
+  {
+    "Id": 123,
+    "AttributeId": 119,
+    "Value": "Có - Chế độ Tablet"
+  },
+  {
+    "Id": 124,
+    "AttributeId": 120,
+    "Value": "Windows 11 Home"
+  },
+  {
+    "Id": 125,
+    "AttributeId": 117,
+    "Value": "3:2 (3000x2000)"
+  },
+  {
+    "Id": 126,
+    "AttributeId": 11,
+    "Value": "Intel Core i7-1355U"
+  },
+  {
+    "Id": 127,
+    "AttributeId": 12,
+    "Value": "16GB LPDDR4x"
+  },
+  {
+    "Id": 128,
+    "AttributeId": 118,
+    "Value": "1TB SSD NVMe"
+  },
+  {
+    "Id": 129,
+    "AttributeId": 117,
+    "Value": "400 nits"
+  },
+  {
+    "Id": 132,
+    "AttributeId": 30,
+    "Value": "9 inch"
+  },
+  {
+    "Id": 133,
+    "AttributeId": 30,
+    "Value": "11 inch"
+  },
+  {
+    "Id": 134,
+    "AttributeId": 33,
+    "Value": "32GB"
+  },
+  {
+    "Id": 135,
+    "AttributeId": 33,
+    "Value": "64GB"
+  },
+  {
+    "Id": 136,
+    "AttributeId": 32,
+    "Value": "16GB"
+  },
+  {
+    "Id": 137,
+    "AttributeId": 32,
+    "Value": "32GB"
+  },
+  {
+    "Id": 138,
+    "AttributeId": 33,
+    "Value": "512gb"
+  },
+  {
+    "Id": 139,
+    "AttributeId": 53,
+    "Value": "99% sRBG"
+  },
+  {
+    "Id": 140,
+    "AttributeId": 123,
+    "Value": "AMD ryzen 5"
+  },
+  {
+    "Id": 141,
+    "AttributeId": 123,
+    "Value": "Intel i5 12500HX"
+  },
+  {
+    "Id": 142,
+    "AttributeId": 82,
+    "Value": "Có"
+  }
+]
