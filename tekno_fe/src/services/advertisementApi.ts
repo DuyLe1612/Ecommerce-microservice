@@ -2,7 +2,8 @@ import { API_BASE_URL } from "@/lib/apiConfig";
 import { Advertisement, AdvertisementPosition } from "@/type/advertisement";
 import { ApiResponse } from "@/type/share";
 
-export const API_BASE = "http://localhost:5000/api/admin/advertisements";
+const _GATEWAY = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+export const API_BASE = `${_GATEWAY}/admin/advertisements`;
 
 export const advertisementApi = {
 // GET ALL
@@ -11,7 +12,7 @@ async getAll(params?: { pageSize?: number; page?: number }) {
   if (params?.pageSize) query.append("PageSize", String(params.pageSize));
   if (params?.page) query.append("Page", String(params.page));
   
-  const url = `http://localhost:5000/api/admin/advertisements${query.toString() ? `?${query.toString()}` : ""}`;
+  const url = `${_GATEWAY}/admin/advertisements${query.toString() ? `?${query.toString()}` : ""}`;
   
   const res = await fetch(url, {
     method: 'GET',
