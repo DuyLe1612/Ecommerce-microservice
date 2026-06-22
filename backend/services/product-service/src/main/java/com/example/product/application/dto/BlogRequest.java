@@ -11,4 +11,7 @@ public class BlogRequest {
     private String content;
     private List<String> tags;
     private String status;
+    private String featuredImageUrl;
+    private Long authorId;
+    private String productIds;
 }

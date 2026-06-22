@@ -1,0 +1,1952 @@
+[
+  {
+    "VariantId": 2,
+    "AttributeId": 1,
+    "ValueId": 1
+  },
+  {
+    "VariantId": 2,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 3,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 3,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 3,
+    "AttributeId": 13,
+    "ValueId": 20
+  },
+  {
+    "VariantId": 4,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 4,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 4,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 11,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 11,
+    "AttributeId": 24,
+    "ValueId": 43
+  },
+  {
+    "VariantId": 12,
+    "AttributeId": 1,
+    "ValueId": 1
+  },
+  {
+    "VariantId": 12,
+    "AttributeId": 24,
+    "ValueId": 44
+  },
+  {
+    "VariantId": 13,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 13,
+    "AttributeId": 24,
+    "ValueId": 43
+  },
+  {
+    "VariantId": 14,
+    "AttributeId": 1,
+    "ValueId": 4
+  },
+  {
+    "VariantId": 14,
+    "AttributeId": 24,
+    "ValueId": 44
+  },
+  {
+    "VariantId": 17,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 17,
+    "AttributeId": 33,
+    "ValueId": 43
+  },
+  {
+    "VariantId": 18,
+    "AttributeId": 1,
+    "ValueId": 1
+  },
+  {
+    "VariantId": 18,
+    "AttributeId": 33,
+    "ValueId": 44
+  },
+  {
+    "VariantId": 21,
+    "AttributeId": 50,
+    "ValueId": 52
+  },
+  {
+    "VariantId": 21,
+    "AttributeId": 52,
+    "ValueId": 58
+  },
+  {
+    "VariantId": 23,
+    "AttributeId": 70,
+    "ValueId": 70
+  },
+  {
+    "VariantId": 23,
+    "AttributeId": 73,
+    "ValueId": 74
+  },
+  {
+    "VariantId": 25,
+    "AttributeId": 80,
+    "ValueId": 80
+  },
+  {
+    "VariantId": 25,
+    "AttributeId": 81,
+    "ValueId": 83
+  },
+  {
+    "VariantId": 27,
+    "AttributeId": 90,
+    "ValueId": 91
+  },
+  {
+    "VariantId": 27,
+    "AttributeId": 91,
+    "ValueId": 94
+  },
+  {
+    "VariantId": 29,
+    "AttributeId": 100,
+    "ValueId": 100
+  },
+  {
+    "VariantId": 29,
+    "AttributeId": 101,
+    "ValueId": 101
+  },
+  {
+    "VariantId": 31,
+    "AttributeId": 110,
+    "ValueId": 110
+  },
+  {
+    "VariantId": 31,
+    "AttributeId": 111,
+    "ValueId": 113
+  },
+  {
+    "VariantId": 31,
+    "AttributeId": 112,
+    "ValueId": 115
+  },
+  {
+    "VariantId": 1,
+    "AttributeId": 1,
+    "ValueId": 5
+  },
+  {
+    "VariantId": 1,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 1,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 2,
+    "AttributeId": 12,
+    "ValueId": 19
+  },
+  {
+    "VariantId": 2,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 2,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 50,
+    "AttributeId": 1,
+    "ValueId": 1
+  },
+  {
+    "VariantId": 50,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 50,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 50,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 50,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 7,
+    "AttributeId": 11,
+    "ValueId": 120
+  },
+  {
+    "VariantId": 7,
+    "AttributeId": 12,
+    "ValueId": 121
+  },
+  {
+    "VariantId": 7,
+    "AttributeId": 117,
+    "ValueId": 119
+  },
+  {
+    "VariantId": 7,
+    "AttributeId": 118,
+    "ValueId": 122
+  },
+  {
+    "VariantId": 7,
+    "AttributeId": 119,
+    "ValueId": 123
+  },
+  {
+    "VariantId": 7,
+    "AttributeId": 120,
+    "ValueId": 124
+  },
+  {
+    "VariantId": 8,
+    "AttributeId": 11,
+    "ValueId": 126
+  },
+  {
+    "VariantId": 8,
+    "AttributeId": 12,
+    "ValueId": 127
+  },
+  {
+    "VariantId": 8,
+    "AttributeId": 117,
+    "ValueId": 125
+  },
+  {
+    "VariantId": 8,
+    "AttributeId": 118,
+    "ValueId": 128
+  },
+  {
+    "VariantId": 8,
+    "AttributeId": 119,
+    "ValueId": 123
+  },
+  {
+    "VariantId": 8,
+    "AttributeId": 120,
+    "ValueId": 124
+  },
+  {
+    "VariantId": 51,
+    "AttributeId": 11,
+    "ValueId": 126
+  },
+  {
+    "VariantId": 51,
+    "AttributeId": 12,
+    "ValueId": 121
+  },
+  {
+    "VariantId": 51,
+    "AttributeId": 117,
+    "ValueId": 129
+  },
+  {
+    "VariantId": 51,
+    "AttributeId": 118,
+    "ValueId": 122
+  },
+  {
+    "VariantId": 51,
+    "AttributeId": 119,
+    "ValueId": 123
+  },
+  {
+    "VariantId": 51,
+    "AttributeId": 120,
+    "ValueId": 124
+  },
+  {
+    "VariantId": 1,
+    "AttributeId": 120,
+    "ValueId": 124
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 52,
+    "AttributeId": 1,
+    "ValueId": 5
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 2,
+    "ValueId": 7
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 118,
+    "ValueId": 122
+  },
+  {
+    "VariantId": 5,
+    "AttributeId": 120,
+    "ValueId": 124
+  },
+  {
+    "VariantId": 52,
+    "AttributeId": 30,
+    "ValueId": 133
+  },
+  {
+    "VariantId": 52,
+    "AttributeId": 33,
+    "ValueId": 134
+  },
+  {
+    "VariantId": 53,
+    "AttributeId": 1,
+    "ValueId": 3
+  },
+  {
+    "VariantId": 53,
+    "AttributeId": 30,
+    "ValueId": 132
+  },
+  {
+    "VariantId": 53,
+    "AttributeId": 33,
+    "ValueId": 135
+  },
+  {
+    "VariantId": 54,
+    "AttributeId": 1,
+    "ValueId": 1
+  },
+  {
+    "VariantId": 54,
+    "AttributeId": 2,
+    "ValueId": 6
+  },
+  {
+    "VariantId": 54,
+    "AttributeId": 113,
+    "ValueId": 116
+  },
+  {
+    "VariantId": 55,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 55,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 55,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 55,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 55,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 56,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 56,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 56,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 56,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 56,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 57,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 57,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 57,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 57,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 57,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 58,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 58,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 58,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 58,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 58,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 59,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 59,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 59,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 59,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 59,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 60,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 60,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 60,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 60,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 60,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 61,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 61,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 61,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 61,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 61,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 62,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 62,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 62,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 62,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 62,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 63,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 63,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 63,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 63,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 63,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 64,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 64,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 64,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 64,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 64,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 65,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 65,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 65,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 65,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 65,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 66,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 66,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 66,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 66,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 66,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 67,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 67,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 67,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 67,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 67,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 68,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 68,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 68,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 68,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 68,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 69,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 69,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 69,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 69,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 69,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 70,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 70,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 70,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 70,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 70,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 71,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 71,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 71,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 71,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 71,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 72,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 72,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 72,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 72,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 72,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 73,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 73,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 73,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 73,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 73,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 74,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 74,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 74,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 74,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 74,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 75,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 75,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 75,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 75,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 75,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 76,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 76,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 76,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 76,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 76,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 77,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 77,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 77,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 77,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 77,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 78,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 78,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 78,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 78,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 78,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 79,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 79,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 79,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 79,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 79,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 80,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 80,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 80,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 80,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 80,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 81,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 81,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 81,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 81,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 81,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 82,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 82,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 82,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 82,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 82,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 83,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 83,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 83,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 83,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 83,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 84,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 84,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 84,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 84,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 84,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 85,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 85,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 85,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 85,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 85,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 86,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 86,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 86,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 86,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 86,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 87,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 87,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 87,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 87,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 87,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 88,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 88,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 88,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 88,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 88,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 89,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 89,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 89,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 89,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 89,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 90,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 90,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 90,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 90,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 90,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 91,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 91,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 91,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 91,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 91,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 92,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 92,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 92,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 92,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 92,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 93,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 93,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 93,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 93,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 93,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 94,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 94,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 94,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 94,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 94,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 95,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 95,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 95,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 95,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 95,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 96,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 96,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 96,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 96,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 96,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 97,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 97,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 97,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 97,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 97,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 98,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 98,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 98,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 98,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 98,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 99,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 99,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 99,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 99,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 99,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 100,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 100,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 100,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 100,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 100,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 101,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 101,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 101,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 101,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 101,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 102,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 102,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 102,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 102,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 102,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 103,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 103,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 103,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 103,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 103,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 104,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 104,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 104,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 104,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 104,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 105,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 105,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 105,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 105,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 105,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 106,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 106,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 106,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 106,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 106,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 107,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 107,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 107,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 107,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 107,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 108,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 108,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 108,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 108,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 108,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 109,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 109,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 109,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 109,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 109,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 110,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 110,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 110,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 110,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 110,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 111,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 111,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 111,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 111,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 111,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 112,
+    "AttributeId": 10,
+    "ValueId": 11
+  },
+  {
+    "VariantId": 112,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 112,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 112,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 112,
+    "AttributeId": 14,
+    "ValueId": 25
+  },
+  {
+    "VariantId": 113,
+    "AttributeId": 10,
+    "ValueId": 12
+  },
+  {
+    "VariantId": 113,
+    "AttributeId": 11,
+    "ValueId": 14
+  },
+  {
+    "VariantId": 113,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 113,
+    "AttributeId": 13,
+    "ValueId": 22
+  },
+  {
+    "VariantId": 113,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 1,
+    "ValueId": 4
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 2,
+    "ValueId": 6
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 10,
+    "ValueId": 10
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 12,
+    "ValueId": 17
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 13,
+    "ValueId": 21
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 14,
+    "ValueId": 23
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 117,
+    "ValueId": 119
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 119,
+    "ValueId": 123
+  },
+  {
+    "VariantId": 115,
+    "AttributeId": 120,
+    "ValueId": 124
+  },
+  {
+    "VariantId": 116,
+    "AttributeId": 1,
+    "ValueId": 2
+  },
+  {
+    "VariantId": 116,
+    "AttributeId": 11,
+    "ValueId": 13
+  },
+  {
+    "VariantId": 116,
+    "AttributeId": 12,
+    "ValueId": 18
+  },
+  {
+    "VariantId": 116,
+    "AttributeId": 13,
+    "ValueId": 20
+  },
+  {
+    "VariantId": 116,
+    "AttributeId": 14,
+    "ValueId": 24
+  },
+  {
+    "VariantId": 116,
+    "AttributeId": 117,
+    "ValueId": 119
+  }
+]

@@ -1,0 +1,4027 @@
+[
+  {
+    "Id": 3,
+    "ProductId": 2,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook_1__1_8.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 4,
+    "ProductId": 2,
+    "ImageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 5,
+    "ProductId": 3,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 6,
+    "ProductId": 3,
+    "ImageUrl": "https://dlcdnwebimgs.asus.com/gain/838fbdac-6d10-4190-8e52-d4b9463f5d23/",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 7,
+    "ProductId": 4,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/l/a/laptop-hp-spectre-x360-14-ef0030tu-6k773pa-cu-dep-1_4.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 8,
+    "ProductId": 4,
+    "ImageUrl": "https://www.hp.com/content/dam/sites/worldwide/personal-computers/consumer/laptops-and-2-n-1s/spectre/version-2023/HP%20Spectre%20x360%2014__Mobile@2x.png",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 9,
+    "ProductId": 5,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 10,
+    "ProductId": 5,
+    "ImageUrl": "https://mac24h.vn/images/detailed/94/ThinkPad_X1_Carbon_Gen_11.png",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 11,
+    "ProductId": 10,
+    "ImageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-15-pro-max-bluetitanium-select?wid=470&hei=556&fmt=png-alpha&.v=1692845702781",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 12,
+    "ProductId": 10,
+    "ImageUrl": "https://www.apple.com/v/iphone-17-pro/d/images/overview/contrast/iphone_air__fe2gdmh5u5qy_large_2x.jpg",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 13,
+    "ProductId": 11,
+    "ImageUrl": "https://baotinmobile.vn/uploads/2024/02/s24-ultra-tim.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 14,
+    "ProductId": 11,
+    "ImageUrl": "https://happyphone.vn/wp-content/uploads/2024/04/SAMSUNG-GALAXY-S24-ULTRA-12GB-512GB-Cam.jpg",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 15,
+    "ProductId": 12,
+    "ImageUrl": "https://www.didongmy.com/vnt_upload/product/10_2023/pixel8/thumbs/600_crop_google-pixel-8-pro-obsidian-thumb-didongmy-600x600.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 16,
+    "ProductId": 12,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/42/307188/google-pixel-8-pro-600x600.jpg",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 17,
+    "ProductId": 13,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/i/xiaomi-14_4.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 18,
+    "ProductId": 13,
+    "ImageUrl": "https://cdn.mobilecity.vn/mobilecity-vn/images/2023/10/xiaomi-14-hong.jpg.webp",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 19,
+    "ProductId": 14,
+    "ImageUrl": "https://www.duchuymobile.com/images/detailed/65/oneplus-12-trang_ucuo-lm.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 20,
+    "ProductId": 14,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/n/oneplus-12_1_.jpg",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 21,
+    "ProductId": 20,
+    "ImageUrl": "https://traidepbaniphone.com/upload/product/ipadpro11-inwi-fisilver2-upscreenusen-3047.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 22,
+    "ProductId": 20,
+    "ImageUrl": "https://phucanhcdn.com/media/product/49293_cellular_512gb.jpg",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 23,
+    "ProductId": 21,
+    "ImageUrl": "https://product.hstatic.net/1000379731/product/mul3dutway0g35ul8rlp_bc0427d5a0594b43820baccffe69c71b.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 24,
+    "ProductId": 21,
+    "ImageUrl": "https://lh6.googleusercontent.com/proxy/mbdwj7VJ7KF0K0HYg2U_TBtAhgH4BBwl8w4ngxSsHSzI1psonPR0hpi1Jf7hFerv42m6zMkx5XEuXnhvggCUs5E8SiWyL7bjXC9f0iOa0i_vOotYHaCd71ywDccS",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 25,
+    "ProductId": 22,
+    "ImageUrl": "https://phukienpico.com/wp-content/uploads/2023/09/Op-lung-bao-da-xiaomi-pad-6-pro-10.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 26,
+    "ProductId": 22,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/522/309848/Kit/xiaomi-pad-6-note-1-1.jpg",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 27,
+    "ProductId": 30,
+    "ImageUrl": "https://product.hstatic.net/200000637319/product/1_dcfa8a17409f453cae523f6894013556_master.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 28,
+    "ProductId": 31,
+    "ImageUrl": "https://pcmarket.vn/media/lib/29-06-2022/27gn800-b4.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 29,
+    "ProductId": 40,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/a/gaming_8_14__1.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 30,
+    "ProductId": 40,
+    "ImageUrl": "https://product.hstatic.net/200000637319/product/mx-keys-mini-top-rose-us_a6b9661eb3424f1c8d79503e2cc3e0e7_master.png",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 31,
+    "ProductId": 41,
+    "ImageUrl": "https://product.hstatic.net/200000637319/product/81eeknarvil._ac_sl1500__b82e73d82da2451ca567fb128494d6aa_master.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 32,
+    "ProductId": 50,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/h/chuot-khong-day-logitech-mx-master-3s-for-mac_2.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 33,
+    "ProductId": 50,
+    "ImageUrl": "https://resource.logitech.com/w_800,c_lpad,ar_1:1,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-side-view-graphite.png?v=1",
+    "IsPrimary": false,
+    "SortOrder": 2
+  },
+  {
+    "Id": 34,
+    "ProductId": 51,
+    "ImageUrl": "https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/86/357719/chuot-sac-khong-day-gaming-razer-viper-v3-pro-thumb-638967440293053901-600x600.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 37,
+    "ProductId": 61,
+    "ImageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQD83?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1660803972361",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 38,
+    "ProductId": 70,
+    "ImageUrl": "https://photo2.tinhte.vn/data/attachment-files/2022/07/6065972_anker-GaNPrime-tinhte-4.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 39,
+    "ProductId": 71,
+    "ImageUrl": "https://bizweb.dktcdn.net/thumb/large/100/462/529/products/0-1-1713511388939.jpg?v=1713511395120",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 40,
+    "ProductId": 80,
+    "ImageUrl": "https://m.media-amazon.com/images/I/81osE87mFrL.jpg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 41,
+    "ProductId": 81,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/x/media/catalog/product/t/o/tomtoc-slim-tui-chong-soc-1.png",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 43,
+    "ProductId": 82,
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1765039720/tekno/product/tailoc-36-premium/shn7z6mvoqyflggzkba8.jpg",
+    "IsPrimary": false,
+    "SortOrder": 1
+  },
+  {
+    "Id": 42,
+    "ProductId": 82,
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1765039719/tekno/product/tailoc-36-premium/ydxlszlblfxpqgjbwynn.jpg",
+    "IsPrimary": false,
+    "SortOrder": 0
+  },
+  {
+    "Id": 44,
+    "ProductId": 82,
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1765358433/tekno/product/tailoc-36-premium/lof6zinjfxi2ioppcamp.jpg",
+    "IsPrimary": true,
+    "SortOrder": 2
+  },
+  {
+    "Id": 48,
+    "ProductId": 99,
+    "ImageUrl": "https://lh3.googleusercontent.com/xbb0TM9ZlG0oyDsv_IF4XaV-But5nkgcxcXdAmPElJybHN5VEfmFu5D9T_24zsKrgqiR8k5x_SxF8UxUaCZuIR1Fr9mC0WK9",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 2,
+    "ProductId": 1,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 1,
+    "ProductId": 1,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_659_40.png",
+    "IsPrimary": false,
+    "SortOrder": 1
+  },
+  {
+    "Id": 45,
+    "ProductId": 83,
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1766757401/tekno/product/sbtc/gv9kw0g1dp9ccntl3uov.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 46,
+    "ProductId": 84,
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1766880173/tekno/product/vibe-coding/nje8tkjquqljr0yphj9h.webp",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 47,
+    "ProductId": 84,
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1766880174/tekno/product/vibe-coding/ihiq5dykgwuzfgnvyddz.png",
+    "IsPrimary": false,
+    "SortOrder": 1
+  },
+  {
+    "Id": 49,
+    "ProductId": 100,
+    "ImageUrl": "https://lh3.googleusercontent.com/MG2gsjjFF32aEodjXKZlOYUzsJbDHZnfaZy_T2NvxrUyAzzYWhdZOoA_xhKs1dFeTXPgxCA_8-qhohw0UdZZsfozokYxXYiO",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 50,
+    "ProductId": 101,
+    "ImageUrl": "https://lh3.googleusercontent.com/h_O4sofNdgwcechM6WEstoMiMwbgvcWT9dUDEcWYio3YDBHlREZTL7UvcCiTM7HWwiUd_V0Id-ceM5wZL9i2vd6nCHez6bhl",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 51,
+    "ProductId": 102,
+    "ImageUrl": "https://lh3.googleusercontent.com/2mlBdEP69QltP7-Va8k5TrqP4daY8GqQeQ0DTiHYxKzd20aJ9jvzAhGXcOiMW2_wSYs4Do1CBr-t7VHAKUoPOb7a-LfDDcUaYQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 52,
+    "ProductId": 103,
+    "ImageUrl": "https://lh3.googleusercontent.com/yClZDSUIXk3IMcehy_BlIdAiOlgbRI-59CFNRAW0dQDCtAfkd2iZI0q0sKK-B9dAi_rADJSo73DxxjmbU5nHmdwCbON47Ttcuw",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 53,
+    "ProductId": 104,
+    "ImageUrl": "https://lh3.googleusercontent.com/POMFpct57q8eK0YRG71LhliLe0ERrKKRAQP60cWPVW-9MyaJ4k6OPY0TV-Ui3_yyEOdg9M-i2lo5gXRCHWMLeBS9OFzcTIU",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 54,
+    "ProductId": 105,
+    "ImageUrl": "https://lh3.googleusercontent.com/BQD6-bErEzhF474Md39ewSPFQKdK2a0sImRlDz119PaO54PyAljYzwLtlXIzMfAMbIbGqTuJ8fdqjUIcfA8lLFgty6qenuw",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 55,
+    "ProductId": 106,
+    "ImageUrl": "https://lh3.googleusercontent.com/L6LexvmTSCFs6xhj_eB5-iugoIaLSwspeAV6zEVxPYXGI14o39YYqtxO6L6ZEM3aKYUdcHAnSgOicvyzLoJCo8EQSFjTNCfdGQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 56,
+    "ProductId": 107,
+    "ImageUrl": "https://lh3.googleusercontent.com/4omLcE0NC6pRtrkROefiqFbl92Rs7lbioRrZacUgN8JnRt0qbJ3u2M71Ogg8I21WS-RZbYpw4sIkv-veCP30tu16Hb1kh7twBg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 57,
+    "ProductId": 108,
+    "ImageUrl": "https://lh3.googleusercontent.com/NjD4zR-H5yAf2TbaMNHi7dml9ed3nuyshlJtjxMs_M5nsGqZ_3s659ybqXWIXSURx9jxgOzR3QaJAGmujFWfnUsp8AobkCk",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 58,
+    "ProductId": 109,
+    "ImageUrl": "https://lh3.googleusercontent.com/0Ax74RSfvaJiKKHkOGvEIfOc6rJM826DBMJj6tM-dg--HbhrHs8dbNUZMSAoeFMKIs2UsdkeiU9rqZzkldNouQ-o_SnfuOgA",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 59,
+    "ProductId": 110,
+    "ImageUrl": "https://lh3.googleusercontent.com/pQGsEObJ9N3pJx-9fC8M1nXSQSz5Ce7m5J5GX-jHnyryTry9DWGlgkZlTo8v_uMbahk_66blGtvJDLxVrIJNjPeMNA-tsnGsog",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 60,
+    "ProductId": 111,
+    "ImageUrl": "https://lh3.googleusercontent.com/ViHOEAA2x3Q0In7EFPDPstVbuJuZ0uR5mFU-ZcOSU-D3bpseQW0iaanRT2LMAMZQ7VsAq8cJQblk17L-_URey1JGGIjcukB6eQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 61,
+    "ProductId": 112,
+    "ImageUrl": "https://lh3.googleusercontent.com/v2cNTpxxXTH7qQfv3_oDNVbr-6wfvd6mr5Rd4mIZBUTqWu5c1ZFsdKmSnxe3DL03Kwsej2w70kOD8qumc4EKB9TVn2kPots",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 62,
+    "ProductId": 113,
+    "ImageUrl": "https://lh3.googleusercontent.com/o7XGWHTcx7FZGFXEMiwoPyUo-gIKH_k8ZXca3XH19oSnenNznH9XR15fBXfDbNDttffxx7eVIi_esykpW3s_NsXySPf-9A0",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 63,
+    "ProductId": 114,
+    "ImageUrl": "https://lh3.googleusercontent.com/p6SOB-ygINXKjbFt4Taci9H5Kwj2ZAQJWWIiQS8-VY6pfvI-_EyPSMnvsHDUKDXdq-Qng1EEXr4SJbhrXqwtqCZs339lzGM-XQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 64,
+    "ProductId": 115,
+    "ImageUrl": "https://lh3.googleusercontent.com/1RlvBy-ZT_swfYOrE6qKlxvLVJDHfNNyfwAIOEITWX23oVYzI1Fi1ReawKVUURAVNcM6mGYT6DpiPUvgY6i9-CxFs_i4ers",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 65,
+    "ProductId": 116,
+    "ImageUrl": "https://lh3.googleusercontent.com/XGT6rrEClTpRsKZg3JnMyHeUOj972sp8kicDOJlSHW4I0f1w3Ay2QEwBXtJExFEUKikrolTuHYq4IGSzgLeWea32iv2k_gQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 66,
+    "ProductId": 117,
+    "ImageUrl": "https://lh3.googleusercontent.com/Teeb5iVI5tasKQFvkFNaJuarYzepz19FQAvK43nfMf_LsKX5JomO64FCe2a07TaTah_-Z5KGOoiJZqazC8vvKWFbjDcph3A",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 67,
+    "ProductId": 118,
+    "ImageUrl": "https://lh3.googleusercontent.com/-bIrL6fV9M8m8xmFg8krmlqHY5z1moPgLdPiRy-Heb95FF1WgQr-bKHOOG5WTlCCL3VA2J7x6e8r5OliCCCu46bRWZpDNgqxcg",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 68,
+    "ProductId": 119,
+    "ImageUrl": "https://lh3.googleusercontent.com/EyGYqMnTUgt6b56DZskEeETfVng8cmPAUe-3FQX7t29G8qdUGI-qpVXUa3Q3lsYQDlvS8GkFsPfKJ-aEAxGt-Teoz4EzV0H4",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 69,
+    "ProductId": 120,
+    "ImageUrl": "https://lh3.googleusercontent.com/gf_of4wY3JiQDzKDyOOLkwkXV-hPNg24iUD1JyXGrYp5XPSuBNzuo2qOku_qrz27nKqHQqVxWiiGlEgqr9FX1tEptlyBBXsU",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 70,
+    "ProductId": 121,
+    "ImageUrl": "https://lh3.googleusercontent.com/fEEoM7bJuRTRcAbrxoeWS48-GlK9ejUXGwWY5S5TgLhjL2rG_s-wmKKRpKpR8Ii8j_ctyL_OMiacR6DFBvOL5Bc42DLWLa8",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 71,
+    "ProductId": 122,
+    "ImageUrl": "https://lh3.googleusercontent.com/0_P3TlIzOwat9J3950wLcNNn5AQ0MAhSqknZ03lwnscBSRvf9wkvKBhiu85o6TRSC4I4h7BW7vOuGaWjH3oCjBR4ygl2o4ZY",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 72,
+    "ProductId": 123,
+    "ImageUrl": "https://lh3.googleusercontent.com/8fGF6DYXEVO-FF5COVCXuF3KVvei_MILpj-1IuJYDgpAGU0X38G7_Uul9RhEiSeOS518UV4gh2FHBwJ5rkgeJXDbRJUI9y8",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 73,
+    "ProductId": 124,
+    "ImageUrl": "https://lh3.googleusercontent.com/ufq6E9Uj_ynIFj89WxRcmfgzzPPng7fzQwbo6e-zenb2k5xu0KZoV2LMuJ_8ZOTG299SsfbRoPXfyUJHFKNJkx_F-lmD2Jj2",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 74,
+    "ProductId": 125,
+    "ImageUrl": "https://lh3.googleusercontent.com/JgyXMB0tlNc23ZUKHR-hxTHuRYjBHWJs-AxfSzrVzb6gK439OXnnwjD-yywZEMc5VGOTNjETHzYn68IvopBWyRr11z_jKVo",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 75,
+    "ProductId": 126,
+    "ImageUrl": "https://lh3.googleusercontent.com/cXFyYPHCjuU_HdZunCBHGi3VnYfv8lPxXV4E6AFSAkXVG4idgef8wzKULwF0SwYGxWw_Xhu5KN2uIg6m5f3FOpuySCHZ1LNOKQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 76,
+    "ProductId": 127,
+    "ImageUrl": "https://lh3.googleusercontent.com/o7XGWHTcx7FZGFXEMiwoPyUo-gIKH_k8ZXca3XH19oSnenNznH9XR15fBXfDbNDttffxx7eVIi_esykpW3s_NsXySPf-9A0",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 77,
+    "ProductId": 128,
+    "ImageUrl": "https://lh3.googleusercontent.com/2mlBdEP69QltP7-Va8k5TrqP4daY8GqQeQ0DTiHYxKzd20aJ9jvzAhGXcOiMW2_wSYs4Do1CBr-t7VHAKUoPOb7a-LfDDcUaYQ",
+    "IsPrimary": true,
+    "SortOrder": 1
+  },
+  {
+    "Id": 82,
+    "ProductId": 5000,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 83,
+    "ProductId": 5001,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 84,
+    "ProductId": 5002,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 85,
+    "ProductId": 5003,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 86,
+    "ProductId": 5004,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 87,
+    "ProductId": 5005,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 88,
+    "ProductId": 5006,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 89,
+    "ProductId": 5007,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 90,
+    "ProductId": 5008,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 91,
+    "ProductId": 5009,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 92,
+    "ProductId": 5010,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 93,
+    "ProductId": 5011,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 94,
+    "ProductId": 5012,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 95,
+    "ProductId": 5013,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 96,
+    "ProductId": 5014,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 97,
+    "ProductId": 5015,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 98,
+    "ProductId": 5016,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 99,
+    "ProductId": 5017,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 100,
+    "ProductId": 5018,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 101,
+    "ProductId": 5019,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 102,
+    "ProductId": 5020,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 103,
+    "ProductId": 5021,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 104,
+    "ProductId": 5022,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 105,
+    "ProductId": 5023,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 106,
+    "ProductId": 5024,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 107,
+    "ProductId": 5025,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 108,
+    "ProductId": 5026,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 109,
+    "ProductId": 5027,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 110,
+    "ProductId": 5028,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 111,
+    "ProductId": 5029,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 112,
+    "ProductId": 5030,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 113,
+    "ProductId": 5031,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 114,
+    "ProductId": 5032,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 115,
+    "ProductId": 5033,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 116,
+    "ProductId": 5034,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 117,
+    "ProductId": 5035,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 118,
+    "ProductId": 5036,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 119,
+    "ProductId": 5037,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 120,
+    "ProductId": 5038,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 121,
+    "ProductId": 5039,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 122,
+    "ProductId": 5040,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 123,
+    "ProductId": 5041,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 124,
+    "ProductId": 5042,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 125,
+    "ProductId": 5043,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 126,
+    "ProductId": 5044,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 127,
+    "ProductId": 5045,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 128,
+    "ProductId": 5046,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 129,
+    "ProductId": 5047,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 130,
+    "ProductId": 5048,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 131,
+    "ProductId": 5049,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 132,
+    "ProductId": 5050,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 133,
+    "ProductId": 5051,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 134,
+    "ProductId": 5052,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 135,
+    "ProductId": 5053,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 136,
+    "ProductId": 5054,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 137,
+    "ProductId": 5055,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 138,
+    "ProductId": 5056,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 139,
+    "ProductId": 5057,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 140,
+    "ProductId": 5058,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 141,
+    "ProductId": 5059,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 142,
+    "ProductId": 5060,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 143,
+    "ProductId": 5061,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 144,
+    "ProductId": 5062,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 145,
+    "ProductId": 5063,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 146,
+    "ProductId": 5064,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 147,
+    "ProductId": 5065,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 148,
+    "ProductId": 5066,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 149,
+    "ProductId": 5067,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 150,
+    "ProductId": 5068,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 151,
+    "ProductId": 5069,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 152,
+    "ProductId": 5070,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 153,
+    "ProductId": 5071,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 154,
+    "ProductId": 5072,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 155,
+    "ProductId": 5073,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 156,
+    "ProductId": 5074,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 157,
+    "ProductId": 5075,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 158,
+    "ProductId": 5076,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 159,
+    "ProductId": 5077,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 160,
+    "ProductId": 5078,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 161,
+    "ProductId": 5079,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 162,
+    "ProductId": 5080,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 163,
+    "ProductId": 5081,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 164,
+    "ProductId": 5082,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 165,
+    "ProductId": 5083,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 166,
+    "ProductId": 5084,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 167,
+    "ProductId": 5085,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 168,
+    "ProductId": 5086,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 169,
+    "ProductId": 5087,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 170,
+    "ProductId": 5088,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 171,
+    "ProductId": 5089,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 172,
+    "ProductId": 5090,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 173,
+    "ProductId": 5091,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 174,
+    "ProductId": 5092,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 175,
+    "ProductId": 5093,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 176,
+    "ProductId": 5094,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 177,
+    "ProductId": 5095,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 178,
+    "ProductId": 5096,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 179,
+    "ProductId": 5097,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 180,
+    "ProductId": 5098,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 181,
+    "ProductId": 5099,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 182,
+    "ProductId": 5100,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 183,
+    "ProductId": 5101,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 184,
+    "ProductId": 5102,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 185,
+    "ProductId": 5103,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 186,
+    "ProductId": 5104,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 187,
+    "ProductId": 5105,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 188,
+    "ProductId": 5106,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 189,
+    "ProductId": 5107,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 190,
+    "ProductId": 5108,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 191,
+    "ProductId": 5109,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 192,
+    "ProductId": 5110,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 193,
+    "ProductId": 5111,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 194,
+    "ProductId": 5112,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 195,
+    "ProductId": 5113,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 196,
+    "ProductId": 5114,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 197,
+    "ProductId": 5115,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 198,
+    "ProductId": 5116,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 199,
+    "ProductId": 5117,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 200,
+    "ProductId": 5118,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 201,
+    "ProductId": 5119,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 202,
+    "ProductId": 5120,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 203,
+    "ProductId": 5121,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 204,
+    "ProductId": 5122,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 205,
+    "ProductId": 5123,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 206,
+    "ProductId": 5124,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 207,
+    "ProductId": 5125,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 208,
+    "ProductId": 5126,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 209,
+    "ProductId": 5127,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 210,
+    "ProductId": 5128,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 211,
+    "ProductId": 5129,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 212,
+    "ProductId": 5130,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 213,
+    "ProductId": 5131,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 214,
+    "ProductId": 5132,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 215,
+    "ProductId": 5133,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 216,
+    "ProductId": 5134,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 217,
+    "ProductId": 5135,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 218,
+    "ProductId": 5136,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 219,
+    "ProductId": 5137,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 220,
+    "ProductId": 5138,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 221,
+    "ProductId": 5139,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 222,
+    "ProductId": 5140,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 223,
+    "ProductId": 5141,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 224,
+    "ProductId": 5142,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 225,
+    "ProductId": 5143,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 226,
+    "ProductId": 5144,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 227,
+    "ProductId": 5145,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 228,
+    "ProductId": 5146,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 229,
+    "ProductId": 5147,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 230,
+    "ProductId": 5148,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 231,
+    "ProductId": 5149,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 232,
+    "ProductId": 5150,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 233,
+    "ProductId": 5151,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 234,
+    "ProductId": 5152,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 235,
+    "ProductId": 5153,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 236,
+    "ProductId": 5154,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 237,
+    "ProductId": 5155,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 238,
+    "ProductId": 5156,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 239,
+    "ProductId": 5157,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 240,
+    "ProductId": 5158,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 241,
+    "ProductId": 5159,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 242,
+    "ProductId": 5160,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 243,
+    "ProductId": 5161,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 244,
+    "ProductId": 5162,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 245,
+    "ProductId": 5163,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 246,
+    "ProductId": 5164,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 247,
+    "ProductId": 5165,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 248,
+    "ProductId": 5166,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 249,
+    "ProductId": 5167,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 250,
+    "ProductId": 5168,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 251,
+    "ProductId": 5169,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 252,
+    "ProductId": 5170,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 253,
+    "ProductId": 5171,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 254,
+    "ProductId": 5172,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 255,
+    "ProductId": 5173,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 256,
+    "ProductId": 5174,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 257,
+    "ProductId": 5175,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 258,
+    "ProductId": 5176,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 259,
+    "ProductId": 5177,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 260,
+    "ProductId": 5178,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 261,
+    "ProductId": 5179,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 262,
+    "ProductId": 5180,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 263,
+    "ProductId": 5181,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 264,
+    "ProductId": 5182,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 265,
+    "ProductId": 5183,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 266,
+    "ProductId": 5184,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 267,
+    "ProductId": 5185,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 268,
+    "ProductId": 5186,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 269,
+    "ProductId": 5187,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 270,
+    "ProductId": 5188,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 271,
+    "ProductId": 5189,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 272,
+    "ProductId": 5190,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 273,
+    "ProductId": 5191,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 274,
+    "ProductId": 5192,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 275,
+    "ProductId": 5193,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 276,
+    "ProductId": 5194,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 277,
+    "ProductId": 5195,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 278,
+    "ProductId": 5196,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 279,
+    "ProductId": 5197,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 280,
+    "ProductId": 5198,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 281,
+    "ProductId": 5199,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 282,
+    "ProductId": 5200,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 283,
+    "ProductId": 5201,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 284,
+    "ProductId": 5202,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 285,
+    "ProductId": 5203,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 286,
+    "ProductId": 5204,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 287,
+    "ProductId": 5205,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 288,
+    "ProductId": 5206,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 289,
+    "ProductId": 5207,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 290,
+    "ProductId": 5208,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 291,
+    "ProductId": 5209,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 292,
+    "ProductId": 5210,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 293,
+    "ProductId": 5211,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 294,
+    "ProductId": 5212,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 295,
+    "ProductId": 5213,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 296,
+    "ProductId": 5214,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 297,
+    "ProductId": 5215,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 298,
+    "ProductId": 5216,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 299,
+    "ProductId": 5217,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 300,
+    "ProductId": 5218,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 301,
+    "ProductId": 5219,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 302,
+    "ProductId": 5220,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 303,
+    "ProductId": 5221,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 304,
+    "ProductId": 5222,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 305,
+    "ProductId": 5223,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 306,
+    "ProductId": 5224,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 307,
+    "ProductId": 5225,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 308,
+    "ProductId": 5226,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 309,
+    "ProductId": 5227,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 310,
+    "ProductId": 5228,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 311,
+    "ProductId": 5229,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 312,
+    "ProductId": 5230,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 313,
+    "ProductId": 5231,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 314,
+    "ProductId": 5232,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 315,
+    "ProductId": 5233,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 316,
+    "ProductId": 5234,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 317,
+    "ProductId": 5235,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 318,
+    "ProductId": 5236,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 319,
+    "ProductId": 5237,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 320,
+    "ProductId": 5238,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 321,
+    "ProductId": 5239,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 322,
+    "ProductId": 5240,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 323,
+    "ProductId": 5241,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 324,
+    "ProductId": 5242,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 325,
+    "ProductId": 5243,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 326,
+    "ProductId": 5244,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 327,
+    "ProductId": 5245,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 328,
+    "ProductId": 5246,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 329,
+    "ProductId": 5247,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 330,
+    "ProductId": 5248,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 331,
+    "ProductId": 5249,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 332,
+    "ProductId": 5250,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 333,
+    "ProductId": 5251,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 334,
+    "ProductId": 5252,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 335,
+    "ProductId": 5253,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 336,
+    "ProductId": 5254,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 337,
+    "ProductId": 5255,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 338,
+    "ProductId": 5256,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 339,
+    "ProductId": 5257,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 340,
+    "ProductId": 5258,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 341,
+    "ProductId": 5259,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 342,
+    "ProductId": 5260,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 343,
+    "ProductId": 5261,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 344,
+    "ProductId": 5262,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 345,
+    "ProductId": 5263,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 346,
+    "ProductId": 5264,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 347,
+    "ProductId": 5265,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 348,
+    "ProductId": 5266,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 349,
+    "ProductId": 5267,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 350,
+    "ProductId": 5268,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 351,
+    "ProductId": 5269,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 352,
+    "ProductId": 5270,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 353,
+    "ProductId": 5271,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 354,
+    "ProductId": 5272,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 355,
+    "ProductId": 5273,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 356,
+    "ProductId": 5274,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 357,
+    "ProductId": 5275,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 358,
+    "ProductId": 5276,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 359,
+    "ProductId": 5277,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 360,
+    "ProductId": 5278,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 361,
+    "ProductId": 5279,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 362,
+    "ProductId": 5280,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 363,
+    "ProductId": 5281,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 364,
+    "ProductId": 5282,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 365,
+    "ProductId": 5283,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 366,
+    "ProductId": 5284,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 367,
+    "ProductId": 5285,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 368,
+    "ProductId": 5286,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 369,
+    "ProductId": 5287,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 370,
+    "ProductId": 5288,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 371,
+    "ProductId": 5289,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 372,
+    "ProductId": 5290,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 373,
+    "ProductId": 5291,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 374,
+    "ProductId": 5292,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 375,
+    "ProductId": 5293,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 376,
+    "ProductId": 5294,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 377,
+    "ProductId": 5295,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 378,
+    "ProductId": 5296,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 379,
+    "ProductId": 5297,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 380,
+    "ProductId": 5298,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 381,
+    "ProductId": 5299,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 382,
+    "ProductId": 5300,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 383,
+    "ProductId": 5301,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 384,
+    "ProductId": 5302,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 385,
+    "ProductId": 5303,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 386,
+    "ProductId": 5304,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 387,
+    "ProductId": 5305,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 388,
+    "ProductId": 5306,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 389,
+    "ProductId": 5307,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 390,
+    "ProductId": 5308,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 391,
+    "ProductId": 5309,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 392,
+    "ProductId": 5310,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 393,
+    "ProductId": 5311,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 394,
+    "ProductId": 5312,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 395,
+    "ProductId": 5313,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 396,
+    "ProductId": 5314,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 397,
+    "ProductId": 5315,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 398,
+    "ProductId": 5316,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 399,
+    "ProductId": 5317,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 400,
+    "ProductId": 5318,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 401,
+    "ProductId": 5319,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 402,
+    "ProductId": 5320,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 403,
+    "ProductId": 5321,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 404,
+    "ProductId": 5322,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 405,
+    "ProductId": 5323,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 406,
+    "ProductId": 5324,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 407,
+    "ProductId": 5325,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 408,
+    "ProductId": 5326,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 409,
+    "ProductId": 5327,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 410,
+    "ProductId": 5328,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 411,
+    "ProductId": 5329,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 412,
+    "ProductId": 5330,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 413,
+    "ProductId": 5331,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 414,
+    "ProductId": 5332,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 415,
+    "ProductId": 5333,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 416,
+    "ProductId": 5334,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 417,
+    "ProductId": 5335,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 418,
+    "ProductId": 5336,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 419,
+    "ProductId": 5337,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 420,
+    "ProductId": 5338,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 421,
+    "ProductId": 5339,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 422,
+    "ProductId": 5340,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 423,
+    "ProductId": 5341,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 424,
+    "ProductId": 5342,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 425,
+    "ProductId": 5343,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 426,
+    "ProductId": 5344,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 427,
+    "ProductId": 5345,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 428,
+    "ProductId": 5346,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 429,
+    "ProductId": 5347,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 430,
+    "ProductId": 5348,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 431,
+    "ProductId": 5349,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 432,
+    "ProductId": 5350,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 433,
+    "ProductId": 5351,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 434,
+    "ProductId": 5352,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 435,
+    "ProductId": 5353,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 436,
+    "ProductId": 5354,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 437,
+    "ProductId": 5355,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 438,
+    "ProductId": 5356,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 439,
+    "ProductId": 5357,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 440,
+    "ProductId": 5358,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 441,
+    "ProductId": 5359,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 442,
+    "ProductId": 5360,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 443,
+    "ProductId": 5361,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 444,
+    "ProductId": 5362,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 445,
+    "ProductId": 5363,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 446,
+    "ProductId": 5364,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 447,
+    "ProductId": 5365,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 448,
+    "ProductId": 5366,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 449,
+    "ProductId": 5367,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 450,
+    "ProductId": 5368,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 451,
+    "ProductId": 5369,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 452,
+    "ProductId": 5370,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 453,
+    "ProductId": 5371,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 454,
+    "ProductId": 5372,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 455,
+    "ProductId": 5373,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 456,
+    "ProductId": 5374,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 457,
+    "ProductId": 5375,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 458,
+    "ProductId": 5376,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 459,
+    "ProductId": 5377,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 460,
+    "ProductId": 5378,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 461,
+    "ProductId": 5379,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 462,
+    "ProductId": 5380,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 463,
+    "ProductId": 5381,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 464,
+    "ProductId": 5382,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 465,
+    "ProductId": 5383,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 466,
+    "ProductId": 5384,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 467,
+    "ProductId": 5385,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 468,
+    "ProductId": 5386,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 469,
+    "ProductId": 5387,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 470,
+    "ProductId": 5388,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 471,
+    "ProductId": 5389,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 472,
+    "ProductId": 5390,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 473,
+    "ProductId": 5391,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 474,
+    "ProductId": 5392,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 475,
+    "ProductId": 5393,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 476,
+    "ProductId": 5394,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 477,
+    "ProductId": 5395,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 478,
+    "ProductId": 5396,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 479,
+    "ProductId": 5397,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 480,
+    "ProductId": 5398,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 481,
+    "ProductId": 5399,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 482,
+    "ProductId": 5400,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 483,
+    "ProductId": 5401,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 484,
+    "ProductId": 5402,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 485,
+    "ProductId": 5403,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 486,
+    "ProductId": 5404,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 487,
+    "ProductId": 5405,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 488,
+    "ProductId": 5406,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 489,
+    "ProductId": 5407,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 490,
+    "ProductId": 5408,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 491,
+    "ProductId": 5409,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 492,
+    "ProductId": 5410,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 493,
+    "ProductId": 5411,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 494,
+    "ProductId": 5412,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 495,
+    "ProductId": 5413,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 496,
+    "ProductId": 5414,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 497,
+    "ProductId": 5415,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 498,
+    "ProductId": 5416,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 499,
+    "ProductId": 5417,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 500,
+    "ProductId": 5418,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 501,
+    "ProductId": 5419,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 502,
+    "ProductId": 5420,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 503,
+    "ProductId": 5421,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 504,
+    "ProductId": 5422,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 505,
+    "ProductId": 5423,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 506,
+    "ProductId": 5424,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 507,
+    "ProductId": 5425,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 508,
+    "ProductId": 5426,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 509,
+    "ProductId": 5427,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 510,
+    "ProductId": 5428,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 511,
+    "ProductId": 5429,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 512,
+    "ProductId": 5430,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 513,
+    "ProductId": 5431,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 514,
+    "ProductId": 5432,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 515,
+    "ProductId": 5433,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 516,
+    "ProductId": 5434,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 517,
+    "ProductId": 5435,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 518,
+    "ProductId": 5436,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 519,
+    "ProductId": 5437,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 520,
+    "ProductId": 5438,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 521,
+    "ProductId": 5439,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 522,
+    "ProductId": 5440,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 523,
+    "ProductId": 5441,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 524,
+    "ProductId": 5442,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 525,
+    "ProductId": 5443,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 526,
+    "ProductId": 5444,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 527,
+    "ProductId": 5445,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 528,
+    "ProductId": 5446,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 529,
+    "ProductId": 5447,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 530,
+    "ProductId": 5448,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 531,
+    "ProductId": 5449,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 532,
+    "ProductId": 5450,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 533,
+    "ProductId": 5451,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 534,
+    "ProductId": 5452,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 535,
+    "ProductId": 5453,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 536,
+    "ProductId": 5454,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 537,
+    "ProductId": 5455,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 538,
+    "ProductId": 5456,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 539,
+    "ProductId": 5457,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 540,
+    "ProductId": 5458,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 541,
+    "ProductId": 5459,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 542,
+    "ProductId": 5460,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 543,
+    "ProductId": 5461,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 544,
+    "ProductId": 5462,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 545,
+    "ProductId": 5463,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 546,
+    "ProductId": 5464,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 547,
+    "ProductId": 5465,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 548,
+    "ProductId": 5466,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 549,
+    "ProductId": 5467,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 550,
+    "ProductId": 5468,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 551,
+    "ProductId": 5469,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 552,
+    "ProductId": 5470,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 553,
+    "ProductId": 5471,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 554,
+    "ProductId": 5472,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 555,
+    "ProductId": 5473,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 556,
+    "ProductId": 5474,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 557,
+    "ProductId": 5475,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 558,
+    "ProductId": 5476,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 559,
+    "ProductId": 5477,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 560,
+    "ProductId": 5478,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 561,
+    "ProductId": 5479,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 562,
+    "ProductId": 5480,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 563,
+    "ProductId": 5481,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 564,
+    "ProductId": 5482,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 565,
+    "ProductId": 5483,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 566,
+    "ProductId": 5484,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 567,
+    "ProductId": 5485,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 568,
+    "ProductId": 5486,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 569,
+    "ProductId": 5487,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 570,
+    "ProductId": 5488,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 571,
+    "ProductId": 5489,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 572,
+    "ProductId": 5490,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 573,
+    "ProductId": 5491,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 574,
+    "ProductId": 5492,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_744_2__7.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 575,
+    "ProductId": 5493,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 576,
+    "ProductId": 5494,
+    "ImageUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_24__3_5.png",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 577,
+    "ProductId": 5495,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 578,
+    "ProductId": 5496,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 579,
+    "ProductId": 5497,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 580,
+    "ProductId": 5498,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  },
+  {
+    "Id": 581,
+    "ProductId": 5499,
+    "ImageUrl": "https://cdn.tgdd.vn/Products/Images/44/314838/dell-xps-13-plus-9320-i5-71013325-1-750x500.jpg",
+    "IsPrimary": true,
+    "SortOrder": 0
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "Id": 7,
+    "Name": "Gaming",
+    "Slug": "gaming",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336081/game_opdnni.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337714/ps5_lfmig6.webp",
+    "ParentId": null,
+    "Description": "Gaming products and accessories",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 8,
+    "Name": "Monitor",
+    "Slug": "monitor",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336079/monitor_gfheqk.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337714/monitor_i9d6or.webp",
+    "ParentId": 6,
+    "Description": "All types of computer monitors",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 9,
+    "Name": "CPU",
+    "Slug": "cpu",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336079/cpu_b8usqu.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337712/CPU_kfg2fy.webp",
+    "ParentId": 6,
+    "Description": "Processors and chips for computers",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 10,
+    "Name": "GPU",
+    "Slug": "gpu",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336079/cpu_b8usqu.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337712/GPU_ltzw4j.webp",
+    "ParentId": 6,
+    "Description": "Graphics cards for PCs and laptops",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 11,
+    "Name": "RAM",
+    "Slug": "ram",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336081/ram_luys0f.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337714/ram_kssmbv.webp",
+    "ParentId": 6,
+    "Description": "Memory modules for PCs and laptops",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 12,
+    "Name": "Storage (SSD / HDD)",
+    "Slug": "storage",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336081/ram_luys0f.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337715/rom_sreazq.webp",
+    "ParentId": 6,
+    "Description": "Storage devices: SSD, HDD, memory cards",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 14,
+    "Name": "Mouse",
+    "Slug": "mouse",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336081/keyboard_k2vqvu.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337714/mouse_enodsx.png",
+    "ParentId": 4,
+    "Description": "Computer and laptop mice (wired, wireless, gaming)",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 15,
+    "Name": "Headphone / Headset",
+    "Slug": "headphone",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336342/headphone_pz0fkb.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337713/headphone_qn6mqd.jpg",
+    "ParentId": 4,
+    "Description": "Audio accessories compatible with PC, Laptop, and Smartphone",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 16,
+    "Name": "Charger & Cable",
+    "Slug": "charger-cable",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1760540871/tekno/category/icon/f0p9oqwzazwy19qvhclr.png",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337712/adapter-20w-apple-5_1_1_odasww.webp",
+    "ParentId": 4,
+    "Description": "Chargers, adapters, and data cables for all devices",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 17,
+    "Name": "Case & Cover",
+    "Slug": "case-cover",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1760540871/tekno/category/icon/f0p9oqwzazwy19qvhclr.png",
+    "ImageUrl": null,
+    "ParentId": 4,
+    "Description": "Protective cases for phones, tablets, and laptops",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 4,
+    "Name": "Accessory",
+    "Slug": "accessory",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336342/headphone_pz0fkb.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337712/adapter-20w-apple-5_1_1_odasww.webp",
+    "ParentId": null,
+    "Description": "External product that enhances main product experience",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-10-12T09:34:00.000Z"
+  },
+  {
+    "Id": 13,
+    "Name": "Keyboard",
+    "Slug": "keyboard",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336081/keyboard_k2vqvu.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337713/banphim_iai2rn.jpg",
+    "ParentId": 4,
+    "Description": null,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-12-06T15:14:00.464Z"
+  },
+  {
+    "Id": 20,
+    "Name": "Charm",
+    "Slug": "charm",
+    "IconPath": "",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1766452825/tekno/category/charm/zxwp9kmwt4bmz7ky74cq.jpg",
+    "ParentId": 17,
+    "Description": null,
+    "CreatedAt": "2025-12-23T01:20:24.777Z",
+    "UpdatedAt": "2025-12-23T01:20:24.777Z"
+  },
+  {
+    "Id": 27,
+    "Name": "Category with Media 1767112618032",
+    "Slug": "category-media-1767112618032",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1767112620/tekno/category/icon/wa1vbakbrqkbvuwlmwj3.png",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1767112622/tekno/category/category-media-1767112618032/wyef9o9wxqmkmwisd4v0.jpg",
+    "ParentId": null,
+    "Description": null,
+    "CreatedAt": "2025-12-30T16:37:02.750Z",
+    "UpdatedAt": "2025-12-30T16:37:02.750Z"
+  },
+  {
+    "Id": 28,
+    "Name": "Child Category 1767112633085",
+    "Slug": "child-category-1767112633085",
+    "IconPath": "",
+    "ImageUrl": null,
+    "ParentId": 2,
+    "Description": null,
+    "CreatedAt": "2025-12-30T16:37:13.836Z",
+    "UpdatedAt": "2025-12-30T16:37:13.836Z"
+  },
+  {
+    "Id": 2,
+    "Name": "Smartphone - Updated 1767113170794",
+    "Slug": "smartphone-updated",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336079/mobile_qk5kuf.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337713/iphone_air-3_2_hfq1wl.webp",
+    "ParentId": null,
+    "Description": null,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-12-30T16:46:11.872Z"
+  },
+  {
+    "Id": 3,
+    "Name": "Tablet",
+    "Slug": "tablet",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336079/tablet_mhhzhn.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337716/xiaomi-pad-mini-4_adg1r9.webp",
+    "ParentId": 5,
+    "Description": null,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-12-30T16:46:18.228Z"
+  },
+  {
+    "Id": 5,
+    "Name": "Camera",
+    "Slug": "camera",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1767113187/tekno/category/icon/ozj6vdqzq6tugjesbkjy.png",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337713/may-anh-canon-eos-r100_8__havbm2.webp",
+    "ParentId": null,
+    "Description": null,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-12-30T16:46:26.625Z"
+  },
+  {
+    "Id": 6,
+    "Name": "Computer & Office",
+    "Slug": "computer-office",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336081/devices_kty5xc.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1767113195/tekno/category/computer-office/wvuzlkelyqw9bua1g4ul.jpg",
+    "ParentId": null,
+    "Description": null,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-12-30T16:46:35.170Z"
+  },
+  {
+    "Id": 19,
+    "Name": "Xbox",
+    "Slug": "xbox",
+    "IconPath": "",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/1200px-Xbox_one_logo.svg.png",
+    "ParentId": 7,
+    "Description": null,
+    "CreatedAt": "2025-12-06T15:12:04.768Z",
+    "UpdatedAt": "2025-12-06T15:12:04.768Z"
+  },
+  {
+    "Id": 1,
+    "Name": "Laptop",
+    "Slug": "laptop",
+    "IconPath": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764336079/monitor_gfheqk.svg",
+    "ImageUrl": "https://res.cloudinary.com/dwa3wh9yb/image/upload/v1764337713/laptop_jchkjn.webp",
+    "ParentId": null,
+    "Description": "All kinds of laptops",
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "UpdatedAt": "2025-12-31T07:58:22.000Z"
+  }
+]

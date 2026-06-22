@@ -19,12 +19,17 @@ public class Product {
     private Money basePrice;
     private ProductStatus status;
     private String description;
+    private java.math.BigDecimal discountPercent;
+    private String overview;
+    private java.util.Map<String, Object> specs;
+    private Double averageRating;
+    private Integer totalReviews;
     
     private final List<ProductVariant> variants;
     private final List<ProductImage> images;
 
     // For restoring from DB
-    public Product(ProductId id, Long categoryId, Long brandId, String name, String slug, Money basePrice, ProductStatus status, String description, List<ProductVariant> variants, List<ProductImage> images) {
+    public Product(ProductId id, Long categoryId, Long brandId, String name, String slug, Money basePrice, ProductStatus status, String description, List<ProductVariant> variants, List<ProductImage> images, java.math.BigDecimal discountPercent, String overview, java.util.Map<String, Object> specs, Double averageRating, Integer totalReviews) {
         this.id = id;
         this.categoryId = categoryId;
         this.brandId = brandId;
@@ -35,6 +40,11 @@ public class Product {
         this.description = description;
         this.variants = variants != null ? new ArrayList<>(variants) : new ArrayList<>();
         this.images = images != null ? new ArrayList<>(images) : new ArrayList<>();
+        this.discountPercent = discountPercent;
+        this.overview = overview;
+        this.specs = specs;
+        this.averageRating = averageRating;
+        this.totalReviews = totalReviews;
     }
 
     // For creating new
@@ -55,6 +65,8 @@ public class Product {
         
         this.variants = new ArrayList<>();
         this.images = new ArrayList<>();
+        this.averageRating = 0.0;
+        this.totalReviews = 0;
     }
 
     // Invariants & Behaviors
@@ -87,6 +99,13 @@ public class Product {
         this.images.add(image);
     }
 
+    public void updateDetails(String description, String overview, java.util.Map<String, Object> specs, java.math.BigDecimal discountPercent) {
+        this.description = description;
+        this.overview = overview;
+        this.specs = specs;
+        this.discountPercent = discountPercent;
+    }
+
     // Getters
     public ProductId getId() { return id; }
     public Long getCategoryId() { return categoryId; }
@@ -96,6 +115,11 @@ public class Product {
     public Money getBasePrice() { return basePrice; }
     public ProductStatus getStatus() { return status; }
     public String getDescription() { return description; }
+    public java.math.BigDecimal getDiscountPercent() { return discountPercent; }
+    public String getOverview() { return overview; }
+    public java.util.Map<String, Object> getSpecs() { return specs; }
+    public Double getAverageRating() { return averageRating; }
+    public Integer getTotalReviews() { return totalReviews; }
     
     public List<ProductVariant> getVariants() {
         return Collections.unmodifiableList(variants);

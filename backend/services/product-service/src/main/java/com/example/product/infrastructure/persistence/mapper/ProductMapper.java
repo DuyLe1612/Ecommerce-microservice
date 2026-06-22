@@ -15,12 +15,20 @@ public class ProductMapper {
 
     public Product toDomain(ProductJpaEntity entity) {
         List<ProductVariant> variants = entity.getVariants().stream()
-                .map(v -> new ProductVariant(
+                .map(v -> {
+                    List<VariantAttributeValue> attributeValues = v.getAttributeValues() != null ? v.getAttributeValues().stream()
+                            .map(attr -> new VariantAttributeValue(attr.getAttributeId(), attr.getValueId()))
+                            .collect(Collectors.toList()) : java.util.Collections.emptyList();
+                            
+                    return new ProductVariant(
                         v.getId(),
                         new Sku(v.getSku()),
                         new Money(v.getPrice(), "VND"), // Assuming VND logic from Monolith
-                        ProductStatus.valueOf(v.getStatus().toUpperCase())
-                ))
+                        ProductStatus.valueOf(v.getStatus().toUpperCase()),
+                        v.getVariantSpecsJson(),
+                        attributeValues
+                    );
+                })
                 .collect(Collectors.toList());
 
         List<ProductImage> images = entity.getImages().stream()
@@ -42,7 +50,12 @@ public class ProductMapper {
                 ProductStatus.valueOf(entity.getStatus().toUpperCase()),
                 entity.getDescription(),
                 variants,
-                images
+                images,
+                entity.getDiscountPercent(),
+                entity.getOverview(),
+                entity.getSpecs(),
+                entity.getAverageRating(),
+                entity.getTotalReviews()
         );
     }
 
@@ -58,6 +71,15 @@ public class ProductMapper {
         entity.setBasePrice(domain.getBasePrice().getAmount());
         entity.setStatus(domain.getStatus().name().toLowerCase());
         entity.setDescription(domain.getDescription());
+        entity.setDiscountPercent(domain.getDiscountPercent());
+        entity.setOverview(domain.getOverview());
+        entity.setSpecs(domain.getSpecs());
+        if (domain.getAverageRating() != null) {
+            entity.setAverageRating(domain.getAverageRating());
+        }
+        if (domain.getTotalReviews() != null) {
+            entity.setTotalReviews(domain.getTotalReviews());
+        }
         
         List<ProductVariantJpaEntity> variantEntities = domain.getVariants().stream()
                 .map(v -> {
@@ -68,6 +90,18 @@ public class ProductMapper {
                     ve.setPrice(v.getPrice().getAmount());
                     ve.setStatus(v.getStatus().name().toLowerCase());
                     ve.setStock(0); // Stock managed externally, keeping default
+                    ve.setVariantSpecsJson(v.getVariantSpecsJson());
+                    
+                    if (v.getAttributeValues() != null) {
+                        List<ProductVariantAttributeJpaEntity> attrEntities = v.getAttributeValues().stream()
+                                .map(attr -> new ProductVariantAttributeJpaEntity(
+                                        ve.getId(),
+                                        attr.getAttributeId(),
+                                        attr.getValueId()
+                                ))
+                                .collect(Collectors.toList());
+                        ve.setAttributeValues(attrEntities);
+                    }
                     return ve;
                 })
                 .collect(Collectors.toList());

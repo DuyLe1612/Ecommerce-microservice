@@ -1,0 +1,394 @@
+[
+  {
+    "Id": 1,
+    "Name": "Color",
+    "InputType": "select",
+    "IsGlobal": true,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": null
+  },
+  {
+    "Id": 2,
+    "Name": "Warranty Period",
+    "InputType": "number",
+    "IsGlobal": true,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": null
+  },
+  {
+    "Id": 10,
+    "Name": "Screen Size",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 11,
+    "Name": "CPU",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 12,
+    "Name": "RAM",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 13,
+    "Name": "Storage",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 14,
+    "Name": "GPU",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 20,
+    "Name": "Screen Size",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 2
+  },
+  {
+    "Id": 21,
+    "Name": "Battery Capacity",
+    "InputType": "number",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 2
+  },
+  {
+    "Id": 22,
+    "Name": "Camera Resolution",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 2
+  },
+  {
+    "Id": 23,
+    "Name": "RAM",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 2
+  },
+  {
+    "Id": 24,
+    "Name": "Storage",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 2
+  },
+  {
+    "Id": 30,
+    "Name": "Screen Size",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 3
+  },
+  {
+    "Id": 31,
+    "Name": "Battery Capacity",
+    "InputType": "number",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 3
+  },
+  {
+    "Id": 32,
+    "Name": "RAM",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 3
+  },
+  {
+    "Id": 33,
+    "Name": "Storage",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 3
+  },
+  {
+    "Id": 40,
+    "Name": "Processor Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 6
+  },
+  {
+    "Id": 41,
+    "Name": "RAM Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 6
+  },
+  {
+    "Id": 42,
+    "Name": "GPU Model",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 6
+  },
+  {
+    "Id": 60,
+    "Name": "Compatibility",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 4
+  },
+  {
+    "Id": 61,
+    "Name": "Connection Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 4
+  },
+  {
+    "Id": 50,
+    "Name": "Screen Size",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 8
+  },
+  {
+    "Id": 51,
+    "Name": "Refresh Rate",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 8
+  },
+  {
+    "Id": 52,
+    "Name": "Resolution",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 8
+  },
+  {
+    "Id": 53,
+    "Name": "Panel Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 8
+  },
+  {
+    "Id": 70,
+    "Name": "Switch Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 13
+  },
+  {
+    "Id": 71,
+    "Name": "Backlight",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 13
+  },
+  {
+    "Id": 72,
+    "Name": "Layout",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 13
+  },
+  {
+    "Id": 73,
+    "Name": "Connection Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 13
+  },
+  {
+    "Id": 80,
+    "Name": "DPI",
+    "InputType": "number",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 14
+  },
+  {
+    "Id": 81,
+    "Name": "Connection Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 14
+  },
+  {
+    "Id": 82,
+    "Name": "RGB Lighting",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 14
+  },
+  {
+    "Id": 90,
+    "Name": "Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 15
+  },
+  {
+    "Id": 91,
+    "Name": "Connection Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 15
+  },
+  {
+    "Id": 92,
+    "Name": "Has Microphone",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 15
+  },
+  {
+    "Id": 100,
+    "Name": "Connector Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 16
+  },
+  {
+    "Id": 101,
+    "Name": "Power Output (W)",
+    "InputType": "number",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 16
+  },
+  {
+    "Id": 102,
+    "Name": "Cable Length (m)",
+    "InputType": "number",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 16
+  },
+  {
+    "Id": 110,
+    "Name": "Material",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 17
+  },
+  {
+    "Id": 111,
+    "Name": "Device Type",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-10-12T09:34:00.000Z",
+    "CategoryId": 17
+  },
+  {
+    "Id": 112,
+    "Name": "Shock Resistant",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-01T09:56:49.393Z",
+    "CategoryId": 17
+  },
+  {
+    "Id": 113,
+    "Name": "Lens",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-22T18:25:17.713Z",
+    "CategoryId": 5
+  },
+  {
+    "Id": 117,
+    "Name": "Màn hình",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-27T22:02:30.711Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 118,
+    "Name": "Ổ cứng",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-27T22:02:31.872Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 119,
+    "Name": "Xoay 360°",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-27T22:02:32.281Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 120,
+    "Name": "Hệ điều hành",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-27T22:02:32.695Z",
+    "CategoryId": 1
+  },
+  {
+    "Id": 123,
+    "Name": "Chip",
+    "InputType": "select",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-30T03:55:53.252Z",
+    "CategoryId": 9
+  },
+  {
+    "Id": 124,
+    "Name": "NVIDIA",
+    "InputType": "text",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-30T03:57:29.911Z",
+    "CategoryId": 10
+  },
+  {
+    "Id": 125,
+    "Name": "Kingston",
+    "InputType": "text",
+    "IsGlobal": false,
+    "CreatedAt": "2025-12-30T03:58:14.778Z",
+    "CategoryId": 11
+  }
+]

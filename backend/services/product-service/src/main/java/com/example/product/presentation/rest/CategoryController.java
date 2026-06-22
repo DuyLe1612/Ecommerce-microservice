@@ -5,8 +5,8 @@ import com.example.product.application.dto.CategoryAttributeResponse;
 import com.example.product.application.usecase.GetCategoryTreeUseCase;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.product.infrastructure.persistence.repository.CategoryRepository;
-import com.example.product.infrastructure.persistence.repository.CategoryAttributeRepository;
+import com.example.product.infrastructure.persistence.repository.ProductAttributeRepository;
+import com.example.product.infrastructure.persistence.repository.AttributeValueRepository;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/categories")
 @RequiredArgsConstructor
 public class CategoryController {
-    
-    private final CategoryRepository categoryRepository;
-    private final CategoryAttributeRepository categoryAttributeRepository;
+    private final com.example.product.infrastructure.persistence.repository.CategoryRepository categoryRepository;
+    private final ProductAttributeRepository productAttributeRepository;
+    private final AttributeValueRepository attributeValueRepository;
     private final GetCategoryTreeUseCase getCategoryTreeUseCase;
 
     @GetMapping
@@ -46,16 +46,15 @@ public class CategoryController {
     public ApiResponse<?> getCategoryAttributes(@PathVariable String slug) { 
         return categoryRepository.findBySlug(slug)
             .map(category -> {
-                List<CategoryAttributeResponse> attributes = categoryAttributeRepository.findByCategoryId(category.getId())
+                List<CategoryAttributeResponse> attributes = productAttributeRepository.findByCategoryIdOrIsGlobalTrue(category.getId())
                     .stream()
                     .map(attr -> {
                         CategoryAttributeResponse dto = new CategoryAttributeResponse();
                         dto.setName(attr.getName());
-                        if (attr.getValuesCsv() == null || attr.getValuesCsv().isBlank()) {
-                            dto.setValues(List.of());
-                        } else {
-                            dto.setValues(List.of(attr.getValuesCsv().split("\\s*,\\s*")));
-                        }
+                        List<String> values = attributeValueRepository.findByAttributeId(attr.getId())
+                                .stream().map(com.example.product.infrastructure.persistence.entity.AttributeValueJpaEntity::getValue)
+                                .collect(Collectors.toList());
+                        dto.setValues(values);
                         return dto;
                     })
                     .collect(Collectors.toList());

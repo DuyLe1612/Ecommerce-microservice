@@ -20,7 +20,11 @@ public class ProductAdminDetailResponse {
     private BrandSummaryResponse brand;
     private List<ProductImageResponse> images;
     private List<ProductVariantResponse> variants;
-    private Map<String, String> attributes;
+    private java.math.BigDecimal discountPercent;
+    private String overview;
+    private Map<String, Object> specs;
+    private Double averageRating;
+    private Integer totalReviews;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

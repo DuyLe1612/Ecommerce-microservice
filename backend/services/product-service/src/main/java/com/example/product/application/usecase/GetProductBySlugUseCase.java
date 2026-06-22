@@ -45,7 +45,6 @@ public class GetProductBySlugUseCase {
             ProductImageResponse dto = new ProductImageResponse();
             dto.setId(img.getId());
             dto.setImageUrl(img.getImageUrl());
-            dto.setPublicId(img.getPublicId());
             dto.setIsPrimary(img.getIsPrimary());
             dto.setSortOrder(img.getSortOrder());
             return dto;
@@ -59,6 +58,20 @@ public class GetProductBySlugUseCase {
             dto.setPrice(variant.getPrice());
             dto.setStock(variant.getStock());
             dto.setStatus(variant.getStatus());
+            dto.setVariantSpecsJson(variant.getVariantSpecsJson());
+            
+            if (variant.getAttributeValues() != null) {
+                List<VariantAttributeValueRequest> attrValues = variant.getAttributeValues().stream()
+                    .map(attr -> {
+                        VariantAttributeValueRequest attrReq = new VariantAttributeValueRequest();
+                        attrReq.setAttributeId(attr.getAttributeId());
+                        attrReq.setValueId(attr.getValueId());
+                        return attrReq;
+                    })
+                    .collect(Collectors.toList());
+                dto.setAttributeValues(attrValues);
+            }
+            
             return dto;
         }).toList();
         response.setVariants(variants);
@@ -76,14 +89,15 @@ public class GetProductBySlugUseCase {
             dto.setId(brand.getId());
             dto.setName(brand.getName());
             dto.setSlug(brand.getSlug());
-            dto.setLogoUrl(brand.getLogoUrl());
+            dto.setLogoUrl(brand.getLogoPath());
             response.setBrand(dto);
         });
 
-        List<ProductAttributeJpaEntity> attributes = productAttributeRepository.findByProductId(entity.getId());
-        Map<String, String> attributeMap = attributes.stream()
-            .collect(Collectors.toMap(ProductAttributeJpaEntity::getName, ProductAttributeJpaEntity::getValue, (a, b) -> b));
-        response.setAttributes(attributeMap);
+        response.setDiscountPercent(entity.getDiscountPercent());
+        response.setOverview(entity.getOverview());
+        response.setSpecs(entity.getSpecs());
+        response.setAverageRating(entity.getAverageRating());
+        response.setTotalReviews(entity.getTotalReviews());
 
         return response;
     }

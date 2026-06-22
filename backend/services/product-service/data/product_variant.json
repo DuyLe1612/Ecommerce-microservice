@@ -1,0 +1,6132 @@
+[
+  {
+    "Id": 3,
+    "ProductId": 2,
+    "Sku": "MBA-M2-8-256",
+    "Price": "28990000.00",
+    "Stock": 12,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 6,
+    "ProductId": 3,
+    "Sku": "ZEN14-I7-16-1TB",
+    "Price": "28990000.00",
+    "Stock": 10,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 9,
+    "ProductId": 5,
+    "Sku": "X1C11-I5-16-512",
+    "Price": "48990000.00",
+    "Stock": 10,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 10,
+    "ProductId": 5,
+    "Sku": "X1C11-I7-16-1TB",
+    "Price": "58990000.00",
+    "Stock": 5,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 12,
+    "ProductId": 10,
+    "Sku": "IP15PM-512-NAT",
+    "Price": "39990000.00",
+    "Stock": 15,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 13,
+    "ProductId": 10,
+    "Sku": "IP15PM-256-BLK",
+    "Price": "33990000.00",
+    "Stock": 20,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 14,
+    "ProductId": 11,
+    "Sku": "S24U-256-GRAY",
+    "Price": "29990000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 15,
+    "ProductId": 11,
+    "Sku": "S24U-512-GRAY",
+    "Price": "34990000.00",
+    "Stock": 18,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 16,
+    "ProductId": 11,
+    "Sku": "S24U-256-VIOL",
+    "Price": "29990000.00",
+    "Stock": 25,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 17,
+    "ProductId": 12,
+    "Sku": "PIX8P-128-OBSI",
+    "Price": "24990000.00",
+    "Stock": 20,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 18,
+    "ProductId": 12,
+    "Sku": "PIX8P-256-OBSI",
+    "Price": "27990000.00",
+    "Stock": 15,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 20,
+    "ProductId": 13,
+    "Sku": "MI14-12-256-BLK",
+    "Price": "18990000.00",
+    "Stock": 35,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 21,
+    "ProductId": 13,
+    "Sku": "MI14-12-512-BLK",
+    "Price": "21990000.00",
+    "Stock": 22,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 22,
+    "ProductId": 14,
+    "Sku": "OP12-12-256-BLK",
+    "Price": "19990000.00",
+    "Stock": 28,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 23,
+    "ProductId": 14,
+    "Sku": "OP12-16-512-GRN",
+    "Price": "23990000.00",
+    "Stock": 18,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 25,
+    "ProductId": 20,
+    "Sku": "IPADPRO11-256-SIL",
+    "Price": "28990000.00",
+    "Stock": 12,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 26,
+    "ProductId": 20,
+    "Sku": "IPADPRO11-256-SPC",
+    "Price": "28990000.00",
+    "Stock": 10,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 27,
+    "ProductId": 21,
+    "Sku": "TABS9-8-128-GRAY",
+    "Price": "19990000.00",
+    "Stock": 25,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 28,
+    "ProductId": 21,
+    "Sku": "TABS9-12-256-GRAY",
+    "Price": "24990000.00",
+    "Stock": 15,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 29,
+    "ProductId": 22,
+    "Sku": "MIPAD6-6-128-GRAY",
+    "Price": "8990000.00",
+    "Stock": 40,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 30,
+    "ProductId": 22,
+    "Sku": "MIPAD6-8-256-BLUE",
+    "Price": "10990000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 31,
+    "ProductId": 30,
+    "Sku": "U2723DE-27QHD",
+    "Price": "17990000.00",
+    "Stock": 15,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 32,
+    "ProductId": 31,
+    "Sku": "27GN800-QHD144",
+    "Price": "8490000.00",
+    "Stock": 22,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 33,
+    "ProductId": 40,
+    "Sku": "MXKEYS-GRAY",
+    "Price": "2990000.00",
+    "Stock": 35,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 34,
+    "ProductId": 40,
+    "Sku": "MXKEYS-WHT",
+    "Price": "2990000.00",
+    "Stock": 28,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 35,
+    "ProductId": 41,
+    "Sku": "BW-V4PRO-GRN",
+    "Price": "5990000.00",
+    "Stock": 20,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 37,
+    "ProductId": 50,
+    "Sku": "MXM3S-PALE",
+    "Price": "2490000.00",
+    "Stock": 32,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 38,
+    "ProductId": 51,
+    "Sku": "VIPER-V2PRO-BLK",
+    "Price": "3990000.00",
+    "Stock": 25,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 39,
+    "ProductId": 51,
+    "Sku": "VIPER-V2PRO-WHT",
+    "Price": "3990000.00",
+    "Stock": 20,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 43,
+    "ProductId": 70,
+    "Sku": "ANKER747-150W",
+    "Price": "2490000.00",
+    "Stock": 45,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 44,
+    "ProductId": 71,
+    "Sku": "BASEUS-C2C-2M-BLK",
+    "Price": "290000.00",
+    "Stock": 120,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 45,
+    "ProductId": 71,
+    "Sku": "BASEUS-C2C-2M-WHT",
+    "Price": "290000.00",
+    "Stock": 100,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 47,
+    "ProductId": 80,
+    "Sku": "SPIGEN-IP15P-CLEAR",
+    "Price": "490000.00",
+    "Stock": 70,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 48,
+    "ProductId": 81,
+    "Sku": "TOMTOC-13-BLK",
+    "Price": "790000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 49,
+    "ProductId": 81,
+    "Sku": "TOMTOC-14-BLK",
+    "Price": "790000.00",
+    "Stock": 45,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 72,
+    "ProductId": 108,
+    "Sku": "SKU-108-A",
+    "Price": "25490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.482Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 73,
+    "ProductId": 108,
+    "Sku": "SKU-108-B",
+    "Price": "28490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.543Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 74,
+    "ProductId": 109,
+    "Sku": "SKU-109-A",
+    "Price": "14490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.606Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 46,
+    "ProductId": 80,
+    "Sku": "SPIGEN-IP15P-BLK",
+    "Price": "490000.00",
+    "Stock": 76,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 4,
+    "ProductId": 2,
+    "Sku": "MBA-M2-16-512",
+    "Price": "36990000.00",
+    "Stock": 6,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 75,
+    "ProductId": 109,
+    "Sku": "SKU-109-B",
+    "Price": "17490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.667Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 76,
+    "ProductId": 110,
+    "Sku": "SKU-110-A",
+    "Price": "28490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.742Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 77,
+    "ProductId": 110,
+    "Sku": "SKU-110-B",
+    "Price": "31490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.808Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 78,
+    "ProductId": 111,
+    "Sku": "SKU-111-A",
+    "Price": "17490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.873Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 79,
+    "ProductId": 111,
+    "Sku": "SKU-111-B",
+    "Price": "20490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.937Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 42,
+    "ProductId": 61,
+    "Sku": "AIRPODSPRO2-USBC",
+    "Price": "6490000.00",
+    "Stock": 23,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 80,
+    "ProductId": 112,
+    "Sku": "SKU-112-A",
+    "Price": "12000000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.005Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 81,
+    "ProductId": 112,
+    "Sku": "SKU-112-B",
+    "Price": "15000000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.072Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 7,
+    "ProductId": 4,
+    "Sku": "HPX360-I5-8-512",
+    "Price": "42990000.00",
+    "Stock": 12,
+    "Status": "Active",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 8,
+    "ProductId": 4,
+    "Sku": "HPX360-I7-16-1TB",
+    "Price": "52990000.00",
+    "Stock": 6,
+    "Status": "Active",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 51,
+    "ProductId": 4,
+    "Sku": "HPX400-I7-8-512",
+    "Price": "45990000.00",
+    "Stock": 5,
+    "Status": "Active",
+    "CreatedAt": "2025-12-27T22:02:36.944Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 1,
+    "ProductId": 1,
+    "Sku": "XPS13-I5-8-512",
+    "Price": "25990000.00",
+    "Stock": 12,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 2,
+    "ProductId": 1,
+    "Sku": "XPS13-I7-16-1TB",
+    "Price": "32990000.00",
+    "Stock": 7,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 50,
+    "ProductId": 1,
+    "Sku": "SKU-1766863628360",
+    "Price": "25990000.00",
+    "Stock": 0,
+    "Status": "available",
+    "CreatedAt": "2025-12-27T19:29:50.249Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 52,
+    "ProductId": 82,
+    "Sku": "SKU- Sting-Dau",
+    "Price": "990000.00",
+    "Stock": 0,
+    "Status": "available",
+    "CreatedAt": "2025-12-27T23:14:19.432Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 53,
+    "ProductId": 82,
+    "Sku": "SKU-Sting-Cam",
+    "Price": "890000.00",
+    "Stock": 11,
+    "Status": "Active",
+    "CreatedAt": "2025-12-27T23:40:15.799Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 54,
+    "ProductId": 84,
+    "Sku": "SKU-1766880190731",
+    "Price": "7999000.00",
+    "Stock": 0,
+    "Status": "Active",
+    "CreatedAt": "2025-12-28T00:03:20.116Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 19,
+    "ProductId": 12,
+    "Sku": "PIX8P-256-BAY",
+    "Price": "27990000.00",
+    "Stock": 11,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 5,
+    "ProductId": 3,
+    "Sku": "ZEN14-I5-8-512",
+    "Price": "22490000.00",
+    "Stock": 17,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 55,
+    "ProductId": 99,
+    "Sku": "SKU-99-A",
+    "Price": "18490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:15:38.573Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 56,
+    "ProductId": 100,
+    "Sku": "SKU-100-A",
+    "Price": "16490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.481Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 57,
+    "ProductId": 100,
+    "Sku": "SKU-100-B",
+    "Price": "19490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.544Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 59,
+    "ProductId": 101,
+    "Sku": "SKU-101-B",
+    "Price": "22490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.667Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 61,
+    "ProductId": 102,
+    "Sku": "SKU-102-B",
+    "Price": "27490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.795Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 62,
+    "ProductId": 103,
+    "Sku": "SKU-103-A",
+    "Price": "13490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.858Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 63,
+    "ProductId": 103,
+    "Sku": "SKU-103-B",
+    "Price": "16490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.919Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 64,
+    "ProductId": 104,
+    "Sku": "SKU-104-A",
+    "Price": "14490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.980Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 65,
+    "ProductId": 104,
+    "Sku": "SKU-104-B",
+    "Price": "17490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.042Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 66,
+    "ProductId": 105,
+    "Sku": "SKU-105-A",
+    "Price": "22490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.105Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 67,
+    "ProductId": 105,
+    "Sku": "SKU-105-B",
+    "Price": "25490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.167Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 68,
+    "ProductId": 106,
+    "Sku": "SKU-106-A",
+    "Price": "23490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.229Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 69,
+    "ProductId": 106,
+    "Sku": "SKU-106-B",
+    "Price": "26490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.291Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 70,
+    "ProductId": 107,
+    "Sku": "SKU-107-A",
+    "Price": "18490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.356Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 71,
+    "ProductId": 107,
+    "Sku": "SKU-107-B",
+    "Price": "21490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:40.419Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 82,
+    "ProductId": 113,
+    "Sku": "SKU-113-A",
+    "Price": "15490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.135Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 83,
+    "ProductId": 113,
+    "Sku": "SKU-113-B",
+    "Price": "18490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.196Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 84,
+    "ProductId": 114,
+    "Sku": "SKU-114-A",
+    "Price": "26490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.258Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 85,
+    "ProductId": 114,
+    "Sku": "SKU-114-B",
+    "Price": "29490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.323Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 86,
+    "ProductId": 115,
+    "Sku": "SKU-115-A",
+    "Price": "17490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.384Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 87,
+    "ProductId": 115,
+    "Sku": "SKU-115-B",
+    "Price": "20490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.445Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 88,
+    "ProductId": 116,
+    "Sku": "SKU-116-A",
+    "Price": "21490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.506Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 89,
+    "ProductId": 116,
+    "Sku": "SKU-116-B",
+    "Price": "24490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.568Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 90,
+    "ProductId": 117,
+    "Sku": "SKU-117-A",
+    "Price": "20490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.630Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 91,
+    "ProductId": 117,
+    "Sku": "SKU-117-B",
+    "Price": "23490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.697Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 92,
+    "ProductId": 118,
+    "Sku": "SKU-118-A",
+    "Price": "18490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.759Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 93,
+    "ProductId": 118,
+    "Sku": "SKU-118-B",
+    "Price": "21490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.824Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 94,
+    "ProductId": 119,
+    "Sku": "SKU-119-A",
+    "Price": "11490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.891Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 95,
+    "ProductId": 119,
+    "Sku": "SKU-119-B",
+    "Price": "14490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:41.954Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 96,
+    "ProductId": 120,
+    "Sku": "SKU-120-A",
+    "Price": "15490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.015Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 97,
+    "ProductId": 120,
+    "Sku": "SKU-120-B",
+    "Price": "18490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.078Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 98,
+    "ProductId": 121,
+    "Sku": "SKU-121-A",
+    "Price": "19490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.139Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 99,
+    "ProductId": 121,
+    "Sku": "SKU-121-B",
+    "Price": "22490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.200Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 100,
+    "ProductId": 122,
+    "Sku": "SKU-122-A",
+    "Price": "16490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.262Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 101,
+    "ProductId": 122,
+    "Sku": "SKU-122-B",
+    "Price": "19490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.325Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 102,
+    "ProductId": 123,
+    "Sku": "SKU-123-A",
+    "Price": "14490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.386Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 103,
+    "ProductId": 123,
+    "Sku": "SKU-123-B",
+    "Price": "17490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.447Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 60,
+    "ProductId": 102,
+    "Sku": "SKU-102-A",
+    "Price": "24490000.00",
+    "Stock": 49,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.729Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 24,
+    "ProductId": 20,
+    "Sku": "IPADPRO11-128-SIL",
+    "Price": "24990000.00",
+    "Stock": 17,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 36,
+    "ProductId": 50,
+    "Sku": "MXM3S-GRAPH",
+    "Price": "2490000.00",
+    "Stock": 39,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 58,
+    "ProductId": 101,
+    "Sku": "SKU-101-A",
+    "Price": "19490000.00",
+    "Stock": 49,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:39.605Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 104,
+    "ProductId": 124,
+    "Sku": "SKU-124-A",
+    "Price": "39490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.507Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 105,
+    "ProductId": 124,
+    "Sku": "SKU-124-B",
+    "Price": "42490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.571Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 106,
+    "ProductId": 125,
+    "Sku": "SKU-125-A",
+    "Price": "18490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.633Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 107,
+    "ProductId": 125,
+    "Sku": "SKU-125-B",
+    "Price": "21490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.697Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 108,
+    "ProductId": 126,
+    "Sku": "SKU-126-A",
+    "Price": "26490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.758Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 109,
+    "ProductId": 126,
+    "Sku": "SKU-126-B",
+    "Price": "29490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.821Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 110,
+    "ProductId": 127,
+    "Sku": "SKU-127-A",
+    "Price": "15490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.882Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 111,
+    "ProductId": 127,
+    "Sku": "SKU-127-B",
+    "Price": "18490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:42.945Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 112,
+    "ProductId": 128,
+    "Sku": "SKU-128-A",
+    "Price": "18490000.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:43.008Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 113,
+    "ProductId": 128,
+    "Sku": "SKU-128-B",
+    "Price": "21490000.00",
+    "Stock": 30,
+    "Status": "available",
+    "CreatedAt": "2025-12-30T05:25:43.069Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 11,
+    "ProductId": 10,
+    "Sku": "IP15PM-256-NAT",
+    "Price": "33990000.00",
+    "Stock": 23,
+    "Status": "available",
+    "CreatedAt": "2025-01-15T10:00:00.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 115,
+    "ProductId": 101,
+    "Sku": "SKU-1767089234786",
+    "Price": "20990000.00",
+    "Stock": 0,
+    "Status": "Active",
+    "CreatedAt": "2025-12-30T10:14:21.043Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 116,
+    "ProductId": 103,
+    "Sku": "SKU-1767090291000",
+    "Price": "14990000.00",
+    "Stock": 0,
+    "Status": "Active",
+    "CreatedAt": "2025-12-30T10:25:19.071Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 117,
+    "ProductId": 5000,
+    "Sku": "TRN-5000-V1",
+    "Price": "12510365.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.208Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 118,
+    "ProductId": 5001,
+    "Sku": "TRN-5001-V1",
+    "Price": "24488167.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.341Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 119,
+    "ProductId": 5002,
+    "Sku": "TRN-5002-V1",
+    "Price": "14691769.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.393Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 120,
+    "ProductId": 5003,
+    "Sku": "TRN-5003-V1",
+    "Price": "17619392.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.456Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 121,
+    "ProductId": 5004,
+    "Sku": "TRN-5004-V1",
+    "Price": "26282747.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.512Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 122,
+    "ProductId": 5005,
+    "Sku": "TRN-5005-V1",
+    "Price": "11802252.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.574Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 123,
+    "ProductId": 5006,
+    "Sku": "TRN-5006-V1",
+    "Price": "10882942.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.628Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 124,
+    "ProductId": 5007,
+    "Sku": "TRN-5007-V1",
+    "Price": "23851794.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.686Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 125,
+    "ProductId": 5008,
+    "Sku": "TRN-5008-V1",
+    "Price": "16163993.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.737Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 126,
+    "ProductId": 5009,
+    "Sku": "TRN-5009-V1",
+    "Price": "20714440.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.804Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 127,
+    "ProductId": 5010,
+    "Sku": "TRN-5010-V1",
+    "Price": "12982381.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.862Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 128,
+    "ProductId": 5011,
+    "Sku": "TRN-5011-V1",
+    "Price": "22529127.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.924Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 129,
+    "ProductId": 5012,
+    "Sku": "TRN-5012-V1",
+    "Price": "15792133.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:29.975Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 130,
+    "ProductId": 5013,
+    "Sku": "TRN-5013-V1",
+    "Price": "22091185.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.038Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 131,
+    "ProductId": 5014,
+    "Sku": "TRN-5014-V1",
+    "Price": "24131646.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.092Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 132,
+    "ProductId": 5015,
+    "Sku": "TRN-5015-V1",
+    "Price": "17303230.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.184Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 133,
+    "ProductId": 5016,
+    "Sku": "TRN-5016-V1",
+    "Price": "11418858.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.235Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 134,
+    "ProductId": 5017,
+    "Sku": "TRN-5017-V1",
+    "Price": "18783589.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.294Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 135,
+    "ProductId": 5018,
+    "Sku": "TRN-5018-V1",
+    "Price": "26576758.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.347Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 136,
+    "ProductId": 5019,
+    "Sku": "TRN-5019-V1",
+    "Price": "23082862.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.406Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 137,
+    "ProductId": 5020,
+    "Sku": "TRN-5020-V1",
+    "Price": "19223875.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.460Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 138,
+    "ProductId": 5021,
+    "Sku": "TRN-5021-V1",
+    "Price": "17455344.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.519Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 139,
+    "ProductId": 5022,
+    "Sku": "TRN-5022-V1",
+    "Price": "20647311.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.569Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 140,
+    "ProductId": 5023,
+    "Sku": "TRN-5023-V1",
+    "Price": "21734778.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.629Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 141,
+    "ProductId": 5024,
+    "Sku": "TRN-5024-V1",
+    "Price": "29153573.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.680Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 142,
+    "ProductId": 5025,
+    "Sku": "TRN-5025-V1",
+    "Price": "12062856.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.737Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 143,
+    "ProductId": 5026,
+    "Sku": "TRN-5026-V1",
+    "Price": "12970982.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.787Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 144,
+    "ProductId": 5027,
+    "Sku": "TRN-5027-V1",
+    "Price": "20256787.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.845Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 145,
+    "ProductId": 5028,
+    "Sku": "TRN-5028-V1",
+    "Price": "24298988.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.894Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 146,
+    "ProductId": 5029,
+    "Sku": "TRN-5029-V1",
+    "Price": "23016646.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:30.957Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 147,
+    "ProductId": 5030,
+    "Sku": "TRN-5030-V1",
+    "Price": "10542857.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.008Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 148,
+    "ProductId": 5031,
+    "Sku": "TRN-5031-V1",
+    "Price": "4512865.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.077Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 149,
+    "ProductId": 5032,
+    "Sku": "TRN-5032-V1",
+    "Price": "9954392.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.129Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 150,
+    "ProductId": 5033,
+    "Sku": "TRN-5033-V1",
+    "Price": "5266873.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.189Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 151,
+    "ProductId": 5034,
+    "Sku": "TRN-5034-V1",
+    "Price": "3294588.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.239Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 152,
+    "ProductId": 5035,
+    "Sku": "TRN-5035-V1",
+    "Price": "9483537.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.299Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 153,
+    "ProductId": 5036,
+    "Sku": "TRN-5036-V1",
+    "Price": "7441331.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.350Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 154,
+    "ProductId": 5037,
+    "Sku": "TRN-5037-V1",
+    "Price": "4281315.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.410Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 155,
+    "ProductId": 5038,
+    "Sku": "TRN-5038-V1",
+    "Price": "9911987.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.464Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 156,
+    "ProductId": 5039,
+    "Sku": "TRN-5039-V1",
+    "Price": "4306954.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.523Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 157,
+    "ProductId": 5040,
+    "Sku": "TRN-5040-V1",
+    "Price": "7987357.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.574Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 158,
+    "ProductId": 5041,
+    "Sku": "TRN-5041-V1",
+    "Price": "9166490.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.630Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 159,
+    "ProductId": 5042,
+    "Sku": "TRN-5042-V1",
+    "Price": "6245527.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.684Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 160,
+    "ProductId": 5043,
+    "Sku": "TRN-5043-V1",
+    "Price": "3898256.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.743Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 161,
+    "ProductId": 5044,
+    "Sku": "TRN-5044-V1",
+    "Price": "9582102.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.795Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 162,
+    "ProductId": 5045,
+    "Sku": "TRN-5045-V1",
+    "Price": "5800206.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.857Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 163,
+    "ProductId": 5046,
+    "Sku": "TRN-5046-V1",
+    "Price": "9233815.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.909Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 164,
+    "ProductId": 5047,
+    "Sku": "TRN-5047-V1",
+    "Price": "7311520.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:31.970Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 165,
+    "ProductId": 5048,
+    "Sku": "TRN-5048-V1",
+    "Price": "4963562.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.019Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 166,
+    "ProductId": 5049,
+    "Sku": "TRN-5049-V1",
+    "Price": "4729772.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.078Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 167,
+    "ProductId": 5050,
+    "Sku": "TRN-5050-V1",
+    "Price": "4939875.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.128Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 168,
+    "ProductId": 5051,
+    "Sku": "TRN-5051-V1",
+    "Price": "3572873.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.185Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 169,
+    "ProductId": 5052,
+    "Sku": "TRN-5052-V1",
+    "Price": "8451557.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.236Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 170,
+    "ProductId": 5053,
+    "Sku": "TRN-5053-V1",
+    "Price": "9235346.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.295Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 171,
+    "ProductId": 5054,
+    "Sku": "TRN-5054-V1",
+    "Price": "4478680.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.360Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 172,
+    "ProductId": 5055,
+    "Sku": "TRN-5055-V1",
+    "Price": "3777224.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.418Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 173,
+    "ProductId": 5056,
+    "Sku": "TRN-5056-V1",
+    "Price": "8044782.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.479Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 174,
+    "ProductId": 5057,
+    "Sku": "TRN-5057-V1",
+    "Price": "7072178.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.539Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 175,
+    "ProductId": 5058,
+    "Sku": "TRN-5058-V1",
+    "Price": "3389780.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.590Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 176,
+    "ProductId": 5059,
+    "Sku": "TRN-5059-V1",
+    "Price": "5039327.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.648Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 177,
+    "ProductId": 5060,
+    "Sku": "TRN-5060-V1",
+    "Price": "5572453.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.702Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 178,
+    "ProductId": 5061,
+    "Sku": "TRN-5061-V1",
+    "Price": "9995359.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.760Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 179,
+    "ProductId": 5062,
+    "Sku": "TRN-5062-V1",
+    "Price": "4284519.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.814Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 180,
+    "ProductId": 5063,
+    "Sku": "TRN-5063-V1",
+    "Price": "5709699.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.873Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 181,
+    "ProductId": 5064,
+    "Sku": "TRN-5064-V1",
+    "Price": "9164510.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.931Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 182,
+    "ProductId": 5065,
+    "Sku": "TRN-5065-V1",
+    "Price": "9234787.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:32.988Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 183,
+    "ProductId": 5066,
+    "Sku": "TRN-5066-V1",
+    "Price": "3130346.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.040Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 184,
+    "ProductId": 5067,
+    "Sku": "TRN-5067-V1",
+    "Price": "7588659.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.097Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 185,
+    "ProductId": 5068,
+    "Sku": "TRN-5068-V1",
+    "Price": "8265503.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.149Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 186,
+    "ProductId": 5069,
+    "Sku": "TRN-5069-V1",
+    "Price": "3298160.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.208Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 187,
+    "ProductId": 5070,
+    "Sku": "TRN-5070-V1",
+    "Price": "5407137.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.259Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 188,
+    "ProductId": 5071,
+    "Sku": "TRN-5071-V1",
+    "Price": "7238494.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.318Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 189,
+    "ProductId": 5072,
+    "Sku": "TRN-5072-V1",
+    "Price": "3951391.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.372Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 190,
+    "ProductId": 5073,
+    "Sku": "TRN-5073-V1",
+    "Price": "5459212.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.430Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 191,
+    "ProductId": 5074,
+    "Sku": "TRN-5074-V1",
+    "Price": "4088052.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.482Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 192,
+    "ProductId": 5075,
+    "Sku": "TRN-5075-V1",
+    "Price": "9613608.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.542Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 193,
+    "ProductId": 5076,
+    "Sku": "TRN-5076-V1",
+    "Price": "7493069.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.600Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 194,
+    "ProductId": 5077,
+    "Sku": "TRN-5077-V1",
+    "Price": "7307249.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.658Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 195,
+    "ProductId": 5078,
+    "Sku": "TRN-5078-V1",
+    "Price": "8533677.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.710Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 196,
+    "ProductId": 5079,
+    "Sku": "TRN-5079-V1",
+    "Price": "5879558.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.771Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 197,
+    "ProductId": 5080,
+    "Sku": "TRN-5080-V1",
+    "Price": "4579173.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.823Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 198,
+    "ProductId": 5081,
+    "Sku": "TRN-5081-V1",
+    "Price": "7856518.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.883Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 199,
+    "ProductId": 5082,
+    "Sku": "TRN-5082-V1",
+    "Price": "6160626.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:33.933Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 200,
+    "ProductId": 5083,
+    "Sku": "TRN-5083-V1",
+    "Price": "3289485.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 201,
+    "ProductId": 5084,
+    "Sku": "TRN-5084-V1",
+    "Price": "6939021.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.052Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 202,
+    "ProductId": 5085,
+    "Sku": "TRN-5085-V1",
+    "Price": "6229041.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.112Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 203,
+    "ProductId": 5086,
+    "Sku": "TRN-5086-V1",
+    "Price": "5898128.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.161Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 204,
+    "ProductId": 5087,
+    "Sku": "TRN-5087-V1",
+    "Price": "6241826.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.221Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 205,
+    "ProductId": 5088,
+    "Sku": "TRN-5088-V1",
+    "Price": "4458950.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.270Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 206,
+    "ProductId": 5089,
+    "Sku": "TRN-5089-V1",
+    "Price": "7478760.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.326Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 207,
+    "ProductId": 5090,
+    "Sku": "TRN-5090-V1",
+    "Price": "3442460.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.376Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 208,
+    "ProductId": 5091,
+    "Sku": "TRN-5091-V1",
+    "Price": "9436360.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.432Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 209,
+    "ProductId": 5092,
+    "Sku": "TRN-5092-V1",
+    "Price": "3939622.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.482Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 210,
+    "ProductId": 5093,
+    "Sku": "TRN-5093-V1",
+    "Price": "7570083.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.553Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 211,
+    "ProductId": 5094,
+    "Sku": "TRN-5094-V1",
+    "Price": "8789879.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.606Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 212,
+    "ProductId": 5095,
+    "Sku": "TRN-5095-V1",
+    "Price": "3902041.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.666Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 213,
+    "ProductId": 5096,
+    "Sku": "TRN-5096-V1",
+    "Price": "3351272.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.719Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 214,
+    "ProductId": 5097,
+    "Sku": "TRN-5097-V1",
+    "Price": "6712737.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:34.913Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 215,
+    "ProductId": 5098,
+    "Sku": "TRN-5098-V1",
+    "Price": "9308703.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.022Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 216,
+    "ProductId": 5099,
+    "Sku": "TRN-5099-V1",
+    "Price": "5829773.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.256Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 217,
+    "ProductId": 5100,
+    "Sku": "TRN-5100-V1",
+    "Price": "9590789.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.307Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 218,
+    "ProductId": 5101,
+    "Sku": "TRN-5101-V1",
+    "Price": "8584050.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.444Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 219,
+    "ProductId": 5102,
+    "Sku": "TRN-5102-V1",
+    "Price": "7982712.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.733Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 220,
+    "ProductId": 5103,
+    "Sku": "TRN-5103-V1",
+    "Price": "18877202.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.791Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 221,
+    "ProductId": 5104,
+    "Sku": "TRN-5104-V1",
+    "Price": "26412212.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.841Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 222,
+    "ProductId": 5105,
+    "Sku": "TRN-5105-V1",
+    "Price": "28361830.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.899Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 223,
+    "ProductId": 5106,
+    "Sku": "TRN-5106-V1",
+    "Price": "27001293.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:35.957Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 224,
+    "ProductId": 5107,
+    "Sku": "TRN-5107-V1",
+    "Price": "12637966.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.018Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 225,
+    "ProductId": 5108,
+    "Sku": "TRN-5108-V1",
+    "Price": "10612712.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.071Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 226,
+    "ProductId": 5109,
+    "Sku": "TRN-5109-V1",
+    "Price": "12592753.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.130Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 227,
+    "ProductId": 5110,
+    "Sku": "TRN-5110-V1",
+    "Price": "13063173.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.227Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 228,
+    "ProductId": 5111,
+    "Sku": "TRN-5111-V1",
+    "Price": "29608160.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.286Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 229,
+    "ProductId": 5112,
+    "Sku": "TRN-5112-V1",
+    "Price": "19629452.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.350Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 230,
+    "ProductId": 5113,
+    "Sku": "TRN-5113-V1",
+    "Price": "15667904.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.408Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 231,
+    "ProductId": 5114,
+    "Sku": "TRN-5114-V1",
+    "Price": "29288343.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.467Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 232,
+    "ProductId": 5115,
+    "Sku": "TRN-5115-V1",
+    "Price": "26614596.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.528Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 233,
+    "ProductId": 5116,
+    "Sku": "TRN-5116-V1",
+    "Price": "19078818.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.579Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 234,
+    "ProductId": 5117,
+    "Sku": "TRN-5117-V1",
+    "Price": "15001544.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.639Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 235,
+    "ProductId": 5118,
+    "Sku": "TRN-5118-V1",
+    "Price": "22275058.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.692Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 236,
+    "ProductId": 5119,
+    "Sku": "TRN-5119-V1",
+    "Price": "23551294.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.751Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 237,
+    "ProductId": 5120,
+    "Sku": "TRN-5120-V1",
+    "Price": "12270326.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.804Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 238,
+    "ProductId": 5121,
+    "Sku": "TRN-5121-V1",
+    "Price": "17031151.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.863Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 239,
+    "ProductId": 5122,
+    "Sku": "TRN-5122-V1",
+    "Price": "22544214.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.917Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 240,
+    "ProductId": 5123,
+    "Sku": "TRN-5123-V1",
+    "Price": "29200980.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:36.978Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 241,
+    "ProductId": 5124,
+    "Sku": "TRN-5124-V1",
+    "Price": "18189926.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.040Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 242,
+    "ProductId": 5125,
+    "Sku": "TRN-5125-V1",
+    "Price": "28527526.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.104Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 243,
+    "ProductId": 5126,
+    "Sku": "TRN-5126-V1",
+    "Price": "19554169.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.154Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 244,
+    "ProductId": 5127,
+    "Sku": "TRN-5127-V1",
+    "Price": "12228817.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.217Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 245,
+    "ProductId": 5128,
+    "Sku": "TRN-5128-V1",
+    "Price": "28961591.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.278Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 246,
+    "ProductId": 5129,
+    "Sku": "TRN-5129-V1",
+    "Price": "17560840.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.340Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 247,
+    "ProductId": 5130,
+    "Sku": "TRN-5130-V1",
+    "Price": "13058148.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.391Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 248,
+    "ProductId": 5131,
+    "Sku": "TRN-5131-V1",
+    "Price": "20497157.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.450Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 249,
+    "ProductId": 5132,
+    "Sku": "TRN-5132-V1",
+    "Price": "13496209.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.501Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 250,
+    "ProductId": 5133,
+    "Sku": "TRN-5133-V1",
+    "Price": "13451793.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.558Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 251,
+    "ProductId": 5134,
+    "Sku": "TRN-5134-V1",
+    "Price": "17300098.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.609Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 252,
+    "ProductId": 5135,
+    "Sku": "TRN-5135-V1",
+    "Price": "10767348.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.669Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 253,
+    "ProductId": 5136,
+    "Sku": "TRN-5136-V1",
+    "Price": "21418722.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.722Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 254,
+    "ProductId": 5137,
+    "Sku": "TRN-5137-V1",
+    "Price": "10876097.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.781Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 255,
+    "ProductId": 5138,
+    "Sku": "TRN-5138-V1",
+    "Price": "3536165.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.832Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 256,
+    "ProductId": 5139,
+    "Sku": "TRN-5139-V1",
+    "Price": "3865248.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.889Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 257,
+    "ProductId": 5140,
+    "Sku": "TRN-5140-V1",
+    "Price": "4742177.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:37.943Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 258,
+    "ProductId": 5141,
+    "Sku": "TRN-5141-V1",
+    "Price": "6001225.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.005Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 259,
+    "ProductId": 5142,
+    "Sku": "TRN-5142-V1",
+    "Price": "9194835.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.057Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 260,
+    "ProductId": 5143,
+    "Sku": "TRN-5143-V1",
+    "Price": "6546251.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.115Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 261,
+    "ProductId": 5144,
+    "Sku": "TRN-5144-V1",
+    "Price": "7109024.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.165Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 262,
+    "ProductId": 5145,
+    "Sku": "TRN-5145-V1",
+    "Price": "6222862.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.229Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 263,
+    "ProductId": 5146,
+    "Sku": "TRN-5146-V1",
+    "Price": "7070198.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.287Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 264,
+    "ProductId": 5147,
+    "Sku": "TRN-5147-V1",
+    "Price": "4645134.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.344Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 265,
+    "ProductId": 5148,
+    "Sku": "TRN-5148-V1",
+    "Price": "8685940.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.393Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 266,
+    "ProductId": 5149,
+    "Sku": "TRN-5149-V1",
+    "Price": "4487050.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.450Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 267,
+    "ProductId": 5150,
+    "Sku": "TRN-5150-V1",
+    "Price": "4137030.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.506Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 268,
+    "ProductId": 5151,
+    "Sku": "TRN-5151-V1",
+    "Price": "4450366.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.581Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 269,
+    "ProductId": 5152,
+    "Sku": "TRN-5152-V1",
+    "Price": "4243264.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.636Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 270,
+    "ProductId": 5153,
+    "Sku": "TRN-5153-V1",
+    "Price": "5556694.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.694Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 271,
+    "ProductId": 5154,
+    "Sku": "TRN-5154-V1",
+    "Price": "9463345.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.747Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 272,
+    "ProductId": 5155,
+    "Sku": "TRN-5155-V1",
+    "Price": "3230405.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.808Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 273,
+    "ProductId": 5156,
+    "Sku": "TRN-5156-V1",
+    "Price": "9745613.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.859Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 274,
+    "ProductId": 5157,
+    "Sku": "TRN-5157-V1",
+    "Price": "8903111.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.918Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 275,
+    "ProductId": 5158,
+    "Sku": "TRN-5158-V1",
+    "Price": "5681097.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:38.968Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 276,
+    "ProductId": 5159,
+    "Sku": "TRN-5159-V1",
+    "Price": "8767937.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.034Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 277,
+    "ProductId": 5160,
+    "Sku": "TRN-5160-V1",
+    "Price": "8709288.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.087Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 278,
+    "ProductId": 5161,
+    "Sku": "TRN-5161-V1",
+    "Price": "4449878.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.146Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 279,
+    "ProductId": 5162,
+    "Sku": "TRN-5162-V1",
+    "Price": "4356619.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.200Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 280,
+    "ProductId": 5163,
+    "Sku": "TRN-5163-V1",
+    "Price": "5588207.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.256Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 281,
+    "ProductId": 5164,
+    "Sku": "TRN-5164-V1",
+    "Price": "7581153.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.306Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 282,
+    "ProductId": 5165,
+    "Sku": "TRN-5165-V1",
+    "Price": "8184809.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.363Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 283,
+    "ProductId": 5166,
+    "Sku": "TRN-5166-V1",
+    "Price": "7331876.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.417Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 284,
+    "ProductId": 5167,
+    "Sku": "TRN-5167-V1",
+    "Price": "6740220.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.474Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 285,
+    "ProductId": 5168,
+    "Sku": "TRN-5168-V1",
+    "Price": "7434771.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.523Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 286,
+    "ProductId": 5169,
+    "Sku": "TRN-5169-V1",
+    "Price": "7136366.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.581Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 287,
+    "ProductId": 5170,
+    "Sku": "TRN-5170-V1",
+    "Price": "6711806.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.634Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 288,
+    "ProductId": 5171,
+    "Sku": "TRN-5171-V1",
+    "Price": "3723355.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.694Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 289,
+    "ProductId": 5172,
+    "Sku": "TRN-5172-V1",
+    "Price": "9688974.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.745Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 290,
+    "ProductId": 5173,
+    "Sku": "TRN-5173-V1",
+    "Price": "4695713.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.804Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 291,
+    "ProductId": 5174,
+    "Sku": "TRN-5174-V1",
+    "Price": "8662337.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.854Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 292,
+    "ProductId": 5175,
+    "Sku": "TRN-5175-V1",
+    "Price": "9694591.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.913Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 293,
+    "ProductId": 5176,
+    "Sku": "TRN-5176-V1",
+    "Price": "3833234.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:39.965Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 294,
+    "ProductId": 5177,
+    "Sku": "TRN-5177-V1",
+    "Price": "3257896.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.023Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 295,
+    "ProductId": 5178,
+    "Sku": "TRN-5178-V1",
+    "Price": "4731734.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.088Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 296,
+    "ProductId": 5179,
+    "Sku": "TRN-5179-V1",
+    "Price": "5171844.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.146Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 297,
+    "ProductId": 5180,
+    "Sku": "TRN-5180-V1",
+    "Price": "8154754.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.199Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 298,
+    "ProductId": 5181,
+    "Sku": "TRN-5181-V1",
+    "Price": "7969679.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.260Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 299,
+    "ProductId": 5182,
+    "Sku": "TRN-5182-V1",
+    "Price": "6182972.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.312Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 300,
+    "ProductId": 5183,
+    "Sku": "TRN-5183-V1",
+    "Price": "3232720.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.372Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 301,
+    "ProductId": 5184,
+    "Sku": "TRN-5184-V1",
+    "Price": "3245942.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.425Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 302,
+    "ProductId": 5185,
+    "Sku": "TRN-5185-V1",
+    "Price": "5541325.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.484Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 303,
+    "ProductId": 5186,
+    "Sku": "TRN-5186-V1",
+    "Price": "9155351.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.542Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 304,
+    "ProductId": 5187,
+    "Sku": "TRN-5187-V1",
+    "Price": "3289127.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.613Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 305,
+    "ProductId": 5188,
+    "Sku": "TRN-5188-V1",
+    "Price": "8218433.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.664Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 306,
+    "ProductId": 5189,
+    "Sku": "TRN-5189-V1",
+    "Price": "8475801.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.732Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 307,
+    "ProductId": 5190,
+    "Sku": "TRN-5190-V1",
+    "Price": "9061003.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.782Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 308,
+    "ProductId": 5191,
+    "Sku": "TRN-5191-V1",
+    "Price": "4496495.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.840Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 309,
+    "ProductId": 5192,
+    "Sku": "TRN-5192-V1",
+    "Price": "8032263.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.894Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 310,
+    "ProductId": 5193,
+    "Sku": "TRN-5193-V1",
+    "Price": "3822249.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:40.951Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 311,
+    "ProductId": 5194,
+    "Sku": "TRN-5194-V1",
+    "Price": "26992463.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.002Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 312,
+    "ProductId": 5195,
+    "Sku": "TRN-5195-V1",
+    "Price": "14811473.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.068Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 313,
+    "ProductId": 5196,
+    "Sku": "TRN-5196-V1",
+    "Price": "21860408.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.122Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 314,
+    "ProductId": 5197,
+    "Sku": "TRN-5197-V1",
+    "Price": "13190353.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.181Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 315,
+    "ProductId": 5198,
+    "Sku": "TRN-5198-V1",
+    "Price": "19937078.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.231Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 316,
+    "ProductId": 5199,
+    "Sku": "TRN-5199-V1",
+    "Price": "15535222.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.289Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 317,
+    "ProductId": 5200,
+    "Sku": "TRN-5200-V1",
+    "Price": "15805181.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.340Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 318,
+    "ProductId": 5201,
+    "Sku": "TRN-5201-V1",
+    "Price": "13093210.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.397Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 319,
+    "ProductId": 5202,
+    "Sku": "TRN-5202-V1",
+    "Price": "27044308.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.451Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 320,
+    "ProductId": 5203,
+    "Sku": "TRN-5203-V1",
+    "Price": "26855416.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.512Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 321,
+    "ProductId": 5204,
+    "Sku": "TRN-5204-V1",
+    "Price": "14612610.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.561Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 322,
+    "ProductId": 5205,
+    "Sku": "TRN-5205-V1",
+    "Price": "13728785.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.617Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 323,
+    "ProductId": 5206,
+    "Sku": "TRN-5206-V1",
+    "Price": "23902191.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.667Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 324,
+    "ProductId": 5207,
+    "Sku": "TRN-5207-V1",
+    "Price": "15074679.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.724Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 325,
+    "ProductId": 5208,
+    "Sku": "TRN-5208-V1",
+    "Price": "13232708.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.775Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 326,
+    "ProductId": 5209,
+    "Sku": "TRN-5209-V1",
+    "Price": "18715513.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.832Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 327,
+    "ProductId": 5210,
+    "Sku": "TRN-5210-V1",
+    "Price": "28263765.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.881Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 328,
+    "ProductId": 5211,
+    "Sku": "TRN-5211-V1",
+    "Price": "26011647.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.937Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 329,
+    "ProductId": 5212,
+    "Sku": "TRN-5212-V1",
+    "Price": "22018488.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:41.988Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 330,
+    "ProductId": 5213,
+    "Sku": "TRN-5213-V1",
+    "Price": "12228441.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.045Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 331,
+    "ProductId": 5214,
+    "Sku": "TRN-5214-V1",
+    "Price": "18341412.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.096Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 332,
+    "ProductId": 5215,
+    "Sku": "TRN-5215-V1",
+    "Price": "27166243.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.157Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 333,
+    "ProductId": 5216,
+    "Sku": "TRN-5216-V1",
+    "Price": "17207272.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.209Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 334,
+    "ProductId": 5217,
+    "Sku": "TRN-5217-V1",
+    "Price": "28025169.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.274Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 335,
+    "ProductId": 5218,
+    "Sku": "TRN-5218-V1",
+    "Price": "26501784.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.332Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 336,
+    "ProductId": 5219,
+    "Sku": "TRN-5219-V1",
+    "Price": "27257036.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.397Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 337,
+    "ProductId": 5220,
+    "Sku": "TRN-5220-V1",
+    "Price": "18127083.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.449Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 338,
+    "ProductId": 5221,
+    "Sku": "TRN-5221-V1",
+    "Price": "21732210.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.510Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 339,
+    "ProductId": 5222,
+    "Sku": "TRN-5222-V1",
+    "Price": "22887229.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.569Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 340,
+    "ProductId": 5223,
+    "Sku": "TRN-5223-V1",
+    "Price": "11525692.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.644Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 341,
+    "ProductId": 5224,
+    "Sku": "TRN-5224-V1",
+    "Price": "4753906.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.700Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 342,
+    "ProductId": 5225,
+    "Sku": "TRN-5225-V1",
+    "Price": "6575002.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.766Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 343,
+    "ProductId": 5226,
+    "Sku": "TRN-5226-V1",
+    "Price": "8547937.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.817Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 344,
+    "ProductId": 5227,
+    "Sku": "TRN-5227-V1",
+    "Price": "8665381.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.886Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 345,
+    "ProductId": 5228,
+    "Sku": "TRN-5228-V1",
+    "Price": "3827448.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:42.947Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 346,
+    "ProductId": 5229,
+    "Sku": "TRN-5229-V1",
+    "Price": "5102267.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.014Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 347,
+    "ProductId": 5230,
+    "Sku": "TRN-5230-V1",
+    "Price": "4313908.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.063Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 348,
+    "ProductId": 5231,
+    "Sku": "TRN-5231-V1",
+    "Price": "8819537.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.206Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 349,
+    "ProductId": 5232,
+    "Sku": "TRN-5232-V1",
+    "Price": "9191717.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.260Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 350,
+    "ProductId": 5233,
+    "Sku": "TRN-5233-V1",
+    "Price": "3373002.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.318Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 351,
+    "ProductId": 5234,
+    "Sku": "TRN-5234-V1",
+    "Price": "8845739.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.371Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 352,
+    "ProductId": 5235,
+    "Sku": "TRN-5235-V1",
+    "Price": "3874067.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.431Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 353,
+    "ProductId": 5236,
+    "Sku": "TRN-5236-V1",
+    "Price": "5956842.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.484Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 354,
+    "ProductId": 5237,
+    "Sku": "TRN-5237-V1",
+    "Price": "8642039.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.545Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 355,
+    "ProductId": 5238,
+    "Sku": "TRN-5238-V1",
+    "Price": "6968821.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.599Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 356,
+    "ProductId": 5239,
+    "Sku": "TRN-5239-V1",
+    "Price": "8364344.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.662Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 357,
+    "ProductId": 5240,
+    "Sku": "TRN-5240-V1",
+    "Price": "9285888.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.717Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 358,
+    "ProductId": 5241,
+    "Sku": "TRN-5241-V1",
+    "Price": "5666726.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.776Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 359,
+    "ProductId": 5242,
+    "Sku": "TRN-5242-V1",
+    "Price": "3844615.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.830Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 360,
+    "ProductId": 5243,
+    "Sku": "TRN-5243-V1",
+    "Price": "9159327.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.891Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 361,
+    "ProductId": 5244,
+    "Sku": "TRN-5244-V1",
+    "Price": "8888453.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:43.946Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 362,
+    "ProductId": 5245,
+    "Sku": "TRN-5245-V1",
+    "Price": "6910104.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.008Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 363,
+    "ProductId": 5246,
+    "Sku": "TRN-5246-V1",
+    "Price": "6925286.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.062Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 364,
+    "ProductId": 5247,
+    "Sku": "TRN-5247-V1",
+    "Price": "8463819.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.121Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 365,
+    "ProductId": 5248,
+    "Sku": "TRN-5248-V1",
+    "Price": "9715945.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.176Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 366,
+    "ProductId": 5249,
+    "Sku": "TRN-5249-V1",
+    "Price": "5202794.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.234Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 367,
+    "ProductId": 5250,
+    "Sku": "TRN-5250-V1",
+    "Price": "5229497.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.285Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 368,
+    "ProductId": 5251,
+    "Sku": "TRN-5251-V1",
+    "Price": "9501070.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.370Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 369,
+    "ProductId": 5252,
+    "Sku": "TRN-5252-V1",
+    "Price": "3998952.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.420Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 370,
+    "ProductId": 5253,
+    "Sku": "TRN-5253-V1",
+    "Price": "9116462.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.479Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 371,
+    "ProductId": 5254,
+    "Sku": "TRN-5254-V1",
+    "Price": "4274430.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.529Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 372,
+    "ProductId": 5255,
+    "Sku": "TRN-5255-V1",
+    "Price": "5703332.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.588Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 373,
+    "ProductId": 5256,
+    "Sku": "TRN-5256-V1",
+    "Price": "5922866.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.636Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 374,
+    "ProductId": 5257,
+    "Sku": "TRN-5257-V1",
+    "Price": "4578197.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.693Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 375,
+    "ProductId": 5258,
+    "Sku": "TRN-5258-V1",
+    "Price": "8436821.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.744Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 376,
+    "ProductId": 5259,
+    "Sku": "TRN-5259-V1",
+    "Price": "7592672.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.802Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 377,
+    "ProductId": 5260,
+    "Sku": "TRN-5260-V1",
+    "Price": "4060165.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.851Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 378,
+    "ProductId": 5261,
+    "Sku": "TRN-5261-V1",
+    "Price": "6677285.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.912Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 379,
+    "ProductId": 5262,
+    "Sku": "TRN-5262-V1",
+    "Price": "3577149.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:44.963Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 380,
+    "ProductId": 5263,
+    "Sku": "TRN-5263-V1",
+    "Price": "8218229.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.020Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 381,
+    "ProductId": 5264,
+    "Sku": "TRN-5264-V1",
+    "Price": "5354366.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.069Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 382,
+    "ProductId": 5265,
+    "Sku": "TRN-5265-V1",
+    "Price": "8595601.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.128Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 383,
+    "ProductId": 5266,
+    "Sku": "TRN-5266-V1",
+    "Price": "8562313.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.178Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 384,
+    "ProductId": 5267,
+    "Sku": "TRN-5267-V1",
+    "Price": "9014315.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.236Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 385,
+    "ProductId": 5268,
+    "Sku": "TRN-5268-V1",
+    "Price": "7169485.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.287Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 386,
+    "ProductId": 5269,
+    "Sku": "TRN-5269-V1",
+    "Price": "5551321.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.344Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 387,
+    "ProductId": 5270,
+    "Sku": "TRN-5270-V1",
+    "Price": "8901312.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.421Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 388,
+    "ProductId": 5271,
+    "Sku": "TRN-5271-V1",
+    "Price": "5933095.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.483Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 389,
+    "ProductId": 5272,
+    "Sku": "TRN-5272-V1",
+    "Price": "5919281.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.535Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 390,
+    "ProductId": 5273,
+    "Sku": "TRN-5273-V1",
+    "Price": "7688853.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.593Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 391,
+    "ProductId": 5274,
+    "Sku": "TRN-5274-V1",
+    "Price": "4035183.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.643Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 392,
+    "ProductId": 5275,
+    "Sku": "TRN-5275-V1",
+    "Price": "6594016.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.713Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 393,
+    "ProductId": 5276,
+    "Sku": "TRN-5276-V1",
+    "Price": "4303448.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.762Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 394,
+    "ProductId": 5277,
+    "Sku": "TRN-5277-V1",
+    "Price": "6804627.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.823Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 395,
+    "ProductId": 5278,
+    "Sku": "TRN-5278-V1",
+    "Price": "8621648.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.874Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 396,
+    "ProductId": 5279,
+    "Sku": "TRN-5279-V1",
+    "Price": "5360791.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.932Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 397,
+    "ProductId": 5280,
+    "Sku": "TRN-5280-V1",
+    "Price": "3532358.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:45.982Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 398,
+    "ProductId": 5281,
+    "Sku": "TRN-5281-V1",
+    "Price": "6152431.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.042Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 399,
+    "ProductId": 5282,
+    "Sku": "TRN-5282-V1",
+    "Price": "4439490.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.092Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 400,
+    "ProductId": 5283,
+    "Sku": "TRN-5283-V1",
+    "Price": "4894002.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.163Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 401,
+    "ProductId": 5284,
+    "Sku": "TRN-5284-V1",
+    "Price": "9037619.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.231Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 402,
+    "ProductId": 5285,
+    "Sku": "TRN-5285-V1",
+    "Price": "4340631.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.288Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 403,
+    "ProductId": 5286,
+    "Sku": "TRN-5286-V1",
+    "Price": "4005236.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.339Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 404,
+    "ProductId": 5287,
+    "Sku": "TRN-5287-V1",
+    "Price": "9873597.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.398Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 405,
+    "ProductId": 5288,
+    "Sku": "TRN-5288-V1",
+    "Price": "3968951.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.463Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 406,
+    "ProductId": 5289,
+    "Sku": "TRN-5289-V1",
+    "Price": "8515119.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.522Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 407,
+    "ProductId": 5290,
+    "Sku": "TRN-5290-V1",
+    "Price": "5231188.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.608Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 408,
+    "ProductId": 5291,
+    "Sku": "TRN-5291-V1",
+    "Price": "9635682.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.671Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 409,
+    "ProductId": 5292,
+    "Sku": "TRN-5292-V1",
+    "Price": "5701787.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.732Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 410,
+    "ProductId": 5293,
+    "Sku": "TRN-5293-V1",
+    "Price": "5670255.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.827Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 411,
+    "ProductId": 5294,
+    "Sku": "TRN-5294-V1",
+    "Price": "7166146.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.909Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 412,
+    "ProductId": 5295,
+    "Sku": "TRN-5295-V1",
+    "Price": "5481210.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:46.973Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 413,
+    "ProductId": 5296,
+    "Sku": "TRN-5296-V1",
+    "Price": "5570496.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.023Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 414,
+    "ProductId": 5297,
+    "Sku": "TRN-5297-V1",
+    "Price": "18519893.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.080Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 415,
+    "ProductId": 5298,
+    "Sku": "TRN-5298-V1",
+    "Price": "12289220.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.128Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 416,
+    "ProductId": 5299,
+    "Sku": "TRN-5299-V1",
+    "Price": "19425475.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.187Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 417,
+    "ProductId": 5300,
+    "Sku": "TRN-5300-V1",
+    "Price": "29195225.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.236Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 418,
+    "ProductId": 5301,
+    "Sku": "TRN-5301-V1",
+    "Price": "14582300.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.295Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 419,
+    "ProductId": 5302,
+    "Sku": "TRN-5302-V1",
+    "Price": "17789549.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.349Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 420,
+    "ProductId": 5303,
+    "Sku": "TRN-5303-V1",
+    "Price": "18908100.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.408Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 421,
+    "ProductId": 5304,
+    "Sku": "TRN-5304-V1",
+    "Price": "11059240.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.534Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 422,
+    "ProductId": 5305,
+    "Sku": "TRN-5305-V1",
+    "Price": "24368624.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.593Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 423,
+    "ProductId": 5306,
+    "Sku": "TRN-5306-V1",
+    "Price": "24305083.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.645Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 424,
+    "ProductId": 5307,
+    "Sku": "TRN-5307-V1",
+    "Price": "18685985.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.702Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 425,
+    "ProductId": 5308,
+    "Sku": "TRN-5308-V1",
+    "Price": "29072905.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.751Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 426,
+    "ProductId": 5309,
+    "Sku": "TRN-5309-V1",
+    "Price": "25224494.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.814Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 427,
+    "ProductId": 5310,
+    "Sku": "TRN-5310-V1",
+    "Price": "17427603.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.877Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 428,
+    "ProductId": 5311,
+    "Sku": "TRN-5311-V1",
+    "Price": "10212755.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:47.950Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 429,
+    "ProductId": 5312,
+    "Sku": "TRN-5312-V1",
+    "Price": "17729074.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.030Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 430,
+    "ProductId": 5313,
+    "Sku": "TRN-5313-V1",
+    "Price": "29995756.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.091Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 431,
+    "ProductId": 5314,
+    "Sku": "TRN-5314-V1",
+    "Price": "14393275.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.153Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 432,
+    "ProductId": 5315,
+    "Sku": "TRN-5315-V1",
+    "Price": "21620068.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.218Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 433,
+    "ProductId": 5316,
+    "Sku": "TRN-5316-V1",
+    "Price": "29160549.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.270Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 434,
+    "ProductId": 5317,
+    "Sku": "TRN-5317-V1",
+    "Price": "28600225.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.340Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 435,
+    "ProductId": 5318,
+    "Sku": "TRN-5318-V1",
+    "Price": "20372167.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.394Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 436,
+    "ProductId": 5319,
+    "Sku": "TRN-5319-V1",
+    "Price": "26829746.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.453Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 437,
+    "ProductId": 5320,
+    "Sku": "TRN-5320-V1",
+    "Price": "11930167.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.504Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 438,
+    "ProductId": 5321,
+    "Sku": "TRN-5321-V1",
+    "Price": "13050455.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.562Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 439,
+    "ProductId": 5322,
+    "Sku": "TRN-5322-V1",
+    "Price": "21664158.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.613Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 440,
+    "ProductId": 5323,
+    "Sku": "TRN-5323-V1",
+    "Price": "16210100.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.672Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 441,
+    "ProductId": 5324,
+    "Sku": "TRN-5324-V1",
+    "Price": "17212905.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.722Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 442,
+    "ProductId": 5325,
+    "Sku": "TRN-5325-V1",
+    "Price": "23017670.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.782Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 443,
+    "ProductId": 5326,
+    "Sku": "TRN-5326-V1",
+    "Price": "15610573.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.833Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 444,
+    "ProductId": 5327,
+    "Sku": "TRN-5327-V1",
+    "Price": "29730338.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.892Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 445,
+    "ProductId": 5328,
+    "Sku": "TRN-5328-V1",
+    "Price": "21041392.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:48.942Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 446,
+    "ProductId": 5329,
+    "Sku": "TRN-5329-V1",
+    "Price": "10809437.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.000Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 447,
+    "ProductId": 5330,
+    "Sku": "TRN-5330-V1",
+    "Price": "25302752.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.049Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 448,
+    "ProductId": 5331,
+    "Sku": "TRN-5331-V1",
+    "Price": "25634105.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.108Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 449,
+    "ProductId": 5332,
+    "Sku": "TRN-5332-V1",
+    "Price": "12444172.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.167Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 450,
+    "ProductId": 5333,
+    "Sku": "TRN-5333-V1",
+    "Price": "20877903.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.224Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 451,
+    "ProductId": 5334,
+    "Sku": "TRN-5334-V1",
+    "Price": "25593461.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.274Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 452,
+    "ProductId": 5335,
+    "Sku": "TRN-5335-V1",
+    "Price": "9993405.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.335Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 453,
+    "ProductId": 5336,
+    "Sku": "TRN-5336-V1",
+    "Price": "9333596.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.385Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 454,
+    "ProductId": 5337,
+    "Sku": "TRN-5337-V1",
+    "Price": "3257551.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.441Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 455,
+    "ProductId": 5338,
+    "Sku": "TRN-5338-V1",
+    "Price": "9753217.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.492Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 456,
+    "ProductId": 5339,
+    "Sku": "TRN-5339-V1",
+    "Price": "6702171.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.549Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 457,
+    "ProductId": 5340,
+    "Sku": "TRN-5340-V1",
+    "Price": "9197984.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.598Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 458,
+    "ProductId": 5341,
+    "Sku": "TRN-5341-V1",
+    "Price": "6898101.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.657Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 459,
+    "ProductId": 5342,
+    "Sku": "TRN-5342-V1",
+    "Price": "6283332.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.707Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 460,
+    "ProductId": 5343,
+    "Sku": "TRN-5343-V1",
+    "Price": "4407400.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.762Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 461,
+    "ProductId": 5344,
+    "Sku": "TRN-5344-V1",
+    "Price": "7024627.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.816Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 462,
+    "ProductId": 5345,
+    "Sku": "TRN-5345-V1",
+    "Price": "5571407.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.874Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 463,
+    "ProductId": 5346,
+    "Sku": "TRN-5346-V1",
+    "Price": "4098468.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.923Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 464,
+    "ProductId": 5347,
+    "Sku": "TRN-5347-V1",
+    "Price": "9117341.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:49.984Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 465,
+    "ProductId": 5348,
+    "Sku": "TRN-5348-V1",
+    "Price": "4255778.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.036Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 466,
+    "ProductId": 5349,
+    "Sku": "TRN-5349-V1",
+    "Price": "4815984.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.105Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 467,
+    "ProductId": 5350,
+    "Sku": "TRN-5350-V1",
+    "Price": "7238964.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.161Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 468,
+    "ProductId": 5351,
+    "Sku": "TRN-5351-V1",
+    "Price": "7707745.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.219Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 469,
+    "ProductId": 5352,
+    "Sku": "TRN-5352-V1",
+    "Price": "3513745.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.269Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 470,
+    "ProductId": 5353,
+    "Sku": "TRN-5353-V1",
+    "Price": "5537693.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.329Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 471,
+    "ProductId": 5354,
+    "Sku": "TRN-5354-V1",
+    "Price": "5617426.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.382Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 472,
+    "ProductId": 5355,
+    "Sku": "TRN-5355-V1",
+    "Price": "5595459.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.440Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 473,
+    "ProductId": 5356,
+    "Sku": "TRN-5356-V1",
+    "Price": "5223458.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.490Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 474,
+    "ProductId": 5357,
+    "Sku": "TRN-5357-V1",
+    "Price": "4678138.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.548Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 475,
+    "ProductId": 5358,
+    "Sku": "TRN-5358-V1",
+    "Price": "9059698.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.598Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 476,
+    "ProductId": 5359,
+    "Sku": "TRN-5359-V1",
+    "Price": "3687074.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.659Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 477,
+    "ProductId": 5360,
+    "Sku": "TRN-5360-V1",
+    "Price": "5782051.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.707Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 478,
+    "ProductId": 5361,
+    "Sku": "TRN-5361-V1",
+    "Price": "4925678.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.768Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 479,
+    "ProductId": 5362,
+    "Sku": "TRN-5362-V1",
+    "Price": "6463618.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.818Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 480,
+    "ProductId": 5363,
+    "Sku": "TRN-5363-V1",
+    "Price": "4966675.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.878Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 481,
+    "ProductId": 5364,
+    "Sku": "TRN-5364-V1",
+    "Price": "6749342.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.928Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 482,
+    "ProductId": 5365,
+    "Sku": "TRN-5365-V1",
+    "Price": "8506067.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:50.986Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 483,
+    "ProductId": 5366,
+    "Sku": "TRN-5366-V1",
+    "Price": "5427118.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.035Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 484,
+    "ProductId": 5367,
+    "Sku": "TRN-5367-V1",
+    "Price": "9488091.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.110Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 485,
+    "ProductId": 5368,
+    "Sku": "TRN-5368-V1",
+    "Price": "3534452.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.161Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 486,
+    "ProductId": 5369,
+    "Sku": "TRN-5369-V1",
+    "Price": "4342667.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.217Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 487,
+    "ProductId": 5370,
+    "Sku": "TRN-5370-V1",
+    "Price": "4977967.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.269Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 488,
+    "ProductId": 5371,
+    "Sku": "TRN-5371-V1",
+    "Price": "7709871.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.327Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 489,
+    "ProductId": 5372,
+    "Sku": "TRN-5372-V1",
+    "Price": "3613394.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.383Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 490,
+    "ProductId": 5373,
+    "Sku": "TRN-5373-V1",
+    "Price": "6344798.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.443Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 491,
+    "ProductId": 5374,
+    "Sku": "TRN-5374-V1",
+    "Price": "7035832.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.491Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 492,
+    "ProductId": 5375,
+    "Sku": "TRN-5375-V1",
+    "Price": "4088167.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.550Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 493,
+    "ProductId": 5376,
+    "Sku": "TRN-5376-V1",
+    "Price": "5366536.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.604Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 494,
+    "ProductId": 5377,
+    "Sku": "TRN-5377-V1",
+    "Price": "9646752.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.661Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 495,
+    "ProductId": 5378,
+    "Sku": "TRN-5378-V1",
+    "Price": "5866934.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.711Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 496,
+    "ProductId": 5379,
+    "Sku": "TRN-5379-V1",
+    "Price": "4250743.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.769Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 497,
+    "ProductId": 5380,
+    "Sku": "TRN-5380-V1",
+    "Price": "8292556.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.820Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 498,
+    "ProductId": 5381,
+    "Sku": "TRN-5381-V1",
+    "Price": "3059416.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.877Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 499,
+    "ProductId": 5382,
+    "Sku": "TRN-5382-V1",
+    "Price": "8268102.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.928Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 500,
+    "ProductId": 5383,
+    "Sku": "TRN-5383-V1",
+    "Price": "6433373.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:51.989Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 501,
+    "ProductId": 5384,
+    "Sku": "TRN-5384-V1",
+    "Price": "6997410.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.044Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 502,
+    "ProductId": 5385,
+    "Sku": "TRN-5385-V1",
+    "Price": "4453186.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.110Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 503,
+    "ProductId": 5386,
+    "Sku": "TRN-5386-V1",
+    "Price": "7687667.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.162Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 504,
+    "ProductId": 5387,
+    "Sku": "TRN-5387-V1",
+    "Price": "7442719.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.220Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 505,
+    "ProductId": 5388,
+    "Sku": "TRN-5388-V1",
+    "Price": "4554599.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.270Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 506,
+    "ProductId": 5389,
+    "Sku": "TRN-5389-V1",
+    "Price": "3938266.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.330Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 507,
+    "ProductId": 5390,
+    "Sku": "TRN-5390-V1",
+    "Price": "3989837.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.392Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 508,
+    "ProductId": 5391,
+    "Sku": "TRN-5391-V1",
+    "Price": "5345283.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.454Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 509,
+    "ProductId": 5392,
+    "Sku": "TRN-5392-V1",
+    "Price": "4480353.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.504Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 510,
+    "ProductId": 5393,
+    "Sku": "TRN-5393-V1",
+    "Price": "7086662.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.564Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 511,
+    "ProductId": 5394,
+    "Sku": "TRN-5394-V1",
+    "Price": "6974830.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.620Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 512,
+    "ProductId": 5395,
+    "Sku": "TRN-5395-V1",
+    "Price": "3257878.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.677Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 513,
+    "ProductId": 5396,
+    "Sku": "TRN-5396-V1",
+    "Price": "8807763.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.729Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 514,
+    "ProductId": 5397,
+    "Sku": "TRN-5397-V1",
+    "Price": "7199056.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.785Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 515,
+    "ProductId": 5398,
+    "Sku": "TRN-5398-V1",
+    "Price": "7922415.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.841Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 516,
+    "ProductId": 5399,
+    "Sku": "TRN-5399-V1",
+    "Price": "4188061.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.897Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 517,
+    "ProductId": 5400,
+    "Sku": "TRN-5400-V1",
+    "Price": "9013664.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:52.947Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 518,
+    "ProductId": 5401,
+    "Sku": "TRN-5401-V1",
+    "Price": "4580926.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.003Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 519,
+    "ProductId": 5402,
+    "Sku": "TRN-5402-V1",
+    "Price": "8780787.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.053Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 520,
+    "ProductId": 5403,
+    "Sku": "TRN-5403-V1",
+    "Price": "22388794.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.110Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 521,
+    "ProductId": 5404,
+    "Sku": "TRN-5404-V1",
+    "Price": "28816125.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.162Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 522,
+    "ProductId": 5405,
+    "Sku": "TRN-5405-V1",
+    "Price": "22193207.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.222Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 523,
+    "ProductId": 5406,
+    "Sku": "TRN-5406-V1",
+    "Price": "24454329.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.273Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 524,
+    "ProductId": 5407,
+    "Sku": "TRN-5407-V1",
+    "Price": "13740390.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.328Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 525,
+    "ProductId": 5408,
+    "Sku": "TRN-5408-V1",
+    "Price": "12111005.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.380Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 526,
+    "ProductId": 5409,
+    "Sku": "TRN-5409-V1",
+    "Price": "24602209.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.440Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 527,
+    "ProductId": 5410,
+    "Sku": "TRN-5410-V1",
+    "Price": "27882617.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.491Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 528,
+    "ProductId": 5411,
+    "Sku": "TRN-5411-V1",
+    "Price": "27639126.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.550Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 529,
+    "ProductId": 5412,
+    "Sku": "TRN-5412-V1",
+    "Price": "21030896.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.604Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 530,
+    "ProductId": 5413,
+    "Sku": "TRN-5413-V1",
+    "Price": "20964206.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.664Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 531,
+    "ProductId": 5414,
+    "Sku": "TRN-5414-V1",
+    "Price": "28071117.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.715Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 532,
+    "ProductId": 5415,
+    "Sku": "TRN-5415-V1",
+    "Price": "11612831.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.775Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 533,
+    "ProductId": 5416,
+    "Sku": "TRN-5416-V1",
+    "Price": "26752775.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.829Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 534,
+    "ProductId": 5417,
+    "Sku": "TRN-5417-V1",
+    "Price": "23771169.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.890Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 535,
+    "ProductId": 5418,
+    "Sku": "TRN-5418-V1",
+    "Price": "13024880.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.941Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 536,
+    "ProductId": 5419,
+    "Sku": "TRN-5419-V1",
+    "Price": "10354960.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:53.999Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 537,
+    "ProductId": 5420,
+    "Sku": "TRN-5420-V1",
+    "Price": "11431186.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.050Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 538,
+    "ProductId": 5421,
+    "Sku": "TRN-5421-V1",
+    "Price": "25265543.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.108Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 539,
+    "ProductId": 5422,
+    "Sku": "TRN-5422-V1",
+    "Price": "14908760.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.157Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 540,
+    "ProductId": 5423,
+    "Sku": "TRN-5423-V1",
+    "Price": "26980972.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.212Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 541,
+    "ProductId": 5424,
+    "Sku": "TRN-5424-V1",
+    "Price": "20722012.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.266Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 542,
+    "ProductId": 5425,
+    "Sku": "TRN-5425-V1",
+    "Price": "22449487.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.326Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 543,
+    "ProductId": 5426,
+    "Sku": "TRN-5426-V1",
+    "Price": "17119185.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.386Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 544,
+    "ProductId": 5427,
+    "Sku": "TRN-5427-V1",
+    "Price": "29038367.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.463Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 545,
+    "ProductId": 5428,
+    "Sku": "TRN-5428-V1",
+    "Price": "26559834.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.528Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 546,
+    "ProductId": 5429,
+    "Sku": "TRN-5429-V1",
+    "Price": "16151236.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.586Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 547,
+    "ProductId": 5430,
+    "Sku": "TRN-5430-V1",
+    "Price": "13017224.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.653Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 548,
+    "ProductId": 5431,
+    "Sku": "TRN-5431-V1",
+    "Price": "17959277.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.708Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 549,
+    "ProductId": 5432,
+    "Sku": "TRN-5432-V1",
+    "Price": "3622264.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.759Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 550,
+    "ProductId": 5433,
+    "Sku": "TRN-5433-V1",
+    "Price": "6609589.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.819Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 551,
+    "ProductId": 5434,
+    "Sku": "TRN-5434-V1",
+    "Price": "9187235.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.873Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 552,
+    "ProductId": 5435,
+    "Sku": "TRN-5435-V1",
+    "Price": "4076799.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.930Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 553,
+    "ProductId": 5436,
+    "Sku": "TRN-5436-V1",
+    "Price": "8472442.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:54.983Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 554,
+    "ProductId": 5437,
+    "Sku": "TRN-5437-V1",
+    "Price": "5610149.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.047Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 555,
+    "ProductId": 5438,
+    "Sku": "TRN-5438-V1",
+    "Price": "8410459.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.098Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 556,
+    "ProductId": 5439,
+    "Sku": "TRN-5439-V1",
+    "Price": "9821607.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.158Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 557,
+    "ProductId": 5440,
+    "Sku": "TRN-5440-V1",
+    "Price": "5938276.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.209Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 558,
+    "ProductId": 5441,
+    "Sku": "TRN-5441-V1",
+    "Price": "3813449.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.267Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 559,
+    "ProductId": 5442,
+    "Sku": "TRN-5442-V1",
+    "Price": "9182446.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.318Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 560,
+    "ProductId": 5443,
+    "Sku": "TRN-5443-V1",
+    "Price": "6190710.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.384Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 561,
+    "ProductId": 5444,
+    "Sku": "TRN-5444-V1",
+    "Price": "8050799.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.434Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 562,
+    "ProductId": 5445,
+    "Sku": "TRN-5445-V1",
+    "Price": "9964934.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.491Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 563,
+    "ProductId": 5446,
+    "Sku": "TRN-5446-V1",
+    "Price": "8754671.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.540Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 564,
+    "ProductId": 5447,
+    "Sku": "TRN-5447-V1",
+    "Price": "6060161.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.597Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 565,
+    "ProductId": 5448,
+    "Sku": "TRN-5448-V1",
+    "Price": "4890010.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.648Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 566,
+    "ProductId": 5449,
+    "Sku": "TRN-5449-V1",
+    "Price": "6304980.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.706Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 567,
+    "ProductId": 5450,
+    "Sku": "TRN-5450-V1",
+    "Price": "7314021.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.756Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 568,
+    "ProductId": 5451,
+    "Sku": "TRN-5451-V1",
+    "Price": "7104361.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.813Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 569,
+    "ProductId": 5452,
+    "Sku": "TRN-5452-V1",
+    "Price": "5840062.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.864Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 570,
+    "ProductId": 5453,
+    "Sku": "TRN-5453-V1",
+    "Price": "6463426.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.923Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 571,
+    "ProductId": 5454,
+    "Sku": "TRN-5454-V1",
+    "Price": "4672611.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:55.974Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 572,
+    "ProductId": 5455,
+    "Sku": "TRN-5455-V1",
+    "Price": "6994698.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.033Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 573,
+    "ProductId": 5456,
+    "Sku": "TRN-5456-V1",
+    "Price": "7502413.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.084Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 574,
+    "ProductId": 5457,
+    "Sku": "TRN-5457-V1",
+    "Price": "8342239.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.141Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 575,
+    "ProductId": 5458,
+    "Sku": "TRN-5458-V1",
+    "Price": "5338007.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.189Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 576,
+    "ProductId": 5459,
+    "Sku": "TRN-5459-V1",
+    "Price": "7819854.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.245Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 577,
+    "ProductId": 5460,
+    "Sku": "TRN-5460-V1",
+    "Price": "3146511.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.294Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 578,
+    "ProductId": 5461,
+    "Sku": "TRN-5461-V1",
+    "Price": "8067903.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.352Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 579,
+    "ProductId": 5462,
+    "Sku": "TRN-5462-V1",
+    "Price": "9476203.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.403Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 580,
+    "ProductId": 5463,
+    "Sku": "TRN-5463-V1",
+    "Price": "7441548.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.459Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 581,
+    "ProductId": 5464,
+    "Sku": "TRN-5464-V1",
+    "Price": "3991298.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.514Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 582,
+    "ProductId": 5465,
+    "Sku": "TRN-5465-V1",
+    "Price": "8641459.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.575Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 583,
+    "ProductId": 5466,
+    "Sku": "TRN-5466-V1",
+    "Price": "3937275.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.627Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 584,
+    "ProductId": 5467,
+    "Sku": "TRN-5467-V1",
+    "Price": "7736279.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.692Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 585,
+    "ProductId": 5468,
+    "Sku": "TRN-5468-V1",
+    "Price": "6369899.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.743Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 586,
+    "ProductId": 5469,
+    "Sku": "TRN-5469-V1",
+    "Price": "6489859.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.804Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 587,
+    "ProductId": 5470,
+    "Sku": "TRN-5470-V1",
+    "Price": "8269959.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.857Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 588,
+    "ProductId": 5471,
+    "Sku": "TRN-5471-V1",
+    "Price": "5291346.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.917Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 589,
+    "ProductId": 5472,
+    "Sku": "TRN-5472-V1",
+    "Price": "9509078.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:56.968Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 590,
+    "ProductId": 5473,
+    "Sku": "TRN-5473-V1",
+    "Price": "9801330.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.026Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 591,
+    "ProductId": 5474,
+    "Sku": "TRN-5474-V1",
+    "Price": "3228601.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.078Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 592,
+    "ProductId": 5475,
+    "Sku": "TRN-5475-V1",
+    "Price": "8077052.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.135Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 593,
+    "ProductId": 5476,
+    "Sku": "TRN-5476-V1",
+    "Price": "7047097.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.186Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 594,
+    "ProductId": 5477,
+    "Sku": "TRN-5477-V1",
+    "Price": "5566581.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.438Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 595,
+    "ProductId": 5478,
+    "Sku": "TRN-5478-V1",
+    "Price": "3298560.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.489Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 596,
+    "ProductId": 5479,
+    "Sku": "TRN-5479-V1",
+    "Price": "6977335.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.546Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 597,
+    "ProductId": 5480,
+    "Sku": "TRN-5480-V1",
+    "Price": "4282545.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.597Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 598,
+    "ProductId": 5481,
+    "Sku": "TRN-5481-V1",
+    "Price": "4554412.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.654Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 599,
+    "ProductId": 5482,
+    "Sku": "TRN-5482-V1",
+    "Price": "3037650.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.704Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 600,
+    "ProductId": 5483,
+    "Sku": "TRN-5483-V1",
+    "Price": "9124867.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.759Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 601,
+    "ProductId": 5484,
+    "Sku": "TRN-5484-V1",
+    "Price": "9751427.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.811Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 602,
+    "ProductId": 5485,
+    "Sku": "TRN-5485-V1",
+    "Price": "7471545.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.869Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 603,
+    "ProductId": 5486,
+    "Sku": "TRN-5486-V1",
+    "Price": "6669316.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.919Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 604,
+    "ProductId": 5487,
+    "Sku": "TRN-5487-V1",
+    "Price": "8281311.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:57.978Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 605,
+    "ProductId": 5488,
+    "Sku": "TRN-5488-V1",
+    "Price": "5159421.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.031Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 606,
+    "ProductId": 5489,
+    "Sku": "TRN-5489-V1",
+    "Price": "4356987.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.087Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 607,
+    "ProductId": 5490,
+    "Sku": "TRN-5490-V1",
+    "Price": "6486600.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.137Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 608,
+    "ProductId": 5491,
+    "Sku": "TRN-5491-V1",
+    "Price": "8608611.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.200Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 609,
+    "ProductId": 5492,
+    "Sku": "TRN-5492-V1",
+    "Price": "9416593.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.250Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 610,
+    "ProductId": 5493,
+    "Sku": "TRN-5493-V1",
+    "Price": "4315841.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.308Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 611,
+    "ProductId": 5494,
+    "Sku": "TRN-5494-V1",
+    "Price": "5456228.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.358Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 612,
+    "ProductId": 5495,
+    "Sku": "TRN-5495-V1",
+    "Price": "3188074.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.414Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 613,
+    "ProductId": 5496,
+    "Sku": "TRN-5496-V1",
+    "Price": "4705870.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.467Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 614,
+    "ProductId": 5497,
+    "Sku": "TRN-5497-V1",
+    "Price": "8034376.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.525Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 615,
+    "ProductId": 5498,
+    "Sku": "TRN-5498-V1",
+    "Price": "3403424.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.575Z",
+    "VariantSpecsJson": null
+  },
+  {
+    "Id": 616,
+    "ProductId": 5499,
+    "Sku": "TRN-5499-V1",
+    "Price": "5718449.00",
+    "Stock": 50,
+    "Status": "available",
+    "CreatedAt": "2026-05-19T00:15:58.635Z",
+    "VariantSpecsJson": null
+  }
+]

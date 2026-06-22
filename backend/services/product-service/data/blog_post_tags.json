@@ -1,0 +1,192 @@
+[
+  {
+    "Id": 1,
+    "BlogPostId": 1,
+    "Tag": "review"
+  },
+  {
+    "Id": 2,
+    "BlogPostId": 1,
+    "Tag": "iphone"
+  },
+  {
+    "Id": 3,
+    "BlogPostId": 1,
+    "Tag": "apple"
+  },
+  {
+    "Id": 4,
+    "BlogPostId": 1,
+    "Tag": "flagship"
+  },
+  {
+    "Id": 5,
+    "BlogPostId": 1,
+    "Tag": "smartphone"
+  },
+  {
+    "Id": 6,
+    "BlogPostId": 2,
+    "Tag": "comparison"
+  },
+  {
+    "Id": 7,
+    "BlogPostId": 2,
+    "Tag": "laptop"
+  },
+  {
+    "Id": 8,
+    "BlogPostId": 2,
+    "Tag": "macbook"
+  },
+  {
+    "Id": 9,
+    "BlogPostId": 2,
+    "Tag": "dell"
+  },
+  {
+    "Id": 10,
+    "BlogPostId": 3,
+    "Tag": "review"
+  },
+  {
+    "Id": 11,
+    "BlogPostId": 3,
+    "Tag": "samsung"
+  },
+  {
+    "Id": 12,
+    "BlogPostId": 3,
+    "Tag": "android"
+  },
+  {
+    "Id": 13,
+    "BlogPostId": 3,
+    "Tag": "flagship"
+  },
+  {
+    "Id": 14,
+    "BlogPostId": 3,
+    "Tag": "camera"
+  },
+  {
+    "Id": 15,
+    "BlogPostId": 4,
+    "Tag": "gaming"
+  },
+  {
+    "Id": 16,
+    "BlogPostId": 4,
+    "Tag": "peripherals"
+  },
+  {
+    "Id": 17,
+    "BlogPostId": 4,
+    "Tag": "accessories"
+  },
+  {
+    "Id": 18,
+    "BlogPostId": 4,
+    "Tag": "top-list"
+  },
+  {
+    "Id": 19,
+    "BlogPostId": 5,
+    "Tag": "comparison"
+  },
+  {
+    "Id": 20,
+    "BlogPostId": 5,
+    "Tag": "tablet"
+  },
+  {
+    "Id": 21,
+    "BlogPostId": 5,
+    "Tag": "budget"
+  },
+  {
+    "Id": 22,
+    "BlogPostId": 5,
+    "Tag": "xiaomi"
+  },
+  {
+    "Id": 23,
+    "BlogPostId": 5,
+    "Tag": "ipad"
+  },
+  {
+    "Id": 24,
+    "BlogPostId": 6,
+    "Tag": "guide"
+  },
+  {
+    "Id": 25,
+    "BlogPostId": 6,
+    "Tag": "student"
+  },
+  {
+    "Id": 26,
+    "BlogPostId": 6,
+    "Tag": "laptop"
+  },
+  {
+    "Id": 30,
+    "BlogPostId": 5,
+    "Tag": "comparison"
+  },
+  {
+    "Id": 31,
+    "BlogPostId": 5,
+    "Tag": "tablet"
+  },
+  {
+    "Id": 32,
+    "BlogPostId": 5,
+    "Tag": "xiaomi"
+  },
+  {
+    "Id": 33,
+    "BlogPostId": 5,
+    "Tag": "ipad"
+  },
+  {
+    "Id": 34,
+    "BlogPostId": 5,
+    "Tag": "new"
+  },
+  {
+    "Id": 62,
+    "BlogPostId": 9,
+    "Tag": "song"
+  },
+  {
+    "Id": 63,
+    "BlogPostId": 9,
+    "Tag": "mmc"
+  },
+  {
+    "Id": 64,
+    "BlogPostId": 9,
+    "Tag": "old"
+  },
+  {
+    "Id": 65,
+    "BlogPostId": 9,
+    "Tag": "nhan ma"
+  },
+  {
+    "Id": 66,
+    "BlogPostId": 9,
+    "Tag": "lo vi song"
+  },
+  {
+    "Id": 67,
+    "BlogPostId": 6,
+    "Tag": "caigi"
+  },
+  {
+    "Id": 68,
+    "BlogPostId": 10,
+    "Tag": "iphone"
+  }
+]
