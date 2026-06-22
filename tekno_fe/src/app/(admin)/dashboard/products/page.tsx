@@ -195,7 +195,7 @@ const loadAll = async () => {
 const loadProducts = async () => {
   try {
     // Request với PageSize lớn để lấy toàn bộ sản phẩm
-    const res = await getAdminProducts({ pageSize: 10000 });
+    const res = await getAdminProducts({ size: 10000 });
     
     console.log("📦 Raw response:", res);
     
@@ -274,54 +274,55 @@ const loadProducts = async () => {
         return;
       }
 
-      const fd = new FormData();
-      fd.append("Name", createData.name);
-      fd.append("Slug", createData.slug);
-      fd.append("CategoryId", String(createData.categoryId));
-      fd.append("BrandId", String(createData.brandId));
-      if (createData.basePrice) fd.append("BasePrice", String(createData.basePrice));
-      if (createData.discountPercent) fd.append("DiscountPercent", String(createData.discountPercent));
-      if (createData.overview) fd.append("Overview", createData.overview);
+      const payload: any = {
+        name: createData.name,
+        slug: createData.slug,
+        categoryId: Number(createData.categoryId),
+        brandId: Number(createData.brandId),
+        basePrice: Number(createData.basePrice),
+        discountPercent: Number(createData.discountPercent),
+        overview: createData.overview,
+      };
 
-      for (const f of createData.images) fd.append("Images", f);
+      if (specifications && specifications.length > 0) {
+        payload.specs = specifications;
+      }
 
-// ✅ FIX: Gửi Specifications theo format ASP.NET Core Model Binding
-if (specifications && specifications.length > 0) {
-  specifications.forEach((spec, index) => {
-    fd.append(`Specifications[${index}].AttributeId`, String(spec.attributeId));
-    fd.append(`Specifications[${index}].AttributeName`, spec.attributeName);
-    
-    if (spec.values && spec.values.length > 0) {
-      spec.values.forEach((val, valIdx) => {
-        fd.append(`Specifications[${index}].Values[${valIdx}]`, val);
-      });
-    }
-  });
-  console.log(`📋 Added ${specifications.length} specifications to FormData`);
-}
-
-// ✅ FIX: Gửi Variants theo format ASP.NET Core Model Binding
-if (variants && variants.length > 0) {
-  variants.forEach((variant, index) => {
-    fd.append(`Variants[${index}].Sku`, variant.sku);
-    fd.append(`Variants[${index}].Price`, String(variant.price));
-    fd.append(`Variants[${index}].Stock`, String(variant.stock));
-    fd.append(`Variants[${index}].Status`, variant.status || "available");
-    
-    if (variant.attributes && variant.attributes.length > 0) {
-      variant.attributes.forEach((attr, attrIdx) => {
-        fd.append(`Variants[${index}].Attributes[${attrIdx}].AttributeId`, String(attr.attributeId));
-        fd.append(`Variants[${index}].Attributes[${attrIdx}].Value`, attr.value);
-        if (attr.attributeName) {
-          fd.append(`Variants[${index}].Attributes[${attrIdx}].AttributeName`, attr.attributeName);
+      const res: any = await createAdminProduct(payload);
+      const newProductId = res?.data?.id || res?.id;
+      
+      if (newProductId) {
+        // Upload images
+        for (let i = 0; i < createData.images.length; i++) {
+          try {
+            await uploadImage(createData.images[i], newProductId, i === 0);
+          } catch (e) {
+            console.error("Failed to upload image", e);
+          }
         }
-      });
-    }
-  });
-  console.log(`📦 Added ${variants.length} variants to FormData`);
-}
-
-      await createAdminProduct(fd);
+        
+        // Create variants
+        if (variants && variants.length > 0) {
+          for (const variant of variants) {
+            try {
+              const variantPayload = {
+                productId: newProductId,
+                sku: variant.sku,
+                price: variant.price,
+                stock: variant.stock,
+                status: variant.status || "available",
+                attributes: variant.attributes.map((attr: any) => ({
+                  name: attr.attributeName || `Attribute ${attr.attributeId}`,
+                  value: String(Array.isArray(attr.value) ? attr.value[0] || '' : attr.value)
+                }))
+              };
+              await createProductVariant(variantPayload);
+            } catch (e) {
+              console.error(`Failed to create variant ${variant.sku}:`, e);
+            }
+          }
+        }
+      }
 
       await loadAll();
       setCurrentPage(1);
@@ -523,39 +524,28 @@ const handleEditSave = async () => {
     console.log("Variants to save:", variants);
 
     // ✅ STEP 1: Update Product Basic Info
-    const productForm = new FormData();
-    productForm.append("Id", String(editData.id));
-    productForm.append("Name", editData.name);
-    productForm.append("Slug", editData.slug);
-    productForm.append("CategoryId", String(editData.categoryId));
-    productForm.append("BrandId", String(editData.brandId));
-    productForm.append("Status", editData.status || "available");
-    productForm.append("BasePrice", String(editData.basePrice || 0));
-    productForm.append("Description", editData.description || "");
-    productForm.append("LongDescription", editData.longDescription || "");
-    productForm.append("WarrantyInfo", editData.warrantyInfo || "");
-    productForm.append("Overview", editData.overview || "");
-    productForm.append("DiscountPercent", String(editData.discountPercent || 0));
+    const payload: any = {
+      id: editData.id,
+      name: editData.name,
+      slug: editData.slug,
+      categoryId: Number(editData.categoryId),
+      brandId: Number(editData.brandId),
+      status: editData.status || "available",
+      basePrice: Number(editData.basePrice || 0),
+      description: editData.description || "",
+      longDescription: editData.longDescription || "",
+      warrantyInfo: editData.warrantyInfo || "",
+      overview: editData.overview || "",
+      discountPercent: Number(editData.discountPercent || 0),
+    };
 
-    // ✅ Add Specifications using array format
+    // ✅ Add Specifications
     if (specifications && specifications.length > 0) {
-      console.log("📋 Specifications before save:", specifications);
-
-      specifications.forEach((spec, index) => {
-        productForm.append(`Specifications[${index}].AttributeId`, String(spec.attributeId));
-        productForm.append(`Specifications[${index}].AttributeName`, spec.attributeName);
-        
-        if (spec.values && spec.values.length > 0) {
-          spec.values.forEach((val, valIdx) => {
-            productForm.append(`Specifications[${index}].Values[${valIdx}]`, val);
-          });
-        }
-      });
-      console.log(`📋 Added ${specifications.length} specifications to FormData`);
+      payload.specs = specifications;
     }
 
     console.log("📤 Sending product info update...");
-    const updateResponse = await updateAdminProduct(editData.id, productForm);
+    const updateResponse = await updateAdminProduct(editData.id, payload);
     console.log("✅ Product info updated:", updateResponse);
 
 // ✅ STEP 2: Update/Create Variants individually

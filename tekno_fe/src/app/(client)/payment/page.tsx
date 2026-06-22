@@ -338,7 +338,7 @@ export default function PaymentPage() {
                   <div key={it.id} className="flex items-center gap-3">
                     <div className="w-16 h-16 rounded-md bg-gray-100 overflow-hidden">
                       <Image
-                        src={it.product.primaryImagePath}
+                        src={it.product.primaryImageUrl ?? "/images/sample/product.jpg"}
                         alt={it.product.slug}
                         width={64}
                         height={64}

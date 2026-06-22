@@ -4,6 +4,7 @@ import ProductCard from "@/components/product/ProductCard";
 import { Breadcrumb } from "@/components/share/breadcumbCustom";
 import Title from "@/components/share/Title";
 import { getBlogDetail, getBlogsRecent } from "@/services/blogs";
+import { fromListItem } from "@/lib/productAdapter";
 import Image from "next/image";
 import React from "react";
 
@@ -72,7 +73,7 @@ export default async function BlogDetail({
 
       <div className="grid grid-cols-3 gap-5">
         {blog.relatedProducts?.map((p) => (
-          <ProductCard product={p} />
+          <ProductCard key={p.id} product={fromListItem(p as any)} />
         ))}
       </div>
     </Container>

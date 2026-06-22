@@ -432,7 +432,7 @@ services:
       - ecommerce-net
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "--spider", "http://localhost:8080/health"]
+      test: ["CMD", "wget", "-qO-", "--spider", "http://127.0.0.1:8080/health"]
       interval: 10s
       timeout: 5s
       retries: 3

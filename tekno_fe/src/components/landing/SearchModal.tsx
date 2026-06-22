@@ -6,8 +6,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { getProductsList } from "@/services/products";
-import { Product } from "@/type/product";
+import { searchProducts } from "@/services/search";
+import { fromSearchResult } from "@/lib/productAdapter";
+import { ProductCard as ProductCardType } from "@/type/product";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -45,17 +46,18 @@ export default function SearchModal({
 
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState<Product[]>();
+  const [products, setProducts] = useState<ProductCardType[]>();
 
   useEffect(() => {
     const fecthProductList = async () => {
       setLoading(true);
       try {
-        const res = await getProductsList({
-          keyword: input,
+        const res = await searchProducts({
+          q: input,
+          size: 8,
         });
 
-        setProducts(res.data);
+        setProducts(res.content.map(fromSearchResult));
         //setTotalRecords(res.totalRecords);
       } catch (error) {
         console.error("Product fetch error", error);

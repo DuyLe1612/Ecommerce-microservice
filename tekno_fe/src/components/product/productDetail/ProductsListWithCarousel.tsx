@@ -1,4 +1,4 @@
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
 import React from "react";
 import {
   Carousel,
@@ -12,7 +12,7 @@ import ProductCard from "../ProductCard";
 export default function ProductsListWithCarousel({
   products,
 }: {
-  products: Product[];
+  products: ProductCardType[];
 }) {
   return (
     <div>

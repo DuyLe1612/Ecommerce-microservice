@@ -1,51 +1,81 @@
-// export interface Product {
-//   id: number;
-//   name: string;
-//   slug: string;
-//   basePrice: number;
-//   overview: string;
-//   brandName: string;
-//   categoryName: string;
-//   finalPrice: number;
-//   discountPercent: number | null;
-//   primaryImagePath: string;
-// }
-
-
-
-export interface Product {
+// For product-service public detail endpoint
+export interface ProductDetail {
   id: number;
   name: string;
   slug: string;
-  brandName: string;
-  categoryName: string;
+  description: string;
   basePrice: number;
   discountPercent: number | null;
-  primaryImagePath: string;
-  finalPrice: number;
-  overview: string;
-  rating: number;
-  description: string;
-  warrantyInfo: string | null;
-  totalSold: number;
-  averageRating: number;
-  specs: {
-    name: string;
-    value: string[];
-  }[];
-  images: string[];
+  status: string;
+  images: ProductImage[];
   variants: ProductVariant[];
-  // variants: {
-  //   id: number;
-  //   sku: string;
-  //   price: number;
-  //   stock: number; // số lượng
-  //   attributes: VariantAttribute[];
-  //   // attributes: {
-  //   //   name: string;
-  //   //   value: string[]; // mảng string
-  //   // }[];
-  // }[];
+  category: { id: number; name: string; slug: string };
+  brand: { id: number; name: string; slug: string; logoUrl?: string };
+  overview: string;
+  specs: any;
+  averageRating: number;
+  totalReviews: number;
+  totalSold: number;
+  primaryImageUrl?: string;
+}
+
+export interface ProductImage {
+  id: number;
+  imageUrl: string;
+  isPrimary: boolean;
+  sortOrder: number;
+}
+
+// For product-service public list endpoint
+export interface ProductListItem {
+  id: number;
+  name: string;
+  slug: string;
+  basePrice: number;
+  discountPercent: number | null;
+  primaryImageUrl: string;
+  brandName: string;
+  categoryName: string;
+  averageRating: number;
+  status: string;
+}
+
+// For search-service
+export interface ProductSearchResult {
+  id: string;
+  slug: string;
+  name: string;
+  categoryId: string;
+  categoryName: string;
+  brandId: string;
+  brandName: string;
+  basePrice: number;
+  minVariantPrice: number;
+  discountPercent: number | null;
+  primaryImageUrl: string;
+  averageRating: number;
+  totalReviews: number;
+  status: string;
+}
+
+export interface PageResponse<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+}
+
+// Unified card type (adapter output)
+export interface ProductCard {
+  id: number;
+  name: string;
+  slug: string;
+  basePrice: number;
+  finalPrice: number;
+  discountPercent: number | null;
+  primaryImagePath: string;
+  averageRating: number;
 }
 
 export type ProductVariant = {
@@ -56,9 +86,11 @@ export type ProductVariant = {
   attributes: VariantAttribute[];
 };
 
-
 export type VariantAttribute = {
   id: number;
   name: string;
   value: string[];
 };
+
+// Keep backward compat alias
+export type Product = ProductListItem;

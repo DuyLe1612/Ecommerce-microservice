@@ -73,6 +73,8 @@ public class ProductQueryUseCase {
             .filter(p -> p != null)
             .min(java.math.BigDecimal::compareTo)
             .ifPresent(r::setMinVariantPrice);
+        r.setDiscountPercent(e.getDiscountPercent());
+        r.setAverageRating(e.getAverageRating());
         return r;
     }
 

@@ -28,7 +28,7 @@ export interface CreateAttributeRequest {
 
 export async function getCategoriesList(): Promise<Category[]> {
   try {
-    const res = await fetch (`${API_BASE}/admin/categories/list`, {
+    const res = await fetch(`${API_BASE}/categories/list`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -80,18 +80,18 @@ export async function getCategoriesTree(): Promise<Category[]> {
   }
 }
 
-export async function createCategory(fd: FormData) {
+export async function createCategory(data: { name: string; slug?: string; parentId?: number | null } | FormData) {
   try {
-    return await post(`${API_BASE}/admin/categories/create`, fd);
+    return await post(`${API_BASE}/admin/categories`, data);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;
   }
 }
 
-export async function updateCategory(fd: FormData) {
+export async function updateCategory(id: number, data?: { name?: string; slug?: string; parentId?: number | null } | FormData) {
   try {
-    return await put(`${API_BASE}/admin/categories/update`, fd);
+    return await put(`${API_BASE}/admin/categories/${id}`, data);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;
@@ -100,10 +100,7 @@ export async function updateCategory(fd: FormData) {
 
 export async function deleteCategory(id: number) {
   try {
-    return await del(`${API_BASE}/admin/categories/delete`, {
-      body: JSON.stringify({ Id: id }),
-      headers: { "Content-Type": "application/json" },
-    });
+    return await del(`${API_BASE}/admin/categories/${id}`);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;

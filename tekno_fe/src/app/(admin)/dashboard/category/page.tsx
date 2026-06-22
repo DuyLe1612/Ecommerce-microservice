@@ -293,7 +293,7 @@ const flattenedCategories = useMemo(() => {
         fd.append("ImageFile", editData.imageFile);
       }
 
-      await updateCategory(fd);
+      await updateCategory(editData.id, fd);
       await loadCategoriesTree();
       
       setOpenEdit(false);

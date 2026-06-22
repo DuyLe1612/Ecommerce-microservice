@@ -1,21 +1,22 @@
 "use client";
 import { getProductsList } from "@/services/products";
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
+import { fromListItem } from "@/lib/productAdapter";
 import { ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../product/ProductCard";
 import ViewAllButton from "../share/ViewAllButton";
 
 export default function NewProducts() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductCardType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
     (async () => {
       try {
-        const res = await getProductsList({ sortBy: "created_desc" });
-        if (mounted) setProducts(res.data ?? []);
+        const res = await getProductsList({ sortBy: "createdAt", sortDir: "DESC" });
+        if (mounted) setProducts(res.content ? res.content.map(fromListItem) : []);
       } catch (e) {
         console.error("error in fetching new products", e);
       } finally {

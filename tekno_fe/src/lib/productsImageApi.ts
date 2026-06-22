@@ -1,5 +1,6 @@
 /* src/lib/productsImageApi.ts */
-const BASE = "http://localhost:5000/api/admin/products";
+import { API_BASE_URL } from "./apiConfig";
+const BASE = `${API_BASE_URL}/admin/products`;
 
 type UploadResult = {
   id: number;
@@ -19,9 +20,9 @@ async function handleJsonResponse(res: Response) {
 
 export async function uploadImage(file: File, productId: number, isPrimary: boolean = false): Promise<UploadResult> {
   const fd = new FormData();
-  fd.append("ProductId", String(productId));
-  fd.append("ImageFile", file);
-  fd.append("IsPrimary", String(isPrimary));
+  fd.append("productId", String(productId));
+  fd.append("file", file);
+  fd.append("isPrimary", String(isPrimary));
 
   const res = await fetch(`${BASE}/images`, {
     method: "POST",

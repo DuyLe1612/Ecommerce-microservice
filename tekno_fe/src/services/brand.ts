@@ -2,7 +2,7 @@ import { get, postForm, put, del, API_BASE } from "@/lib/api";
 
 export async function getBrandList() {
   try {
-    return await get(`${API_BASE}/admin/brands/list`, { cache: "no-store" });
+    return await get(`${API_BASE}/brands/list`, { cache: "no-store" });
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;

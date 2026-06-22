@@ -10,7 +10,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.StringJoiner;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.example.product.infrastructure.persistence.entity.BlogPostTagJpaEntity;
 import com.example.product.infrastructure.persistence.repository.BlogPostTagRepository;
@@ -24,6 +28,18 @@ public class AdminBlogController {
 
     private final BlogRepository blogRepository;
     private final BlogPostTagRepository blogPostTagRepository;
+
+    @GetMapping
+    public ApiResponse<Object> listBlogs(
+            @RequestParam(required = false) String status,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        if (status != null && !status.isBlank()) {
+            return ApiResponse.success(blogRepository.findAllByStatusOrderByCreatedAtDesc(status, pageable));
+        }
+        return ApiResponse.success(blogRepository.findAllByOrderByCreatedAtDesc(pageable));
+    }
 
     @GetMapping("/{id}")
     public ApiResponse<Object> getBlog(@PathVariable Long id) {

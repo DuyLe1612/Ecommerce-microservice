@@ -1,17 +1,17 @@
-import { Product } from '@/type/product'
+import { ProductCard } from '@/type/product'
 import { Item } from '@radix-ui/react-accordion';
 import { steps } from 'motion/react';
 import { create } from 'zustand'
 import {persist} from 'zustand/middleware'
 
 export interface CartItem{
-    product: Product;
+    product: ProductCard;
     quantity: number;
 }
 
 export interface StoreState{
     items: CartItem[];
-    addItem: (product: Product) => void;
+    addItem: (product: ProductCard) => void;
     removeItem: (productId: number) => void;
     deleteCartProduct: (productId: number) => void;
     resetCart: () => void;
@@ -20,8 +20,8 @@ export interface StoreState{
     getItemCount: (productId: number) => number;
     getGroupItems: () => CartItem[];
     //favor
-    favorProducts: Product[];
-    addToFavor: (product: Product) => Promise<void>;
+    favorProducts: ProductCard[];
+    addToFavor: (product: ProductCard) => Promise<void>;
     removeFavor: (productId: number) => void;
     resetFavor: () => void
 }

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
 import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import AddToFavorButton from "./AddToFavorButton";
 import { Star } from "lucide-react";
@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import FormattedPriced from "../share/FormattedPriced";
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductCardType;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {

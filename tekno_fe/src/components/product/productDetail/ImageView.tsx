@@ -4,12 +4,14 @@ import Image from "next/image";
 import React, { useState } from "react";
 import logo from "@/asset/MainLogo.png";
 
+import { ProductImage } from "@/type/product";
+
 interface Props {
-  images?: string[];
+  images?: ProductImage[];
   isStock?: boolean;
 }
 export default function ImageView({ images = [], isStock }: Props) {
-  const [active, setActive] = useState(images[0]);
+  const [active, setActive] = useState(images.length ? images[0].imageUrl : logo.src);
   return (
     <div className="w-full md:w-1/2 space-y-2 md:space-y-4">
       <AnimatePresence mode="wait">
@@ -36,14 +38,14 @@ export default function ImageView({ images = [], isStock }: Props) {
       <div className="grid grid-cols-6 gap-4 h-20 md:h-24">
         {images.map((image) => (
           <button
-            key={image}
-            onClick={() => setActive(image)}
+            key={image.id}
+            onClick={() => setActive(image.imageUrl)}
             className={`h-full items-center border rounded-md overflow-hidden ${
-              active === image ? "border-gray-600 opacity-100" : "opacity-80"
+              active === image.imageUrl ? "border-gray-600 opacity-100" : "opacity-80"
             }`}
           >
             <Image
-              src={image}
+              src={image.imageUrl}
               alt="image"
               width={100}
               height={100}

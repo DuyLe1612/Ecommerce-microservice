@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { Product } from "@/type/product";
+import { ProductDetail } from "@/type/product";
 import { useCart } from "@/hook/useCart";
 import { toast } from "sonner";
 
@@ -10,8 +10,8 @@ export default function AddToCartButton({
   selectedVariant, // prop variant đã chọn
   className,
 }: {
-  product: Product;
-  selectedVariant?: Product["variants"][number] | null;
+  product: ProductDetail;
+  selectedVariant?: ProductDetail["variants"][number] | null;
   className?: string;
 }) {
   const { addToCart, getItemCount } = useCart();

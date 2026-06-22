@@ -1,6 +1,7 @@
 "use client";
 import { getProductsList } from "@/services/products";
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
+import { fromListItem } from "@/lib/productAdapter";
 import { ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../product/ProductCard";
@@ -9,13 +10,12 @@ import ViewAllButton from "../share/ViewAllButton";
 
 export default function BestSell() {
   const router = useRouter();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductCardType[]>([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await getProductsList({ sortBy: "sold" });
-        console.log(res);
-        setProducts(res.data);
+        const res = await getProductsList({ sortBy: "totalSold", sortDir: "DESC" });
+        setProducts(res.content.slice(0, 5).map(fromListItem) || []);
       } catch (error) {
         console.log("error in fetching new products", error);
       }
