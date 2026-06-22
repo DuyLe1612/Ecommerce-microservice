@@ -24,6 +24,16 @@ public class ProductInternalController {
     private final GetProductBySlugUseCase getProductBySlugUseCase;
     private final StockManagementUseCase stockManagementUseCase;
     private final SpringDataProductRepository springDataProductRepository;
+    private final com.example.product.application.usecase.ProductQueryUseCase productQueryUseCase;
+
+    // Get product index feed for search-service
+    @GetMapping("/index-feed")
+    public ResponseEntity<org.springframework.data.domain.Page<com.example.product.application.usecase.ProductQueryUseCase.ProductIndexFeedResponse>> getIndexFeed(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) java.time.LocalDateTime updatedAfter) {
+        return ResponseEntity.ok(productQueryUseCase.getIndexFeed(updatedAfter, page, size));
+    }
 
     @GetMapping("/{slug}")
     public ApiResponse<ProductDetailResponse> getProductBySlugInternal(@PathVariable String slug) {
@@ -124,4 +134,5 @@ public class ProductInternalController {
     public ResponseEntity<Boolean> productExists(@PathVariable Long productId) {
         return ResponseEntity.ok(springDataProductRepository.existsById(productId));
     }
+
 }

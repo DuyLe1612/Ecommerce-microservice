@@ -138,4 +138,45 @@ public class ProductQueryUseCase {
         r.setTotalReviews(e.getTotalReviews());
         return r;
     }
+
+    public record ProductIndexFeedResponse(
+        Long id, String slug, String name, String description, java.math.BigDecimal basePrice,
+        java.math.BigDecimal discountPercent, String status, Long categoryId, String categoryName,
+        Long brandId, String brandName, com.fasterxml.jackson.databind.JsonNode specs, String primaryImageUrl,
+        java.math.BigDecimal minVariantPrice, Double averageRating, Integer totalReviews,
+        java.time.LocalDateTime createdAt, java.time.LocalDateTime updatedAt
+    ) {}
+
+    public Page<ProductIndexFeedResponse> getIndexFeed(java.time.LocalDateTime updatedAfter, int page, int size) {
+        if (updatedAfter == null) {
+            updatedAfter = java.time.LocalDateTime.of(1970, 1, 1, 0, 0);
+        }
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "id"));
+        return productRepository.findAllForIndexFeed(updatedAfter, pageable).map(e -> {
+            String catName = categoryRepository.findById(e.getCategoryId()).map(c -> c.getName()).orElse(null);
+            String brndName = brandRepository.findById(e.getBrandId()).map(b -> b.getName()).orElse(null);
+            String primaryImg = e.getImages().stream()
+                .filter(img -> Boolean.TRUE.equals(img.getIsPrimary()))
+                .findFirst()
+                .map(img -> img.getImageUrl())
+                .orElse(null);
+            java.math.BigDecimal minPrice = e.getVariants().stream()
+                .map(v -> v.getPrice())
+                .filter(p -> p != null)
+                .min(java.math.BigDecimal::compareTo)
+                .orElse(null);
+            String shortDesc = e.getDescription();
+            if (shortDesc != null && shortDesc.length() > 200) {
+                shortDesc = shortDesc.substring(0, 197) + "...";
+            }
+
+            return new ProductIndexFeedResponse(
+                e.getId(), e.getSlug(), e.getName(), shortDesc, e.getBasePrice(),
+                e.getDiscountPercent(), e.getStatus(), e.getCategoryId(), catName,
+                e.getBrandId(), brndName, e.getSpecs(), primaryImg,
+                minPrice, e.getAverageRating(), e.getTotalReviews(),
+                e.getCreatedAt(), e.getUpdatedAt()
+            );
+        });
+    }
 }

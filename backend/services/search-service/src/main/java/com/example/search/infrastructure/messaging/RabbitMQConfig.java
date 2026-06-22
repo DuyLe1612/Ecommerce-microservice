@@ -1,7 +1,8 @@
 package com.example.search.infrastructure.messaging;
 
-import com.example.search.domain.SearchConstants;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
@@ -10,68 +11,61 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
+    public static final String PRODUCT_EXCHANGE = "product.events";
+    public static final String CATALOG_EXCHANGE = "catalog.events";
+    
+    public static final String PRODUCT_QUEUE = "search-service.product.queue";
+    public static final String CATALOG_QUEUE = "search-service.catalog.queue";
+
+    @Bean
+    public MessageConverter jsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setMessageConverter(jsonMessageConverter());
+        return template;
+    }
+
     @Bean
     public TopicExchange productExchange() {
-        return new TopicExchange(SearchConstants.EXCHANGE_PRODUCT_EVENTS);
+        return new TopicExchange(PRODUCT_EXCHANGE);
     }
 
     @Bean
-    public TopicExchange promotionExchange() {
-        return new TopicExchange(SearchConstants.EXCHANGE_PROMOTION_EVENTS);
+    public TopicExchange catalogExchange() {
+        return new TopicExchange(CATALOG_EXCHANGE);
     }
 
     @Bean
-    public Queue productCreatedQueue() {
-        return new Queue(SearchConstants.QUEUE_PRODUCT_CREATED);
+    public Queue productQueue() {
+        return new Queue(PRODUCT_QUEUE, true);
     }
 
     @Bean
-    public Queue productUpdatedQueue() {
-        return new Queue(SearchConstants.QUEUE_PRODUCT_UPDATED);
+    public Queue catalogQueue() {
+        return new Queue(CATALOG_QUEUE, true);
     }
 
     @Bean
-    public Queue productDeletedQueue() {
-        return new Queue(SearchConstants.QUEUE_PRODUCT_DELETED);
+    public Binding productCreatedBinding(Queue productQueue, TopicExchange productExchange) {
+        return BindingBuilder.bind(productQueue).to(productExchange).with("product.created");
     }
 
     @Bean
-    public Queue promotionActivatedQueue() {
-        return new Queue(SearchConstants.QUEUE_PROMOTION_ACTIVATED);
+    public Binding productUpdatedBinding(Queue productQueue, TopicExchange productExchange) {
+        return BindingBuilder.bind(productQueue).to(productExchange).with("product.updated");
     }
 
     @Bean
-    public Queue promotionPausedQueue() {
-        return new Queue(SearchConstants.QUEUE_PROMOTION_PAUSED);
+    public Binding productDeletedBinding(Queue productQueue, TopicExchange productExchange) {
+        return BindingBuilder.bind(productQueue).to(productExchange).with("product.deleted");
     }
 
     @Bean
-    public Binding bindProductCreated(TopicExchange productExchange, Queue productCreatedQueue) {
-        return BindingBuilder.bind(productCreatedQueue).to(productExchange).with(SearchConstants.ROUTING_KEY_PRODUCT_CREATED);
-    }
-
-    @Bean
-    public Binding bindProductUpdated(TopicExchange productExchange, Queue productUpdatedQueue) {
-        return BindingBuilder.bind(productUpdatedQueue).to(productExchange).with(SearchConstants.ROUTING_KEY_PRODUCT_UPDATED);
-    }
-
-    @Bean
-    public Binding bindProductDeleted(TopicExchange productExchange, Queue productDeletedQueue) {
-        return BindingBuilder.bind(productDeletedQueue).to(productExchange).with(SearchConstants.ROUTING_KEY_PRODUCT_DELETED);
-    }
-
-    @Bean
-    public Binding bindPromotionActivated(TopicExchange promotionExchange, Queue promotionActivatedQueue) {
-        return BindingBuilder.bind(promotionActivatedQueue).to(promotionExchange).with(SearchConstants.ROUTING_KEY_PROMOTION_ACTIVATED);
-    }
-
-    @Bean
-    public Binding bindPromotionPaused(TopicExchange promotionExchange, Queue promotionPausedQueue) {
-        return BindingBuilder.bind(promotionPausedQueue).to(promotionExchange).with(SearchConstants.ROUTING_KEY_PROMOTION_PAUSED);
-    }
-
-    @Bean
-    public MessageConverter messageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public Binding categoryUpdatedBinding(Queue catalogQueue, TopicExchange catalogExchange) {
+        return BindingBuilder.bind(catalogQueue).to(catalogExchange).with("category.updated");
     }
 }

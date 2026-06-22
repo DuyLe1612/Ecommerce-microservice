@@ -20,7 +20,7 @@ public class ProductDetailResponse {
     private BrandSummaryResponse brand;
     private java.math.BigDecimal discountPercent;
     private String overview;
-    private Map<String, Object> specs;
+    private com.fasterxml.jackson.databind.JsonNode specs;
     private Double averageRating;
     private Integer totalReviews;
 }

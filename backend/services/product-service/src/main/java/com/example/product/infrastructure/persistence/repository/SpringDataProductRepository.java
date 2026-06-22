@@ -32,4 +32,7 @@ public interface SpringDataProductRepository extends JpaRepository<ProductJpaEnt
 
     @Query("select distinct p.brandId from ProductJpaEntity p where p.categoryId = :categoryId")
     List<Long> findDistinctBrandIdsByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Query("SELECT p FROM ProductJpaEntity p WHERE p.updatedAt >= :updatedAfter")
+    Page<ProductJpaEntity> findAllForIndexFeed(@Param("updatedAfter") java.time.LocalDateTime updatedAfter, Pageable pageable);
 }
