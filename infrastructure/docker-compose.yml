@@ -89,12 +89,12 @@ services:
         condition: service_healthy
     networks:
       - ecommerce-net
-    # healthcheck:
-    #   test: ["CMD", "wget", "-qO-", "--spider", "http://localhost:8081/"]
-    #   interval: 15s
-    #   timeout: 5s
-    #   retries: 5
-    #   start_period: 45s
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "--spider", "http://localhost:8081/api"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 45s
 
   product-service:
     build:
@@ -319,8 +319,15 @@ services:
       context: ../backend/services/review-service
       dockerfile: Dockerfile
     container_name: review-service
-    env_file:
-      - ../backend/services/review-service/.env.example
+    ports:
+      - "8089:8089"
+    environment:
+      - SERVICE_NAME=review-service
+      - PORT=8089
+      - DB_URI=postgresql://tekno:tekno123@postgres:5432/review_db
+      - JWT_SECRET=67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0
+      - RABBITMQ_URL=amqp://tekno:tekno123@rabbitmq:5672
+      - CORS_ORIGIN=http://localhost:3000,http://localhost:8080,http://localhost:8081,http://localhost
     depends_on:
       postgres:
         condition: service_healthy
@@ -331,7 +338,7 @@ services:
     networks:
       - ecommerce-net
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "--spider", "http://localhost:8089/actuator/health"]
+      test: ["CMD", "wget", "-qO-", "--spider", "http://localhost:8089/api/health"]
       interval: 30s
       timeout: 5s
       retries: 5
@@ -372,8 +379,8 @@ services:
     volumes:
       - ../gateway/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      # auth-service:
-      #   condition: service_healthy
+      auth-service:
+        condition: service_healthy
       product-service:
         condition: service_healthy
       # search-service:
@@ -388,8 +395,8 @@ services:
         condition: service_healthy
       # cart-service:
       #   condition: service_healthy
-      # review-service:
-      #   condition: service_healthy
+      review-service:
+        condition: service_healthy
       # notification-service:
       #   condition: service_healthy
     networks:

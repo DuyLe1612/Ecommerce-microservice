@@ -1,4 +1,6 @@
-export const API_BASE = "http://localhost:5000/api/admin/coupons";
+const _GATEWAY = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+export const API_BASE = `${_GATEWAY}/admin/coupons`;
+
 
 export const voucherApi = {
   // GET ALL

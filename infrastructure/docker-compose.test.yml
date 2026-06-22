@@ -54,10 +54,10 @@ services:
       - ecommerce-test
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 15
-      start_period: 30s
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
 
   # ── Backend Services ──────────────────────────────────────────────────────────
   auth-service:
