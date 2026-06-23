@@ -89,7 +89,7 @@ export type ProductVariant = {
 export type VariantAttribute = {
   id: number;
   name: string;
-  value: string[];
+  value: string;
 };
 
 // Keep backward compat alias
