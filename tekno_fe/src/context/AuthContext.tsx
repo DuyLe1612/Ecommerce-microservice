@@ -77,6 +77,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, [user, scheduleRefresh]);
 
+  useEffect(() => {
+    const handleAuthExpired = () => {
+      setUser(null);
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("auth-expired", handleAuthExpired);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("auth-expired", handleAuthExpired);
+      }
+    };
+  }, []);
+
   const login = async (email: string, password: string) => {
     const res = await loginApi({ email, password });
 
@@ -97,10 +114,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const doLogout = async (currentUser: User) => {
-    if (currentUser.token) await logoutApi(currentUser.token);
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    if (currentUser.token) {
+      try {
+        await logoutApi(currentUser.token);
+      } catch (err) {
+        // Ignore errors to prevent infinite loops if token is already expired
+      }
+    }
   };
 
   const logout = async () => {

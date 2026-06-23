@@ -87,13 +87,14 @@ export default function Page() {
         </div>
 
         {/* Table of contents (sidebar) */}
-        <aside className="col-span-12 md:col-span-3 bg-gray-50 p-4 rounded-lg shadow-sm">
-          <h3 className="font-semibold mb-3 text-gray-800">
+        <aside className="col-span-12 md:col-span-3 bg-[#111111] p-5 rounded-2xl shadow-lg border border-gray-800 h-fit sticky top-24">
+          <h3 className="font-bold text-xl mb-4 text-white tracking-tight">
             Table of Contents
           </h3>
-          <ul className="space-y-2 text-yellow-700">
+          <ul className="space-y-3 text-gray-400">
             {toc.map((t) => (
-              <li key={t.key} className="hover:underline cursor-pointer">
+              <li key={t.key} className="hover:text-primary transition-colors cursor-pointer font-medium flex items-center gap-2 group">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-600 group-hover:bg-primary transition-colors"></span>
                 {t.label}
               </li>
             ))}
@@ -102,17 +103,17 @@ export default function Page() {
 
         {/* FAQ content */}
         <section className="col-span-12 md:col-span-9 space-y-4">
-          <Accordion type="multiple" className="space-y-2">
+          <Accordion type="multiple" className="space-y-4">
             {faqs.map((f) => (
               <AccordionItem
                 key={f.id}
                 value={f.id}
-                className="rounded-lg border bg-white px-4"
+                className="rounded-2xl border border-gray-800 bg-[#111111] px-5 shadow-sm hover:border-primary/30 transition-all duration-300"
               >
-                <AccordionTrigger className="text-primary font-medium py-3">
+                <AccordionTrigger className="text-white hover:text-primary font-semibold py-4 hover:no-underline transition-colors text-left text-lg">
                   {f.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-700 py-2">
+                <AccordionContent className="text-gray-400 py-3 leading-relaxed text-base">
                   {f.answer}
                 </AccordionContent>
               </AccordionItem>

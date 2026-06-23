@@ -46,13 +46,13 @@ export default function AddToFavorButton({
   return (
     <div className={cn("", className)}>
       <button
-        className="p-2.5 rounded-full hover:bg-primary hover:text-white hoverEffect text-primary"
+        className="flex items-center justify-center p-3.5 rounded-full border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-primary/50 hover:bg-primary/5 hover:scale-105 active:scale-95 transition-all duration-300 text-gray-500"
         onClick={handleFavor}
       >
         {exists ? (
-          <Heart fill="red" size={20} className="hoverEffect" />
+          <Heart fill="#EF4444" size={22} className="text-red-500" />
         ) : (
-          <Heart size={20} className="text-primary/80 hoverEffect" />
+          <Heart size={22} className="text-gray-400 group-hover:text-primary" />
         )}
       </button>
     </div>

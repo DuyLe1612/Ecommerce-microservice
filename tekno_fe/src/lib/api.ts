@@ -1,4 +1,4 @@
-﻿// Lightweight fetch helper with JWT bearer support
+// Lightweight fetch helper with JWT bearer support
 // Usage: import { get, post, put, del, postForm, setAuthToken, getAuthToken, API_BASE } from '@/lib/api'
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
@@ -42,6 +42,11 @@ async function request(url: string, opts: RequestInit = {}) {
     const err = new Error(`HTTP ${res.status} ${res.statusText} ${text}`);
     // attach status to error for caller convenience
     (err as any).status = res.status;
+
+    if (res.status === 401 && typeof window !== "undefined") {
+      window.dispatchEvent(new Event("auth-expired"));
+    }
+
     throw err;
   }
 

@@ -9,7 +9,7 @@
      ============================================ */
 
   /* Main Colors */
-  --primary: #FFD400;
+  --primary: #FFB800;
   /* Primary Yellow */
   --primary-foreground: #000000;
   --secondary: #003D6D;
@@ -167,26 +167,26 @@
 }
 
 .dark {
-  /* Dark Mode Color Overrides */
-  --background: #171717;
-  --foreground: #FFFFFF;
-  --card: #262626;
-  --card-foreground: #FFFFFF;
-  --popover: #262626;
-  --popover-foreground: #FFFFFF;
-  --primary: #FFD400;
+  /* Dark Mode Color Overrides - True Black / Yellow Theme */
+  --background: #050505;
+  --foreground: #F5F5F5;
+  --card: #111111;
+  --card-foreground: #F5F5F5;
+  --popover: #111111;
+  --popover-foreground: #F5F5F5;
+  --primary: #FFB800;
   --primary-foreground: #000000;
-  --secondary: #3387BF;
+  --secondary: #222222;
   --secondary-foreground: #FFFFFF;
-  --muted: #404040;
+  --muted: #1A1A1A;
   --muted-foreground: #A3A3A3;
-  --accent: #FFD400;
+  --accent: #FFB800;
   --accent-foreground: #000000;
-  --destructive: #D32F2F;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #404040;
-  --input: #404040;
-  --ring: #FFD400;
+  --border: #222222;
+  --input: #222222;
+  --ring: #FFB800;
 
   /* Dark Mode Sidebar */
   --sidebar: #262626;

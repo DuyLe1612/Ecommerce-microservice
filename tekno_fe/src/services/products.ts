@@ -35,10 +35,11 @@ export async function getProductsList(params?: {
 }
 
 // PUBLIC: Get product detail by slug
-export async function getProductDetail(slug: string): Promise<ProductDetail> {
+export async function getProductDetail(slug: string): Promise<ProductDetail | null> {
   const res = await fetch(`${API_BASE_URL}/products/${slug}`, {
     method: "GET", cache: "no-store",
   });
+  if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Failed to fetch product detail: ${res.status}`);
   const result = await res.json();
   const data = result.data;

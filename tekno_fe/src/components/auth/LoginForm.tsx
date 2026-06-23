@@ -52,79 +52,86 @@ export default function LoginForm({ switchToRegister }: LoginFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 px-6  py-6">
-      <h2 className="text-center font-semibold text-lg mb-4">
-        Log in to Tekno
-      </h2>
+    <form onSubmit={handleSubmit} className="space-y-6 px-8 py-10 relative">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none rounded-full"></div>
+      
+      <div className="space-y-2 text-center mb-8 relative z-10">
+        <h2 className="text-3xl font-extrabold text-white tracking-tight">
+          Welcome back
+        </h2>
+        <p className="text-gray-400 text-sm">
+          Log in to your Tekno account to continue
+        </p>
+      </div>
 
-      <FieldSet>
-        {/* <FieldLegend className="w-full justify-center">
-          Create your account
-        </FieldLegend>
-        <FieldDescription>This appears on Create your account</FieldDescription> */}
-        <FieldGroup>
+      <FieldSet className="relative z-10 space-y-4">
+        <FieldGroup className="space-y-4">
           {/* email */}
           <Field>
-            <InputGroup>
+            <InputGroup className="border-gray-800 bg-[#1a1a1a] rounded-xl overflow-hidden focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+              <InputGroupAddon className="bg-transparent border-none pl-4">
+                <MailIcon className="w-5 h-5 text-gray-500" />
+              </InputGroupAddon>
               <InputGroupInput
                 type="email"
                 id="email"
                 name="email"
                 autoComplete="off"
                 placeholder="Enter your email"
+                className="bg-transparent text-white border-none focus:ring-0 placeholder:text-gray-600 py-3"
               />
-              <InputGroupAddon>
-                <MailIcon />
-              </InputGroupAddon>
             </InputGroup>
           </Field>
           {/* password */}
           <Field>
-            <InputGroup>
+            <InputGroup className="border-gray-800 bg-[#1a1a1a] rounded-xl overflow-hidden focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+              <InputGroupAddon className="bg-transparent border-none pl-4">
+                <Key className="w-5 h-5 text-gray-500" />
+              </InputGroupAddon>
               <InputGroupInput
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 autoComplete="off"
                 placeholder="Your Password"
+                className="bg-transparent text-white border-none focus:ring-0 placeholder:text-gray-600 py-3"
               />
-              <InputGroupAddon>
-                <Key />
-              </InputGroupAddon>
-              <InputGroupAddon align="inline-end">
+              <InputGroupAddon align="inline-end" className="bg-transparent border-none pr-2">
                 <InputGroupButton
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   title={showPassword ? "Hide" : "Show"}
                   size="icon-xs"
                   onClick={() => setShowPassword((v) => !v)}
                   type="button"
+                  className="text-gray-400 hover:text-white bg-transparent hover:bg-gray-800 rounded-lg"
                 >
-                  {showPassword ? <Eye /> : <EyeClosed />}
+                  {showPassword ? <Eye className="w-4 h-4" /> : <EyeClosed className="w-4 h-4" />}
                 </InputGroupButton>
               </InputGroupAddon>
             </InputGroup>
           </Field>
         </FieldGroup>
-        <FieldError>{error}</FieldError>
+        <FieldError className="text-red-400 text-sm">{error}</FieldError>
       </FieldSet>
-      <p className="text-end">
-        Forgot your password?{" "}
-        <span className="text-primary cursor-pointer hover:underline">
-          Reset here
+
+      <div className="flex justify-end relative z-10">
+        <span className="text-sm text-gray-400 hover:text-primary cursor-pointer transition-colors hover:underline underline-offset-4">
+          Forgot password?
         </span>
-      </p>
+      </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="mt-4 w-full bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 rounded-md"
+        className="relative z-10 mt-6 w-full bg-primary hover:bg-yellow-400 text-black font-bold py-3.5 rounded-xl shadow-[0_0_20px_rgba(255,213,0,0.2)] hover:shadow-[0_0_25px_rgba(255,213,0,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
       >
         {loading ? "Signing in..." : "Sign in"}
       </button>
-      <p className="text-sm text-center text-muted-foreground">
+      
+      <p className="text-sm text-center text-gray-400 mt-6 relative z-10">
         Don't have an account?{" "}
         <span
-          className="text-primary cursor-pointer hover:underline"
+          className="text-primary font-semibold cursor-pointer hover:underline underline-offset-4"
           onClick={switchToRegister}
         >
           Sign up now

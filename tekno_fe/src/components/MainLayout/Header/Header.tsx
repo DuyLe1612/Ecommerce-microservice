@@ -25,18 +25,20 @@ import Link from "next/link";
 const Header = () => {
   const { user, isAuthenticated, logout } = useAuth();
   return (
-    <header className="bg-white/70 md:border-b md:border-b-secondary py-5 sticky top-0 z-50 backdrop-blur-md">
+    <header className="bg-[#050505]/80 border-b border-gray-800 py-4 sticky top-0 z-50 backdrop-blur-md shadow-sm transition-all duration-300">
       <Container className="flex items-center justify-between">
         {/* logo */}
-        <div className="w-auto md:w-1/3 flex items-center gap-2.5 justify-start md:gap-0">
+        <div className="flex-1 flex items-center justify-start gap-3">
           <MobileMenu />
           <Logo className="hidden md:inline-flex" />
         </div>
 
         {/* NavButton */}
-        <HeaderMenu />
+        <div className="flex-none hidden lg:flex justify-center">
+          <HeaderMenu />
+        </div>
         {/* NavAdmin */}
-        <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
+        <div className="flex-1 flex items-center justify-end gap-5">
           <SearchBar />
           <CartIcon />
 
@@ -47,14 +49,14 @@ const Header = () => {
               <SignIn />
             ) : (
               <>
-                <Link href="/account/personal-data">
-                  <UserRound className="cursor-pointer" />
+                <Link href="/account/personal-data" className="w-10 h-10 rounded-full flex items-center justify-center text-gray-300 hover:text-primary hover:bg-[#1a1a1a] transition-all duration-300 focus:outline-none">
+                  <UserRound className="w-5 h-5" />
                 </Link>
 
                 {/* Dropdown */}
                 <div
                   className="
-          absolute right-0 top-full mt-2
+          absolute right-0 top-full pt-4
           hidden group-hover:block
         "
                 >

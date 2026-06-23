@@ -2,7 +2,7 @@ import { Product } from "@/type/product";
 import { ProductReview } from "@/type/review";
 import React, { useMemo, useState } from "react";
 import { Star, ThumbsDown, ThumbsUp } from "lucide-react";
-import { deleteReview, updateReview } from "@/services/review";
+import { deleteReview, updateReview, voteReview } from "@/services/review";
 import { toast } from "sonner";
 import { useAuth } from "@/hook/useAuth";
 
@@ -25,10 +25,10 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
       const token = localStorage.getItem("token") || "";
       if (!token) throw new Error("Missing token");
       await deleteReview(token, Number(review.productId), Number(review.id));
-      toast.success("Đã xóa bình luận");
+      toast.success("Comment deleted successfully");
       window.location.reload();
     } catch (e: any) {
-      toast.error(e?.message || "Xóa bình luận thất bại");
+      toast.error(e?.message || "Failed to delete comment");
     }
   };
 
@@ -37,7 +37,7 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
       const token = localStorage.getItem("token") || "";
       if (!token) throw new Error("Missing token");
       if (!editText.trim()) {
-        toast.error("Nội dung không được để trống");
+        toast.error("Content cannot be empty");
         return;
       }
       setSaving(true);
@@ -45,34 +45,50 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
         rating: editRating,
         comment: editText.trim(),
       });
-      toast.success("Đã cập nhật bình luận");
+      toast.success("Comment updated successfully");
       // reload or lift state up to re-fetch
       window.location.reload();
     } catch (e: any) {
-      toast.error(e?.message || "Cập nhật bình luận thất bại");
+      toast.error(e?.message || "Failed to update comment");
     } finally {
       setSaving(false);
     }
   };
 
+  const handleVote = async (voteType: "helpful" | "not_helpful") => {
+    try {
+      const token = localStorage.getItem("token") || "";
+      if (!token) {
+        toast.error("Please log in to vote on this review");
+        return;
+      }
+      await voteReview(token, Number(review.productId), Number(review.id), voteType);
+      toast.success("Vote recorded");
+      window.location.reload();
+    } catch (e: any) {
+      toast.error(e?.message || "Failed to vote");
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-2 border border-gray-300 bg-gray-50 p-3 rounded-2xl">
-      <div className="flex justify-between">
-        {/* thong tin ng cmt */}
+    <div className="flex flex-col gap-4 border border-gray-800 bg-[#111111] p-5 rounded-2xl shadow-md hover:shadow-lg hover:border-primary/30 transition-all duration-300 group">
+      <div className="flex justify-between items-start">
         <div className="flex items-center gap-4">
-          <div className="rounded-full">avt</div>
+          <div className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/20 text-primary shadow-[0_0_10px_rgba(255,213,0,0.1)] font-bold text-lg">
+            {(review.userName || review.userEmail)[0].toUpperCase()}
+          </div>
           <div className="flex flex-col">
-            <div className="text-xl font-bold">{review.userEmail}</div>
-            <div className="text-gray-500 font-normal text-sm" suppressHydrationWarning>
-              {new Date(review.createdAt).toLocaleDateString()}
+            <div className="text-lg font-bold text-white tracking-tight">{review.userName || review.userEmail.split('@')[0]}</div>
+            <div className="text-gray-500 font-medium text-xs mt-0.5" suppressHydrationWarning>
+              {new Date(review.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
             </div>
           </div>
         </div>
 
         {!editing ? (
-          <div className="flex items-center justify-center gap-1 rounded-xl bg-primary text-white px-3 py-1">
-            <Star fill="white" className="h-5 w-5" />
-            <p className="text-md font-normal">{review.rating}</p>
+          <div className="flex items-center justify-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary px-3 py-1 font-semibold text-sm shadow-[0_0_10px_rgba(255,213,0,0.1)]">
+            <Star fill="currentColor" className="h-4 w-4 drop-shadow-sm" />
+            <span>{review.rating}</span>
           </div>
         ) : (
           <div className="flex items-center gap-1">
@@ -88,9 +104,8 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
                   onClick={() => setEditRating(v)}
                 >
                   <Star
-                    className={`h-5 w-5 ${
-                      active ? "text-yellow-400" : "text-gray-300"
-                    }`}
+                    className={`h-5 w-5 ${active ? "text-yellow-400" : "text-gray-300"
+                      }`}
                     fill={active ? "currentColor" : "none"}
                   />
                 </button>
@@ -102,27 +117,33 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
       </div>
 
       {!editing ? (
-        <div className="text-black font-normal">{review.comment}</div>
+        <div className="text-gray-300 font-normal leading-relaxed text-sm md:text-base mt-1">{review.comment}</div>
       ) : (
         <textarea
-          className="w-full border rounded-md px-3 py-2 text-sm"
+          className="w-full border border-gray-800 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-[#1a1a1a] text-white shadow-inner"
           rows={3}
           value={editText}
           onChange={(e) => setEditText(e.target.value)}
         />
       )}
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-2 mt-2 pt-4 border-t border-gray-800/50">
         {!editing ? (
-          <div className="flex items-center gap-2">
-            <button className="flex items-center justify-center gap-1 hover:text-primary">
-              <ThumbsUp />
-              <span>{review.helpfulCount}</span>
+          <div className="flex items-center gap-1">
+            <button
+              className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-[#1a1a1a] text-gray-500 hover:text-primary transition-all active:scale-95"
+              onClick={() => handleVote("helpful")}
+            >
+              <ThumbsUp className="w-4 h-4" />
+              <span className="text-sm font-medium">{review.helpfulCount}</span>
             </button>
-            <div className="bg-gray-500 rounded-2xl w-0.5 h-5" />
-            <button className="flex items-center justify-center gap-1 hover:text-primary">
-              <ThumbsDown />
-              <span>{review.notHelpfulCount}</span>
+            <div className="w-px h-4 bg-gray-800 mx-1" />
+            <button
+              className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-[#1a1a1a] text-gray-500 hover:text-primary transition-all active:scale-95"
+              onClick={() => handleVote("not_helpful")}
+            >
+              <ThumbsDown className="w-4 h-4" />
+              <span className="text-sm font-medium">{review.notHelpfulCount}</span>
             </button>
           </div>
         ) : (
@@ -135,7 +156,7 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
               <>
                 <button
                   type="button"
-                  className="px-3 py-1 text-sm rounded-md border hover:bg-gray-100"
+                  className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-700 text-gray-400 hover:bg-[#1a1a1a] hover:text-white transition-colors"
                   onClick={() => {
                     setEditing(true);
                     setEditRating(review.rating ?? 5);
@@ -146,7 +167,7 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
                 </button>
                 <button
                   type="button"
-                  className="px-3 py-1 text-sm rounded-md border border-red-300 text-red-600 hover:bg-red-50"
+                  className="px-4 py-1.5 text-sm font-medium rounded-full border border-red-200 text-red-600 hover:bg-red-50 transition-colors"
                   onClick={handleDelete}
                 >
                   Delete
@@ -156,7 +177,7 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
               <>
                 <button
                   type="button"
-                  className="px-3 py-1 text-sm rounded-md border hover:bg-gray-100"
+                  className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-700 text-gray-400 hover:bg-[#1a1a1a] hover:text-white transition-colors"
                   onClick={() => {
                     setEditing(false);
                     setHoverRating(0);
@@ -168,7 +189,7 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
                 </button>
                 <button
                   type="button"
-                  className="px-3 py-1 text-sm rounded-md border bg-primary text-white hover:bg-primary/90 disabled:opacity-50"
+                  className="px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-black hover:bg-primary/90 disabled:opacity-50 transition-colors shadow-sm"
                   onClick={handleSave}
                   disabled={saving}
                 >

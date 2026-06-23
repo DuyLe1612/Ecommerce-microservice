@@ -19,39 +19,31 @@ export default function AccountLayout({
   if (!user) {
     // no access view
     return (
-      <Container className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
-        <div className="text-center space-y-4">
-          <div className="mx-auto w-20 h-20 bg-red-100 rounded-full flex items-center justify-center">
-            <ShieldX className="w-10 h-10 text-red-500" />
+      <Container className="flex flex-col items-center justify-center min-h-[60vh] space-y-8">
+        <div className="text-center space-y-6 bg-[#111111] p-10 rounded-3xl border border-gray-800 shadow-[0_10px_40px_rgba(0,0,0,0.5)] relative overflow-hidden group max-w-md w-full">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 blur-[80px] pointer-events-none rounded-full"></div>
+          
+          <div className="mx-auto w-24 h-24 bg-[#1a1a1a] border border-gray-800 rounded-full flex items-center justify-center relative shadow-[0_0_30px_rgba(239,68,68,0.05)]">
+            <ShieldX className="w-12 h-12 text-red-500 opacity-80" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800">Access Denied</h1>
-          <p className="text-gray-600 max-w-md">
-            You need to be logged in to access your account dashboard. Please
-            sign in to continue.
-          </p>
-        </div>
+          
+          <div className="space-y-3 relative z-10">
+            <h1 className="text-3xl font-extrabold text-white tracking-tight">Access Denied</h1>
+            <p className="text-gray-400 leading-relaxed px-4">
+              You need to be logged in to access your account dashboard. Please
+              sign in to continue.
+            </p>
+          </div>
 
-        <div className="flex flex-col sm:flex-row gap-3">
-          {/* <Link
-            href="/login"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            <LogIn className="w-4 h-4" />
-            Sign In
-          </Link>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            Back to Home
-          </Link> */}
-          <SignIn />
-        </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10 pt-4">
+            <SignIn />
+          </div>
 
-        <div className="text-sm text-gray-500">
-          <Link href="/" className="text-primary hover:underline">
-            Back to home
-          </Link>
+          <div className="text-sm text-gray-500 relative z-10 pt-2">
+            <Link href="/" className="text-gray-400 hover:text-primary transition-colors hover:underline underline-offset-4">
+              Back to home
+            </Link>
+          </div>
         </div>
       </Container>
     );

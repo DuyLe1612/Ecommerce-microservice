@@ -50,7 +50,7 @@ export default function Home() {
 
       {/* Main sections */}
       <motion.div
-        className="space-y-10"
+        className="space-y-16 md:space-y-24 mt-16 md:mt-24 mb-16"
         variants={staggerSoft}
         animate="show"
         viewport={{ once: true, margin: "-120px" }}

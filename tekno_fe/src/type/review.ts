@@ -20,14 +20,16 @@ export type ProductReview = {
   comment: string;
   createdAt: string;
   isVerifiedPurchase: boolean;
-  productId: number,
-  userId: number,
-  userEmail: string,
-  updatedAt: string,
-  helpfulCount: number,
-                notHelpfulCount: number,
-                variantSku?: null,
-                variantAttributes?: null
+  productId: number;
+  userId: number;
+  userEmail: string;
+  userName?: string;
+  status?: string;
+  updatedAt: string;
+  helpfulCount: number;
+  notHelpfulCount: number;
+  variantSku?: null;
+  variantAttributes?: null;
 };
 
 export type ProductReviewsResponse = {

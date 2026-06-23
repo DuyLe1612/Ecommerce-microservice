@@ -15,7 +15,9 @@ import {
   UserRound,
   X,
   Loader2,
-  MapPinHouse
+  MapPinHouse,
+  Trash2,
+  Pencil
 } from "lucide-react";
 import {
   Dialog,
@@ -87,9 +89,9 @@ export default function Page() {
       );
       setAddresses(updatedAddresses);
 
-      toast.success("Đã xóa địa chỉ thành công");
+      toast.success("Address deleted successfully");
     } catch (e: any) {
-      toast.error(e?.message || "Xóa địa chỉ thất bại");
+      toast.error(e?.message || "Failed to delete address");
     } finally {
       setDeleting(false);
     }
@@ -103,7 +105,7 @@ export default function Page() {
       const list = await getProfileAddresses(token);
       setAddresses(Array.isArray(list) ? list : []);
     } catch (e) {
-      console.error("Fetch addresses error:", e);
+      console.warn("Fetch addresses error:", e);
     }
   };
 
@@ -119,7 +121,7 @@ export default function Page() {
       setSelectedAddress(null);
       toast.success("Address updated successfully");
     } catch (e) {
-      console.error("Fetch addresses error:", e);
+      console.warn("Fetch addresses error:", e);
     }
   };
 
@@ -139,8 +141,8 @@ export default function Page() {
         setPhoneNumber(res.phoneNumber || "");
       })
       .catch((err) => {
-        console.error("Fetch profile error:", err);
-        toast.error("Không thể tải thông tin hồ sơ");
+        console.warn("Fetch profile error:", err);
+        toast.error("Failed to load profile information");
       })
       .finally(() => {
         setLoading(false);
@@ -151,7 +153,7 @@ export default function Page() {
         const list = await getProfileAddresses(token);
         setAddresses(Array.isArray(list) ? list : []);
       } catch (e) {
-        console.error("Fetch addresses error:", e);
+        console.warn("Fetch addresses error:", e);
         setAddresses([]);
       }
     })();
@@ -203,7 +205,7 @@ export default function Page() {
       setCurrentPassword("");
       toast.success("Profile updated successfully!");
     } catch (err: any) {
-      console.error("Update failed:", err);
+      console.warn("Update failed:", err);
       toast.error(err.message || "An error occurred while saving");
     } finally {
       setSaving(false);
@@ -211,14 +213,15 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       <TitleAccount title="Personal Data" des="Manage your identity information" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border rounded-lg bg-gray-50/50">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8 border border-gray-800 rounded-3xl bg-[#111111] shadow-[0_10px_40px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none rounded-full group-hover:bg-primary/10 transition-colors"></div>
         {/* Full Name */}
-        <div className="grid w-full items-center gap-2">
-          <Label htmlFor="name" className={editing ? "text-primary font-medium" : "text-gray-600"}>Full Name</Label>
-          <InputGroup>
+        <div className="grid w-full items-center gap-2 relative z-10">
+          <Label htmlFor="name" className={editing ? "text-primary font-bold" : "text-gray-400"}>Full Name</Label>
+          <InputGroup className="border-gray-800 bg-[#1a1a1a]">
             <InputGroupInput
               disabled={!editing}
               type="text"
@@ -226,18 +229,18 @@ export default function Page() {
               placeholder="Enter your full name..."
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
-              className={editing ? "bg-white focus:ring-primary" : "bg-gray-100/50"}
+              className={editing ? "bg-[#1a1a1a] focus:ring-1 focus:ring-primary focus:border-primary text-white shadow-inner" : "bg-transparent text-gray-500 opacity-80"}
             />
-            <InputGroupAddon>
-              <UserRound className="w-4 h-4 text-gray-500" />
+            <InputGroupAddon className="bg-transparent border-gray-800">
+              <UserRound className={`w-4 h-4 ${editing ? "text-primary" : "text-gray-600"}`} />
             </InputGroupAddon>
           </InputGroup>
         </div>
 
         {/* Email */}
-        <div className="grid w-full items-center gap-2">
-          <Label htmlFor="email" className={editing ? "text-primary font-medium" : "text-gray-600"}>Email Address</Label>
-          <InputGroup>
+        <div className="grid w-full items-center gap-2 relative z-10">
+          <Label htmlFor="email" className={editing ? "text-primary font-bold" : "text-gray-400"}>Email Address</Label>
+          <InputGroup className="border-gray-800 bg-[#1a1a1a]">
             <InputGroupInput
               disabled={!editing}
               type="email"
@@ -245,18 +248,18 @@ export default function Page() {
               placeholder="Enter your email..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={editing ? "bg-white focus:ring-primary" : "bg-gray-100/50"}
+              className={editing ? "bg-[#1a1a1a] focus:ring-1 focus:ring-primary focus:border-primary text-white shadow-inner" : "bg-transparent text-gray-500 opacity-80"}
             />
-            <InputGroupAddon>
-              <MailIcon className="w-4 h-4 text-gray-500" />
+            <InputGroupAddon className="bg-transparent border-gray-800">
+              <MailIcon className={`w-4 h-4 ${editing ? "text-primary" : "text-gray-600"}`} />
             </InputGroupAddon>
           </InputGroup>
         </div>
 
         {/* Phone */}
-        <div className="grid w-full items-center gap-2 md:col-span-2 lg:col-span-1">
-          <Label htmlFor="phone" className={editing ? "text-primary font-medium" : "text-gray-600"}>Phone Number</Label>
-          <InputGroup>
+        <div className="grid w-full items-center gap-2 md:col-span-2 lg:col-span-1 relative z-10">
+          <Label htmlFor="phone" className={editing ? "text-primary font-bold" : "text-gray-400"}>Phone Number</Label>
+          <InputGroup className="border-gray-800 bg-[#1a1a1a]">
             <InputGroupInput
               disabled={!editing}
               type="tel"
@@ -264,29 +267,29 @@ export default function Page() {
               placeholder="Enter your phone number..."
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className={editing ? "bg-white focus:ring-primary" : "bg-gray-100/50"}
+              className={editing ? "bg-[#1a1a1a] focus:ring-1 focus:ring-primary focus:border-primary text-white shadow-inner" : "bg-transparent text-gray-500 opacity-80"}
             />
-            <InputGroupAddon>
-              <Phone className="w-4 h-4 text-gray-500" />
+            <InputGroupAddon className="bg-transparent border-gray-800">
+              <Phone className={`w-4 h-4 ${editing ? "text-primary" : "text-gray-600"}`} />
             </InputGroupAddon>
           </InputGroup>
         </div>
       </div>
 
-      <div className="flex justify-end mt-2">
+      <div className="flex justify-end mt-4 relative z-10">
         {editing ? (
           <div className="flex w-full sm:w-auto gap-3">
             <Button
               variant="outline"
               onClick={handleCancelEdit}
-              className="flex-1 sm:flex-none px-6"
+              className="flex-1 sm:flex-none px-6 border-gray-800 text-gray-300 hover:text-white hover:bg-[#1a1a1a] rounded-xl"
             >
               <X className="w-4 h-4 mr-2" />
               Cancel
             </Button>
             <Button
               onClick={handleSave}
-              className="flex-1 sm:flex-none px-8 bg-primary hover:bg-primary/90"
+              className="flex-1 sm:flex-none px-8 bg-primary text-black font-bold hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98] transition-all rounded-xl"
             >
               Save
             </Button>
@@ -295,7 +298,7 @@ export default function Page() {
           <Button
             variant="outline"
             onClick={() => setEditing(true)}
-            className="w-full sm:w-auto px-8"
+            className="w-full sm:w-auto px-8 rounded-xl border-gray-800 bg-[#111111] text-gray-300 hover:text-primary hover:border-primary hover:bg-[#1a1a1a] shadow-sm hover:shadow-[0_0_15px_rgba(255,213,0,0.1)] transition-all duration-300"
           >
             <SquarePen className="w-4 h-4 mr-2" />
             Edit Profile
@@ -305,17 +308,17 @@ export default function Page() {
 
       {/* Modal xác thực Password */}
       <Dialog open={openPasswordModal} onOpenChange={setOpenPasswordModal}>
-        <DialogContent className="sm:max-w-[400px]">
+        <DialogContent className="sm:max-w-[400px] bg-[#111111] border border-gray-800 text-white rounded-2xl shadow-2xl">
           <DialogHeader>
-            <DialogTitle>Confirm Changes</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-xl font-bold">Confirm Changes</DialogTitle>
+            <DialogDescription className="text-gray-400">
               For security reasons, please enter your current password to save these changes.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid w-full items-center gap-3 py-4">
-            <Label htmlFor="currentPassword">Your Password</Label>
-            <InputGroup>
+            <Label htmlFor="currentPassword" className="text-gray-300">Your Password</Label>
+            <InputGroup className="border-gray-800 bg-[#1a1a1a]">
               <InputGroupInput
                 id="currentPassword"
                 type="password"
@@ -323,8 +326,9 @@ export default function Page() {
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && currentPassword.trim() && confirmSave()}
+                className="bg-[#1a1a1a] focus:ring-1 focus:ring-primary focus:border-primary text-white shadow-inner"
               />
-              <InputGroupAddon>
+              <InputGroupAddon className="bg-transparent border-gray-800">
                 <Plug className="w-4 h-4 text-gray-500" />
               </InputGroupAddon>
             </InputGroup>
@@ -338,6 +342,7 @@ export default function Page() {
                 setOpenPasswordModal(false);
                 setCurrentPassword("");
               }}
+              className="border-gray-800 text-gray-300 hover:text-white hover:bg-[#1a1a1a] rounded-xl"
             >
               Cancel
             </Button>
@@ -345,7 +350,7 @@ export default function Page() {
               type="button"
               onClick={confirmSave}
               disabled={saving || !currentPassword.trim()}
-              className="bg-primary hover:bg-primary/90 min-w-[100px]"
+              className="bg-primary text-black font-bold hover:bg-primary/90 rounded-xl min-w-[100px]"
             >
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : "Confirm"}
             </Button>
@@ -353,64 +358,67 @@ export default function Page() {
         </DialogContent>
       </Dialog>
 
-      <div className="mt-6 border-t pt-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+      <div className="mt-8 border-t border-gray-800 pt-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
           <div>
-            <h3 className="text-lg font-semibold">Shipping Addresses</h3>
-            <p className="text-sm text-gray-500">Manage your shipping addresses</p>
+            <h3 className="text-xl font-bold text-white tracking-tight">Shipping Addresses</h3>
+            <p className="text-sm text-gray-400 mt-1">Manage your shipping addresses</p>
           </div>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button className="flex items-center gap-2 rounded-xl px-6 bg-primary text-black font-bold hover:bg-primary/90 shadow-sm hover:shadow-[0_0_15px_rgba(255,213,0,0.2)] hover:-translate-y-0.5 transition-all active:scale-[0.98]">
                 <CirclePlus className="w-4 h-4" />
                 Add New Address
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="bg-[#111111] border border-gray-800 text-white rounded-2xl">
               <DialogHeader>
                 <DialogTitle>Add Shipping Address</DialogTitle>
-                <DialogDescription>
-                  <NewAddress
-                    onClose={() => setOpen(false)}
-                    onCreated={handleAddressCreated}
-                    initialRecipientName={profile?.fullName}
-                    initialPhoneNumber={profile?.phoneNumber}
-                  />
+                <DialogDescription className="text-gray-400">
+                  Fill in the details below to add a new shipping address.
                 </DialogDescription>
               </DialogHeader>
+              <NewAddress
+                onClose={() => setOpen(false)}
+                onCreated={handleAddressCreated}
+                initialRecipientName={profile?.fullName}
+                initialPhoneNumber={profile?.phoneNumber}
+              />
             </DialogContent>
           </Dialog>
         </div>
 
         {addresses.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-8 border border-dashed rounded-lg bg-gray-50">
-            <MapPinHouse className="w-8 h-8 text-gray-300 mb-2" />
-            <p className="text-sm text-gray-500 text-center">
+          <div className="flex flex-col items-center justify-center p-12 border border-dashed border-gray-800 rounded-3xl bg-[#111111] shadow-inner">
+            <div className="w-16 h-16 rounded-full bg-[#1a1a1a] flex items-center justify-center mb-4 border border-gray-800">
+              <MapPinHouse className="w-8 h-8 text-gray-500" />
+            </div>
+            <p className="text-base text-gray-400 text-center">
               You haven't saved any addresses yet.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {addresses.map((addr) => (
               <div
                 key={addr.id}
-                className="border rounded-lg p-4 flex flex-col gap-2 bg-white hover:border-primary/50 transition-colors"
+                className="border border-gray-800 rounded-2xl p-6 flex flex-col gap-3 bg-[#111111] shadow-[0_5px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_5px_25px_rgba(255,213,0,0.05)] hover:border-primary/30 transition-all duration-300 relative group"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-bold text-white tracking-wide">
                       {addr.recipientName}
                     </span>
-                    <span className="text-gray-300">|</span>
-                    <span className="text-gray-600">{addr.phoneNumber}</span>
+                    <span className="text-gray-600">|</span>
+                    <span className="text-gray-400">{addr.phoneNumber}</span>
                     {addr.isDefault && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium ml-2">
+                      <span className="text-xs px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold ml-2 shadow-[0_0_10px_rgba(255,213,0,0.1)]">
                         Default
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
                     {/* Dialog Chỉnh sửa địa chỉ */}
                     <Dialog
                       open={openEditDialog && selectedAddress?.id === addr.id}
@@ -422,17 +430,18 @@ export default function Page() {
                       <DialogTrigger asChild>
                         <Button
                           variant="ghost"
-                          size="sm"
-                          className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                          size="icon"
+                          className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 rounded-lg w-8 h-8"
                           onClick={() => setSelectedAddress(addr)}
+                          title="Edit Address"
                         >
-                          Edit
+                          <Pencil className="w-4 h-4" />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[500px]">
+                      <DialogContent className="sm:max-w-[500px] bg-[#111111] border border-gray-800 text-white rounded-2xl">
                         <DialogHeader>
                           <DialogTitle>Edit Address</DialogTitle>
-                          <DialogDescription>
+                          <DialogDescription className="text-gray-400">
                             Update your shipping information below.
                           </DialogDescription>
                         </DialogHeader>
@@ -453,29 +462,30 @@ export default function Page() {
                       <AlertDialogTrigger asChild>
                         <Button
                           variant="ghost"
-                          size="sm"
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                          size="icon"
+                          className="text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg w-8 h-8"
+                          title="Delete Address"
                         >
-                          Delete
+                          <Trash2 className="w-4 h-4" />
                         </Button>
                       </AlertDialogTrigger>
-                      <AlertDialogContent>
+                      <AlertDialogContent className="bg-[#111111] border border-gray-800 text-white rounded-2xl shadow-2xl">
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Confirm Delete Address</AlertDialogTitle>
-                          <AlertDialogDescription>
+                          <AlertDialogTitle className="text-xl font-bold">Confirm Delete Address</AlertDialogTitle>
+                          <AlertDialogDescription className="text-gray-400">
                             Are you sure you want to delete the address "
-                            {addr.addressLine}, {addr.wardName}, {addr.districtName},{" "}
-                            {addr.provinceName}"? This action cannot be undone.
+                            <span className="text-white font-medium">{addr.addressLine}, {addr.wardName}, {addr.districtName},{" "}
+                            {addr.provinceName}</span>"? This action cannot be undone.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel disabled={deleting}>
+                          <AlertDialogCancel disabled={deleting} className="border-gray-800 text-gray-300 hover:text-white hover:bg-[#1a1a1a] rounded-xl">
                             Cancel
                           </AlertDialogCancel>
                           <AlertDialogAction
                             onClick={() => handleDeleteAddress(addr.id)}
                             disabled={deleting}
-                            className="bg-red-600 hover:bg-red-700 text-white"
+                            className="bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/50 rounded-xl"
                           >
                             {deleting ? (
                               <Loader2 className="w-4 h-4 animate-spin mr-2" />
@@ -489,11 +499,11 @@ export default function Page() {
                 </div>
 
                 {/* Thông tin chi tiết địa chỉ */}
-                <div className="text-sm text-gray-700 mt-1">
-                  {addr.addressLine}
-                </div>
-                <div className="text-sm text-gray-500">
-                  {addr.wardName}, {addr.districtName}, {addr.provinceName}
+                <div className="text-sm text-gray-400 mt-3 leading-relaxed bg-[#1a1a1a] p-4 rounded-xl border border-gray-800/50">
+                  <p className="font-medium text-gray-300">{addr.addressLine}</p>
+                  <p className="mt-1">
+                    {addr.wardName}, {addr.districtName}, {addr.provinceName}
+                  </p>
                 </div>
               </div>
             ))}

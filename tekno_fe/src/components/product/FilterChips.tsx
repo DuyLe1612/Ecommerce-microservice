@@ -25,11 +25,11 @@ export default function FilterChips({ filters, HandleRemoveFilter }: Props) {
         <Badge
           key={c.key}
           variant="outline"
-          className="flex items-center gap-2 border-gray-300 text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-md px-3 py-1"
+          className="flex items-center gap-2 border-primary/50 text-gray-200 bg-primary/10 hover:bg-primary/20 transition-colors rounded-lg px-3 py-1 shadow-sm"
         >
           {c.label}
           <X
-            className="w-3.5 h-3.5 cursor-pointer text-gray-500 hover:text-red-500"
+            className="w-3.5 h-3.5 cursor-pointer text-gray-400 hover:text-primary transition-colors"
             onClick={() => HandleRemoveFilter?.(c.attr, c.value)}
           />
         </Badge>
