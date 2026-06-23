@@ -1,5 +1,4 @@
 import { CartResponse } from "@/hook/useCart";
-import { Product } from "@/type/product";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
@@ -39,10 +38,8 @@ export const cartApi = {
       method: "DELETE",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({ variantId }),
     });
 
     if (!res.ok) throw new Error("Failed to remove from cart");
