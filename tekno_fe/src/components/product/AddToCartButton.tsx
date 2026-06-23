@@ -25,7 +25,7 @@ export default function AddToCartButton({
     console.log("Selected Variant:", selectedVariant);
 
     if (!selectedVariant) {
-      alert("Vui lòng chọn đủ thuộc tính để mua");
+      toast.error("Please select all options to add to cart");
       return;
     }
 
@@ -35,27 +35,26 @@ export default function AddToCartButton({
     setError(null);
 
     try {
-      await addToCart(selectedVariant.id, 1); // thêm 1 sp
-      toast.success(`${product.name} đã thêm vào giỏ hàng`);
+      await addToCart(selectedVariant.id, 1);
+      toast.success(`${product.name} added to cart`);
     } catch (err: any) {
       console.error(err);
-      setError(err.message || "Thêm vào giỏ hàng thất bại");
+      setError(err.message || "Failed to add to cart");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="w-full h-12 flex items-center">
-      <Button
-        variant="outline"
+    <div className="w-full flex items-center">
+      <button
         onClick={handleAddToCart}
         disabled={isOutOfStock || loading}
-        className="w-full"
+        className="w-full rounded-full py-3.5 px-8 text-base font-semibold bg-primary text-black hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
       >
-        {loading ? "Đang thêm..." : "Add to cart"}
-      </Button>
-      {error && <div className="text-red-500 mt-1">{error}</div>}
+        {loading ? "Adding..." : "Add to Cart"}
+      </button>
+      {error && <div className="text-red-500 mt-2 text-sm">{error}</div>}
     </div>
   );
 }

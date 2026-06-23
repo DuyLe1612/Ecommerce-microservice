@@ -23,33 +23,19 @@ export default function SignIn() {
           <DialogTrigger asChild>
             <button
               onClick={() => setMode("login")}
-              className="
-        px-1 py-1.5
-        text-md font-medium text-gray-700
-        hover:text-primary
-        hover:scale-105
-        transition-all duration-200 ease-out
-        focus:outline-none
-      "
+              className="px-2 py-1.5 text-sm font-semibold text-gray-300 hover:text-primary hover:scale-105 transition-all duration-200 ease-out focus:outline-none"
             >
               Login
             </button>
           </DialogTrigger>
 
           {/* Divider */}
-          <span className="h-4 w-px bg-gray-300" />
+          <span className="h-4 w-px bg-gray-700" />
 
           <DialogTrigger asChild>
             <button
               onClick={() => setMode("register")}
-              className="
-        px-1 py-1.5
-        text-md font-medium text-gray-700
-        hover:text-primary
-        hover:scale-105
-        transition-all duration-200 ease-out
-        focus:outline-none
-      "
+              className="px-2 py-1.5 text-sm font-semibold text-gray-300 hover:text-primary hover:scale-105 transition-all duration-200 ease-out focus:outline-none"
             >
               Signup
             </button>
@@ -57,9 +43,13 @@ export default function SignIn() {
         </div>
 
         <DialogContent
+          className="bg-[#111111] border border-gray-800 text-white rounded-3xl p-0 overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.5)] sm:max-w-md"
           onInteractOutside={(e) => e.preventDefault()}
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
+          <DialogTitle className="sr-only">
+            {mode === "login" ? "Login" : "Sign Up"}
+          </DialogTitle>
           {/* <AuthModal mode={mode} /> */}
           {mode === "login" ? (
             <LoginForm switchToRegister={() => setMode("register")} />

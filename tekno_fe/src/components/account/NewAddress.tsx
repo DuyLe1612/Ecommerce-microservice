@@ -175,16 +175,16 @@ export default function NewAddress({ onCreated, onClose, initialRecipientName = 
   /* ---------------- UI ---------------- */
 
   const inputClass = (error?: string) =>
-    `border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 ${
-      error ? "border-red-500 focus:ring-red-300" : "focus:ring-primary/40"
+    `border rounded-xl px-4 py-3 text-sm bg-[#1a1a1a] text-white focus:outline-none focus:ring-1 transition-all ${
+      error ? "border-red-500 focus:ring-red-500/50" : "border-gray-800 focus:border-primary/50 focus:ring-primary/50"
     }`;
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit} className="space-y-6 bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-6 bg-[#111111]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Field
-            label="Recipient name"
+            label="Recipient Name"
             required
             error={fieldErrors.recipientName}
           >
@@ -192,19 +192,21 @@ export default function NewAddress({ onCreated, onClose, initialRecipientName = 
               className={inputClass(fieldErrors.recipientName)}
               value={recipientName}
               onChange={(e) => setRecipientName(e.target.value)}
+              placeholder="E.g., John Doe"
             />
           </Field>
 
-          <Field label="Phone number" required error={fieldErrors.phoneNumber}>
+          <Field label="Phone Number" required error={fieldErrors.phoneNumber}>
             <input
               className={inputClass(fieldErrors.phoneNumber)}
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="E.g., +84 123 456 789"
             />
           </Field>
 
           <Select
-            label="Province"
+            label="Province / City"
             required
             value={provinceId}
             options={provinces}
@@ -224,7 +226,7 @@ export default function NewAddress({ onCreated, onClose, initialRecipientName = 
           />
 
           <Select
-            label="Ward"
+            label="Ward / Commune"
             required
             value={wardId}
             options={wards}
@@ -233,15 +235,17 @@ export default function NewAddress({ onCreated, onClose, initialRecipientName = 
             onChange={setWardId}
           />
 
-          <div className="flex items-center gap-2 md:col-span-2">
+          <div className="flex items-center gap-3 md:col-span-2 mt-2">
             <input
               type="checkbox"
+              id="isDefaultNew"
+              className="w-4 h-4 rounded border-gray-600 bg-[#1a1a1a] text-primary focus:ring-primary focus:ring-offset-[#111111] cursor-pointer"
               checked={isDefault}
               onChange={(e) => setIsDefault(e.target.checked)}
             />
-            <span className="text-sm text-gray-700">
+            <label htmlFor="isDefaultNew" className="text-sm text-gray-300 cursor-pointer select-none">
               Set as default address
-            </span>
+            </label>
           </div>
 
           <Field
@@ -254,15 +258,16 @@ export default function NewAddress({ onCreated, onClose, initialRecipientName = 
               className={inputClass(fieldErrors.addressLine)}
               value={addressLine}
               onChange={(e) => setAddressLine(e.target.value)}
+              placeholder="House number, Street name..."
             />
           </Field>
         </div>
 
-        <div className="flex gap-3 justify-end">
+        <div className="flex gap-4 justify-end pt-4 border-t border-gray-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border text-sm"
+            className="px-6 py-2.5 rounded-xl border border-gray-700 text-gray-300 text-sm font-medium hover:bg-gray-800 hover:text-white transition-colors"
           >
             Cancel
           </button>
@@ -270,9 +275,9 @@ export default function NewAddress({ onCreated, onClose, initialRecipientName = 
           <button
             type="submit"
             disabled={!canSubmit || submitting}
-            className="px-4 py-2 rounded-lg bg-primary text-white text-sm disabled:bg-gray-300"
+            className="px-6 py-2.5 rounded-xl bg-primary text-black text-sm font-bold disabled:bg-gray-800 disabled:text-gray-500 hover:bg-yellow-400 hover:shadow-[0_0_15px_rgba(255,213,0,0.3)] hover:-translate-y-0.5 transition-all duration-200"
           >
-            {submitting ? "Saving..." : "Save address"}
+            {submitting ? "Saving..." : "Save Address"}
           </button>
         </div>
       </form>
@@ -296,12 +301,12 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`flex flex-col gap-1 ${colSpan ? "md:col-span-2" : ""}`}>
-      <label className="text-sm font-medium text-gray-700">
+    <div className={`flex flex-col gap-2 ${colSpan ? "md:col-span-2" : ""}`}>
+      <label className="text-sm font-medium text-gray-400">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       {children}
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-400">{error}</p>}
     </div>
   );
 }
@@ -324,28 +329,28 @@ function Select({
   required?: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-gray-700">
+    <div className="flex flex-col gap-2">
+      <label className="text-sm font-medium text-gray-400">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <select
-        className={`border rounded-lg px-3 py-2 text-sm ${
-          error ? "border-red-500" : ""
-        }`}
+        className={`border rounded-xl px-4 py-3 text-sm bg-[#1a1a1a] text-white focus:outline-none focus:ring-1 transition-all appearance-none cursor-pointer ${
+          error ? "border-red-500 focus:ring-red-500/50" : "border-gray-800 focus:border-primary/50 focus:ring-primary/50"
+        } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         value={value ?? ""}
         disabled={disabled}
         onChange={(e) =>
           onChange(e.target.value ? Number(e.target.value) : undefined)
         }
       >
-        <option value="">Select {label.toLowerCase()}</option>
+        <option value="" disabled>Select {label}</option>
         {options.map((o) => (
-          <option key={o.code} value={o.code}>
+          <option key={o.code} value={o.code} className="bg-[#1a1a1a] text-white">
             {o.name}
           </option>
         ))}
       </select>
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-400">{error}</p>}
     </div>
   );
 }

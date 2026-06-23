@@ -19,7 +19,7 @@ export default function HomeBanner() {
         const res = await getAdvertisementsByPosition("ProductSidebar");
         if (mounted) setBanners(res ?? []);
       } catch (e) {
-        console.error("fetch advertisements error:", e);
+        console.warn("fetch advertisements error:", e);
       } finally {
         if (mounted) setLoading(false);
       }
@@ -53,21 +53,23 @@ export default function HomeBanner() {
   const active = banners[current];
 
   return (
-    <div className="py-16 md:py-0 bg-amber-100 px-10 lg:px-24 flex items-center justify-between">
+    <div className="py-16 md:py-16 rounded-3xl bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-10 lg:px-24 flex items-center justify-between border border-gray-800 shadow-2xl relative overflow-hidden">
+      {/* Glow effect */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+
       {/* title */}
-      <div className="space-y-10">
+      <div className="space-y-10 relative z-10">
         <div className="flex-1">
-          <h2 className="text-4xl md:text-6xl font-bold text-primary capitalize tracking-wide md-10">
+          <h2 className="text-5xl md:text-7xl font-extrabold text-primary capitalize tracking-tight mb-4 drop-shadow-md">
             Tekno
           </h2>
-          <p className="text-2xl md:text-3xl font-normal text-primary md-10">
-            "Join the <span className="text-secondary">digital revolution</span>
-            "
+          <p className="text-xl md:text-3xl font-medium text-gray-300">
+            "Join the <span className="text-white font-bold">digital revolution</span>"
           </p>
         </div>
         <Link
           href={"/products"}
-          className="bg-secondary/90 rounded-lg text-white/90 px-15 py-4 text-md font-semibold hover:bg-secondary hover:text-white hoverEffect"
+          className="inline-block bg-primary rounded-full text-black px-10 py-4 text-lg font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,213,0,0.3)] transition-all duration-300"
         >
           Explore more
         </Link>
@@ -129,9 +131,8 @@ export default function HomeBanner() {
                   className="focus:outline-none"
                 >
                   <span
-                    className={`block h-2 rounded-full transition-all ${
-                      i === current ? "w-16 bg-blue-500" : "w-10 bg-gray-300"
-                    }`}
+                    className={`block h-2 rounded-full transition-all duration-300 ${i === current ? "w-16 bg-primary shadow-[0_0_10px_rgba(255,213,0,0.5)]" : "w-10 bg-gray-600 hover:bg-gray-500"
+                      }`}
                   />
                 </button>
               ))}

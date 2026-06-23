@@ -23,8 +23,8 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body className="bg-white text-gray-900 flex flex-col min-h-screen">
+    <html lang="en" className="h-full dark">
+      <body className="bg-background text-foreground flex flex-col min-h-screen antialiased selection:bg-primary selection:text-black">
         <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <Header />

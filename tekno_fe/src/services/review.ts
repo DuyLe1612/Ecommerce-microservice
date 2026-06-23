@@ -123,6 +123,34 @@ export async function deleteReview(
   return json as ApiResponse<boolean>;
 }
 
+// POST /api/products/{productId}/reviews/{reviewId}/vote
+export async function voteReview(
+  token: string,
+  productId: number,
+  reviewId: number,
+  voteType: 'helpful' | 'not_helpful'
+): Promise<ApiResponse<{ helpfulCount: number; notHelpfulCount: number }>> {
+  const res = await fetch(
+    `${API_BASE_URL}/products/${productId}/reviews/${reviewId}/vote`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ voteType }),
+    }
+  );
+
+  const json = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    throw json;
+  }
+
+  return json;
+}
+
 // GET /api/products/{productId}/reviews/can-review
 export async function canReviewProduct(
   token: string,

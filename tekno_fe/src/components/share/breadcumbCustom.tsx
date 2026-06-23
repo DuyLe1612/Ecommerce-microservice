@@ -18,23 +18,23 @@ export function Breadcrumb() {
   });
 
   return (
-    <nav className="flex items-center text-sm text-gray-500 space-x-1">
+    <nav className="flex items-center text-sm text-gray-400 space-x-1">
       {/* Trang chủ */}
-      <Link href="/" className="hover:text-blue-600 transition">
+      <Link href="/" className="hover:text-primary transition-colors">
         Home
       </Link>
 
       {breadcrumbItems.map((item, index) => (
         <div key={item.href} className="flex items-center space-x-1">
-          <ChevronRight className="w-4 h-4 text-gray-400" />
+          <ChevronRight className="w-4 h-4 text-gray-600" />
           {index === breadcrumbItems.length - 1 ? (
-            <span className="text-gray-800 font-semibold capitalize">
+            <span className="text-white font-semibold capitalize drop-shadow-sm">
               {item.label}
             </span>
           ) : (
             <Link
               href={item.href}
-              className="hover:text-blue-600 transition capitalize"
+              className="hover:text-primary transition-colors capitalize"
             >
               {item.label}
             </Link>

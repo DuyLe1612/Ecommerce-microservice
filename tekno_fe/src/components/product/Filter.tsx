@@ -19,7 +19,7 @@ import {
 import { CategoryAttribute } from "@/type/categories";
 
 export default function Filter({
-  selectedBrand,
+  selectedBrands,
   minPrice,
   maxPrice,
   onBrandChange,
@@ -28,10 +28,10 @@ export default function Filter({
   categorySlug, // optional: id category để load attributes
   onAttributesChange, // optional callback nhận filters hiện tại
 }: {
-  selectedBrand?: string;
+  selectedBrands?: string[];
   minPrice?: number;
   maxPrice?: number;
-  onBrandChange: (value: string) => void;
+  onBrandChange: (value: string[]) => void;
   onMinPriceChange: (value: number) => void;
   onMaxPriceChange: (value: number) => void;
   categorySlug?: string;
@@ -102,9 +102,8 @@ export default function Filter({
 
   const clearAll = () => {
     setSelectedAttributes({});
-    // reset lại giá trị ban đầu cho priceRange
     setPriceRange([0, 0]);
-    onBrandChange("");
+    onBrandChange([]);
     onMinPriceChange(0);
     onMaxPriceChange(0);
     onAttributesChange?.({});
@@ -113,14 +112,14 @@ export default function Filter({
   return (
     <div>
       <aside className="lg:col-span-1">
-        <div className="bg-white rounded-lg p-6 sticky top-24">
-          <div className="flex items-center justify-between">
-            <h3 className="flex items-center gap-2">
-              <SlidersHorizontal className="w-5 h-5" />
+        <div className="bg-[#111111] border border-gray-800 shadow-xl rounded-2xl p-6 sticky top-28">
+          <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
+            <h3 className="flex items-center gap-3 text-lg font-bold text-white tracking-wide">
+              <SlidersHorizontal className="w-5 h-5 text-primary" />
               Filters
             </h3>
             <button
-              className="text-sm text-secondary hover:underline"
+              className="text-sm text-primary hover:text-primary/80 transition-colors hover:underline"
               onClick={clearAll}
             >
               Clear All
@@ -129,34 +128,49 @@ export default function Filter({
 
           <Accordion type="multiple" defaultValue={["brand", "price"]}>
             {/* brand */}
-            <AccordionItem value="brand">
-              <AccordionTrigger>Brand</AccordionTrigger>
+            <AccordionItem value="brand" className="border-b border-gray-800">
+              <AccordionTrigger className="text-white hover:text-primary font-bold text-base py-4 transition-colors">
+                Brand
+              </AccordionTrigger>
               <AccordionContent>
-                {brandList.map((brand) => (
-                  <div
-                    key={brand.id}
-                    className="flex items-center space-x-2 space-y-2"
-                  >
+                <div className="flex flex-col gap-4 pt-2 pb-4">
+                  {brandList.map((brand) => (
+                    <div
+                      key={brand.id}
+                      className="flex items-center space-x-3 group cursor-pointer"
+                    >
                     <Checkbox
                       id={brand.id.toString()}
-                      checked={selectedBrand === brand.slug}
-                      onCheckedChange={(checked) =>
-                        onBrandChange(checked ? brand.slug : "")
-                      }
+                      checked={(selectedBrands || []).includes(brand.slug)}
+                      onCheckedChange={(checked) => {
+                        const current = selectedBrands || [];
+                        if (checked) {
+                          onBrandChange([...current, brand.slug]);
+                        } else {
+                          onBrandChange(current.filter((b) => b !== brand.slug));
+                        }
+                      }}
                     />
-                    <Label htmlFor={brand.id.toString()}>{brand.name}</Label>
-                  </div>
-                ))}
+                      <Label 
+                        htmlFor={brand.id.toString()}
+                        className="text-gray-200 group-hover:text-white cursor-pointer transition-colors text-[15px] font-medium"
+                      >
+                        {brand.name}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
               </AccordionContent>
             </AccordionItem>
 
             {/* price */}
-            <AccordionItem value="price">
-              <AccordionTrigger>Price</AccordionTrigger>
+            <AccordionItem value="price" className="border-b border-gray-800">
+              <AccordionTrigger className="text-white hover:text-primary font-bold text-base py-4 transition-colors">
+                Price Range
+              </AccordionTrigger>
               <AccordionContent>
-                {/* Chỉ dùng 2 ô input; mỗi giá trị nhập vào sẽ * 1000 VNĐ khi emit ra ngoài */}
-                <div className="flex flex-col items-center justify-center gap-2 pb-4">
-                  <div className="flex items-center gap-1">
+                <div className="flex items-center justify-between gap-3 pt-2 pb-4">
+                  <div className="flex items-center gap-1 relative w-full">
                     <input
                       type="number"
                       min={0}
@@ -167,15 +181,15 @@ export default function Filter({
                         setPriceRange([vK, priceRange[1]]);
                         onMinPriceChange(vK * 1000); // emit theo VNĐ
                       }}
-                      className="w-24 border rounded-md px-2 py-1 text-lg text-center"
-                      placeholder="min (x1000)"
+                      className="w-full bg-[#222222] border border-gray-700 text-white rounded-lg px-2 py-2 text-sm text-center focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-inner"
+                      placeholder="min"
                     />
-                    <span className="text-xs text-gray-500">.000 </span>
+                    <span className="absolute right-2 text-[10px] text-gray-500 font-medium">.000đ</span>
                   </div>
 
-                  <span className="text-gray-400">—</span>
+                  <span className="text-gray-500 font-bold">—</span>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 relative w-full">
                     <input
                       type="number"
                       min={0}
@@ -186,10 +200,10 @@ export default function Filter({
                         setPriceRange([priceRange[0], vK]);
                         onMaxPriceChange(vK * 1000); // emit theo VNĐ
                       }}
-                      className="w-24 border rounded-md px-2 py-1 text-lg text-center"
-                      placeholder="max (x1000)"
+                      className="w-full bg-[#222222] border border-gray-700 text-white rounded-lg px-2 py-2 text-sm text-center focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-inner"
+                      placeholder="max"
                     />
-                    <span className="text-xs text-gray-500">.000</span>
+                    <span className="absolute right-2 text-[10px] text-gray-500 font-medium">.000đ</span>
                   </div>
                 </div>
               </AccordionContent>
@@ -197,12 +211,14 @@ export default function Filter({
 
             {/* dynamic attributes */}
             {attributes.map((attr) => (
-              <AccordionItem key={attr.name} value={attr.name}>
-                <AccordionTrigger>{attr.name}</AccordionTrigger>
+              <AccordionItem key={attr.name} value={attr.name} className="border-b border-gray-800">
+                <AccordionTrigger className="text-white hover:text-primary font-bold text-base py-4 transition-colors uppercase tracking-wider text-xs">
+                  {attr.name}
+                </AccordionTrigger>
                 <AccordionContent>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-4 pt-2 pb-4">
                     {attr.values?.map((val) => (
-                      <div key={val} className="flex items-center gap-2">
+                      <div key={val} className="flex items-center gap-3 group cursor-pointer">
                         <Checkbox
                           id={`${attr.name}-${val}`}
                           checked={(
@@ -216,7 +232,12 @@ export default function Filter({
                             )
                           }
                         />
-                        <Label htmlFor={`${attr.name}-${val}`}>{val}</Label>
+                        <Label 
+                          htmlFor={`${attr.name}-${val}`}
+                          className="text-gray-200 group-hover:text-white cursor-pointer transition-colors text-[15px] font-medium"
+                        >
+                          {val}
+                        </Label>
                       </div>
                     ))}
                   </div>

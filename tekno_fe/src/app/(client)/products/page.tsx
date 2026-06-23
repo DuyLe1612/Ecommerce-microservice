@@ -38,9 +38,8 @@ import FilterChips from "@/components/product/FilterChips";
 export default function ProductPage() {
   const [loading, setLoading] = useState(false);
   const [productsList, setproductsList] = useState<ProductCardType[]>([]);
-  // filter
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [selectedBrands, setSelectedBrands] = useState<string>();
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("created_desc");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>();
@@ -98,7 +97,7 @@ export default function ProductPage() {
           size: pageSize,
           sortBy: backendSortBy,
           sortDir: backendSortDir,
-          brandSlug: selectedBrands,
+          brandSlug: selectedBrands.length > 0 ? selectedBrands.join(",") : undefined,
           maxPrice: maxPrice,
           minPrice: minPrice,
           // filters: filters, // filters logic isn't easily supported without dynamic properties but we send it if supported. Let's omit for now since backend doesn't take attrs
@@ -126,6 +125,22 @@ export default function ProductPage() {
     filters,
     keyword, // <-- theo dõi keyword
   ]);
+
+  const getVisiblePages = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (page <= 3) {
+        pages.push(1, 2, 3, 4, -1, totalPages);
+      } else if (page >= totalPages - 2) {
+        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, -1, page - 1, page, page + 1, -1, totalPages);
+      }
+    }
+    return pages;
+  };
 
   // chuyển object -> mảng chips để hiển thị
   const chips = Object.entries(filters).flatMap(([name, vals]) =>
@@ -168,11 +183,11 @@ export default function ProductPage() {
         </div>
         {/* Sidebar */}
         {/* tutu tinh */}
-        <div className="flex">
-          <div className="hidden lg:block w-3/12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="hidden lg:block w-full lg:w-1/4">
             <Filter
               categorySlug={queryCategory}
-              selectedBrand={selectedBrands}
+              selectedBrands={selectedBrands}
               minPrice={minPrice}
               maxPrice={maxPrice}
               onBrandChange={setSelectedBrands}
@@ -187,22 +202,22 @@ export default function ProductPage() {
           </div>
 
           {/* Content chính */}
-          <div className="w-full md:w-9/12 space-y-8">
+          <div className="w-full lg:w-3/4 space-y-8">
             {/* Bộ lọc */}
 
             {/* Thanh công cụ */}
-            <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-wrap justify-between items-center gap-4 shadow-sm">
+            <div className="bg-[#111111] border border-gray-800 rounded-2xl p-5 flex flex-wrap justify-between items-center gap-4 shadow-md">
               {/* input keyword search here */}
               <div className="relative flex items-center flex-1 max-w-md">
-                <Search className="w-5 h-5 text-gray-400 absolute left-3" />
+                <Search className="w-5 h-5 text-gray-400 absolute left-4" />
 
                 <input
                   type="text"
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                   placeholder="Search products…"
-                  className="w-full border rounded-md pl-10 pr-3 py-2
-               focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full bg-[#222222] border border-gray-700 text-white rounded-xl pl-12 pr-4 py-3
+               focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-inner placeholder:text-gray-400"
                 />
               </div>
 
@@ -231,7 +246,7 @@ export default function ProductPage() {
 
             {/* Danh sách sản phẩm */}
             {loading ? (
-              <div className="flex flex-col items-center justify-center py-10 min-h-80 gap-4 bg-gray-100 w-full mt-10">
+              <div className="flex flex-col items-center justify-center py-10 min-h-80 gap-4 bg-[#111111] border border-gray-800 rounded-2xl w-full mt-6 text-gray-400">
                 <div className="space-x-2 flex items-center">
                   <Loader2 className="w-5 h-5 animate-spin" />
                   <span>Product is loading...</span>
@@ -253,40 +268,57 @@ export default function ProductPage() {
             <div></div>
 
             {/* Phân trang */}
-            <Pagination>
-              <PaginationContent>
-                {/* Nút Previous */}
-                <PaginationItem>
-                  <PaginationPrevious
-                    href="#"
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                  />
-                </PaginationItem>
-
-                {/* Các trang */}
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <PaginationItem key={i}>
-                    <PaginationLink
+            {totalPages > 1 && (
+              <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden">
+                <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+                  <PaginationItem>
+                    <PaginationPrevious
                       href="#"
-                      isActive={page === i + 1}
-                      onClick={() => setPage(i + 1)}
-                    >
-                      {i + 1}
-                    </PaginationLink>
+                      className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setPage((prev) => Math.max(prev - 1, 1));
+                      }}
+                    />
                   </PaginationItem>
-                ))}
 
-                {/* Nút Next */}
-                <PaginationItem>
-                  <PaginationNext
-                    href="#"
-                    onClick={() =>
-                      setPage((prev) => Math.min(prev + 1, totalPages))
-                    }
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
+                  {getVisiblePages().map((p, i) => (
+                    <PaginationItem key={i}>
+                      {p === -1 ? (
+                        <PaginationEllipsis className="text-gray-500" />
+                      ) : (
+                        <PaginationLink
+                          href="#"
+                          isActive={page === p}
+                          className={`cursor-pointer transition-colors ${
+                            page === p
+                              ? "bg-primary text-black hover:bg-primary/90"
+                              : "text-gray-300 hover:text-white hover:bg-gray-800"
+                          }`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setPage(p);
+                          }}
+                        >
+                          {p}
+                        </PaginationLink>
+                      )}
+                    </PaginationItem>
+                  ))}
+
+                  <PaginationItem>
+                    <PaginationNext
+                      href="#"
+                      className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setPage((prev) => Math.min(prev + 1, totalPages));
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            )}
           </div>
         </div>
       </Container>

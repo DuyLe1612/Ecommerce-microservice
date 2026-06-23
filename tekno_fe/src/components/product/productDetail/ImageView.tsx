@@ -21,7 +21,7 @@ export default function ImageView({ images = [], isStock }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-h-[550] min-h-[500] border border-secondary/10 rounded-md group overflow-hidden"
+          className="w-full flex items-center justify-center min-h-[400px] md:min-h-[500px] border border-gray-800 rounded-3xl group overflow-hidden bg-white/5 backdrop-blur-sm shadow-[0_0_30px_rgba(0,0,0,0.5)] relative"
         >
           <Image
             src={active}
@@ -29,8 +29,8 @@ export default function ImageView({ images = [], isStock }: Props) {
             width={400}
             height={400}
             priority
-            className={`w-full h-96 max-h-[550px] min-h-[500] object-contain group-hover:scale-110 hoverEffect rounded-md ${
-              isStock === false ? "opacity-50" : ""
+            className={`w-full h-auto max-h-[500px] object-contain group-hover:scale-105 transition-transform duration-500 ease-out ${
+              isStock === false ? "opacity-50 grayscale" : ""
             }`}
           />
         </motion.div>
@@ -40,8 +40,8 @@ export default function ImageView({ images = [], isStock }: Props) {
           <button
             key={image.id}
             onClick={() => setActive(image.imageUrl)}
-            className={`h-full items-center border rounded-md overflow-hidden ${
-              active === image.imageUrl ? "border-gray-600 opacity-100" : "opacity-80"
+            className={`relative h-full flex items-center justify-center border-2 rounded-2xl overflow-hidden transition-all duration-300 bg-white/5 backdrop-blur-sm ${
+              active === image.imageUrl ? "border-primary shadow-[0_0_15px_rgba(255,213,0,0.2)] opacity-100 scale-105" : "border-gray-800 opacity-60 hover:opacity-100 hover:border-gray-600"
             }`}
           >
             <Image

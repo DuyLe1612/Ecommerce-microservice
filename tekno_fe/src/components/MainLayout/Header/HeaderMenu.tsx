@@ -12,7 +12,7 @@ export default function HeaderMenu() {
 
   return (
     <div
-      className="hidden md:inline-flex w-1/3 items-center gap-7 text-sm capitalize font-normal text-gray-900 relative"
+      className="hidden md:flex items-center justify-center gap-8 text-base capitalize font-medium text-gray-100 relative whitespace-nowrap"
       onMouseLeave={() => setShowProductMenu(false)}
     >
       {headerData?.map((item) => {

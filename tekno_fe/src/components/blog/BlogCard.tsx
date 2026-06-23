@@ -40,7 +40,7 @@ export default function BlogCard({
             alt={blog.title}
             width={200}
             height={80}
-            className={`object-cover rounded-md w-full ${
+            className={`object-cover rounded-xl w-full ${
               type === "vertical" ? "h-55" : "h-auto"
             }`}
             priority={false}
@@ -50,18 +50,18 @@ export default function BlogCard({
         <div
           className={`flex flex-col ${type === "horizontal" ? "my-auto" : ""}`}
         >
-          <div className="text-sm text-gray-700" suppressHydrationWarning>
-            <Calendar className="inline-block mr-1 mb-1" size={14} />
-            {new Date(blog.createdAt).toLocaleString("vi-VN")}
+          <div className="text-xs text-primary font-medium tracking-wide uppercase mb-1" suppressHydrationWarning>
+            <Calendar className="inline-block mr-1.5 mb-0.5" size={14} />
+            {new Date(blog.createdAt).toLocaleString("en-US", { year: "numeric", month: "short", day: "numeric" })}
           </div>
-          <div className="font-semibold text-lg line-clamp-1 group-hover:text-secondary hoverEffect">
+          <div className="font-bold text-xl line-clamp-2 text-gray-100 group-hover:text-primary transition-colors leading-snug">
             {blog.title}
           </div>
-          <div className="text-sm text-gray-500 line-clamp-3">
+          <div className="text-sm text-gray-400 line-clamp-3 mt-2 leading-relaxed">
             {blog.summary}
           </div>
-          <div className="text-secondary bottom-0 opacity-0 group-hover:opacity-100 hoverEffect text-end">
-            Read more
+          <div className="text-primary font-semibold text-sm mt-3 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+            Read more <span className="text-lg leading-none">&rarr;</span>
           </div>
         </div>
       </div>

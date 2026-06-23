@@ -200,38 +200,42 @@ export default function EditAddress({
 
   /* ---------------- UI ---------------- */
 
+  /* ---------------- UI ---------------- */
+
   const inputClass =
-    "border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
+    "border rounded-xl px-4 py-3 text-sm bg-[#1a1a1a] text-white focus:outline-none focus:ring-1 border-gray-800 focus:border-primary/50 focus:ring-primary/50 transition-all";
 
   return (
     <div className="relative">
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 bg-white"
+        className="space-y-6 bg-[#111111]"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field label="Họ tên">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <Field label="Recipient Name">
             <input
               className={inputClass}
               value={recipientName}
               onChange={(e) =>
                 setRecipientName(e.target.value)
               }
+              placeholder="E.g., John Doe"
             />
           </Field>
 
-          <Field label="Số điện thoại">
+          <Field label="Phone Number">
             <input
               className={inputClass}
               value={phoneNumber}
               onChange={(e) =>
                 setPhoneNumber(e.target.value)
               }
+              placeholder="E.g., +84 123 456 789"
             />
           </Field>
 
           <Select
-            label="Tỉnh"
+            label="Province / City"
             value={provinceCode}
             options={provinces}
             disabled={loading}
@@ -239,7 +243,7 @@ export default function EditAddress({
           />
 
           <Select
-            label="Quận"
+            label="District"
             value={districtCode}
             options={districts}
             disabled={!provinceCode || loading}
@@ -247,52 +251,55 @@ export default function EditAddress({
           />
 
           <Select
-            label="Phường"
+            label="Ward / Commune"
             value={wardCode}
             options={wards}
             disabled={!districtCode || loading}
             onChange={setWardCode}
           />
 
-          <div className="flex items-center gap-2 md:col-span-2">
+          <div className="flex items-center gap-3 md:col-span-2 mt-2">
             <input
               type="checkbox"
+              id="isDefaultEdit"
+              className="w-4 h-4 rounded border-gray-600 bg-[#1a1a1a] text-primary focus:ring-primary focus:ring-offset-[#111111] cursor-pointer"
               checked={isDefault}
               onChange={(e) =>
                 setIsDefault(e.target.checked)
               }
             />
-            <span className="text-sm text-gray-700">
+            <label htmlFor="isDefaultEdit" className="text-sm text-gray-300 cursor-pointer select-none">
               Set as default address
-            </span>
+            </label>
           </div>
 
-          <Field label="Địa chỉ" colSpan>
+          <Field label="Detail Address" colSpan>
             <input
               className={inputClass}
               value={addressLine}
               onChange={(e) =>
                 setAddressLine(e.target.value)
               }
+              placeholder="House number, Street name..."
             />
           </Field>
         </div>
 
-        <div className="flex gap-3 justify-end">
+        <div className="flex gap-4 justify-end pt-4 border-t border-gray-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border text-sm"
+            className="px-6 py-2.5 rounded-xl border border-gray-700 text-gray-300 text-sm font-medium hover:bg-gray-800 hover:text-white transition-colors"
           >
-            Hủy
+            Cancel
           </button>
 
           <button
             type="submit"
             disabled={!canSubmit || submitting}
-            className="px-4 py-2 rounded-lg bg-primary text-white text-sm disabled:bg-gray-300"
+            className="px-6 py-2.5 rounded-xl bg-primary text-black text-sm font-bold disabled:bg-gray-800 disabled:text-gray-500 hover:bg-yellow-400 hover:shadow-[0_0_15px_rgba(255,213,0,0.3)] hover:-translate-y-0.5 transition-all duration-200"
           >
-            {submitting ? "Đang lưu..." : "Lưu thay đổi"}
+            {submitting ? "Saving..." : "Save Address"}
           </button>
         </div>
       </form>
@@ -313,11 +320,11 @@ function Field({
 }) {
   return (
     <div
-      className={`flex flex-col gap-1 ${
+      className={`flex flex-col gap-2 ${
         colSpan ? "md:col-span-2" : ""
       }`}
     >
-      <label className="text-sm font-medium text-gray-700">
+      <label className="text-sm font-medium text-gray-400">
         {label}
       </label>
       {children}
@@ -339,12 +346,12 @@ function Select({
   onChange: (v?: number) => void;
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-gray-700">
+    <div className="flex flex-col gap-2">
+      <label className="text-sm font-medium text-gray-400">
         {label}
       </label>
       <select
-        className="border rounded-lg px-3 py-2 text-sm"
+        className={`border rounded-xl px-4 py-3 text-sm bg-[#1a1a1a] text-white focus:outline-none focus:ring-1 transition-all appearance-none cursor-pointer border-gray-800 focus:border-primary/50 focus:ring-primary/50 ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         value={value ?? ""}
         disabled={disabled}
         onChange={(e) =>
@@ -355,11 +362,11 @@ function Select({
           )
         }
       >
-        <option value="">
-          Select {label.toLowerCase()}
+        <option value="" disabled>
+          Select {label}
         </option>
         {options.map((o) => (
-          <option key={o.code} value={o.code}>
+          <option key={o.code} value={o.code} className="bg-[#1a1a1a] text-white">
             {o.name}
           </option>
         ))}
