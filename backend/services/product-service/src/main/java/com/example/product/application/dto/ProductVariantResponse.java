@@ -11,5 +11,5 @@ public class ProductVariantResponse {
     private Integer stock;
     private String status;
     private com.fasterxml.jackson.databind.JsonNode variantSpecsJson;
-    private java.util.List<VariantAttributeValueRequest> attributeValues;
+    private java.util.List<VariantAttributeResponse> attributes;
 }

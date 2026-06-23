@@ -72,7 +72,7 @@ export default function SearchModal({
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="max-w-[900px] w-[95%] p-6">
         <DialogHeader>
-          {/* <DialogTitle className="sr-only">Search</DialogTitle> */}
+          <DialogTitle className="sr-only">Search</DialogTitle>
         </DialogHeader>
 
         {/* Header search bar */}

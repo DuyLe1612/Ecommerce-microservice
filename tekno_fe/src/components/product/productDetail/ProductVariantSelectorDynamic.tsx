@@ -19,7 +19,7 @@ export default function ProductVariantSelectorDynamic({
     const map: Record<string, string[]> = {};
 
     variants.forEach((variant) => {
-      variant.attributes.forEach((attr: any) => {
+      variant.attributes?.forEach((attr: any) => {
         if (!map[attr.name]) map[attr.name] = [];
         if (!map[attr.name].includes(attr.value)) {
           map[attr.name].push(attr.value);
@@ -45,10 +45,10 @@ export default function ProductVariantSelectorDynamic({
   // 3️⃣ Tìm variant phù hợp
   const matchedVariant = useMemo(() => {
     return variants.find((variant) =>
-      variant.attributes.every((attr: any) => {
+      variant.attributes?.every((attr: any) => {
         const sel = selectedAttrs[attr.name];
         if (!sel) return false;
-        return attr.value.includes(sel); // vì value là mảng
+        return attr.value === sel; 
       })
     );
   }, [variants, selectedAttrs]);

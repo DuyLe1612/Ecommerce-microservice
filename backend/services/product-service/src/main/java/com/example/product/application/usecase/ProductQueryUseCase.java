@@ -16,6 +16,7 @@ public class ProductQueryUseCase {
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
     private final ProductAttributeRepository productAttributeRepository;
+    private final AttributeValueRepository attributeValueRepository;
 
     // Admin: list products with pagination and filters
     public Page<ProductAdminSummaryResponse> listProductsAdmin(
@@ -119,15 +120,23 @@ public class ProductQueryUseCase {
             dto.setVariantSpecsJson(v.getVariantSpecsJson());
             
             if (v.getAttributeValues() != null) {
-                java.util.List<VariantAttributeValueRequest> attrValues = v.getAttributeValues().stream()
+                java.util.List<VariantAttributeResponse> attributes = v.getAttributeValues().stream()
                     .map(attr -> {
-                        VariantAttributeValueRequest attrReq = new VariantAttributeValueRequest();
-                        attrReq.setAttributeId(attr.getAttributeId());
-                        attrReq.setValueId(attr.getValueId());
-                        return attrReq;
+                        VariantAttributeResponse attrResp = new VariantAttributeResponse();
+                        attrResp.setId(attr.getAttributeId());
+                        
+                        productAttributeRepository.findById(attr.getAttributeId()).ifPresent(pa -> {
+                            attrResp.setName(pa.getName());
+                        });
+                        
+                        attributeValueRepository.findById(attr.getValueId()).ifPresent(av -> {
+                            attrResp.setValue(av.getValue());
+                        });
+                        
+                        return attrResp;
                     })
                     .collect(java.util.stream.Collectors.toList());
-                dto.setAttributeValues(attrValues);
+                dto.setAttributes(attributes);
             }
             
             return dto;
