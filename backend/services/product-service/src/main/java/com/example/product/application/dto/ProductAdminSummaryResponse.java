@@ -20,4 +20,6 @@ public class ProductAdminSummaryResponse {
     private int variantCount;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private BigDecimal discountPercent;
+    private Double averageRating;
 }

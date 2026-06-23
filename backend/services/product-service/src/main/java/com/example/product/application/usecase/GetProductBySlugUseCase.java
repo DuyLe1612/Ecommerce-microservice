@@ -8,6 +8,7 @@ import com.example.product.infrastructure.persistence.repository.BrandRepository
 import com.example.product.infrastructure.persistence.repository.CategoryRepository;
 import com.example.product.infrastructure.persistence.repository.ProductAttributeRepository;
 import com.example.product.infrastructure.persistence.repository.SpringDataProductRepository;
+import com.example.product.infrastructure.persistence.repository.AttributeValueRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class GetProductBySlugUseCase {
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
     private final ProductAttributeRepository productAttributeRepository;
+    private final AttributeValueRepository attributeValueRepository;
 
     @Cacheable(value = Constants.CACHE_PRODUCT_DETAIL, key = "#slug")
     @Transactional(readOnly = true)
@@ -33,6 +35,7 @@ public class GetProductBySlugUseCase {
             .orElseThrow(() -> new RuntimeException("Product not found with slug: " + slug));
             
         ProductDetailResponse response = new ProductDetailResponse();
+        response.setId(entity.getId());
         response.setName(entity.getName());
         response.setSlug(entity.getSlug());
         response.setDescription(entity.getDescription());
@@ -51,6 +54,14 @@ public class GetProductBySlugUseCase {
         }).toList();
         response.setImages(images);
 
+        if (!images.isEmpty()) {
+            response.setPrimaryImageUrl(images.stream()
+                .filter(img -> Boolean.TRUE.equals(img.getIsPrimary()))
+                .findFirst()
+                .map(ProductImageResponse::getImageUrl)
+                .orElse(images.get(0).getImageUrl()));
+        }
+
         List<ProductVariantResponse> variants = entity.getVariants().stream().map(variant -> {
             ProductVariantResponse dto = new ProductVariantResponse();
             dto.setId(variant.getId());
@@ -61,15 +72,23 @@ public class GetProductBySlugUseCase {
             dto.setVariantSpecsJson(variant.getVariantSpecsJson());
             
             if (variant.getAttributeValues() != null) {
-                List<VariantAttributeValueRequest> attrValues = variant.getAttributeValues().stream()
+                List<VariantAttributeResponse> attributes = variant.getAttributeValues().stream()
                     .map(attr -> {
-                        VariantAttributeValueRequest attrReq = new VariantAttributeValueRequest();
-                        attrReq.setAttributeId(attr.getAttributeId());
-                        attrReq.setValueId(attr.getValueId());
-                        return attrReq;
+                        VariantAttributeResponse attrResp = new VariantAttributeResponse();
+                        attrResp.setId(attr.getAttributeId());
+                        
+                        productAttributeRepository.findById(attr.getAttributeId()).ifPresent(pa -> {
+                            attrResp.setName(pa.getName());
+                        });
+                        
+                        attributeValueRepository.findById(attr.getValueId()).ifPresent(av -> {
+                            attrResp.setValue(av.getValue());
+                        });
+                        
+                        return attrResp;
                     })
                     .collect(Collectors.toList());
-                dto.setAttributeValues(attrValues);
+                dto.setAttributes(attributes);
             }
             
             return dto;
@@ -98,6 +117,7 @@ public class GetProductBySlugUseCase {
         response.setSpecs(entity.getSpecs());
         response.setAverageRating(entity.getAverageRating());
         response.setTotalReviews(entity.getTotalReviews());
+        response.setTotalSold(entity.getTotalSold());
 
         return response;
     }

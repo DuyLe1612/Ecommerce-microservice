@@ -3,14 +3,14 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Product } from "@/type/product";
+import { ProductDetail } from "@/type/product";
 import AddToCartButton from "../AddToCartButton";
 import AddToFavorButton from "../AddToFavorButton";
 
 export default function ProductVariantSelectorDynamic({
   product,
 }: {
-  product: Product;
+  product: ProductDetail;
 }) {
   const variants = product?.variants ?? [];
 
@@ -19,11 +19,11 @@ export default function ProductVariantSelectorDynamic({
     const map: Record<string, string[]> = {};
 
     variants.forEach((variant) => {
-      variant.attributes.forEach((attr) => {
+      variant.attributes?.forEach((attr: any) => {
         if (!map[attr.name]) map[attr.name] = [];
-        attr.value.forEach((v) => {
-          if (!map[attr.name].includes(v)) map[attr.name].push(v);
-        });
+        if (!map[attr.name].includes(attr.value)) {
+          map[attr.name].push(attr.value);
+        }
       });
     });
 
@@ -45,10 +45,10 @@ export default function ProductVariantSelectorDynamic({
   // 3️⃣ Tìm variant phù hợp
   const matchedVariant = useMemo(() => {
     return variants.find((variant) =>
-      variant.attributes.every((attr) => {
+      variant.attributes?.every((attr: any) => {
         const sel = selectedAttrs[attr.name];
         if (!sel) return false;
-        return attr.value.includes(sel); // vì value là mảng
+        return attr.value === sel; 
       })
     );
   }, [variants, selectedAttrs]);

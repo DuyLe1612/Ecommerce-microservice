@@ -5,13 +5,14 @@ import {
   getProductRecommendation,
   getProductsOnSale,
 } from "@/services/products";
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
+import { fromListItem } from "@/lib/productAdapter";
 import { count } from "console";
 import ViewAllButton from "../share/ViewAllButton";
 import { useAuth } from "@/hook/useAuth";
 
 export default function ProductsOnSale() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductCardType[]>([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
@@ -19,8 +20,8 @@ export default function ProductsOnSale() {
     let mounted = true;
     (async () => {
       try {
-        const res = await getProductRecommendation(user?.id ?? 2, 10);
-        if (mounted) setProducts(res ?? []);
+        const res = await getProductRecommendation(Number(user?.id) || 2, 10);
+        if (mounted) setProducts(res ? res.map(fromListItem) : []);
       } catch (e) {
         console.error("error in fetching new products", e);
       } finally {

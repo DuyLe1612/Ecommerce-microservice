@@ -9,7 +9,7 @@ import { useAuth } from "@/hook/useAuth";
 export default function CommentItemView({ review }: { review: ProductReview }) {
   const { user } = useAuth();
 
-  const isOwner = user?.id != null && Number(review.userId) === user?.id;
+  const isOwner = user?.id != null && Number(review.userId) === Number(user?.id);
 
   console.log("Review item render, isOwner:", user?.id);
 
@@ -63,7 +63,7 @@ export default function CommentItemView({ review }: { review: ProductReview }) {
           <div className="rounded-full">avt</div>
           <div className="flex flex-col">
             <div className="text-xl font-bold">{review.userEmail}</div>
-            <div className="text-gray-500 font-normal text-sm">
+            <div className="text-gray-500 font-normal text-sm" suppressHydrationWarning>
               {new Date(review.createdAt).toLocaleDateString()}
             </div>
           </div>

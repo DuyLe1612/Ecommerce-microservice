@@ -1,16 +1,18 @@
-import { Product } from "@/type/product";
+import { ProductListItem, ProductCard as ProductCardType } from "@/type/product";
+import { fromListItem } from "@/lib/productAdapter";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
 // FAVORITE API
 export const favorApi = {
-  getFavor: async (token: string): Promise<Product[]> => {
+  getFavor: async (token: string): Promise<ProductCardType[]> => {
     const res = await fetch(`${BASE_URL}/wishlist`, { credentials: "include", headers: {
           "Authorization": `Bearer ${token}`,
         },
        });
     if (!res.ok) throw new Error("Failed to fetch favorites");
-    return res.json();
+    const data: ProductListItem[] = await res.json();
+    return data.map(fromListItem);
   },
 
   addToFavor: async (
@@ -36,10 +38,8 @@ export const favorApi = {
       method: "DELETE",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({productId} ),
     });
 
     if (!res.ok) throw new Error("Failed to remove from favor");
@@ -51,13 +51,11 @@ export const favorApi = {
       method: "GET",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({productId} ),
     });
 
-    if (!res.ok) throw new Error("Failed to remove from favor");
+    if (!res.ok) throw new Error("Failed to check favor");
     return res.json();
   },
 };

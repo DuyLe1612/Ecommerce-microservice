@@ -1,282 +1,127 @@
-import { get,post, postForm, put, del, API_BASE } from "@/lib/api";
+import { get, post, put, del, API_BASE } from "@/lib/api";
 import { API_BASE_URL } from "@/lib/apiConfig";
+import { ProductDetail, ProductListItem, PageResponse } from "@/type/product";
 
-
-// services/products.ts
+// PUBLIC: List products via product-service new endpoint
 export async function getProductsList(params?: {
-  page?: number;
-  pageSize?: number;
-  category?: string;
+  page?: number;       // 0-indexed
+  size?: number;
+  categorySlug?: string;
   sortBy?: string;
+  sortDir?: string;
   keyword?: string;
-  brand?: string;
+  brandSlug?: string;
   minPrice?: number;
   maxPrice?: number;
-  filters?: Record<string, string[]>;
-  suggest?: boolean;
-}) {
-  try {
-    const query = new URLSearchParams();
+}): Promise<PageResponse<ProductListItem>> {
+  const query = new URLSearchParams();
+  if (params?.keyword) query.append("keyword", params.keyword);
+  if (params?.categorySlug) query.append("categorySlug", params.categorySlug);
+  if (params?.brandSlug) query.append("brandSlug", params.brandSlug);
+  if (params?.sortBy) query.append("sortBy", params.sortBy);
+  if (params?.sortDir) query.append("sortDir", params.sortDir ?? "DESC");
+  if (params?.minPrice != null) query.append("minPrice", String(params.minPrice));
+  if (params?.maxPrice != null) query.append("maxPrice", String(params.maxPrice));
+  query.append("page", String(params?.page ?? 0));
+  query.append("size", String(params?.size ?? 20));
 
-    // API expects PascalCase parameter names according to Swagger UI
-    if (params?.keyword) query.append("Keyword", params.keyword);
-    if (params?.category) query.append("Category", params.category);
-    if (params?.brand) query.append("Brand", params.brand);
-    if (params?.sortBy) query.append("Sort", params.sortBy);
-    if (typeof params?.minPrice !== "undefined") query.append("MinPrice", String(params.minPrice));
-    if (typeof params?.maxPrice !== "undefined") query.append("MaxPrice", String(params.maxPrice));
-    if (params?.filters) query.append("Filters", JSON.stringify(params.filters));
-    if (typeof params?.suggest !== "undefined") query.append("Suggest", String(Boolean(params.suggest)));
-    if (params?.page) query.append("Page", String(params.page));
-    if (params?.pageSize) query.append("PageSize", String(params.pageSize));
-    console.log("filter query",params?.filters);
-    
+  const url = `${API_BASE_URL}/products?${query.toString()}`;
+  const res = await fetch(url, { method: "GET", cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to fetch product list: ${res.status}`);
+  const result = await res.json();
+  // product-service returns ApiResponse<Page<ProductListItemResponse>>
+  // Spring Page has: content[], totalElements, totalPages, number, size
+  return result.data as PageResponse<ProductListItem>;
+}
 
-    const url = `${API_BASE_URL}/products${query.toString() ? `?${query.toString()}` : ""}`;
-
-    const res = await fetch(url, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch product list: ${res.status}`);
-    }
-
-    const result = await res.json();
-
-    if (!result.success || !result.data) {
-      throw new Error(result.message || "Invalid API response");
-    }
-
-    return result.data;
-  } catch (error) {
-    console.error("Error in getProductsList:", error);
-    throw error;
+// PUBLIC: Get product detail by slug
+export async function getProductDetail(slug: string): Promise<ProductDetail> {
+  const res = await fetch(`${API_BASE_URL}/products/${slug}`, {
+    method: "GET", cache: "no-store",
+  });
+  if (!res.ok) throw new Error(`Failed to fetch product detail: ${res.status}`);
+  const result = await res.json();
+  const data = result.data;
+  // Compute primaryImageUrl if not present
+  if (!data.primaryImageUrl && Array.isArray(data.images)) {
+    const primary = data.images.find((i: any) => i.isPrimary) ?? data.images[0];
+    data.primaryImageUrl = primary?.imageUrl ?? null;
   }
+  return data as ProductDetail;
 }
 
-import { Product } from "@/type/product"; 
-import { ApiResponse } from "@/type/share";
-
-// Trả về dữ liệu chi tiết sản phẩm đúng kiểu ProductDetail
-export async function getProductDetail(slug: string): Promise<Product> {
-  try {
-    const res = await fetch(`${API_BASE_URL}/products/${slug}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch product detail: ${res.status}`);
-    }
-
-    const result = await res.json();
-
-    if (!result.success || !result.data) {
-      throw new Error(result.message || "Invalid API response");
-    }
-
-    return result.data as Product;
-  } catch (error) {
-    console.error("Error in getProductDetail:", error);
-    throw error;
-  }
+// ADMIN: List products with pagination
+export async function getAdminProducts(params?: { page?: number; size?: number; keyword?: string }) {
+  const query = new URLSearchParams();
+  if (params?.keyword) query.append("keyword", params.keyword);
+  query.append("page", String(params?.page ?? 0));
+  query.append("size", String(params?.size ?? 20));
+  return get(`${API_BASE}/admin/products?${query.toString()}`, { cache: "no-store" });
 }
 
-export async function getProductRecommendation(userId: number, k: number): Promise<Product[]> {
-  try {
-    const res = await fetch(`${API_BASE_URL}/recommend/cf/products/${userId}?k=${k}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch product detail: ${res.status}`);
-    }
-
-    const result = await res.json();
-
-    if (!result.success || !result.data) {
-      throw new Error(result.message || "Invalid API response");
-    }
-
-    return result.data.recommendations as Product[];
-  } catch (error) {
-    console.error("Error in getProductDetail:", error);
-    throw error;
-  }
-}
-
-
-
-export async function getProductsInCart() {
-// try {
-//     const res = await fetch(`${API_BASE_URL}/cart`, {
-//       method: "GET",
-//       headers: { "Content-Type": "application/json" },
-//       cache: "no-store",
-//     });
-
-//     if (!res.ok) {
-//       throw new Error(`Failed to fetch product in cart: ${res.status}`);
-//     }
-
-//     const result = await res.json();
-
-//     if (!result.success || !result.data) {
-//       throw new Error(result.message || "Invalid API response");
-//     }
-
-//     return result.data as Product[];
-//   } catch (error) {
-//     console.error("Error in getProductCart:", error);
-//     throw error;
-//   }
-}
-
-// Admin product helpers
-export async function getAdminProducts(params?: {
-  pageSize?: number;
-  page?: number;
-} ) {
-  try {
-    const query = new URLSearchParams();
-    if (params?.pageSize) query.append("PageSize", String(params.pageSize));
-    if (params?.page) query.append("Page", String(params.page));
-    
-    const url = `${API_BASE}/admin/products${query.toString() ? `?${query.toString()}` : ""}`;
-    return await get(url, { cache: "no-store" });
-  } catch (error) {
-    console.error("❌ Failed to load admin products:", error);
-    throw error;
-  }
-}
-
+// ADMIN: Get product by slug (fix URL)
 export async function getAdminProduct(slug: string) {
-  try {
-    return await get(`${API_BASE}/admin/products/${slug}`, { cache: "no-store" });
-  } catch (error) {
-    console.error("❌ Failed to load admin product:", error);
-    throw error;
-  }
+  return get(`${API_BASE}/admin/products/slug/${slug}`, { cache: "no-store" });
 }
 
-export async function createAdminProduct(fd: FormData) {
-  try {
-    return await postForm(`${API_BASE}/admin/products`, fd);
-  } catch (error) {
-    console.error("❌ Failed to create admin product:", error);
-    throw error;
-  }
-}
-
-export async function updateAdminProduct(id: number | string, fd: FormData) {
-  try {
-    return await put(`${API_BASE}/admin/products/${id}`, fd);
-  } catch (error) {
-    console.error("❌ Failed to update admin product:", error);
-    throw error;
-  }
-}
-
-export async function deleteAdminProduct(id: number | string) {
-  try {
-    return await del(`${API_BASE}/admin/products/${id}`);
-  } catch (error) {
-    console.error("❌ Failed to delete admin product:", error);
-    throw error;
-  }
-}
-
-export type CreateProductVariantPayload = {
-  productId: number;
-  sku: string;
-  price: number;
-  stock: number;
-  status?: string;
-  attributes: Array<{  // ✅ Changed from attributeValues to attributes
-    id?: number;        // ✅ Use 'id' for existing attributes
-    name?: string;      // ✅ Use 'name' for new attributes  
-    value: string;
-  }>;
-};
-
-export async function createProductVariant(
-  payload: CreateProductVariantPayload
-) {
-  try {
-    return await post(
-      `${API_BASE}/admin/products/variants`,
-      payload
-    );
-  } catch (error) {
-    console.error("❌ Failed to create product variant:", error);
-    throw error;
-  }
-}
-
-export async function deleteProductVariant(variantId: number | string) {
-  try {
-    return await del(`${API_BASE}/admin/products/variants/${variantId}`);
-  } catch (error) {
-    console.error("❌ Failed to delete product variant:", error);
-    throw error;
-  }
-}
-
-export async function updateProductVariant(
-  variantId: number | string,
-  payload: Partial<CreateProductVariantPayload>
-) {
-  try {
-    return await put(
-      `${API_BASE}/admin/products/variants/${variantId}`,
-      payload
-    );
-  } catch (error) {
-    console.error("❌ Failed to update product variant:", error);
-    throw error;
-  }
-}
-
-//product on sale
-export async function getProductsOnSale(params?: {
-  count: number;
-  categorySlug?: string;
+// ADMIN: Create product — JSON body (not FormData)
+export async function createAdminProduct(payload: {
+  name: string; slug: string; categoryId: number; brandId: number;
+  basePrice: number; discountPercent?: number; overview?: string; description?: string; status?: string;
 }) {
-  try {
-    const query = new URLSearchParams();
+  return post(`${API_BASE}/admin/products`, payload);
+}
 
-    // API expects PascalCase parameter names according to Swagger UI
-    if (params?.count) query.append("count", String(params.count));
-    if (params?.categorySlug) query.append("categorySlug", params.categorySlug);
-    
+// ADMIN: Update product — JSON body
+export async function updateAdminProduct(id: number | string, payload: any) {
+  return put(`${API_BASE}/admin/products/${id}`, payload);
+}
 
-    const url = `${API_BASE_URL}/products/on-sale${query.toString() ? `?${query.toString()}` : ""}`;
+// ADMIN: Delete product
+export async function deleteAdminProduct(id: number | string) {
+  return del(`${API_BASE}/admin/products/${id}`);
+}
 
-    const res = await fetch(url, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
+// ADMIN: Upload image (stays as FormData — backend accepts multipart)
+export async function uploadProductImage(productId: number, file: File, isPrimary = false) {
+  const fd = new FormData();
+  fd.append("productId", String(productId));
+  fd.append("file", file);
+  fd.append("isPrimary", String(isPrimary));
+  return post(`${API_BASE}/admin/products/images`, fd);
+}
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch product on sale list: ${res.status}`);
-    }
+// ADMIN: Create variant — JSON body with attributeValues format
+export async function createProductVariant(payload: {
+  productId: number; sku: string; price: number; stock: number; status?: string;
+  attributeValues?: Array<{ attributeId: number; valueId: number }>;
+}) {
+  return post(`${API_BASE}/admin/products/variants`, payload);
+}
 
-    const result = await res.json();
+// ADMIN: Update variant
+export async function updateProductVariant(variantId: number | string, payload: any) {
+  return put(`${API_BASE}/admin/products/variants/${variantId}`, payload);
+}
 
-    if (!result.success || !result.data) {
-      throw new Error(result.message || "Invalid API response");
-    }
+// ADMIN: Delete variant
+export async function deleteProductVariant(variantId: number | string) {
+  return del(`${API_BASE}/admin/products/variants/${variantId}`);
+}
 
-    return result.data;
-  } catch (error) {
-    console.error("Error in getProductsList:", error);
-    throw error;
-  }
+// ADMIN: Adjust stock
+export async function adjustStock(variantId: number, delta: number, reason?: string) {
+  return post(`${API_BASE}/admin/products/variants/${variantId}/stock`, { delta, reason });
+}
+
+// WRAPPERS for specific UI components
+export async function getProductRecommendation(userId: number, limit: number = 10) {
+  // Recommendation not implemented in backend yet, just return recent products
+  const res = await getProductsList({ size: limit, sortBy: "createdAt", sortDir: "DESC" });
+  return res.content;
+}
+
+export async function getProductsOnSale(limit: number = 10) {
+  const res = await getProductsList({ size: limit, sortBy: "discountPercent", sortDir: "DESC" });
+  return res.content;
 }

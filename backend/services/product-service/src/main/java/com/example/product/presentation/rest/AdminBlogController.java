@@ -10,7 +10,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.StringJoiner;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.example.product.infrastructure.persistence.entity.BlogPostTagJpaEntity;
 import com.example.product.infrastructure.persistence.repository.BlogPostTagRepository;
@@ -25,6 +29,18 @@ public class AdminBlogController {
     private final BlogRepository blogRepository;
     private final BlogPostTagRepository blogPostTagRepository;
 
+    @GetMapping
+    public ApiResponse<Object> listBlogs(
+            @RequestParam(required = false) String status,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        if (status != null && !status.isBlank()) {
+            return ApiResponse.success(blogRepository.findAllByStatusOrderByCreatedAtDesc(status, pageable));
+        }
+        return ApiResponse.success(blogRepository.findAllByOrderByCreatedAtDesc(pageable));
+    }
+
     @GetMapping("/{id}")
     public ApiResponse<Object> getBlog(@PathVariable Long id) {
         return blogRepository.findById(id)
@@ -35,16 +51,21 @@ public class AdminBlogController {
     @PostMapping
     @Transactional
     public ApiResponse<Object> createBlog(@RequestBody BlogRequest request) {
+        String slug = request.getSlug();
+        if (slug == null || slug.isBlank()) {
+            slug = SlugUtil.slugify(request.getTitle());
+        }
+        
         BlogJpaEntity blog = BlogJpaEntity.builder()
             .title(request.getTitle())
-            .slug(request.getSlug() != null ? request.getSlug() : SlugUtil.slugify(request.getTitle()))
+            .slug(slug)
             .summary(request.getSummary())
             .content(request.getContent())
-            .featuredImageUrl(request.getFeaturedImageUrl() != null ? request.getFeaturedImageUrl() : "...")
+            .featuredImageUrl(request.getFeaturedImageUrl() != null && !request.getFeaturedImageUrl().isBlank() ? request.getFeaturedImageUrl() : "...")
             .authorId(request.getAuthorId() != null ? request.getAuthorId() : 1L)
-            .status(request.getStatus() != null ? request.getStatus() : "DRAFT")
+            .status(request.getStatus() != null && !request.getStatus().isBlank() ? request.getStatus() : "DRAFT")
             .publishedAt("PUBLISHED".equalsIgnoreCase(request.getStatus()) ? LocalDateTime.now() : null)
-            .productIds(request.getProductIds() != null ? request.getProductIds() : "[]")
+            .productIds(request.getProductIds() != null && !request.getProductIds().isBlank() ? request.getProductIds() : "[]")
             .build();
         blog = blogRepository.save(blog);
         

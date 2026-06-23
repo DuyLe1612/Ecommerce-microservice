@@ -9,5 +9,7 @@ public class CategoryTreeNode {
     private Long id;
     private String name;
     private String slug;
+    private String iconPath;
+    private String imageUrl;
     private List<CategoryTreeNode> children = new ArrayList<>();
 }

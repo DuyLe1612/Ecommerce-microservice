@@ -12,9 +12,15 @@ export default function ProductMenu() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getCategoriesTree();
-      setCategories(data);
-      setActiveCategory(data?.[0] ?? null); // 👈 mặc định category đầu tiên
+      try {
+        const data = await getCategoriesTree();
+        if (Array.isArray(data)) {
+          setCategories(data);
+          setActiveCategory(data[0] ?? null);
+        }
+      } catch (err) {
+        console.error("Failed to fetch category tree in ProductMenu", err);
+      }
     };
     fetchData();
   }, []);
@@ -24,7 +30,7 @@ export default function ProductMenu() {
       <div className="grid grid-cols-3 gap-6">
         {/* LEFT: Category list */}
         <div className="col-span-1 border-r pr-4 max-h-72 overflow-y-auto">
-          {categories.map((cat) => (
+          {(categories || []).map((cat) => (
             <Link
               key={cat.id}
               href={`/products?category=${cat.slug}`}
@@ -38,13 +44,19 @@ export default function ProductMenu() {
                 }
               `}
             >
-              <Image
-                src={cat.iconPath}
-                width={40}
-                height={40}
-                alt={cat.name}
-                className="w-10 h-10 object-contain"
-              />
+              {cat.iconPath ? (
+                <Image
+                  src={cat.iconPath}
+                  width={40}
+                  height={40}
+                  alt={cat.name}
+                  className="w-10 h-10 object-contain"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xs text-gray-500 font-bold">
+                  {cat.name ? cat.name.charAt(0).toUpperCase() : ""}
+                </div>
+              )}
               <span className="text-sm">{cat.name}</span>
             </Link>
           ))}
@@ -52,11 +64,11 @@ export default function ProductMenu() {
 
         {/* RIGHT: Sub category / preview */}
         <div className="col-span-2 pl-2">
-          {!activeCategory || activeCategory.subCategories.length === 0 ? (
+          {!activeCategory || !activeCategory.subCategories || activeCategory.subCategories.length === 0 ? (
             <p className="text-gray-500 text-sm">Danh mục trống</p>
           ) : (
             <div className="grid grid-cols-4 gap-4">
-              {activeCategory.subCategories.map((subCat) => (
+              {(activeCategory.subCategories || []).map((subCat) => (
                 <Link
                   key={subCat.id}
                   href={`/products?category=${subCat.slug}`}
@@ -66,14 +78,18 @@ export default function ProductMenu() {
                   "
                 >
                   <div className="w-full h-20 flex items-center justify-center mb-2">
-                    {subCat.iconPath && (
+                    {(subCat.imageUrl || subCat.iconPath) ? (
                       <Image
-                        src={subCat.imageUrl}
+                        src={subCat.imageUrl || subCat.iconPath}
                         width={60}
                         height={60}
                         alt={subCat.name}
                         className="object-contain"
                       />
+                    ) : (
+                      <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-xs text-gray-500 font-bold">
+                        {subCat.name ? subCat.name.charAt(0).toUpperCase() : ""}
+                      </div>
                     )}
                   </div>
                   <span className="text-xs font-medium">{subCat.name}</span>

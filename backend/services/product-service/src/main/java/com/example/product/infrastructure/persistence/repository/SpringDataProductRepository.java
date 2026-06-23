@@ -19,7 +19,7 @@ public interface SpringDataProductRepository extends JpaRepository<ProductJpaEnt
     Page<ProductJpaEntity> findAll(Pageable pageable);
 
     @Query("SELECT p FROM ProductJpaEntity p WHERE " +
-           "(:keyword IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))) AND " +
+           "(:keyword IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', CAST(:keyword AS text), '%'))) AND " +
            "(:categoryId IS NULL OR p.categoryId = :categoryId) AND " +
            "(:brandId IS NULL OR p.brandId = :brandId) AND " +
            "(:status IS NULL OR p.status = :status)")
@@ -32,4 +32,7 @@ public interface SpringDataProductRepository extends JpaRepository<ProductJpaEnt
 
     @Query("select distinct p.brandId from ProductJpaEntity p where p.categoryId = :categoryId")
     List<Long> findDistinctBrandIdsByCategoryId(@Param("categoryId") Long categoryId);
+
+    @Query("SELECT p FROM ProductJpaEntity p WHERE p.updatedAt >= :updatedAfter")
+    Page<ProductJpaEntity> findAllForIndexFeed(@Param("updatedAfter") java.time.LocalDateTime updatedAfter, Pageable pageable);
 }

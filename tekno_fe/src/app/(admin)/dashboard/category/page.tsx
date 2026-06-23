@@ -30,7 +30,7 @@ type CategoryNode = {
   imageUrl?: string;
   parentId?: number | null;
   isActive?: boolean;
-  subCategories?: CategoryNode[];
+  children?: CategoryNode[];
 };
 
 export default function CategoryPage() {
@@ -89,8 +89,8 @@ export default function CategoryPage() {
         return nodes.map(node => {
           const updatedNode = { ...node, parentId: parentId };
           
-          if (node.subCategories && node.subCategories.length > 0) {
-            updatedNode.subCategories = assignParentIds(node.subCategories, node.id);
+          if (node.children && node.children.length > 0) {
+            updatedNode.children = assignParentIds(node.children, node.id);
           }
           
           return updatedNode;
@@ -119,7 +119,7 @@ const flatTableCategories = useMemo(() => {
     imageUrl?: string;
     parentId?: number | null;
     isActive?: boolean;
-    subCategories?: CategoryNode[];
+    children?: CategoryNode[];
     depth: number;
   }> = [];
 
@@ -129,8 +129,8 @@ const flatTableCategories = useMemo(() => {
         ...node,
         depth,
       });
-      if (node.subCategories?.length) {
-        traverse(node.subCategories, depth + 1);
+      if (node.children?.length) {
+        traverse(node.children, depth + 1);
       }
     });
   };
@@ -176,8 +176,8 @@ const flattenedCategories = useMemo(() => {
         name: node.name,
         depth,
       });
-      if (node.subCategories?.length) {
-        traverse(node.subCategories, depth + 1);
+      if (node.children?.length) {
+        traverse(node.children, depth + 1);
       }
     });
   };
@@ -192,8 +192,8 @@ const flattenedCategories = useMemo(() => {
     const countNodes = (nodes: CategoryNode[]) => {
       nodes.forEach(node => {
         count++;
-        if (node.subCategories?.length) {
-          countNodes(node.subCategories);
+        if (node.children?.length) {
+          countNodes(node.children);
         }
       });
     };
@@ -293,7 +293,7 @@ const flattenedCategories = useMemo(() => {
         fd.append("ImageFile", editData.imageFile);
       }
 
-      await updateCategory(fd);
+      await updateCategory(editData.id, fd);
       await loadCategoriesTree();
       
       setOpenEdit(false);
@@ -327,7 +327,7 @@ const flattenedCategories = useMemo(() => {
 
   // Render tree node
   const renderNode = (node: CategoryNode, depth = 0): React.ReactNode => {
-    const children = node.subCategories || [];
+    const children = node.children || [];
     const hasChildren = children.length > 0;
     const isExpanded = expandedIds.has(node.id);
 

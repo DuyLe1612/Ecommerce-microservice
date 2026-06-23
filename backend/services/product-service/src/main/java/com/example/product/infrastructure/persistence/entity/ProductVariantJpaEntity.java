@@ -46,7 +46,7 @@ public class ProductVariantJpaEntity {
 
     @Column(name = "\"VariantSpecsJson\"", columnDefinition = "jsonb")
     @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.JSON)
-    private java.util.Map<String, Object> variantSpecsJson;
+    private com.fasterxml.jackson.databind.JsonNode variantSpecsJson;
 
     @Builder.Default
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

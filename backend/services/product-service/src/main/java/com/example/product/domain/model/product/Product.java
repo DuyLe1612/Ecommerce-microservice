@@ -21,7 +21,7 @@ public class Product {
     private String description;
     private java.math.BigDecimal discountPercent;
     private String overview;
-    private java.util.Map<String, Object> specs;
+    private com.fasterxml.jackson.databind.JsonNode specs;
     private Double averageRating;
     private Integer totalReviews;
     
@@ -29,7 +29,7 @@ public class Product {
     private final List<ProductImage> images;
 
     // For restoring from DB
-    public Product(ProductId id, Long categoryId, Long brandId, String name, String slug, Money basePrice, ProductStatus status, String description, List<ProductVariant> variants, List<ProductImage> images, java.math.BigDecimal discountPercent, String overview, java.util.Map<String, Object> specs, Double averageRating, Integer totalReviews) {
+    public Product(ProductId id, Long categoryId, Long brandId, String name, String slug, Money basePrice, ProductStatus status, String description, List<ProductVariant> variants, List<ProductImage> images, java.math.BigDecimal discountPercent, String overview, com.fasterxml.jackson.databind.JsonNode specs, Double averageRating, Integer totalReviews) {
         this.id = id;
         this.categoryId = categoryId;
         this.brandId = brandId;
@@ -99,7 +99,7 @@ public class Product {
         this.images.add(image);
     }
 
-    public void updateDetails(String description, String overview, java.util.Map<String, Object> specs, java.math.BigDecimal discountPercent) {
+    public void updateDetails(String description, String overview, com.fasterxml.jackson.databind.JsonNode specs, java.math.BigDecimal discountPercent) {
         this.description = description;
         this.overview = overview;
         this.specs = specs;
@@ -117,7 +117,7 @@ public class Product {
     public String getDescription() { return description; }
     public java.math.BigDecimal getDiscountPercent() { return discountPercent; }
     public String getOverview() { return overview; }
-    public java.util.Map<String, Object> getSpecs() { return specs; }
+    public com.fasterxml.jackson.databind.JsonNode getSpecs() { return specs; }
     public Double getAverageRating() { return averageRating; }
     public Integer getTotalReviews() { return totalReviews; }
     
