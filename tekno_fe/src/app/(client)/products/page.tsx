@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Grid3x3, List, ChevronDown, Loader2, Search } from "lucide-react";
 import Filter from "@/components/product/Filter";
 import ProductCard from "@/components/product/ProductCard";
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
 import { Breadcrumb } from "@/components/share/breadcumbCustom";
 import { Container } from "@/components/MainLayout/Container";
 import { getProductsList } from "@/services/products";
+import { fromListItem } from "@/lib/productAdapter";
 
 import { AnimatePresence, motion } from "motion/react";
 
@@ -36,11 +37,10 @@ import FilterChips from "@/components/product/FilterChips";
 
 export default function ProductPage() {
   const [loading, setLoading] = useState(false);
-  const [productsList, setproductsList] = useState<Product[]>([]);
+  const [productsList, setproductsList] = useState<ProductCardType[]>([]);
   // filter
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedBrands, setSelectedBrands] = useState<string>();
-  const [keyword, setKeyword] = useState<string>("");
   const [sortBy, setSortBy] = useState("created_desc");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>();
@@ -54,7 +54,10 @@ export default function ProductPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryCategory = searchParams.get("category") || "";
+  const queryKeyword = searchParams.get("q") || "";
   console.log(queryCategory);
+
+  const [keyword, setKeyword] = useState<string>(queryKeyword);
 
   const handleAttributesChange = (attrs: Record<string, string[]>) => {
     setFilters(attrs);
@@ -66,26 +69,45 @@ export default function ProductPage() {
       setSelectedCategory(queryCategory);
     }
   }, [queryCategory]);
+
+  useEffect(() => {
+    if (queryKeyword) {
+      setKeyword(queryKeyword);
+    }
+  }, [queryKeyword]);
   useEffect(() => {
     const fecthProductList = async () => {
       setLoading(true);
       try {
+        let backendSortBy = "createdAt";
+        let backendSortDir = "DESC";
+        if (sortBy === "price_asc") {
+          backendSortBy = "basePrice";
+          backendSortDir = "ASC";
+        } else if (sortBy === "price_desc") {
+          backendSortBy = "basePrice";
+          backendSortDir = "DESC";
+        } else if (sortBy === "rating_desc") {
+          backendSortBy = "averageRating";
+          backendSortDir = "DESC";
+        }
+        
         const res = await getProductsList({
-          category: selectedCategory,
+          categorySlug: selectedCategory,
           page: page,
-          pageSize: pageSize,
-          sortBy: sortBy,
-          brand: selectedBrands,
+          size: pageSize,
+          sortBy: backendSortBy,
+          sortDir: backendSortDir,
+          brandSlug: selectedBrands,
           maxPrice: maxPrice,
           minPrice: minPrice,
-          filters: filters,
-          keyword, // <-- truyền keyword
+          // filters: filters, // filters logic isn't easily supported without dynamic properties but we send it if supported. Let's omit for now since backend doesn't take attrs
+          keyword,
         });
-        setproductsList(res.data);
-        setTotalRecords(res.totalRecords);
-        setTotalPages(
-          res.totalPages ?? Math.ceil((res.totalRecords ?? 0) / pageSize)
-        );
+        const products = res.content ? res.content.map(fromListItem) : [];
+        setproductsList(products);
+        setTotalRecords(res.totalElements || 0);
+        setTotalPages(res.totalPages || 1);
       } catch (error) {
         console.error("Product fetch error", error);
       } finally {

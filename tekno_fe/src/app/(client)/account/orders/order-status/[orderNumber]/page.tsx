@@ -178,7 +178,7 @@ export default function OrderStatusPage() {
         {items.map((it) => {
           const title = it.product?.name ?? "Product";
 
-          const image = it.product?.primaryImagePath || "/placeholder.png";
+          const image = it.product?.primaryImageUrl || "/placeholder.png";
 
           const variantText =
             it.variant?.attributes?.join(", ") || it.variant?.sku || "";

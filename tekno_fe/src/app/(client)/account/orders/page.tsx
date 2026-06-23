@@ -184,7 +184,7 @@ export default function OrderHistoryPage() {
                       >
                         <Image
                           src={
-                            it.product.primaryImagePath ??
+                            it.product.primaryImageUrl ??
                             "/images/sample/product.jpg"
                           }
                           alt={it.product.name ?? "item"}

@@ -1,10 +1,10 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { favorApi } from "@/services/favor";
-import { Product } from "@/type/product";
+import { ProductCard as ProductCardType } from "@/type/product";
 
 export default function useFavor(enabled = true) {
-  const [items, setItems] = useState<Product[]>([]);
+  const [items, setItems] = useState<ProductCardType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const token =

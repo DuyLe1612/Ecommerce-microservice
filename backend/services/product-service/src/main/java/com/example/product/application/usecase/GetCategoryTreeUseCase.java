@@ -24,6 +24,8 @@ public class GetCategoryTreeUseCase {
             node.setId(category.getId());
             node.setName(category.getName());
             node.setSlug(category.getSlug());
+            node.setIconPath(category.getIconPath());
+            node.setImageUrl(category.getImageUrl());
             nodes.put(category.getId(), node);
         }
 

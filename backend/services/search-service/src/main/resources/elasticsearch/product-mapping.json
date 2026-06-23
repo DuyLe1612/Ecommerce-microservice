@@ -1,0 +1,72 @@
+{
+  "properties": {
+    "name": {
+      "type": "text",
+      "analyzer": "vietnamese_analyzer",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "slug": {
+      "type": "keyword"
+    },
+    "categoryId": {
+      "type": "keyword"
+    },
+    "categoryName": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword"
+        }
+      }
+    },
+    "brandId": {
+      "type": "keyword"
+    },
+    "brandName": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword"
+        }
+      }
+    },
+    "basePrice": {
+      "type": "scaled_float",
+      "scaling_factor": 100
+    },
+    "minVariantPrice": {
+      "type": "scaled_float",
+      "scaling_factor": 100
+    },
+    "discountPercent": {
+      "type": "scaled_float",
+      "scaling_factor": 100
+    },
+    "status": {
+      "type": "keyword"
+    },
+    "specs": {
+      "type": "flattened"
+    },
+    "averageRating": {
+      "type": "float"
+    },
+    "totalReviews": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "date"
+    },
+    "updatedAt": {
+      "type": "date"
+    },
+    "primaryImageUrl": {
+      "type": "keyword"
+    }
+  }
+}

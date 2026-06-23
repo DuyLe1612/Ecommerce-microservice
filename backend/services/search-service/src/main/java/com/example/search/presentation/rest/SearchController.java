@@ -1,42 +1,57 @@
 package com.example.search.presentation.rest;
 
-import com.example.search.application.usecase.SearchQueryUseCase;
+import com.example.search.application.dto.ApiResponse;
+import com.example.search.application.dto.SearchResponse;
+import com.example.search.application.query.SearchProductsQuery;
+import com.example.search.application.query.SearchProductsQueryHandler;
+import com.example.search.domain.model.ProductDocument;
+import com.example.search.domain.repository.ProductSearchRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/search")
 @RequiredArgsConstructor
 public class SearchController {
 
-    private final SearchQueryUseCase searchQueryUseCase;
+    private final SearchProductsQueryHandler searchProductsQueryHandler;
+    private final ProductSearchRepository repository;
 
-    @GetMapping
-    public Object listProducts(
-            @RequestParam(required = false) String keyword,
-            @RequestParam(required = false) String categorySlug,
-            @RequestParam(required = false) String brandSlug,
+    @GetMapping("/products")
+    public ApiResponse<SearchResponse<ProductDocument>> search(
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String categoryId,
+            @RequestParam(required = false) String brandId,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size,
-            @RequestParam(defaultValue = "newest") String sort) {
-            
-        return searchQueryUseCase.listProducts(keyword, categorySlug, brandSlug, minPrice, maxPrice, page, size, sort);
-    }
-
-    @GetMapping("/on-sale")
-    public Object onSaleProducts(
+            @RequestParam(required = false) String status,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
-        return searchQueryUseCase.onSaleProducts(page, size);
+        
+        SearchProductsQuery query = SearchProductsQuery.builder()
+                .q(q)
+                .categoryId(categoryId)
+                .brandId(brandId)
+                .minPrice(minPrice)
+                .maxPrice(maxPrice)
+                .status(status)
+                .page(page)
+                .size(size)
+                .build();
+                
+        return ApiResponse.success(searchProductsQueryHandler.execute(query));
     }
 
-    @GetMapping("/new/{categorySlug}")
-    public Object newProducts(
-            @PathVariable String categorySlug,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size) {
-        return searchQueryUseCase.newProducts(categorySlug, page, size);
+    @GetMapping("/suggest")
+    public ApiResponse<Object> suggest(@RequestParam String q, @RequestParam(defaultValue = "5") int size) {
+        return ApiResponse.success(repository.suggest(q, size));
+    }
+
+    @GetMapping("/facets")
+    public ApiResponse<Object> facets() {
+        return ApiResponse.success(repository.aggregateFacets());
     }
 }

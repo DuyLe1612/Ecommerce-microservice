@@ -14,11 +14,11 @@ public class ProductVariant {
     private Sku sku;
     private Money price;
     private ProductStatus status;
-    private Map<String, Object> variantSpecsJson;
+    private com.fasterxml.jackson.databind.JsonNode variantSpecsJson;
     private List<VariantAttributeValue> attributeValues;
 
     // For restoring from DB
-    public ProductVariant(Long id, Sku sku, Money price, ProductStatus status, Map<String, Object> variantSpecsJson, List<VariantAttributeValue> attributeValues) {
+    public ProductVariant(Long id, Sku sku, Money price, ProductStatus status, com.fasterxml.jackson.databind.JsonNode variantSpecsJson, List<VariantAttributeValue> attributeValues) {
         this.id = id;
         this.sku = sku;
         this.price = price;
@@ -28,7 +28,7 @@ public class ProductVariant {
     }
 
     // For creating new
-    public ProductVariant(Sku sku, Money price, Map<String, Object> variantSpecsJson, List<VariantAttributeValue> attributeValues) {
+    public ProductVariant(Sku sku, Money price, com.fasterxml.jackson.databind.JsonNode variantSpecsJson, List<VariantAttributeValue> attributeValues) {
         if (sku == null || price == null) {
             throw new IllegalArgumentException("SKU and Price must not be null");
         }
@@ -43,7 +43,7 @@ public class ProductVariant {
     public Sku getSku() { return sku; }
     public Money getPrice() { return price; }
     public ProductStatus getStatus() { return status; }
-    public Map<String, Object> getVariantSpecsJson() { return variantSpecsJson; }
+    public com.fasterxml.jackson.databind.JsonNode getVariantSpecsJson() { return variantSpecsJson; }
     public List<VariantAttributeValue> getAttributeValues() { return Collections.unmodifiableList(attributeValues); }
 
     public void changePrice(Money newPrice) {
@@ -53,7 +53,7 @@ public class ProductVariant {
         this.price = newPrice;
     }
 
-    public void updateDetails(Map<String, Object> variantSpecsJson, List<VariantAttributeValue> attributeValues) {
+    public void updateDetails(com.fasterxml.jackson.databind.JsonNode variantSpecsJson, List<VariantAttributeValue> attributeValues) {
         this.variantSpecsJson = variantSpecsJson;
         this.attributeValues = attributeValues != null ? new ArrayList<>(attributeValues) : new ArrayList<>();
     }

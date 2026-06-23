@@ -50,7 +50,7 @@ export default function BlogCard({
         <div
           className={`flex flex-col ${type === "horizontal" ? "my-auto" : ""}`}
         >
-          <div className="text-sm text-gray-700">
+          <div className="text-sm text-gray-700" suppressHydrationWarning>
             <Calendar className="inline-block mr-1 mb-1" size={14} />
             {new Date(blog.createdAt).toLocaleString("vi-VN")}
           </div>

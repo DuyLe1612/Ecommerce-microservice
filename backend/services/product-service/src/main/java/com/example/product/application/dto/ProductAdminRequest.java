@@ -16,5 +16,5 @@ public class ProductAdminRequest {
     private String status;
     private java.math.BigDecimal discountPercent;
     private String overview;
-    private Map<String, Object> specs;
+    private com.fasterxml.jackson.databind.JsonNode specs;
 }

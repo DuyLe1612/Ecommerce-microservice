@@ -50,7 +50,16 @@ export async function getBlogsList(page: number = 1, pageSize: number = 12) {
       throw new Error(err.message || "Lấy danh sách blog thất bại!");
     }
 
-    return await res.json(); // expected: { data: Blog[], totalRecords, totalPages, ... }
+    const json = await res.json();
+    // Backend: { success, data: { data: Blog[], totalRecords, totalPages, page, pageSize } }
+    const payload = json?.data ?? json;
+    return {
+      data: (payload?.data ?? []) as Blog[],
+      totalRecords: payload?.totalRecords ?? 0,
+      totalPages: payload?.totalPages ?? 1,
+      page: payload?.page ?? page,
+      pageSize: payload?.pageSize ?? pageSize,
+    };
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;

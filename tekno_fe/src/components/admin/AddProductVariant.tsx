@@ -128,10 +128,14 @@ useEffect(() => {
         return;
       }
 
-      const attributes = Object.entries(formData.attributeValues).map(([id, value]) => ({
-        id: Number(id),
-        value,
-      }));
+      const attributeValuesPayload = Object.entries(formData.attributeValues).map(([id, valueStr]) => {
+        const attr = attrs.find(a => a.id === Number(id));
+        const val = attr?.values.find(v => v.value === valueStr);
+        return {
+          attributeId: Number(id),
+          valueId: val?.id || 0,
+        };
+      });
 
       if (editingVariant?.id) {
         // Update existing variant
@@ -141,7 +145,7 @@ useEffect(() => {
           price: formData.price,
           stock: formData.stock,
           status: "Active",
-          attributes,
+          attributeValues: attributeValuesPayload,
         });
       } else {
         // Create new variant
@@ -151,7 +155,7 @@ useEffect(() => {
           price: formData.price,
           stock: formData.stock,
           status: "Active",
-          attributes,
+          attributeValues: attributeValuesPayload,
         });
       }
 

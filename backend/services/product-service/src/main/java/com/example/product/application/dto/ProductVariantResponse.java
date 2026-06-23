@@ -10,6 +10,6 @@ public class ProductVariantResponse {
     private BigDecimal price;
     private Integer stock;
     private String status;
-    private java.util.Map<String, Object> variantSpecsJson;
+    private com.fasterxml.jackson.databind.JsonNode variantSpecsJson;
     private java.util.List<VariantAttributeValueRequest> attributeValues;
 }

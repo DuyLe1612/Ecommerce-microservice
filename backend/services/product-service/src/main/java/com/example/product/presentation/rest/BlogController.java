@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.example.product.infrastructure.persistence.entity.BlogPostTagJpaEntity;
 import com.example.product.infrastructure.persistence.repository.BlogPostTagRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 @RestController
 @RequestMapping("/api/blog")
@@ -22,9 +25,22 @@ public class BlogController {
     private final BlogRepository blogRepository;
     private final BlogPostTagRepository blogPostTagRepository;
 
+    // Frontend gửi page 1-indexed, pageSize param
     @GetMapping
-    public ApiResponse<Object> listBlog() {
-        return ApiResponse.success(blogRepository.findTop10ByStatusOrderByPublishedAtDesc("PUBLISHED"));
+    public ApiResponse<Object> listBlog(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "12") int pageSize) {
+        // Convert 1-indexed → 0-indexed for Spring
+        int springPage = Math.max(0, page - 1);
+        PageRequest pageable = PageRequest.of(springPage, pageSize, Sort.by(Sort.Direction.DESC, "publishedAt"));
+        Page<BlogJpaEntity> result = blogRepository.findByStatusOrderByPublishedAtDesc("PUBLISHED", pageable);
+        return ApiResponse.success(Map.of(
+            "data", result.getContent(),
+            "totalRecords", result.getTotalElements(),
+            "totalPages", result.getTotalPages(),
+            "page", page,
+            "pageSize", pageSize
+        ));
     }
 
     @GetMapping("/{slug}")

@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: rabbitmq
+es:
+  host: elasticsearch
+product-service:
+  url: http://product-service:8082

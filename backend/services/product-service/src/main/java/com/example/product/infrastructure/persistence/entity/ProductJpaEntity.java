@@ -53,7 +53,7 @@ public class ProductJpaEntity {
 
     @Column(name = "\"Specs\"", columnDefinition = "jsonb")
     @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.JSON)
-    private java.util.Map<String, Object> specs;
+    private com.fasterxml.jackson.databind.JsonNode specs;
 
     @Builder.Default
     @Column(name = "\"TotalSold\"", nullable = false)

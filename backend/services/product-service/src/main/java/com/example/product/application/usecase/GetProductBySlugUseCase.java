@@ -33,6 +33,7 @@ public class GetProductBySlugUseCase {
             .orElseThrow(() -> new RuntimeException("Product not found with slug: " + slug));
             
         ProductDetailResponse response = new ProductDetailResponse();
+        response.setId(entity.getId());
         response.setName(entity.getName());
         response.setSlug(entity.getSlug());
         response.setDescription(entity.getDescription());
@@ -50,6 +51,14 @@ public class GetProductBySlugUseCase {
             return dto;
         }).toList();
         response.setImages(images);
+
+        if (!images.isEmpty()) {
+            response.setPrimaryImageUrl(images.stream()
+                .filter(img -> Boolean.TRUE.equals(img.getIsPrimary()))
+                .findFirst()
+                .map(ProductImageResponse::getImageUrl)
+                .orElse(images.get(0).getImageUrl()));
+        }
 
         List<ProductVariantResponse> variants = entity.getVariants().stream().map(variant -> {
             ProductVariantResponse dto = new ProductVariantResponse();
@@ -98,6 +107,7 @@ public class GetProductBySlugUseCase {
         response.setSpecs(entity.getSpecs());
         response.setAverageRating(entity.getAverageRating());
         response.setTotalReviews(entity.getTotalReviews());
+        response.setTotalSold(entity.getTotalSold());
 
         return response;
     }

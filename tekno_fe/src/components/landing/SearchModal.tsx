@@ -6,8 +6,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { getProductsList } from "@/services/products";
-import { Product } from "@/type/product";
+import { searchProducts } from "@/services/search";
+import { fromSearchResult } from "@/lib/productAdapter";
+import { ProductCard as ProductCardType } from "@/type/product";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -45,17 +46,18 @@ export default function SearchModal({
 
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState<Product[]>();
+  const [products, setProducts] = useState<ProductCardType[]>();
 
   useEffect(() => {
     const fecthProductList = async () => {
       setLoading(true);
       try {
-        const res = await getProductsList({
-          keyword: input,
+        const res = await searchProducts({
+          q: input,
+          size: 8,
         });
 
-        setProducts(res.data);
+        setProducts(res.content.map(fromSearchResult));
         //setTotalRecords(res.totalRecords);
       } catch (error) {
         console.error("Product fetch error", error);
@@ -80,7 +82,16 @@ export default function SearchModal({
               Search
             </label>
 
-            <div className="relative">
+            <form
+              className="relative"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (input.trim()) {
+                  window.location.href = `/products?q=${encodeURIComponent(input.trim())}`;
+                  onClose();
+                }
+              }}
+            >
               <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
                 <Search className="w-5 h-5" />
               </span>
@@ -96,12 +107,13 @@ export default function SearchModal({
               />
 
               <button
+                type="submit"
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-600 px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
                 aria-label="Start search"
               >
                 Search
               </button>
-            </div>
+            </form>
           </div>
 
           <button
@@ -122,7 +134,7 @@ export default function SearchModal({
                 {mostSearched.map((item) => (
                   <Link
                     key={item}
-                    href={`/search?q=${encodeURIComponent(item)}`}
+                    href={`/products?q=${encodeURIComponent(item)}`}
                     className="text-sm px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-800"
                   >
                     {item}
@@ -137,7 +149,7 @@ export default function SearchModal({
                 {mostUsedKeywords.map((item) => (
                   <Link
                     key={item}
-                    href={`/search?q=${encodeURIComponent(item)}`}
+                    href={`/products?q=${encodeURIComponent(item)}`}
                     className="text-sm px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-800"
                   >
                     {item}

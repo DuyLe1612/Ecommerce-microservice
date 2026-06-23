@@ -7,6 +7,7 @@ import java.util.Map;
 
 @Data
 public class ProductDetailResponse {
+    private Long id;
     private String name;
     private String slug;
     private String description;
@@ -20,7 +21,9 @@ public class ProductDetailResponse {
     private BrandSummaryResponse brand;
     private java.math.BigDecimal discountPercent;
     private String overview;
-    private Map<String, Object> specs;
+    private com.fasterxml.jackson.databind.JsonNode specs;
     private Double averageRating;
     private Integer totalReviews;
+    private Integer totalSold;
+    private String primaryImageUrl;
 }

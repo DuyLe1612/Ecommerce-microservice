@@ -38,7 +38,7 @@ export default async function SingleProductPage({ params }: Props) {
           <div className="flex items-center gap-2">
             <div className="flex items-center text-white gap-2 rounded-md bg-primary px-2 py-1">
               <Star fill="white" className="h-5 w-5" />
-              <span>{product.rating ?? 0}</span>
+              <span>{product.averageRating ?? 0}</span>
             </div>
 
             <div className="border-l border-gray-500 px-2">
