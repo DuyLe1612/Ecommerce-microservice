@@ -16,9 +16,7 @@ export default function OurBlogs() {
     getBlogsList(1, 4)
       .then((res) => {
         if (!mounted) return;
-        // API may nest data differently — try common shapes safely
-        const list: Blog[] =
-          res?.data?.data ?? res?.data ?? res ?? [];
+        const list: Blog[] = res?.data ?? [];
         setBlogs(list.slice(0, 4));
       })
       .catch((err) => {

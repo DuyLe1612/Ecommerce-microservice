@@ -201,7 +201,7 @@ export default function Filter({
                 <AccordionTrigger>{attr.name}</AccordionTrigger>
                 <AccordionContent>
                   <div className="flex flex-col gap-2">
-                    {attr.value.map((val) => (
+                    {attr.values?.map((val) => (
                       <div key={val} className="flex items-center gap-2">
                         <Checkbox
                           id={`${attr.name}-${val}`}
