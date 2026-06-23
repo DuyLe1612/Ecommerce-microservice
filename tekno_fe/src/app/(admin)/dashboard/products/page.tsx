@@ -208,6 +208,8 @@ const loadProducts = async () => {
         list = res.data;
       } else if (Array.isArray(res.data.data)) {
         list = res.data.data;
+      } else if (res.data.content && Array.isArray(res.data.content)) {
+        list = res.data.content;
       } else if (res.data.items && Array.isArray(res.data.items)) {
         list = res.data.items;
       }
@@ -883,35 +885,21 @@ setVariants(variantsWithNames);
         </span>
       </td>
       <td className="p-2">
-        {(() => {
-          const imgs = p.images || [];
-          const primary = imgs.find((i: any) => i.isPrimary);
-          const count = imgs.length;
-
-          if (!primary)
-            return (
-              <div className="w-20 h-12 bg-gray-100 rounded flex items-center justify-center text-xs text-gray-500">
-                No image
-              </div>
-            );
-
-          return (
-            <div className="relative w-20 h-12">
-              <Image
-                src={primary.imageUrl}
-                alt={p.name}
-                fill
-                className="object-cover rounded"
-                sizes="80px"
-              />
-              {count > 1 && (
-                <span className="absolute bottom-1 right-1 bg-black bg-opacity-60 text-white text-xs px-1 py-[1px] rounded">
-                  {count}
-                </span>
-              )}
-            </div>
-          );
-        })()}
+        {p.primaryImageUrl ? (
+          <div className="relative w-20 h-12">
+            <Image
+              src={p.primaryImageUrl}
+              alt={p.name}
+              fill
+              className="object-cover rounded"
+              sizes="80px"
+            />
+          </div>
+        ) : (
+          <div className="w-20 h-12 bg-gray-100 rounded flex items-center justify-center text-xs text-gray-500">
+            No image
+          </div>
+        )}
       </td>
 
                   <td className="p-2">

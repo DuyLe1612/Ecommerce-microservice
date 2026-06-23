@@ -51,16 +51,21 @@ public class AdminBlogController {
     @PostMapping
     @Transactional
     public ApiResponse<Object> createBlog(@RequestBody BlogRequest request) {
+        String slug = request.getSlug();
+        if (slug == null || slug.isBlank()) {
+            slug = SlugUtil.slugify(request.getTitle());
+        }
+        
         BlogJpaEntity blog = BlogJpaEntity.builder()
             .title(request.getTitle())
-            .slug(request.getSlug() != null ? request.getSlug() : SlugUtil.slugify(request.getTitle()))
+            .slug(slug)
             .summary(request.getSummary())
             .content(request.getContent())
-            .featuredImageUrl(request.getFeaturedImageUrl() != null ? request.getFeaturedImageUrl() : "...")
+            .featuredImageUrl(request.getFeaturedImageUrl() != null && !request.getFeaturedImageUrl().isBlank() ? request.getFeaturedImageUrl() : "...")
             .authorId(request.getAuthorId() != null ? request.getAuthorId() : 1L)
-            .status(request.getStatus() != null ? request.getStatus() : "DRAFT")
+            .status(request.getStatus() != null && !request.getStatus().isBlank() ? request.getStatus() : "DRAFT")
             .publishedAt("PUBLISHED".equalsIgnoreCase(request.getStatus()) ? LocalDateTime.now() : null)
-            .productIds(request.getProductIds() != null ? request.getProductIds() : "[]")
+            .productIds(request.getProductIds() != null && !request.getProductIds().isBlank() ? request.getProductIds() : "[]")
             .build();
         blog = blogRepository.save(blog);
         

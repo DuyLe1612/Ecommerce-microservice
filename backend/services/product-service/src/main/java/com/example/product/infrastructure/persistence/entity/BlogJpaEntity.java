@@ -46,7 +46,7 @@ public class BlogJpaEntity {
     @Builder.Default
     private Integer viewCount = 0;
 
-    @Column(name = "\"PublishedAt\"", nullable = false)
+    @Column(name = "\"PublishedAt\"", nullable = true)
     private LocalDateTime publishedAt;
 
     @CreationTimestamp

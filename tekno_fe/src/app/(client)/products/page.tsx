@@ -41,7 +41,6 @@ export default function ProductPage() {
   // filter
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedBrands, setSelectedBrands] = useState<string>();
-  const [keyword, setKeyword] = useState<string>("");
   const [sortBy, setSortBy] = useState("created_desc");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>();
@@ -55,7 +54,10 @@ export default function ProductPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryCategory = searchParams.get("category") || "";
+  const queryKeyword = searchParams.get("q") || "";
   console.log(queryCategory);
+
+  const [keyword, setKeyword] = useState<string>(queryKeyword);
 
   const handleAttributesChange = (attrs: Record<string, string[]>) => {
     setFilters(attrs);
@@ -67,6 +69,12 @@ export default function ProductPage() {
       setSelectedCategory(queryCategory);
     }
   }, [queryCategory]);
+
+  useEffect(() => {
+    if (queryKeyword) {
+      setKeyword(queryKeyword);
+    }
+  }, [queryKeyword]);
   useEffect(() => {
     const fecthProductList = async () => {
       setLoading(true);

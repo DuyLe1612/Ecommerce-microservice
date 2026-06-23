@@ -130,25 +130,18 @@ export async function getCategoryAttributesForFilter(categorySlug: string): Prom
 
 
 export async function getCategoryAttributes(categoryId: number) {
-  const res = await fetch(
-    `${API_BASE}/admin/categories/${categoryId}/attributes`,
-    {
-      cache: "no-store",
+  try {
+    const result = await get(`${API_BASE}/admin/categories/${categoryId}/attributes`);
+    
+    if (!result.success || !Array.isArray(result.data)) {
+      throw new Error("Invalid attributes response");
     }
-  );
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || "Lấy attributes thất bại!");
+    return result.data; // ✅ TRẢ VỀ ARRAY
+  } catch (error) {
+    console.error("❌ Lỗi khi gọi API attributes:", error);
+    throw error;
   }
-
-  const result = await res.json();
-
-  if (!result.success || !Array.isArray(result.data)) {
-    throw new Error("Invalid attributes response");
-  }
-
-  return result.data; // ✅ TRẢ VỀ ARRAY
 }
 
 export async function createCategoryAttribute(categoryId: number, name: string, inputType: string = "text") {
@@ -195,19 +188,7 @@ export async function getCategoryAttributeValues(
   attributeId: number
 ): Promise<AttributeValuesResponse> {
   try {
-    const res = await fetch(
-      `${API_BASE}/admin/categories/attributes/${attributeId}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        cache: "no-store",
-      }
-    );
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.message || "Lấy attribute values thất bại!");
-    }
-    const result = await res.json();
+    const result = await get(`${API_BASE}/admin/categories/attributes/${attributeId}`);
     return result.data as AttributeValuesResponse;
   } catch (error) {
     console.error("❌ Lỗi khi gọi API attribute values:", error);
@@ -259,20 +240,7 @@ export async function createAttribute(data: CreateAttributeRequest) {
 
 export async function getGlobalAttributes() {
   try {
-    const res = await fetch(`${API_BASE}/admin/categories/attributes/global`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.message || "Lấy global attributes thất bại!");
-    }
-
-    const result = await res.json();
+    const result = await get(`${API_BASE}/admin/categories/attributes/global`);
     return result.data || [];
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
