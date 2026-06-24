@@ -38,10 +38,8 @@ export const favorApi = {
       method: "DELETE",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({productId} ),
     });
 
     if (!res.ok) throw new Error("Failed to remove from favor");
@@ -53,13 +51,11 @@ export const favorApi = {
       method: "GET",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({productId} ),
     });
 
-    if (!res.ok) throw new Error("Failed to remove from favor");
+    if (!res.ok) throw new Error("Failed to check favor");
     return res.json();
   },
 };

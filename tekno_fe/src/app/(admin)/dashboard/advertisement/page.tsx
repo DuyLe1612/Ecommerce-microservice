@@ -26,7 +26,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, Trash2, Power, PowerOff } from "lucide-react";
-import { advertisementApi } from "@/services/advertisementApi";
+import { API_BASE, advertisementApi } from "@/services/advertisementApi";
 import { postForm } from "@/lib/api";
 
 export default function AdvertisementPage() {
@@ -132,7 +132,7 @@ const loadAdvertisements = async () => {
       formData.append("EndDate", new Date(form.endDate).toISOString());
       formData.append("IsActive", String(form.isActive));
 
-      await postForm("http://localhost:5000/api/admin/advertisements", formData);
+      await postForm(API_BASE, formData);
 
       // Refresh list
       await loadAdvertisements();

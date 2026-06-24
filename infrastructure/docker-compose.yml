@@ -325,7 +325,7 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=tekno
       - RABBITMQ_PASSWORD=tekno123
-      - PRODUCT_SERVICE_URL=http://product-service:8080
+      - PRODUCT_SERVICE_URL=http://product-service:8082
     depends_on:
       postgres:
         condition: service_healthy
@@ -412,22 +412,22 @@ services:
         condition: service_healthy
       product-service:
         condition: service_healthy
-      search-service:
-        condition: service_healthy
-      # promotion-service:
+      # search-service:
       #   condition: service_healthy
-      # coupon-service:
-      #   condition: service_healthy
-      order-service:
+      promotion-service:
         condition: service_healthy
-      payment-service:
+      coupon-service:
         condition: service_healthy
-      # cart-service:
+      # order-service:
       #   condition: service_healthy
-      review-service:
+      # payment-service:
+      #   condition: service_healthy
+      cart-service:
         condition: service_healthy
-      # notification-service:
+      # review-service:
       #   condition: service_healthy
+      notification-service:
+        condition: service_healthy
     networks:
       - ecommerce-net
     restart: unless-stopped
