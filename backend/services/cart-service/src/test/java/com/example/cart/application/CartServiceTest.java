@@ -16,9 +16,9 @@ class CartServiceTest {
         FakeCartStore store = new FakeCartStore();
         CartService service = new CartService(store, new FakeProductClient(), 7);
 
-        var cart = service.addItem(42L, 1001L, 2);
+        var cart = service.addItem("42", 1001L, 2);
 
-        assertEquals(42L, cart.userId());
+        assertEquals("42", cart.userId());
         assertEquals(1, cart.items().size());
         assertEquals(new BigDecimal("200.00"), cart.subtotal());
         assertEquals(Duration.ofDays(7), store.lastTtl);
@@ -29,31 +29,31 @@ class CartServiceTest {
         FakeCartStore store = new FakeCartStore();
         CartService service = new CartService(store, new FakeProductClient(), 7);
 
-        service.addItem(42L, 1001L, 2);
-        service.addItem(42L, 1002L, 1);
-        var cart = service.removeItem(42L, 1001L);
+        service.addItem("42", 1001L, 2);
+        service.addItem("42", 1002L, 1);
+        var cart = service.removeItem("42", 1001L);
 
         assertEquals(1, cart.items().size());
         assertEquals(1002L, cart.items().getFirst().variantId());
     }
 
     private static class FakeCartStore implements CartStore {
-        private final Map<Long, Cart> carts = new HashMap<>();
+        private final Map<String, Cart> carts = new HashMap<>();
         private Duration lastTtl;
 
         @Override
-        public Cart get(Long userId) {
+        public Cart get(String userId) {
             return carts.getOrDefault(userId, new Cart());
         }
 
         @Override
-        public void save(Long userId, Cart cart, Duration ttl) {
+        public void save(String userId, Cart cart, Duration ttl) {
             carts.put(userId, cart);
             lastTtl = ttl;
         }
 
         @Override
-        public void delete(Long userId) {
+        public void delete(String userId) {
             carts.remove(userId);
         }
     }

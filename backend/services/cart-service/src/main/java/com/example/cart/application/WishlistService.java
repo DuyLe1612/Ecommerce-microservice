@@ -17,14 +17,14 @@ public class WishlistService {
     private final ProductClient productClient;
 
     @Transactional(readOnly = true)
-    public List<WishlistItemResponse> list(Long userId) {
+    public List<WishlistItemResponse> list(String userId) {
         return wishlistRepository.findByUserIdOrderByCreatedAtDesc(userId).stream()
             .map(item -> new WishlistItemResponse(item.getProductId(), item.getCreatedAt()))
             .toList();
     }
 
     @Transactional
-    public List<WishlistItemResponse> add(Long userId, Long productId) {
+    public List<WishlistItemResponse> add(String userId, Long productId) {
         productClient.ensureProductExists(productId);
         if (!wishlistRepository.existsByUserIdAndProductId(userId, productId)) {
             try {
@@ -40,13 +40,13 @@ public class WishlistService {
     }
 
     @Transactional
-    public List<WishlistItemResponse> remove(Long userId, Long productId) {
+    public List<WishlistItemResponse> remove(String userId, Long productId) {
         wishlistRepository.deleteByUserIdAndProductId(userId, productId);
         return list(userId);
     }
 
     @Transactional(readOnly = true)
-    public boolean isWishlisted(Long userId, Long productId) {
+    public boolean isWishlisted(String userId, Long productId) {
         return wishlistRepository.existsByUserIdAndProductId(userId, productId);
     }
 }

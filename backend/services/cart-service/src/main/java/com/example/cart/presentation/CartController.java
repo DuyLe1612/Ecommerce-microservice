@@ -22,16 +22,16 @@ public class CartController {
     @GetMapping
     public ResponseEntity<ApiResponse<CartResponse>> getCart(
             @RequestHeader(value = "Authorization", required = false) String authHeader,
-            @RequestHeader(value = "X-User-Id", required = false) Long xUserId) {
-        Long userId = requireUser(authHeader, xUserId);
+            @RequestHeader(value = "X-User-Id", required = false) String xUserId) {
+        String userId = requireUser(authHeader, xUserId);
         return ResponseEntity.ok(ApiResponse.success(cartService.getCart(userId)));
     }
 
     @DeleteMapping
     public ResponseEntity<ApiResponse<Void>> clearCart(
             @RequestHeader(value = "Authorization", required = false) String authHeader,
-            @RequestHeader(value = "X-User-Id", required = false) Long xUserId) {
-        Long userId = requireUser(authHeader, xUserId);
+            @RequestHeader(value = "X-User-Id", required = false) String xUserId) {
+        String userId = requireUser(authHeader, xUserId);
         cartService.clear(userId);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
@@ -39,33 +39,33 @@ public class CartController {
     @PostMapping("/items")
     public ResponseEntity<ApiResponse<CartResponse>> addItem(
             @RequestHeader(value = "Authorization", required = false) String authHeader,
-            @RequestHeader(value = "X-User-Id", required = false) Long xUserId,
+            @RequestHeader(value = "X-User-Id", required = false) String xUserId,
             @Valid @RequestBody AddCartItemRequest request) {
-        Long userId = requireUser(authHeader, xUserId);
+        String userId = requireUser(authHeader, xUserId);
         return ResponseEntity.ok(ApiResponse.success(cartService.addItem(userId, request.variantId(), request.quantity())));
     }
 
     @PutMapping("/items/{variantId}")
     public ResponseEntity<ApiResponse<CartResponse>> updateItem(
             @RequestHeader(value = "Authorization", required = false) String authHeader,
-            @RequestHeader(value = "X-User-Id", required = false) Long xUserId,
+            @RequestHeader(value = "X-User-Id", required = false) String xUserId,
             @PathVariable Long variantId,
             @Valid @RequestBody UpdateCartItemRequest request) {
-        Long userId = requireUser(authHeader, xUserId);
+        String userId = requireUser(authHeader, xUserId);
         return ResponseEntity.ok(ApiResponse.success(cartService.updateItem(userId, variantId, request.quantity())));
     }
 
     @DeleteMapping("/items/{variantId}")
     public ResponseEntity<ApiResponse<CartResponse>> removeItem(
             @RequestHeader(value = "Authorization", required = false) String authHeader,
-            @RequestHeader(value = "X-User-Id", required = false) Long xUserId,
+            @RequestHeader(value = "X-User-Id", required = false) String xUserId,
             @PathVariable Long variantId) {
-        Long userId = requireUser(authHeader, xUserId);
+        String userId = requireUser(authHeader, xUserId);
         return ResponseEntity.ok(ApiResponse.success(cartService.removeItem(userId, variantId)));
     }
 
-    private Long requireUser(String authHeader, Long xUserId) {
-        Long userId = userIdentity.resolve(authHeader, xUserId);
+    private String requireUser(String authHeader, String xUserId) {
+        String userId = userIdentity.resolve(authHeader, xUserId);
         if (userId == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User identity required");
         }

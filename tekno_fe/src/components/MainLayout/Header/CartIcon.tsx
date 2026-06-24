@@ -2,13 +2,11 @@
 import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { useStore } from "../../../../store";
 import { useCart } from "@/hook/useCart";
-import { get } from "http";
 
 export default function CartIcon() {
-  const { getTotalItems, items } = useCart();
-  const n = items.length;
+  const { getTotalItems } = useCart();
+  const n = getTotalItems();
 
   return (
     <div>

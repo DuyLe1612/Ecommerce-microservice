@@ -49,14 +49,32 @@ export type OrderItem = {
 };
 
 export type CreateOrderRequest = {
-  note?: string;
-  selectedItems: {
-    variantId: number;
+  userId: number;
+  items: {
+    productId: number;
+    productName: string;
     quantity: number;
+    unitPrice: number;
+    subtotal: number;
   }[];
+  subtotal: number;
+  discountAmount: number;
+  shippingFee: number;
+  currency: string;
+  shippingAddress: {
+    recipientName: string;
+    phone: string;
+    streetAddress: string;
+    city: string;
+    district?: string;
+    ward?: string;
+    postalCode?: string;
+  };
+  notes?: string;
 };
 
 export type CreateOrderResponse = {
+    id?: number;
     orderId: number;
     orderNumber: string;
     totalAmount: number;

@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public record CartResponse(
-    Long userId,
+    String userId,
     List<CartItem> items,
     BigDecimal subtotal,
-    String currency
+    String currency,
+    int totalItems
 ) {}

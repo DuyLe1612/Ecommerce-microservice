@@ -5,37 +5,72 @@ import { cartApi } from '@/services/cart';
 
 export interface CartItem {
   id: number;
-  cartId: number;
+  cartId?: number;
+  productId?: number;
   variantId: number;
   quantity: number;
   price: number;
-  availableStock: number;
-  attributes: {
+  currency?: string;
+  name?: string;
+  availableStock?: number;
+  attributes?: {
     name: string;
     value: string;
   }[];
-  brandName: string;
-  primaryImage: string;
-  productName: string;
-  productSlug: string;
-  sku: string;
+  brandName?: string;
+  primaryImage?: string;
+  productName?: string;
+  productSlug?: string;
+  sku?: string;
   totalPrice: number;
-  
 }
 
 export interface CartResponse {
   success: boolean;
-  message: string;
+  message: string | null;
   data: {
-    id: number;
-    createdAt: string;
-    updatedAt: string;
-    userId: number;
+    id?: number;
+    createdAt?: string;
+    updatedAt?: string;
+    userId: string;
     subtotal: number;
+    currency?: string;
     totalItems: number;
     items: CartItem[];
   };
 }
+
+const normalizeCartResponse = (response: CartResponse): CartResponse => {
+  const items = response.data?.items ?? [];
+  const normalizedItems = items.map((item) => {
+    const price = Number(item.price ?? 0);
+    const quantity = Number(item.quantity ?? 0);
+
+    return {
+      ...item,
+      id: item.id ?? item.variantId,
+      productName: item.productName ?? item.name ?? `Variant #${item.variantId}`,
+      totalPrice: item.totalPrice ?? price * quantity,
+      availableStock: item.availableStock ?? Number.MAX_SAFE_INTEGER,
+      attributes: item.attributes ?? [],
+    };
+  });
+
+  return {
+    ...response,
+    data: {
+      ...response.data,
+      userId: String(response.data?.userId ?? ""),
+      items: normalizedItems,
+      totalItems:
+        response.data?.totalItems ??
+        normalizedItems.reduce((sum, item) => sum + Number(item.quantity ?? 0), 0),
+      subtotal:
+        response.data?.subtotal ??
+        normalizedItems.reduce((sum, item) => sum + Number(item.totalPrice ?? 0), 0),
+    },
+  };
+};
 
 export function useCart() {
   const [cart, setCart] = useState<CartResponse | null>(null);
@@ -56,7 +91,7 @@ export function useCart() {
     setError(null);
 
     try {
-      const data = await cartApi.getCart(token);
+      const data = normalizeCartResponse(await cartApi.getCart(token));
       setCart(data);
     } catch (err: any) {
       setError(err.message);
@@ -70,8 +105,8 @@ export function useCart() {
     const token = getToken();
     if (!token) return alert("Bạn cần đăng nhập!");
 
-    await cartApi.addToCart(token, { variantId, quantity });
-    await fetchCart();
+    const data = normalizeCartResponse(await cartApi.addToCart(token, { variantId, quantity }));
+    setCart(data);
   };
 
   // REMOVE ITEM
@@ -79,8 +114,8 @@ export function useCart() {
     const token = getToken();
     if (!token) return;
 
-    await cartApi.removeFromCart(token, variantId);
-    await fetchCart();
+    const data = normalizeCartResponse(await cartApi.removeFromCart(token, variantId));
+    setCart(data);
   };
 
   // CLEAN ENTIRE CART
@@ -111,10 +146,10 @@ export function useCart() {
       const token = getToken();
       if (!token) throw new Error("Token not found");
 
-      await cartApi.updateQuantity(variantId, quantity, token);
+      const data = normalizeCartResponse(await cartApi.updateQuantity(variantId, quantity, token));
+      setCart(data);
 
       // refetch lại cart để đồng bộ FE
-      await fetchCart();
       return true;
 
     } catch (err) {

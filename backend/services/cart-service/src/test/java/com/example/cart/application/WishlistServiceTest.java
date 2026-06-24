@@ -17,12 +17,12 @@ class WishlistServiceTest {
         ProductClient productClient = mock(ProductClient.class);
         WishlistService service = new WishlistService(repository, productClient);
 
-        when(repository.existsByUserIdAndProductId(42L, 99L)).thenReturn(true);
-        when(repository.findByUserIdOrderByCreatedAtDesc(42L)).thenReturn(List.of(
-            WishlistItem.builder().userId(42L).productId(99L).createdAt(LocalDateTime.now()).build()
+        when(repository.existsByUserIdAndProductId("42", 99L)).thenReturn(true);
+        when(repository.findByUserIdOrderByCreatedAtDesc("42")).thenReturn(List.of(
+            WishlistItem.builder().userId("42").productId(99L).createdAt(LocalDateTime.now()).build()
         ));
 
-        var result = service.add(42L, 99L);
+        var result = service.add("42", 99L);
 
         verify(productClient).ensureProductExists(99L);
         verify(repository, never()).save(any());

@@ -15,7 +15,7 @@ public class RedisCartStore implements CartStore {
     private final ObjectMapper objectMapper;
 
     @Override
-    public Cart get(Long userId) {
+    public Cart get(String userId) {
         String value = redisTemplate.opsForValue().get(key(userId));
         if (value == null || value.isBlank()) {
             return new Cart();
@@ -28,7 +28,7 @@ public class RedisCartStore implements CartStore {
     }
 
     @Override
-    public void save(Long userId, Cart cart, Duration ttl) {
+    public void save(String userId, Cart cart, Duration ttl) {
         try {
             redisTemplate.opsForValue().set(key(userId), objectMapper.writeValueAsString(cart), ttl);
         } catch (Exception e) {
@@ -37,11 +37,11 @@ public class RedisCartStore implements CartStore {
     }
 
     @Override
-    public void delete(Long userId) {
+    public void delete(String userId) {
         redisTemplate.delete(key(userId));
     }
 
-    private String key(Long userId) {
+    private String key(String userId) {
         return "cart:" + userId;
     }
 }

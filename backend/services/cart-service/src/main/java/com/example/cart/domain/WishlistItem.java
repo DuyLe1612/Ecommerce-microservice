@@ -20,7 +20,7 @@ public class WishlistItem {
     private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private Long userId;
+    private String userId;
 
     @Column(name = "product_id", nullable = false)
     private Long productId;

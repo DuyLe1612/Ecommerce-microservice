@@ -7,24 +7,29 @@ import FormattedPriced from "@/components/share/FormattedPriced";
 import Stepper from "@/components/share/Stepper";
 import { useAuth } from "@/hook/useAuth";
 import { useCart } from "@/hook/useCart";
-import { Product } from "@/type/product";
 import { ShoppingBag } from "lucide-react";
-import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/services/order";
 
-interface CartItem {
-  product: Product;
-  quantity: number;
-}
+const toOrderUserId = (id?: string) => {
+  if (!id) return 1;
+  const numeric = Number(id);
+  if (Number.isSafeInteger(numeric) && numeric > 0) return numeric;
+
+  let hash = 0;
+  for (let i = 0; i < id.length; i += 1) {
+    hash = (hash * 31 + id.charCodeAt(i)) % 2147483647;
+  }
+  return hash || 1;
+};
 
 export default function CartPage() {
-  const { items, cleanCart, SubTotalPrice, getTotalPrice } = useCart();
+  const { items, removeFromCart } = useCart();
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
 
-  const ProductsInCart = items ?? [];
+  const ProductsInCart = useMemo(() => items ?? [], [items]);
 
   // selection state
   const [selectedIds, setSelectedIds] = useState<Set<string | number>>(
@@ -34,13 +39,17 @@ export default function CartPage() {
   const toggleOne = (id: string | number) => {
     setSelectedIds((prev) => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
       return next;
     });
   };
 
   const allIds = useMemo(
-    () => ProductsInCart.map((p) => p.id),
+    () => ProductsInCart.map((p) => p.variantId),
     [ProductsInCart]
   );
   const allSelected =
@@ -61,19 +70,35 @@ export default function CartPage() {
       if (!token) return;
 
       const selectedItems = ProductsInCart.filter((p) =>
-        selectedIds.has(p.id)
+        selectedIds.has(p.variantId)
       ).map((p) => ({
-        // ⚠️ API cần variantId, KHÔNG phải productId
-        variantId: p.variantId,
+        productId: p.variantId,
+        productName: p.productName ?? p.name ?? `Variant #${p.variantId}`,
         quantity: p.quantity,
+        unitPrice: Number(p.price) || 0,
+        subtotal: Number(p.totalPrice) || Number(p.price) * Number(p.quantity) || 0,
       }));
 
       if (selectedItems.length === 0) return;
 
       const res = await createOrder(
         {
-          note: "Order from cart",
-          selectedItems,
+          userId: toOrderUserId(user?.id),
+          items: selectedItems,
+          subtotal: selectedItems.reduce((sum, item) => sum + item.subtotal, 0),
+          discountAmount: 0,
+          shippingFee: 0,
+          currency: ProductsInCart[0]?.currency ?? "VND",
+          shippingAddress: {
+            recipientName: user?.username ?? user?.email ?? "Customer",
+            phone: "0900000000",
+            streetAddress: "Default shipping address",
+            city: "Ho Chi Minh",
+            district: "District 1",
+            ward: "Ben Nghe",
+            postalCode: "700000",
+          },
+          notes: "Order from cart",
         },
         token
       );
@@ -89,8 +114,8 @@ export default function CartPage() {
   const selectedSubtotal = useMemo(() => {
     if (!items?.length || selectedIds.size === 0) return 0;
     return items
-      .filter((p) => selectedIds.has(p.id))
-      .reduce((sum, it) => sum + (Number(it.totalPrice) || 0), 0);
+      .filter((p) => selectedIds.has(p.variantId))
+      .reduce((sum, it) => sum + (Number(it.totalPrice) || Number(it.price) * Number(it.quantity) || 0), 0);
   }, [items, selectedIds]);
 
   return (
@@ -125,14 +150,14 @@ export default function CartPage() {
 
                   <div className="flex flex-col gap-2 ">
                     {ProductsInCart?.map((p) => {
-                      const id = p.id;
+                      const id = p.variantId;
                       const checked = selectedIds.has(id);
                       return (
                         <div
                           key={id}
                           className="flex justify-between items-centre gap-3 border border-gray-300 rounded-md"
                         >
-                          <ProductInCart product={p} />
+                          <ProductInCart product={p} onRemove={() => removeFromCart(p.variantId)} />
 
                           <input
                             type="checkbox"

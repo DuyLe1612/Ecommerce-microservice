@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WishlistRepository extends JpaRepository<WishlistItem, Long> {
-    List<WishlistItem> findByUserIdOrderByCreatedAtDesc(Long userId);
-    Optional<WishlistItem> findByUserIdAndProductId(Long userId, Long productId);
-    boolean existsByUserIdAndProductId(Long userId, Long productId);
-    void deleteByUserIdAndProductId(Long userId, Long productId);
+    List<WishlistItem> findByUserIdOrderByCreatedAtDesc(String userId);
+    Optional<WishlistItem> findByUserIdAndProductId(String userId, Long productId);
+    boolean existsByUserIdAndProductId(String userId, Long productId);
+    void deleteByUserIdAndProductId(String userId, Long productId);
 }

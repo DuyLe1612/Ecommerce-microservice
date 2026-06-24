@@ -12,7 +12,7 @@
 
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { Container } from "@/components/MainLayout/Container";
 import Stepper from "@/components/share/Stepper";
 import {
@@ -42,7 +42,7 @@ import FormattedPrice from "@/components/share/FormattedPriced";
 import MyAddress from "@/components/share/MyAddress";
 import AddressItem from "@/components/share/AddressItem";
 
-export default function PaymentPage() {
+function PaymentContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
 
@@ -419,5 +419,13 @@ export default function PaymentPage() {
         </div>
       </div>
     </Container>
+  );
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={null}>
+      <PaymentContent />
+    </Suspense>
   );
 }

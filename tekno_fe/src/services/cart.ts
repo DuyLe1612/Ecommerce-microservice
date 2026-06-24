@@ -5,7 +5,6 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 export const cartApi = {
   getCart: async (token: string): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart`, {
-      credentials: "include",
       headers: {
         "Authorization": `Bearer ${token}`,
       },
@@ -18,10 +17,9 @@ export const cartApi = {
   addToCart: async (
     token: string,
     { variantId, quantity }: { variantId: number; quantity: number }
-  ) => {
+  ): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart/items`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
@@ -33,10 +31,9 @@ export const cartApi = {
     return res.json();
   },
 
-  removeFromCart: async (token: string, variantId: number) => {
+  removeFromCart: async (token: string, variantId: number): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart/items/${variantId}`, {
       method: "DELETE",
-      credentials: "include",
       headers: {
         "Authorization": `Bearer ${token}`,
       },
@@ -49,7 +46,6 @@ export const cartApi = {
 cleanCart: async (token: string): Promise<CartResponse> => {
   const res = await fetch(`${BASE_URL}/cart`, {
     method: "DELETE",
-    credentials: "include",
     headers: {
       "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -73,7 +69,6 @@ updateQuantity: async (
   ): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart/items/${variantId}`, {
       method: "PUT",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,

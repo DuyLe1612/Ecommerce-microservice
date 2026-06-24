@@ -12,7 +12,7 @@ public class InternalCartController {
     private final CartService cartService;
 
     @GetMapping("/{userId}/snapshot")
-    public CartResponse snapshot(@PathVariable Long userId) {
+    public CartResponse snapshot(@PathVariable String userId) {
         return cartService.snapshot(userId);
     }
 }

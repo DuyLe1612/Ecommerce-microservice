@@ -11,11 +11,11 @@ import NotFoundPage from "../../not-found";
 import ProductVariantSelectorDynamic from "@/components/product/productDetail/ProductVariantSelectorDynamic";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export default async function SingleProductPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const product = await getProductDetail(slug);
   const isStock = product?.variants?.[0]?.stock as any > 0 || false;
