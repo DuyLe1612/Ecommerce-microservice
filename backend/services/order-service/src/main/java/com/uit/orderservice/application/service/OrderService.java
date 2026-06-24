@@ -2,7 +2,6 @@ package com.uit.orderservice.application.service;
 
 import com.uit.orderservice.application.dto.CreateOrderRequest;
 import com.uit.orderservice.application.dto.OrderResponse;
-import com.uit.orderservice.application.exception.ProductServiceUnavailableException;
 import com.uit.orderservice.application.exception.ProductValidationException;
 import com.uit.orderservice.domain.event.*;
 import com.uit.orderservice.domain.model.*;
@@ -11,8 +10,11 @@ import com.uit.orderservice.infrastructure.external.ProductServiceClient;
 import com.uit.orderservice.infrastructure.messaging.OrderEventPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -90,6 +92,34 @@ public class OrderService {
         ));
 
         return toResponse(order);
+    }
+
+    @Transactional
+    public OrderResponse updateStatus(Long orderId, OrderStatus newStatus, String notes) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
+
+        if (!order.getStatus().canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    "Cannot transition order " + orderId + " from " + order.getStatus() + " to " + newStatus);
+        }
+
+        order.updateStatus(newStatus);
+        if (notes != null && !notes.isBlank()) {
+            order.setNotes((order.getNotes() != null ? order.getNotes() + "; " : "") + notes);
+        }
+        order = orderRepository.save(order);
+        log.info("Order {} status updated to {} by admin", orderId, newStatus);
+        return toResponse(order);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<OrderResponse> listOrders(
+            OrderStatus status, Long userId,
+            LocalDateTime fromDate, LocalDateTime toDate,
+            Pageable pageable) {
+        return orderRepository.findAll(status, userId, fromDate, toDate, pageable)
+                .map(this::toResponse);
     }
 
     private void validateOrderItems(List<CreateOrderRequest.ItemRequest> items) {

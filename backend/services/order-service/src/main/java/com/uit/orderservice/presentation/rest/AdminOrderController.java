@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/admin/orders")
@@ -28,8 +29,19 @@ public class AdminOrderController {
             @RequestParam(required = false) OrderStatus status,
             @Parameter(description = "Filter by user ID")
             @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate,
             Pageable pageable) {
-        return ResponseEntity.ok(Page.empty()); // wired via OrderAdminService
+
+        java.time.LocalDateTime from = startDate != null
+                ? java.time.LocalDateTime.parse(startDate + "T00:00:00")
+                : null;
+        java.time.LocalDateTime to = endDate != null
+                ? java.time.LocalDateTime.parse(endDate + "T23:59:59")
+                : null;
+
+        return ResponseEntity.ok(
+                orderService.listOrders(status, userId, from, to, pageable));
     }
 
     @Operation(summary = "Get order by ID (admin)")
@@ -42,24 +54,49 @@ public class AdminOrderController {
     @PostMapping("/{orderId}/ship")
     public ResponseEntity<OrderResponse> shipOrder(
             @PathVariable Long orderId,
-            @RequestParam String trackingNumber) {
-        return ResponseEntity.ok(orderService.shipOrder(orderId, trackingNumber));
+            @RequestBody ShipOrderRequest request) {
+        return ResponseEntity.ok(orderService.shipOrder(orderId,
+                request.trackingNumber() != null ? request.trackingNumber() : ""));
     }
+
+    public record ShipOrderRequest(String trackingNumber, String carrier) {}
 
     @Operation(summary = "Mark order as delivered")
     @PostMapping("/{orderId}/deliver")
     public ResponseEntity<OrderResponse> deliverOrder(
             @PathVariable Long orderId,
-            @RequestParam(required = false) String recipientSignature) {
-        return ResponseEntity.ok(orderService.deliverOrder(orderId, recipientSignature));
+            @RequestBody DeliverOrderRequest request) {
+        return ResponseEntity.ok(orderService.deliverOrder(orderId, request.recipientSignature()));
     }
+
+    public record DeliverOrderRequest(String recipientSignature) {}
 
     @Operation(summary = "Cancel order (admin)")
     @PostMapping("/{orderId}/cancel")
     public ResponseEntity<OrderResponse> cancelOrder(
             @PathVariable Long orderId,
-            @RequestParam(required = false) String reason) {
-        // Pass null userId → admin cancel, no ownership check
-        return ResponseEntity.ok(orderService.cancelOrder(orderId, null, reason));
+            @RequestBody CancelOrderRequest request) {
+        return ResponseEntity.ok(orderService.cancelOrder(orderId, null, request.reason()));
     }
+
+    public record CancelOrderRequest(String reason) {}
+
+    @Operation(summary = "Update order status (admin)")
+    @PutMapping("/{orderId}/status")
+    public ResponseEntity<OrderResponse> updateOrderStatus(
+            @PathVariable Long orderId,
+            @Valid @RequestBody UpdateOrderStatusRequest request) {
+        return ResponseEntity.ok(orderService.updateStatus(
+                orderId,
+                request.status(),
+                request.notes()
+        ));
+    }
+
+    public record UpdateOrderStatusRequest(
+            @Parameter(description = "New order status", example = "PROCESSING")
+            OrderStatus status,
+            @Parameter(description = "Optional notes to append", example = "Status overridden by admin")
+            String notes
+    ) {}
 }

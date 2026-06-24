@@ -6,9 +6,13 @@ import com.uit.orderservice.domain.model.ShippingAddress;
 import com.uit.orderservice.domain.repository.OrderRepository;
 import com.uit.orderservice.infrastructure.persistence.entity.OrderJpaEntity;
 import com.uit.orderservice.infrastructure.persistence.entity.OrderItemJpaEntity;
-import com.uit.orderservice.infrastructure.persistence.OrderJpaRepository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +61,14 @@ public class OrderRepositoryImpl implements OrderRepository {
     public List<Order> findByStatus(OrderStatus status) {
         return jpaRepository.findByStatus(status)
             .stream().map(this::toDomain).toList();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Page<Order> findAll(
+            OrderStatus status, Long userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable) {
+        return jpaRepository.findAll(status, userId, fromDate, toDate, pageable)
+                .map(this::toDomain);
     }
 
     @Override

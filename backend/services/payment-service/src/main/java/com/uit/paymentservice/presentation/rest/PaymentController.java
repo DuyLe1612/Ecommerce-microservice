@@ -6,6 +6,7 @@ import com.uit.paymentservice.application.dto.ProcessPaymentResponse;
 import com.uit.paymentservice.application.dto.GatewayInfo;
 import com.uit.paymentservice.application.dto.PaymentStatusResponse;
 import com.uit.paymentservice.application.query.GetAvailableGatewaysQueryHandler;
+import com.uit.paymentservice.application.query.GetMyPaymentsQueryHandler;
 import com.uit.paymentservice.application.query.GetOrderPaymentStatusQueryHandler;
 import com.uit.paymentservice.application.query.GetPaymentStatusQueryHandler;
 import com.uit.paymentservice.presentation.dto.ApiResponse;
@@ -30,16 +31,18 @@ public class PaymentController {
     private final GetPaymentStatusQueryHandler getPaymentStatusHandler;
     private final GetOrderPaymentStatusQueryHandler getOrderPaymentStatusHandler;
     private final GetAvailableGatewaysQueryHandler getAvailableGatewaysHandler;
+    private final GetMyPaymentsQueryHandler getMyPaymentsHandler;
 
     public PaymentController(
             ProcessPaymentCommandHandler processPaymentHandler,
             GetPaymentStatusQueryHandler getPaymentStatusHandler,
             GetOrderPaymentStatusQueryHandler getOrderPaymentStatusHandler,
-            GetAvailableGatewaysQueryHandler getAvailableGatewaysHandler) {
+            GetAvailableGatewaysQueryHandler getAvailableGatewaysHandler, GetMyPaymentsQueryHandler getMyPaymentsHandler) {
         this.processPaymentHandler = processPaymentHandler;
         this.getPaymentStatusHandler = getPaymentStatusHandler;
         this.getOrderPaymentStatusHandler = getOrderPaymentStatusHandler;
         this.getAvailableGatewaysHandler = getAvailableGatewaysHandler;
+        this.getMyPaymentsHandler = getMyPaymentsHandler;
     }
 
     @Operation(
@@ -104,6 +107,28 @@ public class PaymentController {
         }
         return xUserId;
     }
+
+    @Operation(summary = "Get current user's payment history")
+    @GetMapping("/my-payments")
+    public ResponseEntity<ApiResponse<GetMyPaymentsQueryHandler.MyPaymentsResponse>> getMyPayments(
+            @RequestHeader(value = "Authorization", required = false) String authHeader,
+            @Parameter(description = "User ID — set by API gateway after auth")
+            @RequestHeader(value = "X-User-Id", required = false) Long xUserId,
+            @Parameter(description = "Page number (0-based)", example = "0")
+            @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Page size", example = "20")
+            @RequestParam(defaultValue = "20") int pageSize) {
+
+        Long userId = resolveUserId(authHeader, xUserId);
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponse.error("UNAUTHORIZED", "User identity required"));
+        }
+
+        var result = getMyPaymentsHandler.execute(userId, page, pageSize);
+        return ResponseEntity.ok(ApiResponse.success(result));
+    }
+
 
     @Operation(
         summary = "List available payment gateways",
