@@ -159,7 +159,7 @@ export default function OrderStatusPage() {
 
           <InfoRow label="Sent to" value={fullAddress} />
 
-          <InfoRow label="Payment type" value={order.payment?.method || "-"} />
+          <InfoRow label="Payment type" value={order.payment?.gatewayType || "-"} />
 
           <InfoRow
             label="Transaction id"
@@ -209,7 +209,7 @@ export default function OrderStatusPage() {
 
               <div className="text-right">
                 <div className="text-sm font-semibold">
-                  <FormattedPrice price={it.totalPrice} />
+                  <FormattedPrice price={it.subtotal ?? (it.unitPrice ?? 0) * it.quantity} />
                 </div>
               </div>
             </div>

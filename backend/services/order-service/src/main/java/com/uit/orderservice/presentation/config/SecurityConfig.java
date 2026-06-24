@@ -1,6 +1,6 @@
 package com.uit.orderservice.presentation.config;
 
-import com.uit.orderservice.infrastructure.security.MockAuthFilter;
+import com.uit.orderservice.infrastructure.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, MockAuthFilter mockAuthFilter) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
             )
-            .addFilterBefore(mockAuthFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

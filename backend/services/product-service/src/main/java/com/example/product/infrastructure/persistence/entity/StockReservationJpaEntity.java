@@ -5,19 +5,32 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "stock_reservation")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Entity
+@Table(name = "\"stock_reservation\"")
 public class StockReservationJpaEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "\"id\"")
     private Long id;
-    
-    @Column(nullable = false) private Long variantId;
-    @Column(nullable = false) private Long orderId;
-    @Column(nullable = false) private Integer quantity;
-    @Column(nullable = false, length = 20) private String status; // RESERVED, RELEASED, CONFIRMED
-    
+
+    @Column(name = "\"variantId\"")
+    private Long variantId;
+
+    @Column(name = "\"orderId\"")
+    private Long orderId;
+
+    @Column(name = "\"quantity\"")
+    private Integer quantity;
+
+    @Column(name = "\"status\"")
+    private String status;
+
+    @Column(name = "\"createdAt\"")
     @CreationTimestamp
-    @Column(nullable = false, updatable = false) private LocalDateTime createdAt;
-    @Column private LocalDateTime expiresAt;
+    private LocalDateTime createdAt;
+
+    @Column(name = "\"expiresAt\"")
+    private LocalDateTime expiresAt;
 }

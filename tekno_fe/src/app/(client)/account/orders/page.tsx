@@ -13,60 +13,54 @@ import FormattedPrice from "@/components/share/FormattedPriced";
 
 type TabKey =
   | "all"
-  | "Pending"
-  | "Processing"
-  | "Completed"
-  | "Shipping"
-  | "Delivered"
-  | "Cancelled"
-  | "RefundRequested"
-  | "Refunded";
+  | "PENDING_PAYMENT"
+  | "PAID"
+  | "PROCESSING"
+  | "SHIPPING"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "REFUND_REQUESTED"
+  | "REFUNDED";
+
+const STATUS_LABELS: Record<TabKey, string> = {
+  all: "All",
+  PENDING_PAYMENT: "Pending",
+  PAID: "Paid",
+  PROCESSING: "Processing",
+  SHIPPING: "Shipping",
+  DELIVERED: "Delivered",
+  CANCELLED: "Cancelled",
+  REFUND_REQUESTED: "Refund Requested",
+  REFUNDED: "Refunded",
+};
 
 export default function OrderHistoryPage() {
   const [tab, setTab] = useState<TabKey>("all");
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const pageSize = 10;
-
-  // map tab -> status code (adjust to your API)
-  const statusMap: Record<TabKey, number | undefined> = {
-    all: undefined,
-    Pending: 1, // Order created, awaiting payment
-    Processing: 2, // Payment received, preparing order
-    Completed: 3, // Legacy - use Shipping/Delivered instead
-    Shipping: 4, // Order shipped, on the way
-    Delivered: 5, // Order delivered to customer
-    Cancelled: 6, // Order cancelled
-    RefundRequested: 7, // Customer requested refund
-    Refunded: 8,
-  };
 
   useEffect(() => {
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") ?? "" : "";
     setLoading(true);
-    console.log("Fetching orders with status:", statusMap[tab]);
 
-    fetchOrderHistory(statusMap[tab], page, pageSize, token)
-      .then((res) => setOrders(res.data))
+    fetchOrderHistory(page, pageSize, token)
+      .then((res) => setOrders(res.content ?? []))
       .catch((err) => console.error("Order history error:", err))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab, page]);
 
-  const counts = useMemo(() => {
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("token") ?? "" : "";
-    // Optionally prefetch counts per status; for simplicity show current array length
-    return {
-      all: tab === "all" ? orders.length : 0,
-      processing: tab === "Processing" ? orders.length : 0,
-      delivered: tab === "Delivered" ? orders.length : 0,
-      canceled: tab === "Cancelled" ? orders.length : 0,
-      returned: tab === "Refunded" ? orders.length : 0,
-    };
-  }, [orders, tab]);
+  const tabs: TabKey[] = [
+    "all",
+    "PENDING_PAYMENT",
+    "PROCESSING",
+    "DELIVERED",
+    "CANCELLED",
+    "REFUNDED",
+  ];
 
   return (
     <div className="flex flex-col gap-4">
@@ -77,40 +71,15 @@ export default function OrderHistoryPage() {
 
       <Tabs
         value={tab}
-        onValueChange={(v) => setTab(v as TabKey)}
+        onValueChange={(v) => { setTab(v as TabKey); setPage(0); }}
         className="w-full"
       >
-        <TabsList className="flex items-start gap-2">
-          <TabsTrigger value="all">
-            All orders{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.all}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Processing">
-            Processing{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.processing}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Delivered">
-            Delivered{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.delivered}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Canceled">
-            Canceled{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.canceled}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Returned">
-            Returned{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.returned}
-            </Badge> */}
-          </TabsTrigger>
+        <TabsList className="flex items-start gap-2 flex-wrap">
+          {tabs.map((key) => (
+            <TabsTrigger key={key} value={key}>
+              {STATUS_LABELS[key]}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
         <TabsContent value={tab}>
@@ -129,8 +98,8 @@ export default function OrderHistoryPage() {
                   href={`/account/orders/order-status/${encodeURIComponent(
                     order.orderNumber
                   )}`}
-                  key={order.orderNumber}
-                  className="border rounded-xl overflow-hidden"
+                  key={order.orderNumber ?? order.id}
+                  className="border rounded-xl overflow-hidden block"
                 >
                   {/* header row */}
                   <div className="grid grid-cols-5 items-start gap-4 bg-gray-50 px-4 py-3 text-sm">
@@ -161,14 +130,14 @@ export default function OrderHistoryPage() {
                     <div>
                       <div className="text-gray-500">Delivered</div>
                       <div className="font-medium">
-                        {order.delivery?.status ? order.delivery?.status : "-"}
+                        {order.delivery?.status ?? "-"}
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-gray-500">Status</div>
                         <div className="font-medium">
-                          {order.statusName ?? order.payment ?? "—"}
+                          {order.statusName ?? order.status ?? "—"}
                         </div>
                       </div>
                       <ChevronDown className="w-4 h-4 text-gray-500" />
@@ -177,17 +146,17 @@ export default function OrderHistoryPage() {
 
                   {/* items thumbnails row */}
                   <div className="flex gap-2 p-3 bg-pink-50 flex-wrap">
-                    {(order.items ?? []).slice(0, 6).map((it) => (
+                    {(order.items ?? []).slice(0, 6).map((it, idx) => (
                       <div
-                        key={it.id}
+                        key={it.id ?? idx}
                         className="w-14 h-14 bg-white rounded-md overflow-hidden border"
                       >
                         <Image
                           src={
-                            it.product.primaryImageUrl ??
+                            it.productImageUrl ??
                             "/images/sample/product.jpg"
                           }
-                          alt={it.product.name ?? "item"}
+                          alt={it.productName ?? "item"}
                           width={56}
                           height={56}
                           className="w-14 h-14 object-cover"

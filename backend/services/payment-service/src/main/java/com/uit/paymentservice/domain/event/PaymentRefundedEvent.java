@@ -8,7 +8,7 @@ public final class PaymentRefundedEvent extends PaymentEvent {
     public final BigDecimal amount;
     public final String currency;
 
-    public PaymentRefundedEvent(String transactionId, Long orderId, Long userId,
+    public PaymentRefundedEvent(String transactionId, Long orderId, String userId,
                                  PaymentGatewayType gatewayType, BigDecimal amount, String currency) {
         super(transactionId, orderId, userId);
         this.gatewayType = gatewayType;

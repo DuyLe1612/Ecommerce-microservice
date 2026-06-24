@@ -4,13 +4,13 @@ import com.uit.orderservice.application.dto.OrderResponse;
 import com.uit.orderservice.application.service.OrderService;
 import com.uit.orderservice.domain.model.OrderStatus;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/admin/orders")
@@ -27,21 +27,15 @@ public class AdminOrderController {
     @GetMapping
     public ResponseEntity<Page<OrderResponse>> listOrders(
             @RequestParam(required = false) OrderStatus status,
-            @Parameter(description = "Filter by user ID")
-            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String userId,
             @RequestParam(required = false) String startDate,
             @RequestParam(required = false) String endDate,
             Pageable pageable) {
 
-        java.time.LocalDateTime from = startDate != null
-                ? java.time.LocalDateTime.parse(startDate + "T00:00:00")
-                : null;
-        java.time.LocalDateTime to = endDate != null
-                ? java.time.LocalDateTime.parse(endDate + "T23:59:59")
-                : null;
+        LocalDateTime from = startDate != null ? LocalDateTime.parse(startDate + "T00:00:00") : null;
+        LocalDateTime to = endDate != null ? LocalDateTime.parse(endDate + "T23:59:59") : null;
 
-        return ResponseEntity.ok(
-                orderService.listOrders(status, userId, from, to, pageable));
+        return ResponseEntity.ok(orderService.listOrders(status, userId, from, to, pageable));
     }
 
     @Operation(summary = "Get order by ID (admin)")
@@ -85,18 +79,12 @@ public class AdminOrderController {
     @PutMapping("/{orderId}/status")
     public ResponseEntity<OrderResponse> updateOrderStatus(
             @PathVariable Long orderId,
-            @Valid @RequestBody UpdateOrderStatusRequest request) {
-        return ResponseEntity.ok(orderService.updateStatus(
-                orderId,
-                request.status(),
-                request.notes()
-        ));
+            @RequestBody UpdateOrderStatusRequest request) {
+        return ResponseEntity.ok(orderService.updateStatus(orderId, request.status(), request.notes()));
     }
 
     public record UpdateOrderStatusRequest(
-            @Parameter(description = "New order status", example = "PROCESSING")
             OrderStatus status,
-            @Parameter(description = "Optional notes to append", example = "Status overridden by admin")
             String notes
     ) {}
 }

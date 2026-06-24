@@ -31,7 +31,7 @@ public class RealOrderServiceClient implements OrderServiceClient {
     @Override
     public OrderValidationResult validateOrderForPayment(
             Long orderId,
-            Long userId,
+            String userId,
             BigDecimal requestedAmount) {
 
         try {
@@ -57,7 +57,7 @@ public class RealOrderServiceClient implements OrderServiceClient {
                 return new OrderValidationResult(false, userId, requestedAmount, "VND", "NOT_FOUND");
             }
 
-            Long orderUserId    = Long.valueOf(body.get("userId").toString());
+            String orderUserId = String.valueOf(body.get("userId"));
             BigDecimal expected = new BigDecimal(body.get("expectedAmount").toString());
             String currency     = String.valueOf(body.getOrDefault("currency", "VND"));
             String status       = String.valueOf(body.getOrDefault("status", "PENDING_PAYMENT"));

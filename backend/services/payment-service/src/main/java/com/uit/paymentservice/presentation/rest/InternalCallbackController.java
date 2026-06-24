@@ -29,7 +29,7 @@ import java.util.Map;
  * internal callers (simulators, other microservices) are trusted.
  */
 @RestController
-@RequestMapping("/internal/callback")
+@RequestMapping("/api/internal/callback")
 @Tag(name = "Internal — Callbacks", description = "Internal callback handlers without signature verification")
 public class InternalCallbackController {
 

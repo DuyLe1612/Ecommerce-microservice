@@ -202,12 +202,12 @@ public class StripeSimulator implements PaymentGateway {
         final String id;
         final String clientSecret;
         final Long orderId;
-        final Long userId;
+        final String userId;
         final java.math.BigDecimal amount;
         final String currency;
         volatile IntentStatus status;
 
-        SimulatedStripeIntent(String id, String clientSecret, Long orderId, Long userId,
+        SimulatedStripeIntent(String id, String clientSecret, Long orderId, String userId,
                              java.math.BigDecimal amount, String currency, IntentStatus status) {
             this.id = id;
             this.clientSecret = clientSecret;

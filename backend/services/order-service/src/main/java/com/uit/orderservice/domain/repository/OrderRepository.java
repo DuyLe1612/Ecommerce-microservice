@@ -15,8 +15,9 @@ public interface OrderRepository {
     Order save(Order order);
     Optional<Order> findById(Long id);
     Optional<Order> findByOrderNumber(String orderNumber);
-    List<Order> findByUserId(Long userId);
+    List<Order> findByUserId(String userId);
+    Page<Order> findByUserId(String userId, Pageable pageable);
     List<Order> findByStatus(OrderStatus status);
-    Page<Order> findAll(OrderStatus status, Long userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable);
-    boolean hasDeliveredOrderWithProduct(Long userId, Long productId);
+    Page<Order> findAll(OrderStatus status, String userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable);
+    boolean hasDeliveredOrderWithProduct(String userId, Long productId);
 }

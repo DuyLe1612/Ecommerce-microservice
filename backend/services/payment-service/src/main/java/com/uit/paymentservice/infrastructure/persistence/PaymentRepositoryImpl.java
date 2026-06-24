@@ -39,7 +39,7 @@ public class PaymentRepositoryImpl implements PaymentRepository {
     }
     @Override
     @Transactional(readOnly = true)
-    public List<PaymentTransaction> findByUserId(Long userId) {
+    public List<PaymentTransaction> findByUserId(String userId) {
         return jpaRepository.findByUserIdOrderByCreatedAtDesc(userId).stream()
                 .map(PaymentTransactionJpaEntity::toDomain)
                 .toList();

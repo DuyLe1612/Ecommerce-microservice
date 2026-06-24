@@ -1,7 +1,7 @@
 package com.uit.orderservice.domain.event;
 
 public non-sealed class OrderCompletedEvent extends OrderEvent {
-    public OrderCompletedEvent(Long orderId, String orderNumber, Long userId) {
+    public OrderCompletedEvent(Long orderId, String orderNumber, String userId) {
         super(orderId, orderNumber, userId);
     }
 }

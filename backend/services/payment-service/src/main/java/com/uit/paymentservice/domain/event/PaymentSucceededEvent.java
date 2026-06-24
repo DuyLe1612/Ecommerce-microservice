@@ -9,7 +9,7 @@ public final class PaymentSucceededEvent extends PaymentEvent {
     public final String currency;
     public final String gatewayTransactionId;
 
-    public PaymentSucceededEvent(String transactionId, Long orderId, Long userId,
+    public PaymentSucceededEvent(String transactionId, Long orderId, String userId,
                                  PaymentGatewayType gatewayType, BigDecimal amount,
                                  String currency, String gatewayTransactionId) {
         super(transactionId, orderId, userId);

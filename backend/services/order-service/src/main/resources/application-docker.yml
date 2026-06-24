@@ -40,6 +40,9 @@ spring:
 server:
   port: ${PORT:8087}
 
+jwt:
+  secret: ${JWT_SECRET:67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0}
+
 order:
   external:
     product:

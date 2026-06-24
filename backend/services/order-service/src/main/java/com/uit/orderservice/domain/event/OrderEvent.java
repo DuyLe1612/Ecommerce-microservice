@@ -8,10 +8,10 @@ public abstract sealed class OrderEvent permits
 
     public final Long orderId;
     public final String orderNumber;
-    public final Long userId;
+    public final String userId;
     public final LocalDateTime occurredAt;
 
-    protected OrderEvent(Long orderId, String orderNumber, Long userId) {
+    protected OrderEvent(Long orderId, String orderNumber, String userId) {
         this.orderId = orderId;
         this.orderNumber = orderNumber;
         this.userId = userId;

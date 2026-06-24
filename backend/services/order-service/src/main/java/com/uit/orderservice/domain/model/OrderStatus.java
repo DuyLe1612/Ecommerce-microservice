@@ -1,12 +1,22 @@
 package com.uit.orderservice.domain.model;
 
 public enum OrderStatus {
-    PENDING_PAYMENT,
-    PAID,
-    PROCESSING,
-    SHIPPING,
-    DELIVERED,
-    CANCELLED;
+    PENDING_PAYMENT("Chờ thanh toán"),
+    PAID("Đã thanh toán"),
+    PROCESSING("Đang xử lý"),
+    SHIPPING("Đang giao hàng"),
+    DELIVERED("Đã giao hàng"),
+    CANCELLED("Đã hủy");
+
+    private final String displayName;
+
+    OrderStatus(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String displayName() {
+        return displayName;
+    }
 
     public boolean canTransitionTo(OrderStatus target) {
         return switch (this) {

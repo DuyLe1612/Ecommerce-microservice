@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PaymentJpaRepository extends JpaRepository<PaymentTransactionJpaEntity, Long> {
     Optional<PaymentTransactionJpaEntity> findByIdempotencyKey(String idempotencyKey);
     Optional<PaymentTransactionJpaEntity> findByGatewayTransactionId(String gatewayTransactionId);
-    Collection<PaymentTransactionJpaEntity> findByUserIdOrderByCreatedAtDesc(Long userId);
+    Collection<PaymentTransactionJpaEntity> findByUserIdOrderByCreatedAtDesc(String userId);
 }
