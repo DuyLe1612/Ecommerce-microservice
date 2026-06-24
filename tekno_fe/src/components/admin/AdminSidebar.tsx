@@ -33,7 +33,7 @@ const AdminSidebar = () => {
 
   return (
     <aside
-      className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
+      className={`bg-black/20 backdrop-blur-md border-r border-white/10 flex flex-col transition-all duration-300 ${
         isExpanded ? "w-64" : "w-20"
       }`}
       onMouseEnter={() => setIsExpanded(true)}
@@ -51,8 +51,8 @@ const AdminSidebar = () => {
                 isExpanded ? "px-6" : "px-6 justify-center"
               } ${
                 isActive
-                  ? "text-primary border-l-4 border-primary bg-primary/10 font-semibold"
-                  : "text-secondary hover:text-primary hover:bg-gray-50"
+                  ? "text-primary border-l-4 border-primary bg-primary/20 shadow-[inset_4px_0_15px_rgba(255,213,0,0.15)] font-semibold"
+                  : "text-gray-400 hover:text-primary hover:bg-white/5"
               }`}
             >
               <span className="flex-shrink-0">{item.icon}</span>

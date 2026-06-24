@@ -47,10 +47,10 @@ export default function ProductVariants({
   const [allAttributes, setAllAttributes] = useState<Attr[]>([]);
   const [variants, setVariants] = useState<ProductVariant[]>([]);
   const [loading, setLoading] = useState(false);
-  
+
   const [showForm, setShowForm] = useState(false);
   const [editingVariant, setEditingVariant] = useState<ProductVariant | null>(null);
-  
+
   const [formData, setFormData] = useState<ProductVariant>({
     sku: "",
     price: basePrice,
@@ -78,10 +78,10 @@ export default function ProductVariants({
   const loadAllAttributes = async () => {
     try {
       setLoading(true);
-      
+
       const { getGlobalAttributes } = await import("@/services/categories");
       const globalAttrs = await getGlobalAttributes();
-      
+
       let categoryAttrs: any[] = [];
       if (categoryId) {
         try {
@@ -91,12 +91,20 @@ export default function ProductVariants({
           console.error("Failed to load category attributes:", error);
         }
       }
-      
-      const combinedAttrs = [
-        ...globalAttrs.map((attr: any) => ({ ...attr, isGlobal: true })),
-        ...categoryAttrs.map((attr: any) => ({ ...attr, isGlobal: false }))
+
+      const rawCombinedAttrs = [
+        ...(Array.isArray(globalAttrs) ? globalAttrs : []).map((attr: any) => ({ ...attr, isGlobal: true })),
+        ...(Array.isArray(categoryAttrs) ? categoryAttrs : []).map((attr: any) => ({ ...attr, isGlobal: false }))
       ];
-      
+
+      const uniqueAttrsMap = new Map();
+      rawCombinedAttrs.forEach(attr => {
+        if (!uniqueAttrsMap.has(attr.id)) {
+          uniqueAttrsMap.set(attr.id, attr);
+        }
+      });
+      const combinedAttrs = Array.from(uniqueAttrsMap.values());
+
       const { getCategoryAttributeValues } = await import("@/services/categories");
       const attrsWithValues = await Promise.all(
         combinedAttrs.map(async (attr: any) => {
@@ -107,7 +115,7 @@ export default function ProductVariants({
               name: attr.name,
               inputType: attr.inputType || "text",
               isGlobal: attr.isGlobal,
-              availableValues: valuesResponse.values.map((v: any) => v.value),
+              availableValues: Array.isArray(valuesResponse?.values) ? valuesResponse.values.map((v: any) => v.value) : [],
               isCustom: false,
             };
           } catch (error) {
@@ -123,7 +131,7 @@ export default function ProductVariants({
           }
         })
       );
-      
+
       setAllAttributes(attrsWithValues);
     } catch (error) {
       console.error("Failed to load attributes:", error);
@@ -169,7 +177,7 @@ export default function ProductVariants({
     }
 
     let updated: ProductVariant[];
-    
+
     if (editingVariant) {
       // ✅ Update existing - deep copy to avoid reference issues
       updated = variants.map((v) =>
@@ -242,7 +250,7 @@ export default function ProductVariants({
   // ✅ Add custom attribute to form
   const addCustomAttributeValue = () => {
     if (!tempCustomValue.trim()) return;
-    
+
     if (customAttrValues.includes(tempCustomValue.trim())) {
       alert("This value already exists!");
       return;
@@ -292,7 +300,7 @@ export default function ProductVariants({
     setCustomAttrValues([]);
     setTempCustomValue("");
     setShowCustomAttrForm(false);
-    
+
     alert(`Custom attribute "${newAttr.name}" added! You can now use it in variants.`);
   };
 
@@ -302,11 +310,11 @@ export default function ProductVariants({
         <div className="flex justify-between items-center">
           <h3 className="font-semibold text-lg">Product Variants</h3>
         </div>
-        <div className="p-8 border-2 border-dashed rounded-lg bg-yellow-50 text-center">
-          <p className="text-yellow-800 font-medium mb-2">
+        <div className="p-8 border-2 border-dashed border-yellow-500/30 rounded-lg bg-yellow-500/10 text-center">
+          <p className="text-yellow-400 font-medium mb-2">
             ⚠️ No global or category attributes found
           </p>
-          <p className="text-sm text-yellow-700">
+          <p className="text-sm text-yellow-500/80">
             Please create global attributes or category-specific attributes first.
           </p>
         </div>
@@ -325,7 +333,7 @@ export default function ProductVariants({
       </div>
 
       {variants.length === 0 ? (
-        <div className="p-8 border rounded bg-gray-50 text-center text-gray-500">
+        <div className="p-8 border border-white/10 rounded bg-black/20 text-center text-gray-400 shadow-sm">
           No variants added yet. Click "Add Variant" to create one.
         </div>
       ) : (
@@ -333,35 +341,35 @@ export default function ProductVariants({
           {variants.map((variant) => (
             <div
               key={variant.id || variant.sku}
-              className="border rounded p-4 bg-white hover:shadow-md transition-shadow"
+              className="border border-white/10 rounded-lg p-4 bg-black/20 hover:bg-black/40 transition-colors shadow-sm"
             >
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="grid grid-cols-4 gap-4 mb-3">
                     <div>
-                      <span className="text-xs text-gray-600">SKU:</span>
-                      <p className="font-medium">{variant.sku}</p>
+                      <span className="text-xs text-gray-400">SKU:</span>
+                      <p className="font-medium text-gray-200">{variant.sku}</p>
                     </div>
                     <div>
-                      <span className="text-xs text-gray-600">Price:</span>
-                      <p className="font-medium">{variant.price.toLocaleString()}đ</p>
+                      <span className="text-xs text-gray-400">Price:</span>
+                      <p className="font-medium text-green-400">{variant.price.toLocaleString()}đ</p>
                     </div>
                     <div>
-                      <span className="text-xs text-gray-600">Stock:</span>
-                      <p className="font-medium">{variant.stock}</p>
+                      <span className="text-xs text-gray-400">Stock:</span>
+                      <p className="font-medium text-gray-200">{variant.stock}</p>
                     </div>
                     <div>
-                      <span className="text-xs text-gray-600">Status:</span>
-                      <p className="font-medium">{variant.status || "available"}</p>
+                      <span className="text-xs text-gray-400">Status:</span>
+                      <p className="font-medium text-gray-200">{variant.status || "available"}</p>
                     </div>
                   </div>
 
                   <div>
-                    <span className="text-xs text-gray-600">Attributes:</span>
+                    <span className="text-xs text-gray-400">Attributes:</span>
                     <div className="flex flex-wrap gap-2 mt-1">
                       {variant.attributes?.map((attr, idx) => (
-                        <div key={idx} className="px-2 py-1 bg-blue-200 text-blue-800 rounded text-xs">
-                          <span>
+                        <div key={idx} className="px-2 py-1 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded text-xs shadow-sm">
+                          <span className="font-medium">
                             {attr.attributeName || `Attr ${attr.attributeId}`}:
                           </span>
                           <span> {attr.value}</span>
@@ -374,14 +382,14 @@ export default function ProductVariants({
                 <div className="flex gap-2 ml-4">
                   <button
                     onClick={() => openEditForm(variant)}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded"
+                    className="p-2 text-blue-400 hover:bg-blue-500/20 rounded transition-colors"
                     title="Edit"
                   >
                     <Edit2 size={16} />
                   </button>
                   <button
                     onClick={() => handleDelete(variant.sku)}
-                    className="p-2 text-red-600 hover:bg-red-50 rounded"
+                    className="p-2 text-red-400 hover:bg-red-500/20 rounded transition-colors"
                     title="Delete"
                   >
                     <Trash2 size={16} />
@@ -395,15 +403,15 @@ export default function ProductVariants({
 
       {/* Add/Edit Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6 max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+          <div className="bg-[#121212] border border-white/10 text-gray-200 w-full max-w-2xl rounded-xl shadow-2xl p-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+              <h3 className="text-xl font-semibold text-gray-100">
                 {editingVariant ? "Edit Variant" : "Add New Variant"}
               </h3>
               <button
                 onClick={() => setShowForm(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-400 hover:text-white transition-colors"
               >
                 <X size={24} />
               </button>
@@ -412,16 +420,17 @@ export default function ProductVariants({
             {/* Basic Info */}
             <div className="grid grid-cols-3 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium mb-1">SKU *</label>
+                <label className="block text-sm font-medium mb-1 text-gray-300">SKU *</label>
                 <Input
                   value={formData.sku}
                   onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
                   placeholder="e.g., PROD-001"
+                  className="bg-black/20 border-white/10 text-gray-200 focus:border-white/30"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Price *</label>
+                <label className="block text-sm font-medium mb-1 text-gray-300">Price *</label>
                 <Input
                   type="number"
                   value={formData.price}
@@ -429,11 +438,12 @@ export default function ProductVariants({
                     setFormData({ ...formData, price: Number(e.target.value) })
                   }
                   placeholder="0"
+                  className="bg-black/20 border-white/10 text-gray-200 focus:border-white/30"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Stock</label>
+                <label className="block text-sm font-medium mb-1 text-gray-300">Stock</label>
                 <Input
                   type="number"
                   value={formData.stock}
@@ -441,17 +451,18 @@ export default function ProductVariants({
                     setFormData({ ...formData, stock: Number(e.target.value) })
                   }
                   placeholder="0"
+                  className="bg-black/20 border-white/10 text-gray-200 focus:border-white/30"
                 />
               </div>
             </div>
 
             {/* Custom Attribute Form */}
-            <div className="mb-4 p-4 border rounded bg-gray-50">
+            <div className="mb-4 p-4 border border-white/10 rounded bg-black/20 shadow-sm">
               {!showCustomAttrForm ? (
-                <Button 
+                <Button
                   onClick={() => setShowCustomAttrForm(true)}
                   variant="outline"
-                  className="w-full"
+                  className="w-full bg-transparent border-white/20 text-gray-300 hover:bg-white/10 hover:text-white"
                   size="sm"
                 >
                   <Plus className="w-4 h-4 mr-2" />
@@ -459,8 +470,8 @@ export default function ProductVariants({
                 </Button>
               ) : (
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center mb-2">
-                    <h5 className="font-medium text-sm">Create Custom Attribute</h5>
+                  <div className="flex justify-between items-center mb-2 border-b border-white/10 pb-2">
+                    <h5 className="font-medium text-sm text-gray-200">Create Custom Attribute</h5>
                     <button
                       onClick={() => {
                         setShowCustomAttrForm(false);
@@ -468,24 +479,25 @@ export default function ProductVariants({
                         setCustomAttrValues([]);
                         setTempCustomValue("");
                       }}
-                      className="text-gray-500 hover:text-gray-700"
+                      className="text-gray-400 hover:text-white"
                     >
                       <X size={18} />
                     </button>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium mb-1">Attribute Name *</label>
+                    <label className="block text-xs font-medium mb-1 text-gray-300">Attribute Name *</label>
                     <Input
                       placeholder="e.g., Color, Size, Material..."
                       value={customAttrName}
                       onChange={(e) => setCustomAttrName(e.target.value)}
-                      size= {16}
+                      size={16}
+                      className="bg-black/20 border-white/10 text-gray-200 focus:border-white/30"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium mb-1">Add Values *</label>
+                    <label className="block text-xs font-medium mb-1 text-gray-300">Add Values *</label>
                     <div className="flex gap-2">
                       <Input
                         placeholder="Enter value and press Enter"
@@ -497,9 +509,10 @@ export default function ProductVariants({
                             addCustomAttributeValue();
                           }
                         }}
-                        size= {16}
+                        size={16}
+                        className="bg-black/20 border-white/10 text-gray-200 focus:border-white/30"
                       />
-                      <Button onClick={addCustomAttributeValue} size="sm">
+                      <Button onClick={addCustomAttributeValue} size="sm" className="bg-yellow-600 hover:bg-yellow-800 text-black">
                         <Plus className="w-4 h-4" />
                       </Button>
                     </div>
@@ -507,10 +520,10 @@ export default function ProductVariants({
                     {customAttrValues.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-2">
                         {customAttrValues.map((value, idx) => (
-                          <div key={idx} className="flex items-center gap-1 px-2 py-1 bg-blue-50 border rounded">
+                          <div key={idx} className="flex items-center gap-1 px-2 py-1 bg-blue-500/20 border border-blue-500/30 text-blue-400 rounded">
                             <span className="text-sm">{value}</span>
-                            <button onClick={() => removeCustomAttributeValue(idx)}>
-                              <X className="w-3 h-3 text-red-600" />
+                            <button onClick={() => removeCustomAttributeValue(idx)} className="hover:text-red-400 transition-colors">
+                              <X className="w-3 h-3 text-red-500" />
                             </button>
                           </div>
                         ))}
@@ -518,10 +531,11 @@ export default function ProductVariants({
                     )}
                   </div>
 
-                  <div className="flex justify-end gap-2">
-                    <Button 
-                      variant="outline" 
+                  <div className="flex justify-end gap-2 pt-2 border-t border-white/10">
+                    <Button
+                      variant="outline"
                       size="sm"
+                      className="bg-transparent border-white/20 text-gray-300 hover:bg-white/10 hover:text-white"
                       onClick={() => {
                         setShowCustomAttrForm(false);
                         setCustomAttrName("");
@@ -530,8 +544,9 @@ export default function ProductVariants({
                     >
                       Cancel
                     </Button>
-                    <Button 
+                    <Button
                       size="sm"
+                      className="bg-yellow-600 hover:bg-yellow-800 text-black"
                       onClick={saveCustomAttribute}
                       disabled={!customAttrName.trim() || customAttrValues.length === 0}
                     >
@@ -544,7 +559,7 @@ export default function ProductVariants({
 
             {/* Attributes Selection */}
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium mb-2 text-gray-300">
                 Variant Attributes *
               </label>
 
@@ -557,16 +572,16 @@ export default function ProductVariants({
                   return (
                     <div key={attr.id} className="flex items-center gap-3">
                       <div className="flex-1">
-                        <label className="text-xs text-gray-600 block mb-1">
+                        <label className="text-xs text-gray-400 block mb-1">
                           {attr.name}
                           {attr.isCustom && (
-                            <span className="ml-2 text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">
+                            <span className="ml-2 text-xs bg-purple-500/20 text-purple-400 border border-purple-500/30 px-2 py-0.5 rounded">
                               Custom
                             </span>
                           )}
                         </label>
                         <select
-                          className="w-full border rounded p-2"
+                          className="w-full bg-black/20 border border-white/10 text-gray-200 rounded p-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212]"
                           value={currentValue}
                           onChange={(e) =>
                             updateFormAttribute(attr.id, e.target.value)
@@ -584,7 +599,7 @@ export default function ProductVariants({
                       {currentValue && (
                         <button
                           onClick={() => removeFormAttribute(attr.id)}
-                          className="mt-5 text-red-600 hover:bg-red-50 p-2 rounded"
+                          className="mt-5 text-red-500 hover:bg-red-500/20 p-2 rounded transition-colors"
                           title="Remove attribute"
                         >
                           <X size={16} />
@@ -598,24 +613,24 @@ export default function ProductVariants({
 
             {/* Selected Attributes Preview */}
             {formData.attributes.length > 0 && (
-              <div className="mb-4 p-3 bg-blue-50 rounded">
-                <p className="text-xs text-gray-600 mb-2">Selected attributes:</p>
+              <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded shadow-sm">
+                <p className="text-xs text-blue-300 mb-2 font-medium">Selected attributes:</p>
                 <div className="flex flex-wrap gap-2">
                   {formData.attributes.map((attr, idx) => (
-                    <div 
-                      key={idx} 
-                      className="flex items-center gap-1 px-2 py-1 bg-blue-200 text-blue-800 rounded-full text-xs"
+                    <div
+                      key={idx}
+                      className="flex items-center gap-1 px-2 py-1 bg-blue-500/20 border border-blue-500/30 text-blue-400 rounded-full text-xs shadow-sm"
                     >
-                      <span>
+                      <span className="font-medium">
                         {attr.attributeName || `Attr ${attr.attributeId}`}: {attr.value}
                       </span>
                       <button
                         onClick={() => removeFormAttribute(attr.attributeId)}
-                        className="ml-1 hover:bg-red-200 rounded-full p-0.5"
+                        className="ml-1 hover:text-red-400 rounded-full p-0.5 transition-colors"
                         title="Remove this attribute"
                         type="button"
                       >
-                        <X className="w-3 h-3 text-red-600" />
+                        <X className="w-3 h-3 text-red-500" />
                       </button>
                     </div>
                   ))}
@@ -624,11 +639,11 @@ export default function ProductVariants({
             )}
 
             {/* Form Actions */}
-            <div className="flex justify-end gap-3 mt-6">
-              <Button variant="outline" onClick={() => setShowForm(false)}>
+            <div className="flex justify-end gap-3 mt-6 border-t border-white/10 pt-4">
+              <Button variant="outline" onClick={() => setShowForm(false)} className="bg-transparent border-white/20 text-gray-300 hover:bg-white/10 hover:text-white">
                 Cancel
               </Button>
-              <Button onClick={handleSave}>
+              <Button onClick={handleSave} className="bg-yellow-500 hover:bg-yellow-800 text-black shadow-sm">
                 {editingVariant ? "Update Variant" : "Add Variant"}
               </Button>
             </div>

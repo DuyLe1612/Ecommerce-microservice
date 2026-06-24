@@ -4,8 +4,7 @@ import React, { useState } from "react";
 
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext"; // ✅ thêm dòng này
-import { Field, FieldError, FieldGroup, FieldSet } from "../ui/field";
-import { Input } from "../ui/input";
+import { Field, FieldGroup, FieldSet } from "../ui/field";
 
 import {
   InputGroup,
@@ -25,12 +24,11 @@ export default function LoginForm({ switchToRegister }: LoginFormProps) {
   const { login, isAdmin, user } = useAuthContext(); // ✅ gọi login từ context
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+
   const [showPassword, setShowPassword] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setError(null);
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
@@ -45,7 +43,7 @@ export default function LoginForm({ switchToRegister }: LoginFormProps) {
         router.push("/dashboard");
       else router.push("/");
     } catch (err: any) {
-      setError(err.message || "Login failed");
+      toast.error(err.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -54,7 +52,7 @@ export default function LoginForm({ switchToRegister }: LoginFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 px-8 py-10 relative">
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none rounded-full"></div>
-      
+
       <div className="space-y-2 text-center mb-8 relative z-10">
         <h2 className="text-3xl font-extrabold text-white tracking-tight">
           Welcome back
@@ -111,7 +109,6 @@ export default function LoginForm({ switchToRegister }: LoginFormProps) {
             </InputGroup>
           </Field>
         </FieldGroup>
-        <FieldError className="text-red-400 text-sm">{error}</FieldError>
       </FieldSet>
 
       <div className="flex justify-end relative z-10">
@@ -127,7 +124,7 @@ export default function LoginForm({ switchToRegister }: LoginFormProps) {
       >
         {loading ? "Signing in..." : "Sign in"}
       </button>
-      
+
       <p className="text-sm text-center text-gray-400 mt-6 relative z-10">
         Don't have an account?{" "}
         <span

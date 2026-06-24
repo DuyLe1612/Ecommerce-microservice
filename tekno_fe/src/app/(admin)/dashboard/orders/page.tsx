@@ -3,7 +3,17 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Eye, Truck, CheckCircle, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { Eye, Truck, CheckCircle, XCircle, ChevronLeft, ChevronRight, Package, Search, Filter } from "lucide-react";
+import { toast } from "sonner";
 import {
   getAdminOrders,
   cancelOrder,
@@ -50,7 +60,7 @@ export default function OrdersPage() {
       
       const token = localStorage.getItem('token');
       if (!token) {
-        alert("Please login first!");
+        toast.error("Please login first!");
         setLoading(false);
         window.location.href = '/login';
         return;
@@ -77,7 +87,7 @@ export default function OrdersPage() {
       console.error("❌ Failed to load orders:", err);
       
       if ((err as any)?.status === 401) {
-        alert("Session expired. Please login again!");
+        toast.error("Session expired. Please login again!");
         localStorage.removeItem('token');
         window.location.href = '/login';
       }
@@ -112,11 +122,11 @@ export default function OrdersPage() {
     
     try {
       await cancelOrder(orderId, reason);
-      alert("Order cancelled successfully!");
+      toast.success("Order cancelled successfully!");
       await loadOrders();
     } catch (err) {
       console.error("Failed to cancel order:", err);
-      alert("Failed to cancel order");
+      toast.error("Failed to cancel order");
     }
   };
 
@@ -125,11 +135,11 @@ export default function OrdersPage() {
     
     try {
       await deliverOrder(orderId);
-      alert("Order marked as delivered!");
+      toast.success("Order marked as delivered!");
       await loadOrders();
     } catch (err) {
       console.error("Failed to deliver order:", err);
-      alert("Failed to mark as delivered");
+      toast.error("Failed to mark as delivered");
     }
   };
 
@@ -145,12 +155,12 @@ export default function OrdersPage() {
     
     try {
       await shipOrder(shipOrderData.id, trackingNumber, carrier);
-      alert("Order shipped successfully!");
+      toast.success("Order shipped successfully!");
       await loadOrders();
       setOpenShipModal(false);
     } catch (err) {
       console.error("Failed to ship order:", err);
-      alert("Failed to ship order");
+      toast.error("Failed to ship order");
     }
   };
 
@@ -189,6 +199,22 @@ export default function OrdersPage() {
     }
   };
 
+  const getVisiblePages = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, 4, -1, totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, -1, currentPage - 1, currentPage, currentPage + 1, -1, totalPages);
+      }
+    }
+    return pages;
+  };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
@@ -208,7 +234,7 @@ export default function OrdersPage() {
           </div>
 
           <select
-            className="border rounded px-3 py-2 min-w-[150px]"
+            className="bg-black/20 border border-white/10 text-gray-300 rounded px-3 py-2 min-w-[150px] focus:outline-none focus:border-white/30"
             value={statusFilter === null ? "" : statusFilter}
             onChange={(e) => setStatusFilter(e.target.value === "" ? null : Number(e.target.value) as OrderStatus)}
           >
@@ -233,7 +259,7 @@ export default function OrdersPage() {
             onChange={(e) => setStartDate(e.target.value)}
             className="w-auto"
           />
-          <span className="text-sm text-gray-500">to</span>
+          <span className="text-sm text-gray-400">to</span>
           <Input
             type="date"
             value={endDate}
@@ -246,14 +272,14 @@ export default function OrdersPage() {
       {/* Orders Table */}
       {loading ? (
         <div className="flex justify-center items-center py-12">
-          <p className="text-gray-500">Loading orders...</p>
+          <p className="text-gray-400">Loading orders...</p>
         </div>
       ) : (
         <>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm bg-white shadow rounded">
+            <table className="w-full text-sm bg-white/5 backdrop-blur-md shadow-none rounded-xl border border-white/10 overflow-hidden">
               <thead>
-                <tr className="bg-gray-200 text-left">
+                <tr className="bg-white/10 text-left text-gray-200 border-b border-white/10">
                   <th className="p-2">Order #</th>
                   <th>User ID</th>
                   <th>Customer</th>
@@ -268,7 +294,7 @@ export default function OrdersPage() {
               <tbody>
                 {orders.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="p-8 text-center text-gray-500">
+                    <td colSpan={8} className="p-8 text-center text-gray-400">
                       No orders found
                     </td>
                   </tr>
@@ -276,16 +302,16 @@ export default function OrdersPage() {
                   orders.map((order) => (
                     <tr
                       key={order.id}
-                      className="hover:bg-gray-50 border-b cursor-pointer"
+                      className="hover:bg-white/5 border-b border-white/5 cursor-pointer text-gray-300 transition-colors"
                       onClick={() => setSelectedOrderId(order.id)}
                     >
                       <td className="p-2 font-medium text-blue-600">{order.orderNumber}</td>
-                      <td className="p-2 text-gray-600">#{order.userId}</td>
+                      <td className="p-2 text-gray-400">#{order.userId}</td>
                       <td className="p-2">
                         <div>
                           <p className="font-medium">{order.userName || "N/A"}</p>
-                          <p className="text-xs text-gray-600">{order.userEmail}</p>
-                          <p className="text-xs text-gray-600">{order.phoneNumber}</p>
+                          <p className="text-xs text-gray-400">{order.userEmail}</p>
+                          <p className="text-xs text-gray-400">{order.phoneNumber}</p>
                         </div>
                       </td>
                       <td className="p-2">
@@ -365,79 +391,55 @@ export default function OrdersPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between mt-4">
-              <div className="text-sm text-gray-600">
-                Showing {orders.length} of {totalCount} orders (Page {currentPage} of {totalPages})
-              </div>
+            <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden mb-4">
+              <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(currentPage - 1);
+                    }}
+                  />
+                </PaginationItem>
 
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  Previous
-                </Button>
-
-                <div className="flex gap-1">
-                  {[...Array(Math.min(5, totalPages))].map((_, idx) => {
-                    let pageNum;
-                    if (totalPages <= 5) {
-                      pageNum = idx + 1;
-                    } else if (currentPage <= 3) {
-                      pageNum = idx + 1;
-                    } else if (currentPage >= totalPages - 2) {
-                      pageNum = totalPages - 4 + idx;
-                    } else {
-                      pageNum = currentPage - 2 + idx;
-                    }
-
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => handlePageChange(pageNum)}
-                        className={`px-3 py-1 rounded text-sm ${
-                          currentPage === pageNum
-                            ? "bg-blue-600 text-white"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                {getVisiblePages().map((p, i) => (
+                  <PaginationItem key={i}>
+                    {p === -1 ? (
+                      <PaginationEllipsis className="text-gray-500" />
+                    ) : (
+                      <PaginationLink
+                        href="#"
+                        isActive={currentPage === p}
+                        className={`cursor-pointer transition-colors ${
+                          currentPage === p
+                            ? "bg-primary text-black hover:bg-primary/90"
+                            : "text-gray-300 hover:text-white hover:bg-gray-800"
                         }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handlePageChange(p);
+                        }}
                       >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
-                </div>
+                        {p}
+                      </PaginationLink>
+                    )}
+                  </PaginationItem>
+                ))}
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  Next
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <label className="text-sm text-gray-600">Page size:</label>
-                <select
-                  className="border rounded px-2 py-1 text-sm"
-                  value={pageSize}
-                  onChange={(e) => {
-                    setPageSize(Number(e.target.value));
-                    setCurrentPage(1);
-                  }}
-                >
-                  <option value={10}>10</option>
-                  <option value={20}>20</option>
-                  <option value={50}>50</option>
-                  <option value={100}>100</option>
-                </select>
-              </div>
-            </div>
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(currentPage + 1);
+                    }}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           )}
         </>
       )}
@@ -454,18 +456,18 @@ export default function OrdersPage() {
       {/* Ship Order Modal */}
       {openShipModal && shipOrderData && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-          <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
+          <div className="bg-[#1a1a1a] border border-white/10 text-gray-200 w-full max-w-md rounded-2xl shadow-2xl p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-semibold">Ship Order</h3>
               <button
                 onClick={() => setOpenShipModal(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-400 hover:text-gray-700"
               >
                 <XCircle size={24} />
               </button>
             </div>
 
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-400 mb-4">
               Order: <strong>{shipOrderData.orderNumber}</strong>
             </p>
 

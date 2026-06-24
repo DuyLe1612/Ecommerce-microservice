@@ -7,10 +7,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { voucherApi } from "@/services/voucherApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, Trash2, Edit2, Power, PowerOff, BarChart3, History, ChevronLeft, ChevronRight } from "lucide-react";
+import { toast } from "sonner";
 
 export default function VoucherPage() {
   const [vouchers, setVouchers] = useState<any[]>([]);
@@ -78,7 +88,7 @@ export default function VoucherPage() {
       setStatistics(statsData?.data || statsData);
     } catch (err) {
       console.error("Failed to load statistics:", err);
-      alert("Failed to load statistics");
+      toast.error("Failed to load statistics");
       setOpenStatistics(false);
     } finally {
       setLoadingStats(false);
@@ -103,7 +113,7 @@ export default function VoucherPage() {
       setUsage(usageList);
     } catch (err) {
       console.error("Failed to load usage:", err);
-      alert("Failed to load usage history");
+      toast.error("Failed to load usage history");
       setOpenUsage(false);
     } finally {
       setLoadingUsage(false);
@@ -114,17 +124,17 @@ export default function VoucherPage() {
   const handleCreate = async () => {
     try {
       if (!form.code || !form.name || !form.startDate || !form.endDate) {
-        alert("Please fill all required fields");
+        toast.error("Please fill all required fields");
         return;
       }
 
       if (form.value <= 0) {
-        alert("Value must be greater than 0");
+        toast.error("Value must be greater than 0");
         return;
       }
 
       if (form.quantity <= 0) {
-        alert("Quantity must be greater than 0");
+        toast.error("Quantity must be greater than 0");
         return;
       }
 
@@ -142,14 +152,14 @@ export default function VoucherPage() {
       };
 
       await voucherApi.create(payload);
-      alert("Voucher created successfully!");
+      toast.success("Voucher created successfully!");
       
       await loadVouchers();
       setOpenCreate(false);
       resetForm();
     } catch (e) {
       console.error("Create error", e);
-      alert("Failed to create voucher");
+      toast.error("Failed to create voucher");
     }
   };
 
@@ -172,7 +182,7 @@ export default function VoucherPage() {
       setOpenEdit(true);
     } catch (err) {
       console.error("Failed to load voucher detail:", err);
-      alert("Failed to load voucher details");
+      toast.error("Failed to load voucher details");
     }
   };
 
@@ -181,7 +191,7 @@ export default function VoucherPage() {
       if (!selectedVoucher) return;
 
       if (!form.code || !form.name || !form.startDate || !form.endDate) {
-        alert("Please fill all required fields");
+        toast.error("Please fill all required fields");
         return;
       }
 
@@ -199,14 +209,14 @@ export default function VoucherPage() {
       };
 
       await voucherApi.update(selectedVoucher.id.toString(), payload);
-      alert("Voucher updated successfully!");
+      toast.success("Voucher updated successfully!");
       
       await loadVouchers();
       setOpenEdit(false);
       resetForm();
     } catch (err) {
       console.error("Update error:", err);
-      alert("Failed to update voucher");
+      toast.error("Failed to update voucher");
     }
   };
 
@@ -216,11 +226,11 @@ export default function VoucherPage() {
 
     try {
       await voucherApi.delete(id);
-      alert("Voucher deleted successfully!");
+      toast.success("Voucher deleted successfully!");
       await loadVouchers();
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Failed to delete voucher");
+      toast.error("Failed to delete voucher");
     }
   };
 
@@ -228,11 +238,11 @@ export default function VoucherPage() {
   const handleActivate = async (id: string) => {
     try {
       await voucherApi.activate(id);
-      alert("Voucher activated successfully!");
+      toast.success("Voucher activated successfully!");
       await loadVouchers();
     } catch (err) {
       console.error("Activate error:", err);
-      alert("Failed to activate voucher");
+      toast.error("Failed to activate voucher");
     }
   };
 
@@ -240,11 +250,11 @@ export default function VoucherPage() {
   const handleDeactivate = async (id: string) => {
     try {
       await voucherApi.deactivate(id);
-      alert("Voucher deactivated successfully!");
+      toast.success("Voucher deactivated successfully!");
       await loadVouchers();
     } catch (err) {
       console.error("Deactivate error:", err);
-      alert("Failed to deactivate voucher");
+      toast.error("Failed to deactivate voucher");
     }
   };
 
@@ -322,6 +332,22 @@ export default function VoucherPage() {
     }
   };
 
+  const getVisiblePages = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, 4, -1, totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, -1, currentPage - 1, currentPage, currentPage + 1, -1, totalPages);
+      }
+    }
+    return pages;
+  };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
@@ -336,13 +362,13 @@ export default function VoucherPage() {
         <input
           type="text"
           placeholder="Search by code or name..."
-          className="border p-2 rounded w-64"
+          className="border border-white/10 bg-black/20 text-gray-200 p-2 rounded w-64 focus:outline-none focus:border-white/30"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
         <select
-          className="border p-2 rounded"
+          className="bg-black/20 border border-white/10 text-gray-300 rounded p-2 focus:outline-none focus:border-white/30"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -356,15 +382,15 @@ export default function VoucherPage() {
 
       {loading ? (
         <div className="flex justify-center items-center py-12">
-          <p className="text-gray-500">Loading vouchers...</p>
+          <p className="text-gray-400">Loading vouchers...</p>
         </div>
       ) : filteredVouchers.length === 0 ? (
-        <p className="text-gray-500">No vouchers found.</p>
+        <p className="text-gray-400">No vouchers found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-sm bg-white shadow rounded">
+          <table className="w-full text-sm bg-white/5 backdrop-blur-md shadow-none rounded-xl border border-white/10 overflow-hidden">
             <thead>
-              <tr className="bg-gray-200 text-left">
+              <tr className="bg-white/10 text-left text-gray-200 border-b border-white/10">
                 <th className="p-2">Code</th>
                 <th>Name</th>
                 <th>Value</th>
@@ -377,7 +403,7 @@ export default function VoucherPage() {
             </thead>
             <tbody>
               {filteredVouchers.map((v) => (
-                <tr className="border-b hover:bg-gray-50" key={v.id}>
+                <tr className="border-b border-white/5 hover:bg-white/5 text-gray-300 transition-colors" key={v.id}>
                   <td className="p-2 font-mono font-medium text-blue-600">
                     {v.code}
                   </td>
@@ -475,84 +501,60 @@ export default function VoucherPage() {
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between mt-4">
-            <div className="text-sm text-gray-600">
-              Showing {filteredVouchers.length} of {vouchers.length} vouchers (Page {currentPage} of {totalPages})
-            </div>
+          <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden mb-4">
+            <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage((prev) => Math.max(prev - 1, 1));
+                  }}
+                />
+              </PaginationItem>
 
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Previous
-              </Button>
-
-              <div className="flex gap-1">
-                {[...Array(Math.min(5, totalPages))].map((_, idx) => {
-                  let pageNum;
-                  if (totalPages <= 5) {
-                    pageNum = idx + 1;
-                  } else if (currentPage <= 3) {
-                    pageNum = idx + 1;
-                  } else if (currentPage >= totalPages - 2) {
-                    pageNum = totalPages - 4 + idx;
-                  } else {
-                    pageNum = currentPage - 2 + idx;
-                  }
-
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => handlePageChange(pageNum)}
-                      className={`px-3 py-1 rounded text-sm ${
-                        currentPage === pageNum
-                          ? "bg-blue-600 text-white"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              {getVisiblePages().map((p, i) => (
+                <PaginationItem key={i}>
+                  {p === -1 ? (
+                    <PaginationEllipsis className="text-gray-500" />
+                  ) : (
+                    <PaginationLink
+                      href="#"
+                      isActive={currentPage === p}
+                      className={`cursor-pointer transition-colors ${
+                        currentPage === p
+                          ? "bg-primary text-black hover:bg-primary/90"
+                          : "text-gray-300 hover:text-white hover:bg-gray-800"
                       }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentPage(p);
+                      }}
                     >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-              </div>
+                      {p}
+                    </PaginationLink>
+                  )}
+                </PaginationItem>
+              ))}
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                Next
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <label className="text-sm text-gray-600">Page size:</label>
-              <select
-                className="border rounded px-2 py-1 text-sm"
-                value={pageSize}
-                onChange={(e) => {
-                  setPageSize(Number(e.target.value));
-                  setCurrentPage(1);
-                }}
-              >
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={20}>20</option>
-                <option value={50}>50</option>
-              </select>
-            </div>
-          </div>   
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         )}
 
       {/* Create Voucher Modal */}
       <Dialog open={openCreate} onOpenChange={setOpenCreate}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="bg-[#121212] border-white/10 text-gray-200 max-w-md">
           <DialogHeader>
             <DialogTitle>Create Voucher</DialogTitle>
           </DialogHeader>
@@ -650,7 +652,7 @@ export default function VoucherPage() {
 
       {/* Edit Voucher Modal */}
       <Dialog open={openEdit} onOpenChange={setOpenEdit}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="bg-[#121212] border-white/10 text-gray-200 max-w-md">
           <DialogHeader>
             <DialogTitle>Edit Voucher</DialogTitle>
           </DialogHeader>
@@ -761,7 +763,7 @@ export default function VoucherPage() {
       {/* Detail Modal */}
       {openDetail && selectedVoucher && (
         <Dialog open={openDetail} onOpenChange={setOpenDetail}>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="bg-[#121212] border-white/10 text-gray-200 max-w-2xl">
             <DialogHeader>
               <DialogTitle>Voucher Details</DialogTitle>
             </DialogHeader>
@@ -769,7 +771,7 @@ export default function VoucherPage() {
             <div className="space-y-4 mt-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Code
                   </label>
                   <p className="text-lg font-mono font-bold text-blue-600">
@@ -778,7 +780,7 @@ export default function VoucherPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Status
                   </label>
                   <span
@@ -797,14 +799,14 @@ export default function VoucherPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Name
                   </label>
                   <p className="text-sm font-medium">{selectedVoucher.name}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Discount Value
                   </label>
                   <p className="text-lg font-bold text-green-600">
@@ -813,21 +815,21 @@ export default function VoucherPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Quantity
                   </label>
                   <p className="text-sm">{selectedVoucher.quantity}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Type
                   </label>
                   <p className="text-sm">{selectedVoucher.type || "FixedAmount"}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Start Date
                   </label>
                   <p className="text-sm">
@@ -836,7 +838,7 @@ export default function VoucherPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     End Date
                   </label>
                   <p className="text-sm">
@@ -847,7 +849,7 @@ export default function VoucherPage() {
 
               {selectedVoucher.note && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">
+                  <label className="block text-sm font-medium text-gray-400 mb-1">
                     Note
                   </label>
                   <p className="text-sm bg-yellow-50 border border-yellow-200 rounded p-3">
@@ -890,14 +892,14 @@ export default function VoucherPage() {
       {/* Statistics Modal */}
       {openStatistics && selectedVoucher && (
         <Dialog open={openStatistics} onOpenChange={setOpenStatistics}>
-          <DialogContent className="max-w-3xl">
+          <DialogContent className="bg-[#121212] border-white/10 text-gray-200 max-w-3xl">
             <DialogHeader>
               <DialogTitle>Voucher Statistics - {selectedVoucher.code}</DialogTitle>
             </DialogHeader>
 
             {loadingStats ? (
               <div className="flex justify-center items-center py-12">
-                <p className="text-gray-500">Loading statistics...</p>
+                <p className="text-gray-400">Loading statistics...</p>
               </div>
             ) : statistics ? (
               <div className="space-y-6 mt-4">
@@ -943,7 +945,7 @@ export default function VoucherPage() {
                 {statistics.avgOrderValue && (
                   <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                     <p className="text-sm font-medium text-gray-700 mb-2">Average Order Value</p>
-                    <p className="text-xl font-bold text-gray-900">
+                    <p className="text-xl font-bold text-gray-100">
                       {statistics.avgOrderValue.toLocaleString()}đ
                     </p>
                   </div>
@@ -970,7 +972,7 @@ export default function VoucherPage() {
                 </div>
               </div>
             ) : (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-gray-400">
                 No statistics available
               </div>
             )}
@@ -981,21 +983,21 @@ export default function VoucherPage() {
       {/* Usage History Modal */}
       {openUsage && selectedVoucher && (
         <Dialog open={openUsage} onOpenChange={setOpenUsage}>
-          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="bg-[#121212] border-white/10 text-gray-200 max-w-4xl max-h-[80vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Usage History - {selectedVoucher.code}</DialogTitle>
             </DialogHeader>
 
             {loadingUsage ? (
               <div className="flex justify-center items-center py-12">
-                <p className="text-gray-500">Loading usage history...</p>
+                <p className="text-gray-400">Loading usage history...</p>
               </div>
             ) : usage.length > 0 ? (
               <div className="mt-4">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-gray-100 text-left">
+                      <tr className="bg-white/5 text-left text-gray-200 border-b border-white/10">
                         <th className="p-3 font-medium">Date</th>
                         <th className="p-3 font-medium">Order ID</th>
                         <th className="p-3 font-medium">Customer</th>
@@ -1015,7 +1017,7 @@ export default function VoucherPage() {
                           <td className="p-3">
                             <div>
                               <p className="font-medium">{item.customerName || item.userName}</p>
-                              <p className="text-xs text-gray-500">{item.customerEmail || item.userEmail}</p>
+                              <p className="text-xs text-gray-400">{item.customerEmail || item.userEmail}</p>
                             </div>
                           </td>
                           <td className="p-3 font-medium text-green-600">
@@ -1032,10 +1034,10 @@ export default function VoucherPage() {
 
                 <div className="mt-4 p-4 bg-gray-50 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium text-gray-600">
+                    <span className="text-sm font-medium text-gray-400">
                       Total Usage Records:
                     </span>
-                    <span className="text-lg font-bold text-gray-900">
+                    <span className="text-lg font-bold text-gray-100">
                       {usage.length}
                     </span>
                   </div>
@@ -1048,7 +1050,7 @@ export default function VoucherPage() {
                 </div>
               </div>
             ) : (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-gray-400">
                 No usage history found
               </div>
             )}

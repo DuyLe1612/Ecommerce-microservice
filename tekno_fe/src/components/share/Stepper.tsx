@@ -3,44 +3,47 @@ import React from "react";
 
 export default function Stepper({ isActive }: { isActive: number }) {
   return (
-    <div className="mx-auto flex items-center text-primary">
+    <div className="mx-auto flex items-center justify-center py-4">
       <div
-        className={`w-20 h-20 scale-90 ${
+        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
           isActive >= 1
-            ? "bg-white text-primary scale-120 border-4 border-primary shadow-lg"
-            : "bg-gray-500 text-white"
-        } rounded-full flex items-center justify-center`}
+            ? "bg-primary text-black shadow-[0_0_15px_rgba(var(--primary),0.5)] scale-110"
+            : "bg-white/10 text-white/40 border border-white/10"
+        }`}
       >
-        <ShoppingCart className="w-12 h-12" />
+        <ShoppingCart className="w-5 h-5" />
       </div>
+      
       <span
-        className={`bottom-0.5 right-1/2 w-40 h-1 hoverEffect rounded-md ${
-          isActive >= 1 ? "bg-primary" : "bg-gray-500"
+        className={`w-16 md:w-24 h-1 rounded-full mx-2 transition-all duration-300 ${
+          isActive >= 1 ? "bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]" : "bg-white/10"
         }`}
       />
+      
       <div
-        className={`w-20 h-20 scale-90 ${
+        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
           isActive >= 2
-            ? "bg-white text-primary scale-120 border-4 border-primary shadow-lg"
-            : "bg-gray-500 text-white"
-        } rounded-full flex items-center justify-center`}
+            ? "bg-primary text-black shadow-[0_0_15px_rgba(var(--primary),0.5)] scale-110"
+            : "bg-white/10 text-white/40 border border-white/10"
+        }`}
       >
-        <Truck className="w-12 h-12" />
+        <Truck className="w-5 h-5" />
       </div>
 
       <span
-        className={`bottom-0.5 right-1/2 w-40 h-1 hoverEffect rounded-md ${
-          isActive >= 2 ? "bg-primary" : "bg-gray-500"
+        className={`w-16 md:w-24 h-1 rounded-full mx-2 transition-all duration-300 ${
+          isActive >= 2 ? "bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]" : "bg-white/10"
         }`}
       />
+      
       <div
-        className={`w-20 h-20 scale-90 ${
+        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
           isActive >= 3
-            ? "bg-white text-primary scale-120 border-4 border-primary shadow-lg"
-            : "bg-gray-500 text-white"
-        } rounded-full flex items-center justify-center`}
+            ? "bg-primary text-black shadow-[0_0_15px_rgba(var(--primary),0.5)] scale-110"
+            : "bg-white/10 text-white/40 border border-white/10"
+        }`}
       >
-        <CreditCard className="w-12 h-12" />
+        <CreditCard className="w-5 h-5" />
       </div>
     </div>
   );

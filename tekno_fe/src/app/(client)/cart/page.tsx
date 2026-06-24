@@ -119,9 +119,9 @@ export default function CartPage() {
   }, [items, selectedIds]);
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
       {isAuthenticated ? (
-        <Container className="flex flex-col space-y-5 my-10">
+        <Container className="flex flex-col space-y-6 my-10 relative z-10">
           {ProductsInCart.length === 0 ? (
             <EmptyCart />
           ) : (
@@ -129,67 +129,95 @@ export default function CartPage() {
               <Stepper isActive={1} />
 
               {/* select all */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 backdrop-blur-md px-5 py-3 rounded-xl w-fit">
                 <input
                   id="select-all"
                   type="checkbox"
                   checked={allSelected}
                   onChange={toggleAll}
+                  className="h-5 w-5 rounded border-white/20 bg-black/40 text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer"
                 />
-                <label htmlFor="select-all" className="text-sm">
-                  Select all
+                <label htmlFor="select-all" className="text-sm font-medium text-white/80 cursor-pointer select-none">
+                  Select All ({ProductsInCart.length} items)
                 </label>
               </div>
 
-              <div className="grid lg:grid-cols-3 md:gap-8">
-                <div className="lg:col-span-2">
-                  <div className="flex gap-2 items-center mb-5">
-                    <ShoppingBag />
-                    <h1>Your shopping cart</h1>
+              <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                <div className="lg:col-span-2 flex flex-col gap-5">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-primary/20 rounded-lg text-primary">
+                      <ShoppingBag size={24} />
+                    </div>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">Your Shopping Cart</h1>
                   </div>
 
-                  <div className="flex flex-col gap-2 ">
+                  <div className="flex flex-col gap-4">
                     {ProductsInCart?.map((p) => {
                       const id = p.variantId;
                       const checked = selectedIds.has(id);
                       return (
                         <div
                           key={id}
-                          className="flex justify-between items-centre gap-3 border border-gray-300 rounded-md"
+                          className={`flex justify-between items-center gap-2 md:gap-3 border backdrop-blur-md rounded-2xl transition-all duration-300 ${
+                            checked ? "border-primary/50 bg-primary/5" : "border-white/10 bg-white/5 hover:bg-white/10"
+                          }`}
                         >
+                          <div className="flex items-center pl-4 md:pl-6">
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              onChange={() => toggleOne(id)}
+                              className="h-5 w-5 rounded border-white/20 bg-black/40 text-primary focus:ring-primary cursor-pointer transition-colors"
+                            />
+                          </div>
+                          
                           <ProductInCart product={p} onRemove={() => removeFromCart(p.variantId)} />
-
-                          <input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={() => toggleOne(id)}
-                            className="h-5 w-5 mt-5 mr-7 rounded-md text-gray-100 items-center"
-                          />
                         </div>
                       );
                     })}
                   </div>
                 </div>
 
-                <div className="flex flex-col py-5 px-3 border border-gray-300 rounded-md gap-4">
-                  <p className="text-black font-bold text-2xl ">
-                    Payment details
-                  </p>
-                  <div className="p-1 flex flex-col">
-                    <div className="flex justify-between">
-                      <p className="text-start">Subtotal</p>
-                      {/* đổi sang subtotal theo item được chọn */}
-                      <FormattedPriced price={selectedSubtotal} />
+                <div className="flex flex-col gap-6 relative">
+                  <div className="sticky top-24 border border-white/10 bg-[#121212]/80 backdrop-blur-xl rounded-2xl p-6 lg:p-8 shadow-2xl">
+                    <h2 className="text-white font-bold text-xl lg:text-2xl tracking-tight mb-6">
+                      Order Summary
+                    </h2>
+                    
+                    <div className="flex flex-col gap-4 mb-6 text-white/80">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Selected Items</span>
+                        <span className="font-medium text-white">{selectedIds.size}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Subtotal</span>
+                        <span className="font-medium text-white">
+                          <FormattedPriced price={selectedSubtotal} />
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span>Shipping</span>
+                        <span className="text-white/50">Calculated at next step</span>
+                      </div>
                     </div>
-                  </div>
+                    
+                    <div className="border-t border-white/10 pt-6 mb-6">
+                      <div className="flex justify-between items-end">
+                        <span className="text-base font-medium">Total</span>
+                        <div className="text-2xl font-bold text-primary">
+                          <FormattedPriced price={selectedSubtotal} />
+                        </div>
+                      </div>
+                    </div>
 
-                  <button
-                    onClick={handleProceed}
-                    disabled={selectedIds.size === 0}
-                    className="bg-primary/70 text-white font-normal text-xl rounded-md hover:bg-primary hoverEffect p-3 text-center disabled:bg-gray-300"
-                  >
-                    Procced to checkout
-                  </button>
+                    <button
+                      onClick={handleProceed}
+                      disabled={selectedIds.size === 0}
+                      className="w-full bg-primary text-black font-bold text-lg rounded-xl py-4 transition-all hover:bg-primary/90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:active:scale-100 disabled:shadow-none"
+                    >
+                      Proceed to Checkout
+                    </button>
+                  </div>
                 </div>
               </div>
             </>

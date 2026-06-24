@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { cartApi } from '@/services/cart';
 
 export interface CartItem {
@@ -72,7 +72,26 @@ const normalizeCartResponse = (response: CartResponse): CartResponse => {
   };
 };
 
-export function useCart() {
+interface CartContextType {
+  cart: CartResponse | null;
+  items: CartItem[];
+  loading: boolean;
+  error: string | null;
+  fetchCart: () => Promise<void>;
+  addToCart: (variantId: number, quantity: number) => Promise<void>;
+  removeFromCart: (variantId: number) => Promise<void>;
+  cleanCart: () => Promise<boolean>;
+  updateQuantity: (variantId: number, quantity: number) => Promise<boolean>;
+  getTotalPrice: () => number;
+  SubTotalPrice: number;
+  getTotalItems: () => number;
+  getItemCount: (variantId: number) => number;
+  getGroupItems: () => CartItem[];
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -149,9 +168,7 @@ export function useCart() {
       const data = normalizeCartResponse(await cartApi.updateQuantity(variantId, quantity, token));
       setCart(data);
 
-      // refetch lại cart để đồng bộ FE
       return true;
-
     } catch (err) {
       console.error(err);
       return false;
@@ -160,30 +177,19 @@ export function useCart() {
     }
   };
 
-  // =========================
-  // 🔥 HELPER FUNCTIONS
-  // =========================
-
-  // Items array
   const items = cart?.data?.items ?? [];
 
-  // Lấy số lượng của 1 item theo variantId
-const getItemCount = (variantId: number) => {
-  const item = cart?.data?.items?.find(i => i.variantId === variantId);
-  return item ? item.quantity : 0;
-};
+  const getItemCount = (variantId: number) => {
+    const item = cart?.data?.items?.find((i) => i.variantId === variantId);
+    return item ? item.quantity : 0;
+  };
 
-
-  // Tổng tiền (subtotal từ BE)
   const SubTotalPrice = cart?.data?.subtotal ?? 0;
 
-  // Tổng tiền có thể bao gồm thuế/ship nếu có
   const getTotalPrice = () => cart?.data?.subtotal ?? 0;
 
-  // Tổng số item
   const getTotalItems = () => cart?.data?.totalItems ?? 0;
 
-  // Gom nhóm theo variantId (nếu muốn xử lý UI)
   const getGroupItems = () => {
     const map = new Map<number, CartItem>();
 
@@ -203,24 +209,36 @@ const getItemCount = (variantId: number) => {
     fetchCart();
   }, []);
 
-  return {
-    cart,
-    items,
-    loading,
-    error,
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        items,
+        loading,
+        error,
+        fetchCart,
+        addToCart,
+        removeFromCart,
+        cleanCart,
+        updateQuantity,
+        getTotalPrice,
+        SubTotalPrice,
+        getTotalItems,
+        getItemCount,
+        getGroupItems,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+}
 
-    // APIs
-    fetchCart,
-    addToCart,
-    removeFromCart,
-    cleanCart,
-    updateQuantity,
-
-    // Helpers
-    getTotalPrice,
-    SubTotalPrice,
-    getTotalItems,
-    getItemCount,
-    getGroupItems,
-  };
+export function useCart() {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    // Return a dummy context or gracefully degrade if not wrapped in CartProvider
+    // But since it's required for global state, we just return the context and assume it's wrapped
+    return context as CartContextType;
+  }
+  return context;
 }
