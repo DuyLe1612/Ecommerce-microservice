@@ -23,7 +23,7 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full dark">
+    <html lang="en" className="h-full dark" suppressHydrationWarning>
       <body className="bg-background text-foreground flex flex-col min-h-screen antialiased selection:bg-primary selection:text-black">
         <AuthProvider>
           <div className="flex flex-col min-h-screen">

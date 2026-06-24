@@ -18,7 +18,7 @@ export const cartApi = {
   addToCart: async (
     token: string,
     { variantId, quantity }: { variantId: number; quantity: number }
-  ) => {
+  ): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart/items`, {
       method: "POST",
       credentials: "include",
@@ -33,7 +33,7 @@ export const cartApi = {
     return res.json();
   },
 
-  removeFromCart: async (token: string, variantId: number) => {
+  removeFromCart: async (token: string, variantId: number): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart/items/${variantId}`, {
       method: "DELETE",
       credentials: "include",

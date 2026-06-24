@@ -1,4 +1,3 @@
-import { Product } from "@/type/product";
 import { Trash2 } from "lucide-react";
 import React from "react";
 import QuantityButton from "../product/productDetail/QuantityButton";
@@ -7,11 +6,20 @@ import Link from "next/link";
 import Image from "next/image";
 import FormattedPriced from "../share/FormattedPriced";
 
-export default function ProductInCart({ product }: { product: CartItem }) {
+export default function ProductInCart({
+  product,
+  onRemove,
+}: {
+  product: CartItem;
+  onRemove?: () => void;
+}) {
+  const productName = product.productName ?? product.name ?? `Variant #${product.variantId}`;
+  const lineTotal = product.totalPrice ?? Number(product.price) * Number(product.quantity);
+
   return (
     <div className="flex p-2.5 items-center justify-between gap-5 w-full">
       <div className="flex flex-1 items-start gap-2 h-26 md:h-44 max-w-60">
-        {product?.primaryImage && (
+        {product?.primaryImage && product?.productSlug && (
           <Link
             href={`/products/${product?.productSlug}`}
             className="border p-0.5 md:p-1 mr-2 rounded-md overflow-hidden group"
@@ -30,7 +38,7 @@ export default function ProductInCart({ product }: { product: CartItem }) {
       <div className="h-full flex flex-1 flex-col justify-between py-1">
         <div className="flex flex-col gap-0.5 md:gap-1.5">
           <h2 className="text-base font-semibold line-clamp-2">
-            {product?.productName}
+            {productName}
           </h2>
           {/* product variant */}
           {product.attributes?.map((attr) => (
@@ -61,13 +69,14 @@ export default function ProductInCart({ product }: { product: CartItem }) {
               </div>
             ) : null}
             <div className="text-xl font-bold text-primary">
-              <FormattedPriced price={product.totalPrice} />
+              <FormattedPriced price={lineTotal} />
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             <button
               aria-label="remove"
+              onClick={onRemove}
               className="text-red-500 p-1 rounded hover:bg-red-50"
             >
               <Trash2 />
