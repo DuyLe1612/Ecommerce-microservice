@@ -31,18 +31,18 @@ export default function QuantityButton({
   };
 
   return (
-    <div className={cn("flex items-center gap-1 pb-1 text-base", className)}>
+    <div className={cn("flex items-center gap-1.5 pb-1 text-base", className)}>
       <Button
         onClick={handleMinusItem}
         variant="outline"
         size="icon"
         disabled={itemCount === 1 || isOutOfStock}
-        className="w-6 h-6 border-[1px] hover:bg-secondary/50 hoverEffect"
+        className="w-8 h-8 rounded-md border-white/20 bg-black/20 hover:bg-white/10 hover:border-white/30 text-white/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <Minus />
+        <Minus size={14} />
       </Button>
 
-      <span className="font-semibold text-sm w-6 text-center text-secondary">
+      <span className="font-semibold text-base w-8 text-center text-white/90">
         {itemCount}
       </span>
 
@@ -51,9 +51,9 @@ export default function QuantityButton({
         variant="outline"
         size="icon"
         disabled={isOutOfStock}
-        className="w-6 h-6 border-[1px] hover:bg-secondary/50 hoverEffect"
+        className="w-8 h-8 rounded-md border-white/20 bg-black/20 hover:bg-white/10 hover:border-white/30 text-white/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <Plus />
+        <Plus size={14} />
       </Button>
     </div>
   );

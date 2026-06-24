@@ -3,6 +3,7 @@ import Header from "@/components/MainLayout/Header/Header";
 import "../../styles/globals.css";
 import Footer from "@/components/MainLayout/Footer/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+import { CartProvider } from "@/hook/useCart";
 import { Breadcrumb } from "@/components/share/breadcumbCustom";
 import { Container } from "@/components/MainLayout/Container";
 import { Metadata } from "next";
@@ -26,12 +27,14 @@ export default function ClientLayout({
     <html lang="en" className="h-full dark" suppressHydrationWarning>
       <body className="bg-background text-foreground flex flex-col min-h-screen antialiased selection:bg-primary selection:text-black">
         <AuthProvider>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <Toaster />
-          </div>
+          <CartProvider>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <Toaster />
+            </div>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>
