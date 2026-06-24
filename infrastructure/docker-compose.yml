@@ -95,7 +95,7 @@ services:
       - POSTGRES_USER=tekno
       - POSTGRES_PASSWORD=tekno123
       - POSTGRES_DB=auth_db
-      - JWT_SECRET=67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0
+      - JWT_SECRET=${JWT_SECRET:-dev-jwt-secret-change-me-32chars}
       - JWT_REFRESH_SECRET=6b89ddaabd0476a190aec107bf9a1ce861520718bf45102fcd83ae84289e7917
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -257,6 +257,7 @@ services:
       - RABBITMQ_PASSWORD=tekno123
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - ORDER_EXTERNAL_PRODUCT_BASE_URL=http://product-service:8082
     depends_on:
       postgres:
         condition: service_healthy
@@ -326,6 +327,7 @@ services:
       - RABBITMQ_USERNAME=tekno
       - RABBITMQ_PASSWORD=tekno123
       - PRODUCT_SERVICE_URL=http://product-service:8082
+      - JWT_SECRET=${JWT_SECRET:-dev-jwt-secret-change-me-32chars}
     depends_on:
       postgres:
         condition: service_healthy
@@ -353,7 +355,7 @@ services:
       - SERVICE_NAME=review-service
       - PORT=8089
       - DB_URI=postgresql://tekno:tekno123@postgres:5432/review_db
-      - JWT_SECRET=67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0
+      - JWT_SECRET=${JWT_SECRET:-dev-jwt-secret-change-me-32chars}
       - RABBITMQ_URL=amqp://tekno:tekno123@rabbitmq:5672
       - CORS_ORIGIN=http://localhost:3000,http://localhost:8080,http://localhost:8081,http://localhost
     depends_on:
@@ -412,20 +414,20 @@ services:
         condition: service_healthy
       product-service:
         condition: service_healthy
-      # search-service:
-      #   condition: service_healthy
+      search-service:
+        condition: service_healthy
       promotion-service:
         condition: service_healthy
       coupon-service:
         condition: service_healthy
-      # order-service:
-      #   condition: service_healthy
-      # payment-service:
-      #   condition: service_healthy
+      order-service:
+        condition: service_healthy
+      payment-service:
+        condition: service_healthy
       cart-service:
         condition: service_healthy
-      # review-service:
-      #   condition: service_healthy
+      review-service:
+        condition: service_healthy
       notification-service:
         condition: service_healthy
     networks:

@@ -11,10 +11,10 @@ export default function QuantityButton({
   item: CartItem;
   className?: string;
 }) {
-  const { updateQuantity, removeFromCart, fetchCart, getItemCount } = useCart();
+  const { updateQuantity, removeFromCart, getItemCount } = useCart();
 
   const itemCount = getItemCount(item.variantId);
-  const isOutOfStock = item.availableStock <= 0;
+  const isOutOfStock = (item.availableStock ?? Number.MAX_SAFE_INTEGER) <= 0;
 
   const handleMinusItem = async () => {
     if (itemCount <= 1) {

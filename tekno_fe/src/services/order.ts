@@ -93,9 +93,23 @@ export async function createOrder(
     body: JSON.stringify(payload),
   });
 
+  const json = await res.json().catch(() => ({}));
   if (!res.ok) {
-    throw new Error("Create order failed");
+    throw new Error(json?.message || "Create order failed");
   }
 
-  return res.json();
+  const order = json?.data ?? json;
+  return {
+    success: true,
+    message: json?.message ?? "",
+    data: {
+      ...order,
+      orderId: order.orderId ?? order.id,
+      totalAmount: order.totalAmount ?? 0,
+      itemsCount: order.itemsCount ?? order.items?.length ?? 0,
+      note: order.note ?? order.notes ?? "",
+    },
+    errors: null,
+    timestamp: json?.timestamp ?? new Date().toISOString(),
+  };
 }

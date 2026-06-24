@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 // FAVORITE API
 export const favorApi = {
   getFavor: async (token: string): Promise<ProductCardType[]> => {
-    const res = await fetch(`${BASE_URL}/wishlist`, { credentials: "include", headers: {
+    const res = await fetch(`${BASE_URL}/wishlist`, { headers: {
           "Authorization": `Bearer ${token}`,
         },
        });
@@ -21,7 +21,6 @@ export const favorApi = {
   ) => {
     const res = await fetch(`${BASE_URL}/wishlist/items`, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
@@ -36,7 +35,6 @@ export const favorApi = {
   removeFavor: async (token: string, productId: number) => {
     const res = await fetch(`${BASE_URL}/wishlist/items/${productId}`, {
       method: "DELETE",
-      credentials: "include",
       headers: {
         "Authorization": `Bearer ${token}`,
       },
@@ -49,7 +47,6 @@ export const favorApi = {
   checkFavor: async (token: string, productId: number) => {
     const res = await fetch(`${BASE_URL}/wishlist/check/${productId}`, {
       method: "GET",
-      credentials: "include",
       headers: {
         "Authorization": `Bearer ${token}`,
       },

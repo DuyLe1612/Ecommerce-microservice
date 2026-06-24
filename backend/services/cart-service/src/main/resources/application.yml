@@ -26,6 +26,10 @@ services:
   product:
     url: ${PRODUCT_SERVICE_URL:http://product-service:8082}
 
+security:
+  jwt:
+    secret: ${JWT_SECRET:}
+
 management:
   endpoints:
     web:

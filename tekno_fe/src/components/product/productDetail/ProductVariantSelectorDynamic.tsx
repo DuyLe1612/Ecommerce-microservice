@@ -12,7 +12,7 @@ export default function ProductVariantSelectorDynamic({
 }: {
   product: ProductDetail;
 }) {
-  const variants = product?.variants ?? [];
+  const variants = useMemo(() => product?.variants ?? [], [product?.variants]);
 
   // 1️⃣ Map thuộc tính động
   const attributesMap = useMemo(() => {
@@ -30,6 +30,8 @@ export default function ProductVariantSelectorDynamic({
     return map;
   }, [variants]);
 
+  const hasVariantAttributes = Object.keys(attributesMap).length > 0;
+
   // 2️⃣ State chọn thuộc tính
   const [selectedAttrs, setSelectedAttrs] = useState<
     Record<string, string | null>
@@ -44,21 +46,25 @@ export default function ProductVariantSelectorDynamic({
 
   // 3️⃣ Tìm variant phù hợp
   const matchedVariant = useMemo(() => {
+    if (!hasVariantAttributes) {
+      return variants[0] ?? null;
+    }
+
     return variants.find((variant) =>
       variant.attributes?.every((attr: any) => {
         const sel = selectedAttrs[attr.name];
         if (!sel) return false;
         return attr.value === sel;
       })
-    );
-  }, [variants, selectedAttrs]);
+    ) ?? null;
+  }, [variants, selectedAttrs, hasVariantAttributes]);
 
   return (
     <div className="space-y-6">
       <h3 className="font-bold text-xl tracking-wide text-white uppercase">Select Variant</h3>
 
       {/* DYNAMIC ATTRIBUTE BUTTONS */}
-      {Object.keys(attributesMap).map((attrName) => (
+      {hasVariantAttributes ? Object.keys(attributesMap).map((attrName) => (
         <div key={attrName} className="space-y-3">
           <div className="font-semibold text-gray-300">{attrName}</div>
           <div className="flex flex-wrap gap-2">
@@ -79,7 +85,7 @@ export default function ProductVariantSelectorDynamic({
             ))}
           </div>
         </div>
-      ))}
+      )) : null}
 
       {/* Variant info */}
       <div className="p-6 border border-gray-800 rounded-2xl bg-[#111111] shadow-lg relative overflow-hidden group">
@@ -113,7 +119,9 @@ export default function ProductVariantSelectorDynamic({
           </>
         ) : (
           <div className="text-gray-500 flex items-center justify-center py-6 text-sm font-medium relative z-10">
-            Please select all options to view variant details.
+            {variants.length > 0
+              ? "Please select all options to view variant details."
+              : "No variants are available for this product."}
           </div>
         )}
       </div>

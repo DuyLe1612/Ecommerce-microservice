@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Grid3x3, List, ChevronDown, Loader2, Search } from "lucide-react";
 import Filter from "@/components/product/Filter";
 import ProductCard from "@/components/product/ProductCard";
@@ -35,7 +35,7 @@ import { useRouter } from "next/navigation";
 import { CategoryTabs } from "@/components/product/CategoryTabs";
 import FilterChips from "@/components/product/FilterChips";
 
-export default function ProductPage() {
+function ProductContent() {
   const [loading, setLoading] = useState(false);
   const [productsList, setproductsList] = useState<ProductCardType[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -323,5 +323,13 @@ export default function ProductPage() {
         </div>
       </Container>
     </>
+  );
+}
+
+export default function ProductPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProductContent />
+    </Suspense>
   );
 }

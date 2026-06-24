@@ -5,9 +5,9 @@ import { triggerSimulatorCallback } from "@/services/payment";
 import { Order, OrderItem } from "@/type/order";
 import { CheckCircle, X, AlertCircle, Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState, useRef } from "react";
+import React, { Suspense, useEffect, useState, useRef } from "react";
 
-export default function Page() {
+function PaymentResultContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("OrderId");
   const transactionId = searchParams.get("transactionId");
@@ -241,4 +241,12 @@ export default function Page() {
       </div>
     );
   }
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <PaymentResultContent />
+    </Suspense>
+  );
 }

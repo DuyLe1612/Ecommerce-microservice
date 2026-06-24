@@ -24,11 +24,11 @@ public class CartService {
         this.ttlDays = ttlDays;
     }
 
-    public CartResponse getCart(Long userId) {
+    public CartResponse getCart(String userId) {
         return toResponse(userId, cartStore.get(userId));
     }
 
-    public CartResponse addItem(Long userId, Long variantId, int quantity) {
+    public CartResponse addItem(String userId, Long variantId, int quantity) {
         ProductClient.VariantInfo variant = productClient.getVariant(variantId);
         Cart cart = cartStore.get(userId);
         cart.upsert(new CartItem(
@@ -43,7 +43,7 @@ public class CartService {
         return toResponse(userId, cart);
     }
 
-    public CartResponse updateItem(Long userId, Long variantId, int quantity) {
+    public CartResponse updateItem(String userId, Long variantId, int quantity) {
         ProductClient.VariantInfo variant = productClient.getVariant(variantId);
         Cart cart = cartStore.get(userId);
         cart.upsert(new CartItem(
@@ -58,22 +58,22 @@ public class CartService {
         return toResponse(userId, cart);
     }
 
-    public CartResponse removeItem(Long userId, Long variantId) {
+    public CartResponse removeItem(String userId, Long variantId) {
         Cart cart = cartStore.get(userId);
         cart.remove(variantId);
         cartStore.save(userId, cart, Duration.ofDays(ttlDays));
         return toResponse(userId, cart);
     }
 
-    public void clear(Long userId) {
+    public void clear(String userId) {
         cartStore.delete(userId);
     }
 
-    public CartResponse snapshot(Long userId) {
+    public CartResponse snapshot(String userId) {
         return getCart(userId);
     }
 
-    private CartResponse toResponse(Long userId, Cart cart) {
+    private CartResponse toResponse(String userId, Cart cart) {
         BigDecimal subtotal = cart.getItems().stream()
             .map(item -> item.price().multiply(BigDecimal.valueOf(item.quantity())))
             .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -81,6 +81,9 @@ public class CartService {
             .findFirst()
             .map(CartItem::currency)
             .orElse("VND");
-        return new CartResponse(userId, cart.getItems(), subtotal, currency);
+        int totalItems = cart.getItems().stream()
+            .mapToInt(CartItem::quantity)
+            .sum();
+        return new CartResponse(userId, cart.getItems(), subtotal, currency, totalItems);
     }
 }
