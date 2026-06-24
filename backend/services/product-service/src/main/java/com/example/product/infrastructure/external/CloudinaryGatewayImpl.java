@@ -42,7 +42,7 @@ public class CloudinaryGatewayImpl implements CloudinaryGateway {
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
                 "folder", folder
             ));
-            String url = uploadResult.get("url") != null ? uploadResult.get("url").toString() : null;
+            String url = uploadResult.get("secure_url") != null ? uploadResult.get("secure_url").toString() : null;
             String publicId = uploadResult.get("public_id") != null ? uploadResult.get("public_id").toString() : null;
             return new CloudinaryUploadResponse(url, publicId, file.getOriginalFilename());
         } catch (IOException e) {
@@ -52,9 +52,12 @@ public class CloudinaryGatewayImpl implements CloudinaryGateway {
 
     @Override
     public void destroy(String publicId) {
+        if ("dummy".equals(apiKey)) {
+            return;
+        }
         try {
             cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Image deletion failed", e);
         }
     }

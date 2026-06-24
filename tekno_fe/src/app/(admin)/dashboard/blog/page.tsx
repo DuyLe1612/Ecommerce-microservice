@@ -71,32 +71,31 @@ export default function AdminBlogPage() {
         return;
       }
 
-      const fd = new FormData();
-      fd.append("title", form.title);
-      fd.append("slug", form.slug);
-      fd.append("summary", form.summary);
-      fd.append("content", form.content);
-      fd.append("publishImmediately", String(form.publishImmediately));
+      const payload: any = {
+        title: form.title,
+        slug: form.slug,
+        summary: form.summary,
+        content: form.content,
+        publishImmediately: form.publishImmediately,
+        tags: form.tags,
+        productIds: form.relatedProductIds.join(","),
+        authorId: 1, // Optional: Set default author ID or fetch from context
+      };
 
       if (form.featuredImage) {
-        fd.append("featuredImage", form.featuredImage);
+        try {
+          const { uploadGenericImage } = await import("@/services/categories");
+          const uploadRes = await uploadGenericImage(form.featuredImage);
+          if (uploadRes?.success && uploadRes?.data?.url) {
+            payload.featuredImageUrl = uploadRes.data.url;
+          }
+        } catch (uploadErr) {
+          console.error("Failed to upload blog image:", uploadErr);
+          alert("Upload image failed, continuing with other updates.");
+        }
       }
 
-      // Tags as array
-      if (form.tags.length > 0) {
-        form.tags.forEach((tag) => {
-          fd.append("tags[]", tag);
-        });
-      }
-
-      // Related Product IDs as array
-      if (form.relatedProductIds.length > 0) {
-        form.relatedProductIds.forEach((id) => {
-          fd.append("relatedProductIds[]", String(id));
-        });
-      }
-
-      await createAdminBlog(fd);
+      await createAdminBlog(payload);
       alert("Blog created successfully!");
 
       await loadBlogs();
@@ -151,32 +150,31 @@ const handleUpdate = async () => {
       return;
     }
 
-    const fd = new FormData();
-    fd.append("title", form.title);
-    fd.append("slug", form.slug);
-    fd.append("summary", form.summary);
-    fd.append("content", form.content);
-    fd.append("publishImmediately", String(form.publishImmediately));
-    
-    // ✅ FIX: Gửi tags như array (tags[]), không phải JSON string
-    if (form.tags.length > 0) {
-      form.tags.forEach((tag) => {
-        fd.append("tags[]", tag);
-      });
-    }
+    const payload: any = {
+      title: form.title,
+      slug: form.slug,
+      summary: form.summary,
+      content: form.content,
+      publishImmediately: form.publishImmediately,
+      tags: form.tags,
+      productIds: form.relatedProductIds.join(","),
+      authorId: 1, // Optional: Set default author ID
+    };
 
     if (form.featuredImage) {
-      fd.append("featuredImage", form.featuredImage);
+      try {
+        const { uploadGenericImage } = await import("@/services/categories");
+        const uploadRes = await uploadGenericImage(form.featuredImage);
+        if (uploadRes?.success && uploadRes?.data?.url) {
+          payload.featuredImageUrl = uploadRes.data.url;
+        }
+      } catch (uploadErr) {
+        console.error("Failed to upload blog image:", uploadErr);
+        alert("Upload image failed, continuing with other updates.");
+      }
     }
 
-    // ✅ Gửi relatedProductIds như array
-    if (form.relatedProductIds.length > 0) {
-      form.relatedProductIds.forEach((id) => {
-        fd.append("relatedProductIds[]", String(id));
-      });
-    }
-
-    await updateAdminBlog(selectedBlog.id, fd);
+    await updateAdminBlog(selectedBlog.id, payload);
     alert("Blog updated successfully!");
 
     await loadBlogs();
