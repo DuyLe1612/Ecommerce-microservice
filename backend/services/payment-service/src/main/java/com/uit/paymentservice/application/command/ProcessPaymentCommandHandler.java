@@ -48,7 +48,7 @@ public class ProcessPaymentCommandHandler {
     }
 
     @Transactional
-    public ProcessPaymentResponse execute(ProcessPaymentCommand command, Long userId, String idempotencyKey) {
+    public ProcessPaymentResponse execute(ProcessPaymentCommand command, String userId, String idempotencyKey) {
         log.debug("Processing payment: orderId={}, amount={}, gateway={}, userId={}, idempotencyKey={}",
             command.orderId(), command.amount(), command.gatewayType(), userId, idempotencyKey);
 

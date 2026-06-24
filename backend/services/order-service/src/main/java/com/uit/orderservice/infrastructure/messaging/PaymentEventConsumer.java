@@ -67,7 +67,7 @@ public class PaymentEventConsumer {
     public record PaymentSucceededEvent(
         String idempotencyKey,
         Long orderId,
-        Long userId,
+        String userId,
         String gatewayType,   // string to avoid cross-service dependency
         BigDecimal amount,
         String currency,
@@ -77,7 +77,7 @@ public class PaymentEventConsumer {
     public record PaymentFailedEvent(
         String idempotencyKey,
         Long orderId,
-        Long userId,
+        String userId,
         String gatewayType,
         String reason
     ) {}
@@ -85,7 +85,7 @@ public class PaymentEventConsumer {
     public record PaymentRefundedEvent(
         String idempotencyKey,
         Long orderId,
-        Long userId,
+        String userId,
         String gatewayType,
         BigDecimal refundedAmount,
         String currency

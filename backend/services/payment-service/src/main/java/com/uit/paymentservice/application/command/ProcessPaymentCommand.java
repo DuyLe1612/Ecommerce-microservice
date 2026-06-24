@@ -13,16 +13,16 @@ public record ProcessPaymentCommand(
     @Schema(description = "Order ID to be paid", example = "123")
     @NotNull Long orderId,
 
-    @Schema(description = "Payment amount (must be positive)", example = "100000")
+    @Schema(description = "Payment amount (must match order total)", example = "100000")
     @NotNull @Positive BigDecimal amount,
 
     @Schema(description = "Currency code (ISO 4217)", example = "VND")
     @NotBlank String currency,
 
-    @Schema(description = "Payment gateway to use", example = "MOMO")
+    @Schema(description = "Payment gateway type", example = "MOMO")
     @NotNull PaymentGatewayType gatewayType,
 
-    @Schema(description = "URL to redirect customer after payment completion", example = "https://example.com/payment/callback")
+    @Schema(description = "URL to redirect customer after payment completion", example = "https://example.com/payment/result")
     String returnUrl,
 
     @Schema(description = "Payment description / memo", example = "Order #123 payment")

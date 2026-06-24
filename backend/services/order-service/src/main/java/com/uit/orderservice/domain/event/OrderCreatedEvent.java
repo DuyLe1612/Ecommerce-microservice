@@ -8,7 +8,7 @@ public non-sealed class OrderCreatedEvent extends OrderEvent {
     public final String currency;
     public final String couponCode;
 
-    public OrderCreatedEvent(Long orderId, String orderNumber, Long userId,
+    public OrderCreatedEvent(Long orderId, String orderNumber, String userId,
                              BigDecimal totalAmount, String currency, String couponCode) {
         super(orderId, orderNumber, userId);
         this.totalAmount = totalAmount;

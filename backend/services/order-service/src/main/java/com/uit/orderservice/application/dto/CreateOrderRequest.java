@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public record CreateOrderRequest(
-    @NotNull Long userId,
+    @NotNull String userId,
 
     @NotEmpty List<@Valid ItemRequest> items,
 

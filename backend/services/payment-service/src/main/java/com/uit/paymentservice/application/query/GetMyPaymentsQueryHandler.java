@@ -2,10 +2,12 @@ package com.uit.paymentservice.application.query;
 
 import com.uit.paymentservice.domain.model.PaymentTransaction;
 import com.uit.paymentservice.domain.repository.PaymentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 public class GetMyPaymentsQueryHandler {
@@ -16,7 +18,8 @@ public class GetMyPaymentsQueryHandler {
         this.paymentRepository = paymentRepository;
     }
 
-    public MyPaymentsResponse execute(Long userId, int page, int pageSize) {
+    public MyPaymentsResponse execute(String userId, int page, int pageSize) {
+        log.info("Get payments history for user: "+userId);
         List<PaymentTransaction> all = paymentRepository.findByUserId(userId);
 
         int totalRecords = all.size();

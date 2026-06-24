@@ -18,7 +18,9 @@ public interface OrderJpaRepository extends JpaRepository<OrderJpaEntity, Long> 
 
     Optional<OrderJpaEntity> findByOrderNumber(String orderNumber);
 
-    List<OrderJpaEntity> findByUserIdOrderByCreatedAtDesc(Long userId);
+    List<OrderJpaEntity> findByUserIdOrderByCreatedAtDesc(String userId);
+
+    Page<OrderJpaEntity> findByUserId(String userId, Pageable pageable);
 
     List<OrderJpaEntity> findByStatus(OrderStatus status);
 
@@ -30,7 +32,7 @@ public interface OrderJpaRepository extends JpaRepository<OrderJpaEntity, Long> 
            "(:fromDate IS NULL OR o.createdAt >= :fromDate) AND " +
            "(:toDate IS NULL OR o.createdAt <= :toDate)")
     Page<OrderJpaEntity> findAll(@Param("status") OrderStatus status,
-                                  @Param("userId") Long userId,
+                                  @Param("userId") String userId,
                                   @Param("fromDate") LocalDateTime fromDate,
                                   @Param("toDate") LocalDateTime toDate,
                                   Pageable pageable);
@@ -40,7 +42,7 @@ public interface OrderJpaRepository extends JpaRepository<OrderJpaEntity, Long> 
            "WHERE o.user_id = :userId AND oi.product_id = :productId " +
            "AND o.status = 'DELIVERED'",
            nativeQuery = true)
-    boolean existsDeliveredOrderWithProduct(@Param("userId") Long userId, @Param("productId") Long productId);
+    boolean existsDeliveredOrderWithProduct(@Param("userId") String userId, @Param("productId") Long productId);
 
     @Query("SELECT COUNT(o) FROM OrderJpaEntity o WHERE o.status = :status")
     long countByStatus(@Param("status") OrderStatus status);

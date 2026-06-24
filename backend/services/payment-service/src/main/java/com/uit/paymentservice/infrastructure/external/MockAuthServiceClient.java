@@ -39,7 +39,7 @@ public class MockAuthServiceClient implements AuthServiceClient {
         // Case 1: mock-user-{id}-{role} format
         Matcher m = MOCK_TOKEN.matcher(token);
         if (m.matches()) {
-            Long userId = Long.parseLong(m.group(1));
+            String userId = m.group(1);
             String role = m.group(2).toUpperCase();
             log.debug("Mock auth: userId={}, role={}", userId, role);
             return new AuthResult(userId, "mock-" + userId + "@example.com", role);
@@ -47,8 +47,8 @@ public class MockAuthServiceClient implements AuthServiceClient {
 
         // Case 2: plain numeric userId (sent via X-User-Id header proxy)
         try {
-            Long userId = Long.parseLong(token.trim());
-            log.debug("Mock auth via numeric userId={}", userId);
+            String userId = token.trim();
+            log.debug("Mock auth via userId={}", userId);
             return new AuthResult(userId, "user-" + userId + "@example.com", "CUSTOMER");
         } catch (NumberFormatException ignored) {
             // Not a numeric token

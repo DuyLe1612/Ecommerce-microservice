@@ -12,18 +12,6 @@ import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/services/order";
 
-const toOrderUserId = (id?: string) => {
-  if (!id) return 1;
-  const numeric = Number(id);
-  if (Number.isSafeInteger(numeric) && numeric > 0) return numeric;
-
-  let hash = 0;
-  for (let i = 0; i < id.length; i += 1) {
-    hash = (hash * 31 + id.charCodeAt(i)) % 2147483647;
-  }
-  return hash || 1;
-};
-
 export default function CartPage() {
   const { items, removeFromCart } = useCart();
   const { user, isAuthenticated } = useAuth();
@@ -83,7 +71,7 @@ export default function CartPage() {
 
       const res = await createOrder(
         {
-          userId: toOrderUserId(user?.id),
+          userId: user?.id ?? "",
           items: selectedItems,
           subtotal: selectedItems.reduce((sum, item) => sum + item.subtotal, 0),
           discountAmount: 0,
@@ -104,7 +92,7 @@ export default function CartPage() {
       );
 
       const orderId = res.data.orderId;
-      router.push(`/payment?orderId=${orderId}`);
+      router.push(`/checkout?orderId=${orderId}`);
     } catch (error) {
       console.error("Create order error:", error);
     }

@@ -51,9 +51,16 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Order> findByUserId(Long userId) {
+    public List<Order> findByUserId(String userId) {
         return jpaRepository.findByUserIdOrderByCreatedAtDesc(userId)
             .stream().map(this::toDomain).toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Order> findByUserId(String userId, Pageable pageable) {
+        return jpaRepository.findByUserId(userId, pageable)
+            .map(this::toDomain);
     }
 
     @Override
@@ -66,14 +73,14 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Transactional(readOnly = true)
     @Override
     public Page<Order> findAll(
-            OrderStatus status, Long userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable) {
+            OrderStatus status, String userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable) {
         return jpaRepository.findAll(status, userId, fromDate, toDate, pageable)
                 .map(this::toDomain);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public boolean hasDeliveredOrderWithProduct(Long userId, Long productId) {
+    public boolean hasDeliveredOrderWithProduct(String userId, Long productId) {
         return jpaRepository.existsDeliveredOrderWithProduct(userId, productId);
     }
 

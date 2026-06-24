@@ -10,7 +10,7 @@ public class Order {
 
     private Long id;
     private String orderNumber;
-    private Long userId;
+    private String userId;
     private OrderStatus status;
     private List<OrderItem> items = new ArrayList<>();
     private ShippingAddress shippingAddress;
@@ -28,7 +28,7 @@ public class Order {
 
     protected Order() {}
 
-    public static Order create(Long userId, List<OrderItem> items, ShippingAddress shippingAddress,
+    public static Order create(String userId, List<OrderItem> items, ShippingAddress shippingAddress,
                                Money subtotal, Money discount, Money shippingFee,
                                String couponCode, Long couponId, String notes) {
         Order order = new Order();
@@ -100,13 +100,13 @@ public class Order {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public boolean isOwnedBy(Long userId) {
+    public boolean isOwnedBy(String userId) {
         return this.userId.equals(userId);
     }
 
     // Public: used by OrderRepositoryImpl to reconstruct from JPA entity
     public static Order fromJpaEntity(
-            Long id, String orderNumber, Long userId, OrderStatus status,
+            Long id, String orderNumber, String userId, OrderStatus status,
             Money subtotal, Money discount, Money shippingFee, Money totalAmount,
             String couponCode, Long couponId, String notes,
             ShippingAddress address, LocalDateTime createdAt, LocalDateTime updatedAt,
@@ -133,7 +133,7 @@ public class Order {
     // Getters
     public Long getId() { return id; }
     public String getOrderNumber() { return orderNumber; }
-    public Long getUserId() { return userId; }
+    public String getUserId() { return userId; }
     public OrderStatus getStatus() { return status; }
     public List<OrderItem> getItems() { return List.copyOf(items); }
     public ShippingAddress getShippingAddress() { return shippingAddress; }
@@ -150,7 +150,7 @@ public class Order {
     // Setters for JPA
     public void setId(Long id) { this.id = id; }
     public void setOrderNumber(String orderNumber) { this.orderNumber = orderNumber; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public void setUserId(String userId) { this.userId = userId; }
     public void setStatus(OrderStatus status) { this.status = status; }
     public void setShippingAddress(ShippingAddress address) { this.shippingAddress = address; }
     public void setSubtotal(Money subtotal) { this.subtotal = subtotal; }

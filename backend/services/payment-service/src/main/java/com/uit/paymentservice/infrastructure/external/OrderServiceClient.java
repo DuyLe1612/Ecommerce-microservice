@@ -6,11 +6,11 @@ public interface OrderServiceClient {
 
     record OrderValidationResult(
         boolean exists,
-        Long userId,
+        String userId,
         BigDecimal expectedAmount,
         String currency,
         String status
     ) {}
 
-    OrderValidationResult validateOrderForPayment(Long orderId, Long userId, BigDecimal requestedAmount);
+    OrderValidationResult validateOrderForPayment(Long orderId, String userId, BigDecimal requestedAmount);
 }

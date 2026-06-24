@@ -8,7 +8,7 @@ public final class PaymentInitiatedEvent extends PaymentEvent {
     public final BigDecimal amount;
     public final String currency;
 
-    public PaymentInitiatedEvent(String transactionId, Long orderId, Long userId,
+    public PaymentInitiatedEvent(String transactionId, Long orderId, String userId,
                                  PaymentGatewayType gatewayType, BigDecimal amount, String currency) {
         super(transactionId, orderId, userId);
         this.gatewayType = gatewayType;
