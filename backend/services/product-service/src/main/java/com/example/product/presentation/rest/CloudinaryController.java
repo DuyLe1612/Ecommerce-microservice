@@ -19,6 +19,13 @@ public class CloudinaryController {
         return ApiResponse.success(cloudinaryGateway.upload(file, "misc"));
     }
 
+    @PostMapping("/generic")
+    public ApiResponse<CloudinaryUploadResponse> uploadGenericWithFolder(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "folder", required = false, defaultValue = "misc") String folder) {
+        return ApiResponse.success(cloudinaryGateway.upload(file, folder));
+    }
+
     @PostMapping("/category-icon")
     public ApiResponse<CloudinaryUploadResponse> uploadCategoryIcon(@RequestParam("file") MultipartFile file) {
         return ApiResponse.success(cloudinaryGateway.upload(file, "categories"));

@@ -114,9 +114,9 @@ export async function getAdminBlog(id: number | string) {
 }
 
 // Create blog
-export async function createAdminBlog(fd: FormData) {
+export async function createAdminBlog(data: any) {
   try {
-    return await postForm(`${API_BASE}/admin/blog`, fd);
+    return await post(`${API_BASE}/admin/blog`, data);
   } catch (error) {
     console.error("❌ Failed to create blog:", error);
     throw error;
@@ -124,9 +124,9 @@ export async function createAdminBlog(fd: FormData) {
 }
 
 // Update blog
-export async function updateAdminBlog(id: number | string, fd: FormData) {
+export async function updateAdminBlog(id: number | string, data: any) {
   try {
-    return await put(`${API_BASE}/admin/blog/${id}`, fd);
+    return await put(`${API_BASE}/admin/blog/${id}`, data);
   } catch (error) {
     console.error("❌ Failed to update blog:", error);
     throw error;
@@ -146,7 +146,7 @@ export async function deleteAdminBlog(id: number | string) {
 // Publish blog
 export async function publishBlog(id: number | string) {
   try {
-    return await patch(`${API_BASE}/admin/blog/${id}/publish`, {});
+    return await post(`${API_BASE}/admin/blog/${id}/publish`, {});
   } catch (error) {
     console.error("❌ Failed to publish blog:", error);
     throw error;
@@ -156,7 +156,7 @@ export async function publishBlog(id: number | string) {
 // Unpublish blog (set to draft)
 export async function unpublishBlog(id: number | string) {
   try {
-    return await patch(`${API_BASE}/admin/blog/${id}/unpublish`, {});
+    return await post(`${API_BASE}/admin/blog/${id}/unpublish`, {});
   } catch (error) {
     console.error("❌ Failed to unpublish blog:", error);
     throw error;
