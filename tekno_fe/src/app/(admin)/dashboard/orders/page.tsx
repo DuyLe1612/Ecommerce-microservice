@@ -12,7 +12,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Eye, Truck, CheckCircle, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, Truck, CheckCircle, XCircle, ChevronLeft, ChevronRight, Package, Search, Filter } from "lucide-react";
+import { toast } from "sonner";
 import {
   getAdminOrders,
   cancelOrder,
@@ -59,7 +60,7 @@ export default function OrdersPage() {
       
       const token = localStorage.getItem('token');
       if (!token) {
-        alert("Please login first!");
+        toast.error("Please login first!");
         setLoading(false);
         window.location.href = '/login';
         return;
@@ -86,7 +87,7 @@ export default function OrdersPage() {
       console.error("❌ Failed to load orders:", err);
       
       if ((err as any)?.status === 401) {
-        alert("Session expired. Please login again!");
+        toast.error("Session expired. Please login again!");
         localStorage.removeItem('token');
         window.location.href = '/login';
       }
@@ -121,11 +122,11 @@ export default function OrdersPage() {
     
     try {
       await cancelOrder(orderId, reason);
-      alert("Order cancelled successfully!");
+      toast.success("Order cancelled successfully!");
       await loadOrders();
     } catch (err) {
       console.error("Failed to cancel order:", err);
-      alert("Failed to cancel order");
+      toast.error("Failed to cancel order");
     }
   };
 
@@ -134,11 +135,11 @@ export default function OrdersPage() {
     
     try {
       await deliverOrder(orderId);
-      alert("Order marked as delivered!");
+      toast.success("Order marked as delivered!");
       await loadOrders();
     } catch (err) {
       console.error("Failed to deliver order:", err);
-      alert("Failed to mark as delivered");
+      toast.error("Failed to mark as delivered");
     }
   };
 
@@ -154,12 +155,12 @@ export default function OrdersPage() {
     
     try {
       await shipOrder(shipOrderData.id, trackingNumber, carrier);
-      alert("Order shipped successfully!");
+      toast.success("Order shipped successfully!");
       await loadOrders();
       setOpenShipModal(false);
     } catch (err) {
       console.error("Failed to ship order:", err);
-      alert("Failed to ship order");
+      toast.error("Failed to ship order");
     }
   };
 

@@ -14,6 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { toast } from "sonner";
 import { Edit2, Trash2 } from "lucide-react";
 import Actions from "@/components/admin/Actions";
 import { getBrandList, createBrand, updateBrand, deleteBrand, uploadBrandLogo } from "@/services/brand";
@@ -62,7 +63,7 @@ export default function BrandPage() {
   const handleCreate = async () => {
     try {
       if (!form.name || !form.slug) {
-        alert("Name and Slug are required");
+        toast.error("Name and Slug are required");
         return;
       }
 
@@ -85,7 +86,7 @@ export default function BrandPage() {
       setOpenCreate(false);
       setForm({ name: "", slug: "", country: "", image: null });
     } catch (e: any) {
-      alert(e.message || "Create brand failed");
+      toast.error(e.message || "Create brand failed");
     }
   };
 
@@ -120,7 +121,7 @@ export default function BrandPage() {
     if (!editingBrand?.id) return;
 
     if (!form.name || !form.slug) {
-      alert("Name and Slug are required");
+      toast.error("Name and Slug are required");
       return;
     }
 
@@ -145,7 +146,7 @@ export default function BrandPage() {
       setEditingBrand(null);
       setForm({ name: "", slug: "", country: "", image: null });
     } catch (e: any) {
-      alert(e.message || "Update brand failed");
+      toast.error(e.message || "Update brand failed");
     }
   };
 
@@ -157,7 +158,7 @@ export default function BrandPage() {
       await deleteBrand(id);
       setBrands((prev) => prev.filter((b) => b.id !== id));
     } catch (e: any) {
-      alert(e.message || "Delete brand failed");
+      toast.error(e.message || "Delete brand failed");
     }
   };
 

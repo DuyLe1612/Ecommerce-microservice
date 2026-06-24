@@ -18,7 +18,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Eye, Trash2, Edit2, FileText, FilePlus, X } from "lucide-react";
+import { Globe, Plus, Search, Tag, Eye, Power, PowerOff, Edit2, Trash2, FileText, FilePlus, X } from "lucide-react";
+import { toast } from "sonner";
 import {
   getAdminBlogs,
   getAdminBlog,
@@ -80,12 +81,12 @@ export default function AdminBlogPage() {
   const handleCreate = async () => {
     try {
       if (!form.title || !form.slug || !form.content) {
-        alert("Please fill required fields: Title, Slug, Content");
+        toast.error("Please fill required fields: Title, Slug, Content");
         return;
       }
 
       if (form.title.length < 10 || form.title.length > 200) {
-        alert("Title must be between 10 and 200 characters");
+        toast.error("Title must be between 10 and 200 characters");
         return;
       }
 
@@ -109,19 +110,19 @@ export default function AdminBlogPage() {
           }
         } catch (uploadErr) {
           console.error("Failed to upload blog image:", uploadErr);
-          alert("Upload image failed, continuing with other updates.");
+          toast.error("Upload image failed, continuing with other updates.");
         }
       }
 
       await createAdminBlog(payload);
-      alert("Blog created successfully!");
+      toast.success("Blog created successfully!");
 
       await loadBlogs();
       setOpenCreate(false);
       resetForm();
     } catch (err) {
       console.error("Create failed:", err);
-      alert(`Create failed: ${err instanceof Error ? err.message : "Unknown error"}`);
+      toast.error(`Create failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     }
   };
 
@@ -155,7 +156,7 @@ export default function AdminBlogPage() {
       setOpenEdit(true);
     } catch (err) {
       console.error("Failed to load blog detail:", err);
-      alert("Failed to load blog details");
+      toast.error("Failed to load blog details");
     }
   };
 
@@ -164,7 +165,7 @@ const handleUpdate = async () => {
     if (!selectedBlog) return;
 
     if (!form.title || !form.slug || !form.content) {
-      alert("Please fill required fields: Title, Slug, Content");
+      toast.error("Please fill required fields: Title, Slug, Content");
       return;
     }
 
@@ -188,12 +189,12 @@ const handleUpdate = async () => {
         }
       } catch (uploadErr) {
         console.error("Failed to upload blog image:", uploadErr);
-        alert("Upload image failed, continuing with other updates.");
+        toast.error("Upload image failed, continuing with other updates.");
       }
     }
 
     await updateAdminBlog(selectedBlog.id, payload);
-    alert("Blog updated successfully!");
+    toast.success("Blog updated successfully!");
 
     await loadBlogs();
     
@@ -205,7 +206,7 @@ const handleUpdate = async () => {
     resetForm();
   } catch (err) {
     console.error("Update failed:", err);
-    alert(`Update failed: ${err instanceof Error ? err.message : "Unknown error"}`);
+    toast.error(`Update failed: ${err instanceof Error ? err.message : "Unknown error"}`);
   }
 };
 
@@ -214,33 +215,33 @@ const handleUpdate = async () => {
 
     try {
       await deleteAdminBlog(id);
-      alert("Blog deleted successfully!");
+      toast.success("Blog deleted successfully!");
       await loadBlogs();
     } catch (err) {
       console.error("Delete failed:", err);
-      alert("Failed to delete blog");
+      toast.error("Failed to delete blog");
     }
   };
 
   const handlePublish = async (id: number) => {
     try {
       await publishBlog(id);
-      alert("Blog published successfully!");
+      toast.success("Blog published successfully!");
       await loadBlogs();
     } catch (err) {
       console.error("Publish failed:", err);
-      alert("Failed to publish blog");
+      toast.error("Failed to publish blog");
     }
   };
 
   const handleUnpublish = async (id: number) => {
     try {
       await unpublishBlog(id);
-      alert("Blog unpublished successfully!");
+      toast.success("Blog unpublished successfully!");
       await loadBlogs();
     } catch (err) {
       console.error("Unpublish failed:", err);
-      alert("Failed to unpublish blog");
+      toast.error("Failed to unpublish blog");
     }
   };
 

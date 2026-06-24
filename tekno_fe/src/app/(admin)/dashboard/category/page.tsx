@@ -20,6 +20,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronDown, ChevronRight, Plus, Settings, Globe, FolderPlus } from "lucide-react";
+import { toast } from "sonner";
 import Actions from "@/components/admin/Actions";
 import AttributesManager from "@/components/admin/AttributesManager";
 import CreateAttributeModal from "@/components/admin/CreateAttributeModal";
@@ -113,7 +114,7 @@ export default function CategoryPage() {
       
     } catch (error) {
       console.error("Failed to load categories tree:", error);
-      alert("Không thể tải danh sách categories");
+      toast.error("Không thể tải danh sách categories");
       setTree([]);
     } finally {
       setLoading(false);
@@ -234,7 +235,7 @@ const flattenedCategories = useMemo(() => {
   const handleCreate = async () => {
     try {
       if (!createData.name.trim() || !createData.slug.trim()) {
-        alert("Tên và Slug là bắt buộc!");
+        toast.error("Tên và Slug là bắt buộc!");
         return;
       }
 
@@ -270,10 +271,10 @@ const flattenedCategories = useMemo(() => {
       });
       
       setOpenCreate(false);
-      alert("Category created successfully!");
+      toast.success("Category created successfully!");
     } catch (error) {
       console.error("Create failed:", error);
-      alert("Create category failed!");
+      toast.error("Create category failed!");
     }
   };
 
@@ -296,7 +297,7 @@ const flattenedCategories = useMemo(() => {
   const handleEdit = async () => {
     try {
       if (!editData.name.trim() || !editData.slug.trim()) {
-        alert("Name and Slug are required!");
+        toast.error("Name and Slug are required!");
         return;
       }
 
@@ -326,10 +327,10 @@ const flattenedCategories = useMemo(() => {
       await loadCategoriesTree();
       
       setOpenEdit(false);
-      alert("Category updated successfully!");
+      toast.success("Category updated successfully!");
     } catch (error) {
       console.error("Update failed:", error);
-      alert("Update category failed!");
+      toast.error("Update category failed!");
     }
   };
 
@@ -340,10 +341,10 @@ const flattenedCategories = useMemo(() => {
     try {
       await deleteCategoryAPI(id);
       await loadCategoriesTree();
-      alert("Category deleted successfully!");
+      toast.success("Category deleted successfully!");
     } catch (error) {
       console.error("Delete failed:", error);
-      alert("Delete category failed!");
+      toast.error("Delete category failed!");
     }
   };
 

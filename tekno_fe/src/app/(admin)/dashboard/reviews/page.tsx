@@ -31,6 +31,7 @@ import {
   Filter,
   ShieldCheck,
 } from "lucide-react";
+import { toast } from "sonner";
 
 interface AdminReview {
   id: number;
@@ -112,7 +113,7 @@ export default function AdminReviewsPage() {
       const token = getToken();
 
       if (!token) {
-        alert("Please login to view reviews");
+        toast.error("Please login to view reviews");
         setLoading(false);
         return;
       }
@@ -129,7 +130,7 @@ export default function AdminReviewsPage() {
     } catch (error: any) {
       console.error("Failed to load reviews:", error);
       const errorMessage = error?.message || "Failed to load reviews";
-      alert(errorMessage);
+      toast.error(errorMessage);
       setReviews([]);
       setSummary(null);
       setTotalCount(0);
@@ -145,17 +146,17 @@ export default function AdminReviewsPage() {
       const token = getToken();
       
       if (!token) {
-        alert("Please login to perform this action");
+        toast.error("Please login to perform this action");
         return;
       }
 
       await approveReview(token, reviewId);
-      alert("Review approved successfully!");
+      toast.success("Review approved successfully!");
       await loadReviews();
     } catch (error: any) {
       console.error("Failed to approve review:", error);
       const errorMessage = error?.message || "Failed to approve review";
-      alert(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
@@ -166,17 +167,17 @@ export default function AdminReviewsPage() {
       const token = getToken();
       
       if (!token) {
-        alert("Please login to perform this action");
+        toast.error("Please login to perform this action");
         return;
       }
 
       await rejectReview(token, reviewId);
-      alert("Review rejected successfully!");
+      toast.success("Review rejected successfully!");
       await loadReviews();
     } catch (error: any) {
       console.error("Failed to reject review:", error);
       const errorMessage = error?.message || "Failed to reject review";
-      alert(errorMessage);
+      toast.error(errorMessage);
     }
   };
 

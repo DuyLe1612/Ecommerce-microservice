@@ -10,6 +10,8 @@ export const metadata = {
   title: "Tekno",
 };
 
+import { Toaster } from "@/components/ui/sonner";
+
 export default function ClientLayout({
   children,
 }: {
@@ -31,6 +33,7 @@ export default function ClientLayout({
             </div>
           </RouteGuard>
         </AuthProvider>
+        <Toaster />
       </body>
     </html>
   );

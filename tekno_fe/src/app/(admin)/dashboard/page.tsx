@@ -41,6 +41,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { toast } from "sonner";
 
 const COLORS = [
   "#3b82f6",
@@ -334,7 +335,7 @@ export default function AdminStatisticsPage() {
 
       await invalidateStatisticsCache(token);
       await loadStatistics();
-      alert("Cache invalidated and statistics refreshed!");
+      toast.success("Cache invalidated and statistics refreshed!");
     } catch (err: unknown) {
       const errorMessage =
         err instanceof StatisticsError
@@ -345,7 +346,7 @@ export default function AdminStatisticsPage() {
 
       console.error("[Dashboard] Cache invalidation error:", err);
       setError(errorMessage);
-      alert(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setRefreshing(false);
     }

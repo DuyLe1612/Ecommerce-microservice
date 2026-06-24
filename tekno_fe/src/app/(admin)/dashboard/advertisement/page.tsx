@@ -28,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Eye, Trash2, Power, PowerOff } from "lucide-react";
 import { API_BASE, advertisementApi } from "@/services/advertisementApi";
 import { postForm } from "@/lib/api";
+import { toast } from "sonner";
 
 export default function AdvertisementPage() {
   const [advertisements, setAdvertisements] = useState<any[]>([]);
@@ -109,17 +110,17 @@ const loadAdvertisements = async () => {
   const handleCreate = async () => {
     try {
       if (!form.productId || !form.position || !form.startDate || !form.endDate) {
-        alert("Please fill all required fields");
+        toast.error("Please fill all required fields");
         return;
       }
 
       if (!form.image) {
-        alert("Please select an image");
+        toast.error("Please select an image");
         return;
       }
 
       if (form.priority < 0 || form.priority > 100) {
-        alert("Priority must be between 0 and 100");
+        toast.error("Priority must be between 0 and 100");
         return;
       }
 
@@ -148,10 +149,10 @@ const loadAdvertisements = async () => {
         image: null,
       });
 
-      alert("Advertisement created successfully!");
+      toast.success("Advertisement created successfully!");
     } catch (e) {
       console.error("Create error", e);
-      alert("Failed to create advertisement");
+      toast.error("Failed to create advertisement");
     }
   };
 
@@ -161,11 +162,11 @@ const loadAdvertisements = async () => {
 
     try {
       await advertisementApi.delete(id);
-      alert("Advertisement deleted successfully!");
+      toast.success("Advertisement deleted successfully!");
       await loadAdvertisements();
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Failed to delete advertisement");
+      toast.error("Failed to delete advertisement");
     }
   };
 
@@ -173,11 +174,11 @@ const loadAdvertisements = async () => {
   const handleActivate = async (id: string) => {
     try {
       await advertisementApi.activate(id);
-      alert("Advertisement activated successfully!");
+      toast.success("Advertisement activated successfully!");
       await loadAdvertisements();
     } catch (err) {
       console.error("Activate error:", err);
-      alert("Failed to activate advertisement");
+      toast.error("Failed to activate advertisement");
     }
   };
 
@@ -185,11 +186,11 @@ const loadAdvertisements = async () => {
   const handleDeactivate = async (id: string) => {
     try {
       await advertisementApi.deactivate(id);
-      alert("Advertisement deactivated successfully!");
+      toast.success("Advertisement deactivated successfully!");
       await loadAdvertisements();
     } catch (err) {
       console.error("Deactivate error:", err);
-      alert("Failed to deactivate advertisement");
+      toast.error("Failed to deactivate advertisement");
     }
   };
 

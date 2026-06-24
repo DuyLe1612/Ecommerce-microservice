@@ -20,6 +20,7 @@ import { voucherApi } from "@/services/voucherApi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, Trash2, Edit2, Power, PowerOff, BarChart3, History, ChevronLeft, ChevronRight } from "lucide-react";
+import { toast } from "sonner";
 
 export default function VoucherPage() {
   const [vouchers, setVouchers] = useState<any[]>([]);
@@ -87,7 +88,7 @@ export default function VoucherPage() {
       setStatistics(statsData?.data || statsData);
     } catch (err) {
       console.error("Failed to load statistics:", err);
-      alert("Failed to load statistics");
+      toast.error("Failed to load statistics");
       setOpenStatistics(false);
     } finally {
       setLoadingStats(false);
@@ -112,7 +113,7 @@ export default function VoucherPage() {
       setUsage(usageList);
     } catch (err) {
       console.error("Failed to load usage:", err);
-      alert("Failed to load usage history");
+      toast.error("Failed to load usage history");
       setOpenUsage(false);
     } finally {
       setLoadingUsage(false);
@@ -123,17 +124,17 @@ export default function VoucherPage() {
   const handleCreate = async () => {
     try {
       if (!form.code || !form.name || !form.startDate || !form.endDate) {
-        alert("Please fill all required fields");
+        toast.error("Please fill all required fields");
         return;
       }
 
       if (form.value <= 0) {
-        alert("Value must be greater than 0");
+        toast.error("Value must be greater than 0");
         return;
       }
 
       if (form.quantity <= 0) {
-        alert("Quantity must be greater than 0");
+        toast.error("Quantity must be greater than 0");
         return;
       }
 
@@ -151,14 +152,14 @@ export default function VoucherPage() {
       };
 
       await voucherApi.create(payload);
-      alert("Voucher created successfully!");
+      toast.success("Voucher created successfully!");
       
       await loadVouchers();
       setOpenCreate(false);
       resetForm();
     } catch (e) {
       console.error("Create error", e);
-      alert("Failed to create voucher");
+      toast.error("Failed to create voucher");
     }
   };
 
@@ -181,7 +182,7 @@ export default function VoucherPage() {
       setOpenEdit(true);
     } catch (err) {
       console.error("Failed to load voucher detail:", err);
-      alert("Failed to load voucher details");
+      toast.error("Failed to load voucher details");
     }
   };
 
@@ -190,7 +191,7 @@ export default function VoucherPage() {
       if (!selectedVoucher) return;
 
       if (!form.code || !form.name || !form.startDate || !form.endDate) {
-        alert("Please fill all required fields");
+        toast.error("Please fill all required fields");
         return;
       }
 
@@ -208,14 +209,14 @@ export default function VoucherPage() {
       };
 
       await voucherApi.update(selectedVoucher.id.toString(), payload);
-      alert("Voucher updated successfully!");
+      toast.success("Voucher updated successfully!");
       
       await loadVouchers();
       setOpenEdit(false);
       resetForm();
     } catch (err) {
       console.error("Update error:", err);
-      alert("Failed to update voucher");
+      toast.error("Failed to update voucher");
     }
   };
 
@@ -225,11 +226,11 @@ export default function VoucherPage() {
 
     try {
       await voucherApi.delete(id);
-      alert("Voucher deleted successfully!");
+      toast.success("Voucher deleted successfully!");
       await loadVouchers();
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Failed to delete voucher");
+      toast.error("Failed to delete voucher");
     }
   };
 
@@ -237,11 +238,11 @@ export default function VoucherPage() {
   const handleActivate = async (id: string) => {
     try {
       await voucherApi.activate(id);
-      alert("Voucher activated successfully!");
+      toast.success("Voucher activated successfully!");
       await loadVouchers();
     } catch (err) {
       console.error("Activate error:", err);
-      alert("Failed to activate voucher");
+      toast.error("Failed to activate voucher");
     }
   };
 
@@ -249,11 +250,11 @@ export default function VoucherPage() {
   const handleDeactivate = async (id: string) => {
     try {
       await voucherApi.deactivate(id);
-      alert("Voucher deactivated successfully!");
+      toast.success("Voucher deactivated successfully!");
       await loadVouchers();
     } catch (err) {
       console.error("Deactivate error:", err);
-      alert("Failed to deactivate voucher");
+      toast.error("Failed to deactivate voucher");
     }
   };
 

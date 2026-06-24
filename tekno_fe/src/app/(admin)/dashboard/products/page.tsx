@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 import {
   Pagination,
   PaginationContent,
@@ -328,7 +329,7 @@ export default function ProductPage() {
   const handleCreate = async () => {
     try {
       if (!createData.name || !createData.slug || !createData.categoryId || !createData.brandId) {
-        alert("Please fill required fields: Name, Slug, Category, Brand");
+        toast.error("Please fill required fields: Name, Slug, Category, Brand");
         return;
       }
 
@@ -400,10 +401,10 @@ export default function ProductPage() {
       setSpecifications([]);
       setVariants([]);
 
-      alert("Product created successfully!");
+      toast.success("Product created successfully!");
     } catch (err) {
       console.error("Create failed:", err);
-      alert(`Create failed: ${err instanceof Error ? err.message : "Unknown error"}`);
+      toast.error(`Create failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     }
   };
 
@@ -422,7 +423,7 @@ export default function ProductPage() {
     const detail = await fetchProductDetail(p);
 
     if (!detail) {
-      alert("Không load được dữ liệu sản phẩm!");
+      toast.error("Không load được dữ liệu sản phẩm!");
       return;
     }
 
@@ -573,7 +574,7 @@ export default function ProductPage() {
   const handleEditSave = async () => {
     try {
       if (!editData.name || !editData.slug || !editData.brandId || !editData.categoryId) {
-        alert("Please fill required fields: Name, Slug, Brand, Category");
+        toast.error("Please fill required fields: Name, Slug, Brand, Category");
         return;
       }
 
@@ -666,7 +667,7 @@ export default function ProductPage() {
               // Use original error
             }
 
-            alert(`Failed to save variant ${variant.sku}:\n${errorMsg}`);
+            toast.error(`Failed to save variant ${variant.sku}:\n${errorMsg}`);
             throw err; // Stop processing other variants
           }
         }
@@ -849,11 +850,11 @@ export default function ProductPage() {
       // Clear new images
       setNewImages([]);
 
-      alert(`✅ Product updated successfully!\n\n📋 Specifications: ${specifications.length}\n📦 Variants: ${variants.length}`);
+      toast.success(`✅ Product updated successfully!\n\n📋 Specifications: ${specifications.length}\n📦 Variants: ${variants.length}`);
 
     } catch (err) {
       console.error("❌ Update failed:", err);
-      alert(`Update failed: ${err instanceof Error ? err.message : "Unknown error"}`);
+      toast.error(`Update failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     }
   };
 
@@ -863,10 +864,10 @@ export default function ProductPage() {
       await deleteAdminProduct(id);
       await loadAll();
       setCurrentPage(1);
-      alert("Deleted");
+      toast.success("Deleted");
     } catch (err) {
       console.error(err);
-      alert("Delete failed");
+      toast.error("Delete failed");
     }
   };
 
@@ -1319,10 +1320,10 @@ export default function ProductPage() {
                                   try {
                                     await deleteImage(img.id);
                                     setEditImages((prev) => prev.filter((it) => it.id !== img.id));
-                                    alert('Image deleted');
+                                    toast.success('Image deleted');
                                   } catch (err) {
                                     console.error('Delete image failed:', err);
-                                    alert('Delete failed');
+                                    toast.error('Delete failed');
                                   }
                                 }}
                                 className="bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700"
