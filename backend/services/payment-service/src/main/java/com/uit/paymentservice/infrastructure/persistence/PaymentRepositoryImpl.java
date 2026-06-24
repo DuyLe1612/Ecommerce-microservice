@@ -37,6 +37,13 @@ public class PaymentRepositoryImpl implements PaymentRepository {
         entity = jpaRepository.save(entity);
         return entity.toDomain();
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<PaymentTransaction> findByUserId(Long userId) {
+        return jpaRepository.findByUserIdOrderByCreatedAtDesc(userId).stream()
+                .map(PaymentTransactionJpaEntity::toDomain)
+                .toList();
+    }
 
     @Override
     @Transactional(readOnly = true)

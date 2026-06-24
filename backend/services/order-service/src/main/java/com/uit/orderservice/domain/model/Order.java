@@ -51,6 +51,13 @@ public class Order {
         order.updatedAt = LocalDateTime.now();
         return order;
     }
+    public void updateStatus(OrderStatus newStatus) {
+        if (!status.canTransitionTo(newStatus)) {
+            throw new IllegalStateException("Cannot transition from " + status + " to " + newStatus);
+        }
+        this.status = newStatus;
+        this.updatedAt = LocalDateTime.now();
+    }
 
     public void markPaid() {
         if (!status.canTransitionTo(OrderStatus.PAID)) {

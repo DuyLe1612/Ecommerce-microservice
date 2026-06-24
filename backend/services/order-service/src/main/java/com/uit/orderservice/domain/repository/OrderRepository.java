@@ -2,6 +2,10 @@ package com.uit.orderservice.domain.repository;
 
 import com.uit.orderservice.domain.model.Order;
 import com.uit.orderservice.domain.model.OrderStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,5 +17,6 @@ public interface OrderRepository {
     Optional<Order> findByOrderNumber(String orderNumber);
     List<Order> findByUserId(Long userId);
     List<Order> findByStatus(OrderStatus status);
+    Page<Order> findAll(OrderStatus status, Long userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable);
     boolean hasDeliveredOrderWithProduct(Long userId, Long productId);
 }
