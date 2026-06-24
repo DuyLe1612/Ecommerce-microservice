@@ -29,6 +29,8 @@ import {
   updateCategory,
   deleteCategory as deleteCategoryAPI,
   getCategoriesTree,
+  uploadCategoryIcon,
+  uploadGenericImage,
 } from "@/services/categories";
 
 type CategoryNode = {
@@ -236,23 +238,27 @@ const flattenedCategories = useMemo(() => {
         return;
       }
 
-      const fd = new FormData();
-      fd.append("Name", createData.name);
-      fd.append("Slug", createData.slug);
-      
-      if (createData.parentId) {
-        fd.append("ParentId", String(createData.parentId));
-      }
-      
+      let iconPath = "";
+      let imageUrl = "";
+
       if (createData.iconFile) {
-        fd.append("IconFile", createData.iconFile);
+        const iconRes = await uploadCategoryIcon(createData.iconFile);
+        if (iconRes?.success) iconPath = iconRes.data.url;
       }
-      
       if (createData.imageFile) {
-        fd.append("ImageFile", createData.imageFile);
+        const imgRes = await uploadGenericImage(createData.imageFile);
+        if (imgRes?.success) imageUrl = imgRes.data.url;
       }
 
-      await createCategory(fd);
+      const payload: any = {
+        name: createData.name,
+        slug: createData.slug,
+        parentId: createData.parentId ? Number(createData.parentId) : null,
+        iconPath: iconPath || null,
+        imageUrl: imageUrl || null,
+      };
+
+      await createCategory(payload);
       await loadCategoriesTree();
       
       setCreateData({
@@ -294,25 +300,29 @@ const flattenedCategories = useMemo(() => {
         return;
       }
 
-      const fd = new FormData();
-      fd.append("Id", String(editData.id));
-      fd.append("Name", editData.name);
-      fd.append("Slug", editData.slug);
-      fd.append("IsActive", String(editData.isActive));
-      
-      if (editData.parentId) {
-        fd.append("ParentId", String(editData.parentId));
-      }
-      
+      let iconPath = editData.iconPath;
+      let imageUrl = editData.imageUrl;
+
       if (editData.iconFile) {
-        fd.append("IconFile", editData.iconFile);
+        const iconRes = await uploadCategoryIcon(editData.iconFile);
+        if (iconRes?.success) iconPath = iconRes.data.url;
       }
-      
       if (editData.imageFile) {
-        fd.append("ImageFile", editData.imageFile);
+        const imgRes = await uploadGenericImage(editData.imageFile);
+        if (imgRes?.success) imageUrl = imgRes.data.url;
       }
 
-      await updateCategory(editData.id, fd);
+      const payload: any = {
+        id: editData.id,
+        name: editData.name,
+        slug: editData.slug,
+        parentId: editData.parentId ? Number(editData.parentId) : null,
+        isActive: editData.isActive,
+        iconPath: iconPath || null,
+        imageUrl: imageUrl || null,
+      };
+
+      await updateCategory(editData.id, payload);
       await loadCategoriesTree();
       
       setOpenEdit(false);

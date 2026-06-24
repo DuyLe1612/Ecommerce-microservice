@@ -146,9 +146,20 @@ public class AdminCategoryController {
         category.setSlug(request.getSlug() != null ? request.getSlug() : SlugUtil.slugify(request.getName()));
         category.setParentId(request.getParentId());
         
+        if (request.getIconPath() != null) {
+            category.setIconPath(request.getIconPath());
+        }
+        if (request.getImageUrl() != null) {
+            category.setImageUrl(request.getImageUrl());
+        }
+        
         CategoryJpaEntity saved = categoryRepository.save(category);
 
-        eventPublisher.publishCategoryUpdated(Map.of("categoryId", saved.getId(), "slug", saved.getSlug(), "name", saved.getName()));
+        Map<String, Object> eventData = new java.util.HashMap<>();
+        eventData.put("categoryId", saved.getId());
+        eventData.put("slug", saved.getSlug());
+        eventData.put("name", saved.getName());
+        eventPublisher.publishCategoryUpdated(eventData);
         return ApiResponse.success((Object)saved);
     }
 
@@ -166,9 +177,19 @@ public class AdminCategoryController {
         if (request.getParentId() != null) {
              category.setParentId(request.getParentId());
         }
+        if (request.getIconPath() != null) {
+            category.setIconPath(request.getIconPath());
+        }
+        if (request.getImageUrl() != null) {
+            category.setImageUrl(request.getImageUrl());
+        }
         CategoryJpaEntity saved = categoryRepository.save(category);
 
-        eventPublisher.publishCategoryUpdated(Map.of("categoryId", saved.getId(), "slug", saved.getSlug(), "name", saved.getName()));
+        Map<String, Object> eventData = new java.util.HashMap<>();
+        eventData.put("categoryId", saved.getId());
+        eventData.put("slug", saved.getSlug());
+        eventData.put("name", saved.getName());
+        eventPublisher.publishCategoryUpdated(eventData);
         return ApiResponse.success((Object)saved);
     }
 

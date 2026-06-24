@@ -8,5 +8,7 @@ public class CategoryAdminRequest {
     private String name;
     private String slug;
     private Long parentId;
+    private String iconPath;
+    private String imageUrl;
     private List<CategoryAttributeRequest> attributes;
 }

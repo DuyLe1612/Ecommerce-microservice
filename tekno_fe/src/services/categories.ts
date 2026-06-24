@@ -1,6 +1,18 @@
 import { API_BASE_URL } from "@/lib/apiConfig";
 import { Category, CategoryAttribute } from "@/type/categories";
-import { get, post, put, putForm, del, API_BASE } from "@/lib/api";
+import { get, post, put, putForm, del, postForm, API_BASE } from "@/lib/api";
+
+export async function uploadCategoryIcon(file: File) {
+  const fd = new FormData();
+  fd.append("file", file);
+  return postForm(`${API_BASE}/cloudinary/category-icon`, fd);
+}
+
+export async function uploadGenericImage(file: File) {
+  const fd = new FormData();
+  fd.append("file", file);
+  return postForm(`${API_BASE}/cloudinary`, fd);
+}
 
 export interface AttributeValue {
   id: number;

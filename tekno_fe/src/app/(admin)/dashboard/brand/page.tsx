@@ -15,7 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Edit2, Trash2 } from "lucide-react";
-import { getBrandList, createBrand, updateBrand, deleteBrand } from "@/services/brand";
+import Actions from "@/components/admin/Actions";
+import { getBrandList, createBrand, updateBrand, deleteBrand, uploadBrandLogo } from "@/services/brand";
 
 export default function BrandPage() {
   const [brands, setBrands] = useState<any[]>([]);
@@ -65,13 +66,19 @@ export default function BrandPage() {
         return;
       }
 
-      const fd = new FormData();
-      fd.append("Name", form.name);
-      fd.append("Slug", form.slug);
-      fd.append("Country", form.country);
-      if (form.image) fd.append("image", form.image);
+      let logoUrl = "";
+      if (form.image) {
+        const uploadRes = await uploadBrandLogo(form.image);
+        if (uploadRes?.success) logoUrl = uploadRes.data.url;
+      }
 
-      await createBrand(fd);
+      const payload = {
+        name: form.name,
+        slug: form.slug,
+        logoUrl: logoUrl,
+      };
+
+      await createBrand(payload);
 
       await fetchBrands(); // refresh list
 
@@ -118,14 +125,19 @@ export default function BrandPage() {
     }
 
     try {
-      const fd = new FormData();
-      fd.append("Id", editingBrand.id);
-      fd.append("Name", form.name);
-      fd.append("Slug", form.slug);
-      fd.append("Country", form.country);
-      if (form.image) fd.append("image", form.image);
+      let logoUrl = editingBrand?.logoPath || "";
+      if (form.image) {
+        const uploadRes = await uploadBrandLogo(form.image);
+        if (uploadRes?.success) logoUrl = uploadRes.data.url;
+      }
 
-      await updateBrand(fd);
+      const payload = {
+        name: form.name,
+        slug: form.slug,
+        logoUrl: logoUrl,
+      };
+
+      await updateBrand(editingBrand.id, payload);
 
       await fetchBrands();
 
