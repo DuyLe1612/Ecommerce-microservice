@@ -2,6 +2,15 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -139,22 +148,32 @@ const flatTableCategories = useMemo(() => {
   return result;
 }, [tree]);
 
-// ✅ NEW: Filter categories by search query
+// ✅ NEW: Filter categories by search query and expanded state
 const filteredCategories = useMemo(() => {
-  if (!searchQuery.trim()) {
-    return flatTableCategories;
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase().trim();
+    return flatTableCategories.filter((cat) => {
+      const matchId = String(cat.id).includes(query);
+      const matchName = cat.name.toLowerCase().includes(query);
+      const matchSlug = cat.slug?.toLowerCase().includes(query);
+
+      return matchId || matchName || matchSlug;
+    });
   }
 
-  const query = searchQuery.toLowerCase().trim();
-
-  return flatTableCategories.filter((cat) => {
-    const matchId = String(cat.id).includes(query);
-    const matchName = cat.name.toLowerCase().includes(query);
-    const matchSlug = cat.slug.toLowerCase().includes(query);
-
-    return matchId || matchName || matchSlug;
-  });
-}, [flatTableCategories, searchQuery]);
+  // If not searching, flatten but respect expandedIds
+  const result: Array<any> = [];
+  const traverse = (nodes: CategoryNode[], depth = 0) => {
+    nodes.forEach((node) => {
+      result.push({ ...node, depth });
+      if (node.children?.length && expandedIds.has(node.id)) {
+        traverse(node.children, depth + 1);
+      }
+    });
+  };
+  traverse(tree);
+  return result;
+}, [flatTableCategories, searchQuery, expandedIds, tree]);
 
 // ✅ NEW: Paginate filtered categories
 const paginatedCategories = useMemo(() => {
@@ -245,10 +264,10 @@ const flattenedCategories = useMemo(() => {
       });
       
       setOpenCreate(false);
-      alert("Tạo category thành công!");
+      alert("Category created successfully!");
     } catch (error) {
       console.error("Create failed:", error);
-      alert("Tạo category thất bại!");
+      alert("Create category failed!");
     }
   };
 
@@ -271,7 +290,7 @@ const flattenedCategories = useMemo(() => {
   const handleEdit = async () => {
     try {
       if (!editData.name.trim() || !editData.slug.trim()) {
-        alert("Tên và Slug là bắt buộc!");
+        alert("Name and Slug are required!");
         return;
       }
 
@@ -297,24 +316,24 @@ const flattenedCategories = useMemo(() => {
       await loadCategoriesTree();
       
       setOpenEdit(false);
-      alert("Cập nhật category thành công!");
+      alert("Category updated successfully!");
     } catch (error) {
       console.error("Update failed:", error);
-      alert("Cập nhật category thất bại!");
+      alert("Update category failed!");
     }
   };
 
   // DELETE Category
   const handleDelete = async (id: number) => {
-    if (!confirm("Bạn có chắc muốn xóa category này?")) return;
+    if (!confirm("Are you sure you want to delete this category?")) return;
 
     try {
       await deleteCategoryAPI(id);
       await loadCategoriesTree();
-      alert("Xóa category thành công!");
+      alert("Category deleted successfully!");
     } catch (error) {
       console.error("Delete failed:", error);
-      alert("Xóa category thất bại!");
+      alert("Delete category failed!");
     }
   };
 
@@ -325,91 +344,21 @@ const flattenedCategories = useMemo(() => {
     setOpenAttributes(true);
   };
 
-  // Render tree node
-  const renderNode = (node: CategoryNode, depth = 0): React.ReactNode => {
-    const children = node.children || [];
-    const hasChildren = children.length > 0;
-    const isExpanded = expandedIds.has(node.id);
 
-    return (
-      <React.Fragment key={node.id}>
-        <tr className="border-b hover:bg-gray-50 transition-colors">
-          <td className="p-3 w-12">
-            <div className="flex items-center">
-              <div style={{ width: depth * 24 }} />
-              {hasChildren ? (
-                <button
-                  onClick={() => toggleExpanded(node.id)}
-                  className="hover:bg-gray-200 rounded p-1 transition-colors"
-                >
-                  {isExpanded ? (
-                    <ChevronDown className="w-4 h-4 text-gray-600" />
-                  ) : (
-                    <ChevronRight className="w-4 h-4 text-gray-600" />
-                  )}
-                </button>
-              ) : (
-                <div className="w-6" />
-              )}
-            </div>
-          </td>
-
-          <td className="p-3 font-mono text-sm text-gray-600">#{node.id}</td>
-
-          <td className="p-3">
-            {node.iconPath ? (
-              <img src={node.iconPath} alt="icon" className="w-8 h-8 object-contain" />
-            ) : (
-              <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
-                <span className="text-xs text-gray-400">N/A</span>
-              </div>
-            )}
-          </td>
-
-          <td className="p-3">
-            {node.imageUrl ? (
-              <img src={node.imageUrl} alt="banner" className="w-20 h-12 rounded object-cover border" />
-            ) : (
-              <div className="w-20 h-12 bg-gray-100 rounded flex items-center justify-center border">
-                <span className="text-xs text-gray-400">No image</span>
-              </div>
-            )}
-          </td>
-
-          <td className="p-3 font-medium">{node.name}</td>
-          <td className="p-3 text-sm text-gray-600">{node.slug || "-"}</td>
-
-          <td className="p-3 text-center">
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
-              {children.length}
-            </span>
-          </td>
-
-          <td className="p-3">
-            <div className="flex items-center gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => openAttributesDialog(node.id, node.name)}
-                className="h-8"
-              >
-                <Settings className="w-4 h-4 mr-1" />
-                Attrs
-              </Button>
-              
-              <Actions
-                onEdit={() => openEditDialog(node)}
-                onDelete={() => handleDelete(node.id)}
-              />
-            </div>
-          </td>
-        </tr>
-
-        {isExpanded && hasChildren && (
-          <>{children.map((child) => renderNode(child, depth + 1))}</>
-        )}
-      </React.Fragment>
-    );
+  const getVisiblePages = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, 4, -1, totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, -1, currentPage - 1, currentPage, currentPage + 1, -1, totalPages);
+      }
+    }
+    return pages;
   };
 
   return (
@@ -417,11 +366,11 @@ const flattenedCategories = useMemo(() => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Quản lý Categories</h1>
-          <p className="text-sm text-gray-500 mt-1">
-  Tổng số: {totalCategories} categories
-  {searchQuery && ` (Tìm thấy: ${filteredCategories.length})`}
-</p>
+          <h1 className="text-2xl font-bold text-gray-100">Categories</h1>
+          <p className="text-sm text-gray-400 mt-1">
+            Total: {totalCategories} categories
+            {searchQuery && ` (Found: ${filteredCategories.length})`}
+          </p>
         </div>
 
         <div className="flex gap-2">
@@ -429,8 +378,9 @@ const flattenedCategories = useMemo(() => {
             onClick={() => setOpenGlobalAttributes(true)} 
             size="lg"
             variant="outline"
+            className="bg-transparent border-white/20 text-gray-200 hover:bg-white/10 hover:text-white"
           >
-            <Globe className="w-4 h-4 mr-2" />
+            <Globe className="w-4 h-4 mr-2 text-blue-400" />
             Global Attributes
           </Button>
           
@@ -438,68 +388,166 @@ const flattenedCategories = useMemo(() => {
             onClick={() => setOpenCreateAttribute(true)} 
             size="lg"
             variant="outline"
+            className="bg-transparent border-white/20 text-gray-200 hover:bg-white/10 hover:text-white"
           >
-            <FolderPlus className="w-4 h-4 mr-2" />
+            <FolderPlus className="w-4 h-4 mr-2 text-green-400" />
             Create Attribute
           </Button>
 
-          <Button onClick={() => setOpenCreate(true)} size="lg">
+          <Button onClick={() => setOpenCreate(true)} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Plus className="w-4 h-4 mr-2" />
-            Tạo Category
+            Create Category
           </Button>
         </div>
       </div>
 
       {/* Search Box */}
-            <div className="flex justify-between py-5 bg-gray-50 rounded">
-              <input
-                type="text"
-                placeholder="🔍 Tìm theo ID, Tên, hoặc Slug..."
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setCurrentPage(1);
-                }}
-                className="flex-1 border rounded px-3 py-2 text-sm"
-              />
-              {searchQuery && (
-                <p className="text-xs text-gray-600 px-4">
-                  Tìm thấy {filteredCategories.length} category
-                </p>
-              )}
-            </div>
+      <div className="flex justify-between items-center py-4 px-4 bg-white/5 border border-white/10 rounded-xl mb-6">
+        <input
+          type="text"
+          placeholder="🔍 Search by ID, Name, or Slug..."
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="flex-1 bg-black/20 border border-white/10 text-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-white/30"
+        />
+        {searchQuery && (
+          <p className="text-xs text-gray-400 px-4">
+            Found {filteredCategories.length} categories
+          </p>
+        )}
+      </div>
 
       {/* Table */}
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
-            <p className="text-gray-500">Loading...</p>
+            <p className="text-gray-400">Loading...</p>
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-transparent overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-100 border-b-2 border-gray-200">
+            <table className="w-full text-sm bg-white/5 backdrop-blur-md shadow-none rounded-xl border border-white/10 overflow-hidden">
+              <thead className="bg-white/10 text-left text-gray-200 border-b border-white/10">
                 <tr>
-                  <th className="p-3 text-left w-12"></th>
+                  <th className="p-3 text-left min-w-[250px]">Name</th>
                   <th className="p-3 text-left">ID</th>
                   <th className="p-3 text-left">Icon</th>
                   <th className="p-3 text-left">Image</th>
-                  <th className="p-3 text-left">Tên</th>
                   <th className="p-3 text-left">Slug</th>
-                  <th className="p-3 text-center">Con</th>
-                  <th className="p-3 text-left">Thao tác</th>
+                  <th className="p-3 text-center">Children</th>
+                  <th className="p-3 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {paginatedCategories.length > 0 ? (
-                  paginatedCategories.map((node) => renderNode(node))
+                  paginatedCategories.map((node) => {
+                    const children = node.children || [];
+                    const hasChildren = children.length > 0;
+                    const isExpanded = expandedIds.has(node.id);
+                    const depth = node.depth || 0;
+
+                    return (
+                      <tr key={node.id} className="border-b border-white/5 hover:bg-white/5 text-gray-300 transition-colors">
+                        <td className="p-3">
+                          <div 
+                            className="flex items-center gap-3"
+                            style={{ paddingLeft: `${depth * 2}rem` }}
+                          >
+                            {/* Branch visualizer & Toggle */}
+                            <div className="relative flex items-center justify-center">
+                              {/* Horizontal connector line for children */}
+                              {depth > 0 && (
+                                <div className="absolute -left-6 w-6 h-[1px] bg-white/10" />
+                              )}
+                              
+                              {hasChildren ? (
+                                <button
+                                  onClick={() => toggleExpanded(node.id)}
+                                  className="z-10 w-6 h-6 flex items-center justify-center bg-[#2a2a2a] hover:bg-[#3a3a3a] border border-white/20 rounded shadow-md text-white transition-all"
+                                >
+                                  {isExpanded ? (
+                                    <ChevronDown size={14} className="text-white" />
+                                  ) : (
+                                    <ChevronRight size={14} className="text-white" />
+                                  )}
+                                </button>
+                              ) : (
+                                <div className="z-10 w-6 h-6 flex items-center justify-center">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                                </div>
+                              )}
+                            </div>
+                            
+                            <span className={`font-medium ${depth === 0 ? 'text-white text-base' : 'text-gray-200'}`}>
+                              {node.name}
+                            </span>
+                          </div>
+                        </td>
+
+                        <td className="p-3 font-mono text-sm text-gray-400">#{node.id}</td>
+
+                        <td className="p-3">
+                          {node.iconPath ? (
+                            <div className="w-8 h-8 bg-white/90 rounded flex items-center justify-center p-1 shadow-sm">
+                              <img src={node.iconPath} alt="icon" className="w-full h-full object-contain drop-shadow-md" />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 bg-black/40 border border-white/10 rounded flex items-center justify-center">
+                              <span className="text-xs text-gray-500">N/A</span>
+                            </div>
+                          )}
+                        </td>
+
+                        <td className="p-3">
+                          {node.imageUrl ? (
+                            <img src={node.imageUrl} alt="banner" className="w-20 h-12 rounded object-cover border border-white/10 shadow-sm" />
+                          ) : (
+                            <div className="w-20 h-12 bg-black/40 border border-white/10 rounded flex items-center justify-center">
+                              <span className="text-xs text-gray-500">No image</span>
+                            </div>
+                          )}
+                        </td>
+
+                        <td className="p-3 text-sm text-gray-400">{node.slug || "-"}</td>
+
+                        <td className="p-3 text-center">
+                          {hasChildren && (
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-medium shadow-sm">
+                              {children.length}
+                            </span>
+                          )}
+                        </td>
+
+                        <td className="p-3">
+                          <div className="flex items-center gap-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => openAttributesDialog(node.id, node.name)}
+                              className="h-8 bg-white/5 border-white/10 text-gray-200 hover:bg-white/10 hover:text-white"
+                            >
+                              <Settings className="w-4 h-4 mr-1 text-gray-300" />
+                              Attrs
+                            </Button>
+                            
+                            <Actions
+                              onEdit={() => openEditDialog(node)}
+                              onDelete={() => handleDelete(node.id)}
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
                 ) : (
                   <tr>
-                    <td colSpan={9} className="p-8 text-center text-gray-500">
-                      Chưa có category nào
+                    <td colSpan={8} className="p-8 text-center text-gray-400">
+                      No categories found
                     </td>
                   </tr>
                 )}
@@ -508,108 +556,100 @@ const flattenedCategories = useMemo(() => {
           </div>
 
             {/* Pagination Controls */}
-            {filteredCategories.length > 0 && (
-              <div className="flex justify-between items-center px-4 py-3 bg-gray-50 rounded">
-                <div className="flex items-center gap-4">
-                  <label className="flex items-center gap-2 text-sm">
-                    Hiển thị:
-                    <select
-                      value={itemsPerPage}
-                      onChange={(e) => {
-                        setItemsPerPage(Number(e.target.value));
-                        setCurrentPage(1);
+            {totalPages > 1 && (
+              <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden mb-4">
+                <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+                  <PaginationItem>
+                    <PaginationPrevious
+                      href="#"
+                      className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentPage((prev) => Math.max(prev - 1, 1));
                       }}
-                      className="border rounded px-2 py-1"
-                    >
-                      <option value={5}>5</option>
-                      <option value={10}>10</option>
-                      <option value={20}>20</option>
-                      <option value={50}>50</option>
-                    </select>
-                  </label>
-                  <span className="text-sm text-gray-600">
-                    Từ {(currentPage - 1) * itemsPerPage + 1} đến{" "}
-                    {Math.min(currentPage * itemsPerPage, filteredCategories.length)} trong{" "}
-                    {filteredCategories.length} categories
-                  </span>
-                </div>
+                    />
+                  </PaginationItem>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="px-3 py-2 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    ← Trước
-                  </button>
+                  {getVisiblePages().map((p, i) => (
+                    <PaginationItem key={i}>
+                      {p === -1 ? (
+                        <PaginationEllipsis className="text-gray-500" />
+                      ) : (
+                        <PaginationLink
+                          href="#"
+                          isActive={currentPage === p}
+                          className={`cursor-pointer transition-colors ${
+                            currentPage === p
+                              ? "bg-primary text-black hover:bg-primary/90"
+                              : "text-gray-300 hover:text-white hover:bg-gray-800"
+                          }`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentPage(p);
+                          }}
+                        >
+                          {p}
+                        </PaginationLink>
+                      )}
+                    </PaginationItem>
+                  ))}
 
-                  <div className="flex gap-1">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                      <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`px-3 py-2 border rounded ${
-                          currentPage === page
-                            ? "bg-blue-500 text-white border-blue-500"
-                            : "hover:bg-gray-100"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="px-3 py-2 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Sau →
-                  </button>
-                </div>
-              </div>
+                  <PaginationItem>
+                    <PaginationNext
+                      href="#"
+                      className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
             )}
         </div>
       )}
 
       {/* CREATE CATEGORY DIALOG */}
       <Dialog open={openCreate} onOpenChange={setOpenCreate}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="bg-[#121212] backdrop-blur-md border border-white/10 rounded-xl shadow-2xl text-gray-200 max-w-lg">
           <DialogHeader>
-            <DialogTitle>Tạo Category Mới</DialogTitle>
+            <DialogTitle>Create New Category</DialogTitle>
           </DialogHeader>
 
           <div className="space-y-4 mt-4">
             <div>
-              <label className="text-sm font-medium block mb-1">
-                Tên Category <span className="text-red-500">*</span>
+              <label className="text-sm font-medium block mb-1 text-gray-300">
+                Category Name <span className="text-red-500">*</span>
               </label>
               <Input
-                placeholder="Nhập tên category"
+                className="bg-black/20 border-white/10 text-gray-200"
+                placeholder="Enter category name"
                 value={createData.name}
                 onChange={(e) => setCreateData({ ...createData, name: e.target.value })}
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">
+              <label className="text-sm font-medium block mb-1 text-gray-300">
                 Slug <span className="text-red-500">*</span>
               </label>
               <Input
-                placeholder="vd: dien-thoai"
+                className="bg-black/20 border-white/10 text-gray-200"
+                placeholder="e.g. smartphones"
                 value={createData.slug}
                 onChange={(e) => setCreateData({ ...createData, slug: e.target.value })}
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">Category Cha</label>
+              <label className="text-sm font-medium block mb-1 text-gray-300">Parent Category</label>
               <select
-                className="w-full border rounded-md p-2"
+                className="w-full bg-black/20 border border-white/10 text-gray-200 rounded-md p-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212] [&>option]:text-gray-300"
                 value={createData.parentId}
                 onChange={(e) => setCreateData({ ...createData, parentId: e.target.value })}
               >
-                <option value="">-- Không có --</option>
+                <option value="">-- None --</option>
                 {flattenedCategories.map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {"—".repeat(cat.depth)} {cat.name}
@@ -619,63 +659,63 @@ const flattenedCategories = useMemo(() => {
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">Icon File</label>
+              <label className="text-sm font-medium block mb-1 text-gray-300">Icon File</label>
               <input
                 type="file"
                 accept="image/*"
-                className="border p-2 rounded w-full"
+                className="border border-white/10 bg-black/20 text-gray-200 p-2 rounded w-full"
                 onChange={(e) => setCreateData({ ...createData, iconFile: e.target.files?.[0] || null })}
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">Image File</label>
+              <label className="text-sm font-medium block mb-1 text-gray-300">Image File</label>
               <input
                 type="file"
                 accept="image/*"
-                className="border p-2 rounded w-full"
+                className="border border-white/10 bg-black/20 text-gray-200 p-2 rounded w-full"
                 onChange={(e) => setCreateData({ ...createData, imageFile: e.target.files?.[0] || null })}
               />
             </div>
           </div>
 
           <div className="flex gap-2 mt-6">
-            <Button onClick={handleCreate} className="flex-1">Tạo Category</Button>
-            <Button variant="outline" onClick={() => setOpenCreate(false)} className="flex-1">Hủy</Button>
+            <Button variant="outline" onClick={() => setOpenCreate(false)} className="flex-1 bg-transparent border-white/10 text-gray-300 hover:bg-white/10 hover:text-white">Cancel</Button>
+            <Button onClick={handleCreate} className="flex-1">Create Category</Button>
           </div>
         </DialogContent>
       </Dialog>
 
       {/* EDIT CATEGORY DIALOG */}
       <Dialog open={openEdit} onOpenChange={setOpenEdit}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="bg-[#121212] backdrop-blur-md border border-white/10 rounded-xl shadow-2xl text-gray-200 max-w-lg">
           <DialogHeader>
-            <DialogTitle>Chỉnh sửa Category</DialogTitle>
+            <DialogTitle>Edit Category</DialogTitle>
           </DialogHeader>
 
           <div className="space-y-4 mt-4">
             <div>
-              <label className="text-sm font-medium block mb-1">
-                Tên Category <span className="text-red-500">*</span>
+              <label className="text-sm font-medium block mb-1 text-gray-300">
+                Category Name <span className="text-red-500">*</span>
               </label>
-              <Input value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} />
+              <Input className="bg-black/20 border-white/10 text-gray-200" value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} />
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">
+              <label className="text-sm font-medium block mb-1 text-gray-300">
                 Slug <span className="text-red-500">*</span>
               </label>
-              <Input value={editData.slug} onChange={(e) => setEditData({ ...editData, slug: e.target.value })} />
+              <Input className="bg-black/20 border-white/10 text-gray-200" value={editData.slug} onChange={(e) => setEditData({ ...editData, slug: e.target.value })} />
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">Category Cha</label>
+              <label className="text-sm font-medium block mb-1 text-gray-300">Parent Category</label>
               <select
-                className="w-full border rounded-md p-2"
+                className="w-full bg-black/20 border border-white/10 text-gray-200 rounded-md p-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212] [&>option]:text-gray-300"
                 value={editData.parentId}
                 onChange={(e) => setEditData({ ...editData, parentId: e.target.value })}
               >
-                <option value="">-- Không có --</option>
+                <option value="">-- None --</option>
                 {flattenedCategories.filter((cat) => cat.id !== editData.id).map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {"—".repeat(cat.depth)} {cat.name}
@@ -685,35 +725,35 @@ const flattenedCategories = useMemo(() => {
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">Icon File</label>
+              <label className="text-sm font-medium block mb-1 text-gray-300">Icon File</label>
               <input
                 type="file"
                 accept="image/*"
-                className="border p-2 rounded w-full"
+                className="border border-white/10 bg-black/20 text-gray-200 p-2 rounded w-full"
                 onChange={(e) => setEditData({ ...editData, iconFile: e.target.files?.[0] || null })}
               />
               {editData.iconPath && !editData.iconFile && (
-                <img src={editData.iconPath} className="w-12 h-12 object-contain border rounded mt-2" alt="Current icon" />
+                <img src={editData.iconPath} className="w-12 h-12 object-contain border border-white/10 rounded mt-2 bg-black/20" alt="Current icon" />
               )}
             </div>
 
             <div>
-              <label className="text-sm font-medium block mb-1">Image File</label>
+              <label className="text-sm font-medium block mb-1 text-gray-300">Image File</label>
               <input
                 type="file"
                 accept="image/*"
-                className="border p-2 rounded w-full"
+                className="border border-white/10 bg-black/20 text-gray-200 p-2 rounded w-full"
                 onChange={(e) => setEditData({ ...editData, imageFile: e.target.files?.[0] || null })}
               />
               {editData.imageUrl && !editData.imageFile && (
-                <img src={editData.imageUrl} className="w-32 h-20 object-cover rounded border mt-2" alt="Current image" />
+                <img src={editData.imageUrl} className="w-32 h-20 object-cover rounded border border-white/10 mt-2" alt="Current image" />
               )}
             </div>
           </div>
 
           <div className="flex gap-2 mt-6">
-            <Button onClick={handleEdit} className="flex-1">Lưu thay đổi</Button>
-            <Button variant="outline" onClick={() => setOpenEdit(false)} className="flex-1">Hủy</Button>
+            <Button variant="outline" onClick={() => setOpenEdit(false)} className="flex-1 bg-transparent border-white/10 text-gray-300 hover:bg-white/10 hover:text-white">Cancel</Button>
+            <Button onClick={handleEdit} className="flex-1">Save changes</Button>
           </div>
         </DialogContent>
       </Dialog>
@@ -721,9 +761,9 @@ const flattenedCategories = useMemo(() => {
       {/* CATEGORY ATTRIBUTES MANAGEMENT DIALOG */}
       <Dialog open={openAttributes} onOpenChange={setOpenAttributes}>
         <VisuallyHidden>
-          <DialogTitle>Quản lý Attribute</DialogTitle>
+          <DialogTitle>Attributes Management</DialogTitle>
         </VisuallyHidden>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-[#121212] backdrop-blur-md border border-white/10 rounded-xl shadow-2xl text-gray-200 max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedCategoryId && (
             <AttributesManager
               categoryId={selectedCategoryId}

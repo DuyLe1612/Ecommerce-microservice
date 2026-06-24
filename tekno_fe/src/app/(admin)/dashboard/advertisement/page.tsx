@@ -8,6 +8,15 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
   Select,
   SelectTrigger,
   SelectValue,
@@ -236,17 +245,35 @@ const paginatedAdvertisements = useMemo(() => {
 
 const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
 
+  const getVisiblePages = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, 4, -1, totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, -1, currentPage - 1, currentPage, currentPage + 1, -1, totalPages);
+      }
+    }
+    return pages;
+  };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-5">
           <h2 className="text-xl font-semibold">Advertisement Management</h2>
-            <p className="text-sm text-gray-500 mt-1">
-    Tổng số: {advertisements.length} advertisements
-    {search && ` (Tìm thấy: ${filteredAdvertisements.length})`}
-  </p>
+            <p className="text-sm text-gray-400 mt-1">
+              Total: {advertisements.length} advertisements
+              {search && ` (Found: ${filteredAdvertisements.length})`}
+            </p>
         </div>
-        <Button onClick={() => setOpenCreate(true)}>+ Create Advertisement</Button>
+        <Button onClick={() => setOpenCreate(true)} className="bg-primary hover:bg-primary/90 text-black font-medium">
+          + Create Advertisement
+        </Button>
       </div>
 
       {/* Search + Filter UI */}
@@ -254,7 +281,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
         <input
           type="text"
           placeholder="Search by product name, position, or ID..."
-          className="border p-2 rounded w-80"
+          className="border border-white/10 bg-black/20 text-gray-200 p-2 rounded w-80 focus:outline-none focus:border-white/30"
           value={search}
             onChange={(e) => {
     setSearch(e.target.value);
@@ -263,7 +290,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
         />
 
         <select
-          className="border p-2 rounded"
+          className="bg-black/20 border border-white/10 text-gray-300 rounded p-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212] [&>option]:text-gray-300"
           value={statusFilter}
   onChange={(e) => {
     setStatusFilter(e.target.value);
@@ -280,15 +307,15 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
 
       {loading ? (
         <div className="flex justify-center items-center py-12">
-          <p className="text-gray-500">Loading advertisements...</p>
+          <p className="text-gray-400">Loading advertisements...</p>
         </div>
       ) : advertisements.length === 0 ? (
-        <p className="text-gray-500">No advertisements found.</p>
+        <p className="text-gray-400">No advertisements found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-sm bg-white shadow rounded">
+          <table className="w-full text-sm bg-white/5 backdrop-blur-md shadow-none rounded-xl border border-white/10 overflow-hidden">
             <thead>
-              <tr className="bg-gray-200 text-left">
+              <tr className="bg-white/10 text-left text-gray-200 border-b border-white/10">
                 <th className="p-2">ID</th>
                 <th>Image</th>
                 <th>Product</th>
@@ -302,7 +329,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
             </thead>
 <tbody>
   {paginatedAdvertisements.map((ad) => (
-    <tr className="border-b hover:bg-gray-50" key={ad.id}>
+    <tr className="border-b border-white/5 hover:bg-white/5 text-gray-300 transition-colors" key={ad.id}>
       <td className="p-2">{ad.id}</td>
       <td>
         {ad.imageUrl && (
@@ -317,7 +344,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
         <div className="font-medium">
           {ad.productName || `Product #${ad.productId}`}
         </div>
-        <div className="text-xs text-gray-500">ID: {ad.productId}</div>
+        <div className="text-xs text-gray-400">ID: {ad.productId}</div>
       </td>
       <td>{ad.position}</td>
       <td>{ad.priority}</td>
@@ -346,7 +373,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
         <div className="flex gap-2">
           <button
             onClick={() => handleViewDetail(ad)}
-            className="p-1 text-blue-600 hover:bg-blue-50 rounded"
+            className="p-1 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 rounded transition-colors"
             title="View Details"
           >
             <Eye size={16} />
@@ -355,7 +382,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
           {ad.isActive ? (
             <button
               onClick={() => handleDeactivate(ad.id.toString())}
-              className="p-1 text-orange-600 hover:bg-orange-50 rounded"
+              className="p-1 text-orange-400 hover:bg-orange-500/10 hover:text-orange-300 rounded transition-colors"
               title="Deactivate"
             >
               <PowerOff size={16} />
@@ -363,7 +390,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
           ) : (
             <button
               onClick={() => handleActivate(ad.id.toString())}
-              className="p-1 text-green-600 hover:bg-green-50 rounded"
+              className="p-1 text-green-400 hover:bg-green-500/10 hover:text-green-300 rounded transition-colors"
               title="Activate"
             >
               <Power size={16} />
@@ -372,7 +399,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
 
           <button
             onClick={() => handleDelete(ad.id.toString())}
-            className="p-1 text-red-600 hover:bg-red-50 rounded"
+            className="p-1 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded transition-colors"
             title="Delete"
           >
             <Trash2 size={16} />
@@ -385,66 +412,56 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
           </table>
 
         {/* === PAGINATION CONTROLS === */}
-        {filteredAdvertisements.length > 0 && (
-          <div className="flex justify-between items-center mt-4 px-4 py-3 bg-gray-50 rounded">
-            <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 text-sm">
-                Hiển thị:
-                <select
-                  value={itemsPerPage}
-                  onChange={(e) => {
-                    setItemsPerPage(Number(e.target.value));
-                    setCurrentPage(1);
+        {totalPages > 1 && (
+          <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden mb-4">
+            <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage((prev) => Math.max(prev - 1, 1));
                   }}
-                  className="border rounded px-2 py-1"
-                >
-                  <option value={5}>5</option>
-                  <option value={10}>10</option>
-                  <option value={20}>20</option>
-                  <option value={50}>50</option>
-                </select>
-              </label>
-              <span className="text-sm text-gray-600">
-                Từ {(currentPage - 1) * itemsPerPage + 1} đến{" "}
-                {Math.min(currentPage * itemsPerPage, filteredAdvertisements.length)} trong{" "}
-                {filteredAdvertisements.length} advertisements
-              </span>
-            </div>
+                />
+              </PaginationItem>
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="px-3 py-2 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                ← Trước
-              </button>
+              {getVisiblePages().map((p, i) => (
+                <PaginationItem key={i}>
+                  {p === -1 ? (
+                    <PaginationEllipsis className="text-gray-500" />
+                  ) : (
+                    <PaginationLink
+                      href="#"
+                      isActive={currentPage === p}
+                      className={`cursor-pointer transition-colors ${
+                        currentPage === p
+                          ? "bg-primary text-black hover:bg-primary/90"
+                          : "text-gray-300 hover:text-white hover:bg-gray-800"
+                      }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentPage(p);
+                      }}
+                    >
+                      {p}
+                    </PaginationLink>
+                  )}
+                </PaginationItem>
+              ))}
 
-              <div className="flex gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-2 border rounded ${
-                      currentPage === page
-                        ? "bg-blue-500 text-white border-blue-500"
-                        : "hover:bg-gray-100"
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className="px-3 py-2 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Sau →
-              </button>
-            </div>
-          </div>
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         )}
 
         </div>
@@ -452,7 +469,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
 
       {/* Create Advertisement Modal */}
       <Dialog open={openCreate} onOpenChange={setOpenCreate}>
-        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-[#121212] backdrop-blur-md border border-white/10 rounded-xl shadow-2xl text-gray-200 max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Create Advertisement</DialogTitle>
           </DialogHeader>
@@ -463,10 +480,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 Product ID <span className="text-red-500">*</span>
               </label>
               <Input
-                placeholder="Enter product ID"
-                type="number"
-                value={form.productId}
-                onChange={(e) => setForm({ ...form, productId: e.target.value })}
+                className="bg-black/20 border-white/10 text-gray-200 focus-visible:ring-primary/50"
               />
             </div>
 
@@ -479,11 +493,11 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 value={form.position}
                 onValueChange={(value) => setForm({ ...form, position: value })}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-black/20 border-white/10 text-gray-200 focus:ring-primary/50">
                   <SelectValue placeholder="Select position" />
                 </SelectTrigger>
 
-                <SelectContent>
+                <SelectContent className="bg-[#121212] border-white/10 text-gray-200">
                   {POSITIONS.map((item) => (
                     <SelectItem key={item.value} value={item.value}>
                       {item.value}
@@ -496,16 +510,9 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
             <div>
               <label className="block text-sm font-medium mb-1">Priority</label>
               <Input
-                placeholder="Priority (higher = more important)"
-                type="number"
-                min={0}
-                max={100}
-                value={form.priority}
-                onChange={(e) =>
-                  setForm({ ...form, priority: Number(e.target.value) })
-                }
+                className="bg-black/20 border-white/10 text-gray-200 focus-visible:ring-primary/50"
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 Priority must be between 0 and 100
               </p>
             </div>
@@ -514,23 +521,24 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
               <label className="block text-sm font-medium mb-1">
                 Image <span className="text-red-500">*</span>
               </label>
-              <Input
+              <input
                 type="file"
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files?.[0] || null;
                   setForm({ ...form, image: file });
                 }}
+                className="w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 bg-black/20 border border-white/10 rounded-md"
               />
               {form.image && (
                 <div className="mt-2">
-                  <p className="text-xs text-gray-600 mb-1">
+                  <p className="text-xs text-gray-400 mb-1">
                     Selected: {form.image.name}
                   </p>
                   <img
                     src={URL.createObjectURL(form.image)}
                     alt="Preview"
-                    className="w-full h-32 object-cover rounded border"
+                    className="w-full h-32 object-cover rounded border border-white/10"
                   />
                 </div>
               )}
@@ -544,6 +552,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 type="datetime-local"
                 value={form.startDate}
                 onChange={(e) => setForm({ ...form, startDate: e.target.value })}
+                className="bg-black/20 border-white/10 text-gray-200 [color-scheme:dark]"
               />
             </div>
 
@@ -555,6 +564,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 type="datetime-local"
                 value={form.endDate}
                 onChange={(e) => setForm({ ...form, endDate: e.target.value })}
+                className="bg-black/20 border-white/10 text-gray-200 [color-scheme:dark]"
               />
             </div>
 
@@ -564,14 +574,14 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 id="isActive"
                 checked={form.isActive}
                 onChange={(e) => setForm({ ...form, isActive: e.target.checked })}
-                className="w-4 h-4"
+                className="w-4 h-4 accent-primary"
               />
               <label htmlFor="isActive" className="text-sm font-medium">
                 Active immediately
               </label>
             </div>
 
-            <Button onClick={handleCreate} className="mt-3">
+            <Button onClick={handleCreate} className="mt-3 bg-primary hover:bg-primary/90 text-black font-medium">
               Create Advertisement
             </Button>
           </div>
@@ -581,7 +591,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
       {/* Detail Modal */}
       {openDetail && selectedAd && (
         <Dialog open={openDetail} onOpenChange={setOpenDetail}>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="bg-[#121212] backdrop-blur-md border border-white/10 rounded-xl shadow-2xl text-gray-200 max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Advertisement Details</DialogTitle>
             </DialogHeader>
@@ -594,7 +604,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                   <img
                     src={selectedAd.imageUrl}
                     alt={selectedAd.productName || "Advertisement"}
-                    className="w-full h-64 object-cover rounded border"
+                    className="w-full h-64 object-cover rounded border border-white/10"
                   />
                 </div>
               )}
@@ -602,38 +612,38 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
               {/* Info Grid */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     ID
                   </label>
                   <p className="text-sm">{selectedAd.id}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Product
                   </label>
                   <p className="text-sm font-medium">
                     {selectedAd.productName || `Product #${selectedAd.productId}`}
                   </p>
-                  <p className="text-xs text-gray-500">ID: {selectedAd.productId}</p>
+                  <p className="text-xs text-gray-400">ID: {selectedAd.productId}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Position
                   </label>
                   <p className="text-sm">{selectedAd.position}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Priority
                   </label>
                   <p className="text-sm">{selectedAd.priority}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Start Date
                   </label>
                   <p className="text-sm">
@@ -642,7 +652,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     End Date
                   </label>
                   <p className="text-sm">
@@ -651,14 +661,14 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">
+                  <label className="block text-sm font-medium text-gray-400">
                     Status
                   </label>
                   <span
                     className={`inline-block px-2 py-1 rounded text-xs font-medium ${
                       selectedAd.isActive
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-700"
+                        ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                        : "bg-red-500/10 text-red-400 border border-red-500/20"
                     }`}
                   >
                     {selectedAd.isActive ? "Active" : "Inactive"}
@@ -667,8 +677,8 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
               </div>
 
               {/* Actions */}
-              <div className="flex justify-end gap-3 pt-4 border-t">
-                <Button variant="outline" onClick={() => setOpenDetail(false)}>
+              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+                <Button variant="outline" onClick={() => setOpenDetail(false)} className="bg-transparent border-white/10 text-gray-300 hover:bg-white/10 hover:text-white">
                   Close
                 </Button>
                 {selectedAd.isActive ? (
@@ -678,7 +688,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                       handleDeactivate(selectedAd.id.toString());
                       setOpenDetail(false);
                     }}
-                    className="text-orange-600 border-orange-600"
+                    className="bg-transparent border-orange-500/20 text-orange-400 hover:bg-orange-500/10"
                   >
                     <PowerOff className="w-4 h-4 mr-2" />
                     Deactivate
@@ -689,7 +699,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                       handleActivate(selectedAd.id.toString());
                       setOpenDetail(false);
                     }}
-                    className="bg-green-600 hover:bg-green-700"
+                    className="bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20"
                   >
                     <Power className="w-4 h-4 mr-2" />
                     Activate
@@ -701,7 +711,7 @@ const totalPages = Math.ceil(filteredAdvertisements.length / itemsPerPage);
                     handleDelete(selectedAd.id.toString());
                     setOpenDetail(false);
                   }}
-                  className="text-red-600 border-red-600"
+                  className="bg-transparent border-red-500/20 text-red-400 hover:bg-red-500/10"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
                   Delete

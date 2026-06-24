@@ -360,7 +360,7 @@ export default function AdminStatisticsPage() {
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading statistics...</p>
+          <p className="text-gray-400">Loading statistics...</p>
         </div>
       </div>
     );
@@ -402,12 +402,12 @@ export default function AdminStatisticsPage() {
   const { productPerformance } = statistics;
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-transparent min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard Statistics</h1>
-          <p className="text-sm text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-gray-100">Dashboard Statistics</h1>
+          <p className="text-sm text-gray-400 mt-1">
             Comprehensive overview of your store performance
           </p>
         </div>
@@ -423,10 +423,10 @@ export default function AdminStatisticsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 mb-6">
         <div className="flex flex-wrap items-end gap-4">
           <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               <Calendar className="w-4 h-4 inline mr-1" />
               Time Period
             </label>
@@ -454,7 +454,7 @@ export default function AdminStatisticsPage() {
           {selectedPeriod === "Custom" && (
             <>
               <div className="flex-1 min-w-[200px]">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Start Date
                 </label>
                 <input
@@ -466,7 +466,7 @@ export default function AdminStatisticsPage() {
               </div>
 
               <div className="flex-1 min-w-[200px]">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   End Date
                 </label>
                 <input
@@ -480,7 +480,7 @@ export default function AdminStatisticsPage() {
           )}
 
           <div className="w-32">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Top Count
             </label>
             <input
@@ -497,12 +497,12 @@ export default function AdminStatisticsPage() {
 
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+            <p className="text-sm font-medium text-gray-400">Total Revenue</p>
             <DollarSign className="w-5 h-5 text-green-600" />
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-gray-100">
             {formatCurrency(overview.totalRevenue)}
           </p>
           {overview.revenueGrowthPercent !== undefined && (
@@ -523,12 +523,12 @@ export default function AdminStatisticsPage() {
           )}
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Total Orders</p>
+            <p className="text-sm font-medium text-gray-400">Total Orders</p>
             <ShoppingCart className="w-5 h-5 text-blue-600" />
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-gray-100">
             {overview.totalOrders.toLocaleString()}
           </p>
           {overview.orderGrowthPercent !== undefined && (
@@ -549,22 +549,22 @@ export default function AdminStatisticsPage() {
           )}
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Total Customers</p>
+            <p className="text-sm font-medium text-gray-400">Total Customers</p>
             <Users className="w-5 h-5 text-purple-600" />
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-gray-100">
             {overview.totalCustomers.toLocaleString()}
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Avg Order Value</p>
+            <p className="text-sm font-medium text-gray-400">Avg Order Value</p>
             <Package className="w-5 h-5 text-orange-600" />
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-gray-100">
             {formatCurrency(overview.averageOrderValue)}
           </p>
         </div>
@@ -612,21 +612,21 @@ export default function AdminStatisticsPage() {
 
       {/* Order Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Order Completion Rate</p>
+            <p className="text-sm font-medium text-gray-400">Order Completion Rate</p>
             <TrendingUp className="w-5 h-5 text-green-600" />
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-gray-100">
             {overview.orderCompletionRate.toFixed(1)}%
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Order Cancellation Rate</p>
+            <p className="text-sm font-medium text-gray-400">Order Cancellation Rate</p>
             <TrendingDown className="w-5 h-5 text-red-600" />
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-gray-100">
             {overview.orderCancellationRate.toFixed(1)}%
           </p>
         </div>
@@ -635,9 +635,9 @@ export default function AdminStatisticsPage() {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         {/* Revenue Chart */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Revenue Trend</h3>
+            <h3 className="text-lg font-semibold text-gray-100">Revenue Trend</h3>
             <div className="flex gap-2">
               <Button
                 variant={chartType === "daily" ? "default" : "outline"}
@@ -683,8 +683,8 @@ export default function AdminStatisticsPage() {
         </div>
 
         {/* Orders Chart */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-100 mb-4">
             Orders Trend
           </h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -703,8 +703,8 @@ export default function AdminStatisticsPage() {
       {/* Revenue by Category & Product Performance */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         {/* Revenue by Category */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-100 mb-4">
             Revenue by Category
           </h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -741,8 +741,8 @@ export default function AdminStatisticsPage() {
         </div>
 
         {/* Product Performance */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-100 mb-4">
             Product Performance
           </h3>
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -775,14 +775,14 @@ export default function AdminStatisticsPage() {
           {/* Low Stock Alerts */}
           {lowStockAlerts.length > 0 && (
             <div className="border-t pt-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <h4 className="text-sm font-semibold text-gray-100 mb-3 flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-orange-600" />
                 Low Stock Alerts
               </h4>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {lowStockAlerts.slice(0, 5).map((lowStockAlert) => (
                   <div key={lowStockAlert.productId} className="flex items-center justify-between p-2 bg-orange-50 rounded text-sm">
-                    <span className="text-gray-900 font-medium">{lowStockAlert.productName}</span>
+                    <span className="text-gray-100 font-medium">{lowStockAlert.productName}</span>
                     <span className="text-orange-600 font-bold">{lowStockAlert.stockLevel} left</span>
                   </div>
                 ))}
@@ -793,19 +793,19 @@ export default function AdminStatisticsPage() {
       </div>
 
       {/* Top Products */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 mb-6">
+        <h3 className="text-lg font-semibold text-gray-100 mb-4">
           Top Selling Products
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b">
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Product</th>
-                <th className="text-center py-3 px-4 font-medium text-gray-600">Category</th>
-                <th className="text-right py-3 px-4 font-medium text-gray-600">Units Sold</th>
-                <th className="text-right py-3 px-4 font-medium text-gray-600">Revenue</th>
-                <th className="text-center py-3 px-4 font-medium text-gray-600">Avg Rating</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Product</th>
+                <th className="text-center py-3 px-4 font-medium text-gray-400">Category</th>
+                <th className="text-right py-3 px-4 font-medium text-gray-400">Units Sold</th>
+                <th className="text-right py-3 px-4 font-medium text-gray-400">Revenue</th>
+                <th className="text-center py-3 px-4 font-medium text-gray-400">Avg Rating</th>
               </tr>
             </thead>
             <tbody>
@@ -817,7 +817,7 @@ export default function AdminStatisticsPage() {
                       <span className="font-medium">{product.productName}</span>
                     </div>
                   </td>
-                  <td className="text-center py-3 px-4 text-gray-600">
+                  <td className="text-center py-3 px-4 text-gray-400">
                     {product.categoryName}
                   </td>
                   <td className="text-right py-3 px-4 font-medium">
@@ -841,8 +841,8 @@ export default function AdminStatisticsPage() {
       {/* Top Customers & Recent Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Customers */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-100 mb-4">
             Top Customers
           </h3>
           <div className="space-y-3">
@@ -856,13 +856,13 @@ export default function AdminStatisticsPage() {
                     {idx + 1}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">{customer.customerName}</p>
+                    <p className="font-medium text-gray-100">{customer.customerName}</p>
                     <p className="text-xs text-gray-500">{customer.email}</p>
                     <p className="text-xs text-blue-600 font-medium mt-1">{customer.customerSegment}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-bold text-gray-900">
+                  <p className="font-bold text-gray-100">
                     {formatCurrency(customer.totalSpent)}
                   </p>
                   <p className="text-xs text-gray-500">
@@ -875,8 +875,8 @@ export default function AdminStatisticsPage() {
         </div>
 
         {/* Recent Orders */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
+          <h3 className="text-lg font-semibold text-gray-100 mb-4">
             Recent Orders
           </h3>
           <div className="space-y-3">
@@ -886,7 +886,7 @@ export default function AdminStatisticsPage() {
                 className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
               >
                 <div>
-                  <p className="font-medium text-gray-900">#{order.orderNumber}</p>
+                  <p className="font-medium text-gray-100">#{order.orderNumber}</p>
                   <p className="text-xs text-gray-500">{order.itemCount} items</p>
                   <p className="text-xs text-gray-400">
                     {new Date(order.createdAt).toLocaleString("vi-VN")}
@@ -901,7 +901,7 @@ export default function AdminStatisticsPage() {
                         ? "bg-blue-100 text-blue-700"
                         : order.status === "Pending"
                         ? "bg-yellow-100 text-yellow-700"
-                        : "bg-gray-100 text-gray-700"
+                        : "bg-gray-100 text-gray-300"
                     }`}
                   >
                     {order.status}
