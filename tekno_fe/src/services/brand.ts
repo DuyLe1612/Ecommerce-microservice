@@ -1,4 +1,10 @@
-import { get, postForm, put, del, API_BASE } from "@/lib/api";
+import { get, post, put, del, postForm, API_BASE } from "@/lib/api";
+
+export async function uploadBrandLogo(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+  return postForm(`${API_BASE}/cloudinary/generic?folder=brand/logo`, formData);
+}
 
 export async function getBrandList() {
   try {
@@ -9,32 +15,27 @@ export async function getBrandList() {
   }
 }
 
-export async function createBrand(fd: FormData) {
+export async function createBrand(payload: any) {
   try {
-    return await postForm(`${API_BASE}/admin/brands/create`, fd);
+    return await post(`${API_BASE}/admin/brands/create`, payload);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;
   }
 }
 
-export async function updateBrand(fd: FormData) {
+export async function updateBrand(id: number | string, payload: any) {
   try {
-    return await put(`${API_BASE}/admin/brands/update`, fd);
+    return await put(`${API_BASE}/admin/brands/${id}`, payload);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;
   }
 }
 
-export async function deleteBrand(id: string) {
+export async function deleteBrand(id: string | number) {
   try {
-    const fd = new FormData();
-    fd.append("Id", id);
-    return await del(`${API_BASE}/admin/brands/delete`, {
-    body: JSON.stringify({ Id: id }),
-    headers: { "Content-Type": "application/json" },
-    });
+    return await del(`${API_BASE}/admin/brands/delete/${id}`);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;
