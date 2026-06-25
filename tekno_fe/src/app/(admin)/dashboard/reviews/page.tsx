@@ -14,6 +14,15 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
   CheckCircle,
   XCircle,
   Star,
@@ -22,6 +31,7 @@ import {
   Filter,
   ShieldCheck,
 } from "lucide-react";
+import { toast } from "sonner";
 
 interface AdminReview {
   id: number;
@@ -103,7 +113,7 @@ export default function AdminReviewsPage() {
       const token = getToken();
 
       if (!token) {
-        alert("Please login to view reviews");
+        toast.error("Please login to view reviews");
         setLoading(false);
         return;
       }
@@ -120,7 +130,7 @@ export default function AdminReviewsPage() {
     } catch (error: any) {
       console.error("Failed to load reviews:", error);
       const errorMessage = error?.message || "Failed to load reviews";
-      alert(errorMessage);
+      toast.error(errorMessage);
       setReviews([]);
       setSummary(null);
       setTotalCount(0);
@@ -136,17 +146,17 @@ export default function AdminReviewsPage() {
       const token = getToken();
       
       if (!token) {
-        alert("Please login to perform this action");
+        toast.error("Please login to perform this action");
         return;
       }
 
       await approveReview(token, reviewId);
-      alert("Review approved successfully!");
+      toast.success("Review approved successfully!");
       await loadReviews();
     } catch (error: any) {
       console.error("Failed to approve review:", error);
       const errorMessage = error?.message || "Failed to approve review";
-      alert(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
@@ -157,17 +167,17 @@ export default function AdminReviewsPage() {
       const token = getToken();
       
       if (!token) {
-        alert("Please login to perform this action");
+        toast.error("Please login to perform this action");
         return;
       }
 
       await rejectReview(token, reviewId);
-      alert("Review rejected successfully!");
+      toast.success("Review rejected successfully!");
       await loadReviews();
     } catch (error: any) {
       console.error("Failed to reject review:", error);
       const errorMessage = error?.message || "Failed to reject review";
-      alert(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
@@ -218,9 +228,9 @@ export default function AdminReviewsPage() {
 
   const getStatusBadge = (status: string) => {
     const styles = {
-      Pending: "bg-yellow-100 text-yellow-700",
-      Approved: "bg-green-100 text-green-700",
-      Rejected: "bg-red-100 text-red-700",
+      Pending: "bg-yellow-500/10 text-yellow-500 border border-yellow-500/20",
+      Approved: "bg-green-500/10 text-green-500 border border-green-500/20",
+      Rejected: "bg-red-500/10 text-red-500 border border-red-500/20",
     };
     return (
       <span className={`px-2 py-1 rounded text-xs font-medium ${styles[status as keyof typeof styles]}`}>
@@ -229,28 +239,46 @@ export default function AdminReviewsPage() {
     );
   };
 
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  const getVisiblePages = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (page <= 3) {
+        pages.push(1, 2, 3, 4, -1, totalPages);
+      } else if (page >= totalPages - 2) {
+        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, -1, page - 1, page, page + 1, -1, totalPages);
+      }
+    }
+    return pages;
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading reviews...</p>
+          <p className="text-gray-400">Loading reviews...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-transparent min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reviews Management</h1>
-          <p className="text-sm text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-gray-100">Reviews Management</h1>
+          <p className="text-sm text-gray-400 mt-1">
             Manage and moderate customer reviews
           </p>
         </div>
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-gray-400">
           Total Reviews: <span className="font-bold">{totalCount}</span>
         </div>
       </div>
@@ -258,47 +286,47 @@ export default function AdminReviewsPage() {
       {/* Product Selector & Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
         {/* Product ID Input */}
-        <div className="bg-white rounded-lg shadow-sm p-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             Product ID
           </label>
           <div className="flex gap-2">
             <input
               type="number"
               min="1"
-              className="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 bg-black/20 border border-white/10 text-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-white/30"
               value={productId}
               onChange={(e) => setProductId(Number(e.target.value))}
             />
-            <Button onClick={loadReviews}>Load</Button>
+            <Button onClick={loadReviews} className="bg-primary hover:bg-primary/90 text-black font-medium">Load</Button>
           </div>
         </div>
 
         {/* Summary Cards */}
         {summary && (
           <>
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-gray-600">Average Rating</p>
+                <p className="text-sm font-medium text-gray-400">Average Rating</p>
                 <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
               </div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-100">
                 {summary.averageRating.toFixed(1)}/5
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 {summary.totalReviews} total reviews
               </p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-gray-600">Verified Purchases</p>
-                <ShieldCheck className="w-5 h-5 text-green-600" />
+                <p className="text-sm font-medium text-gray-400">Verified Purchases</p>
+                <ShieldCheck className="w-5 h-5 text-green-500" />
               </div>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-gray-100">
                 {summary.verifiedPurchaseCount}
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 {summary.totalReviews > 0 
                   ? `${((summary.verifiedPurchaseCount / summary.totalReviews) * 100).toFixed(1)}%` 
                   : '0%'} of total
@@ -310,8 +338,8 @@ export default function AdminReviewsPage() {
 
       {/* Rating Distribution */}
       {summary && summary.totalReviews > 0 && (
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Rating Distribution</h3>
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6 mb-6">
+          <h3 className="text-lg font-semibold text-gray-100 mb-4">Rating Distribution</h3>
           <div className="space-y-2">
             {[5, 4, 3, 2, 1].map((rating) => {
               const count = summary.ratingDistribution[rating.toString() as keyof typeof summary.ratingDistribution];
@@ -328,7 +356,7 @@ export default function AdminReviewsPage() {
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
-                  <span className="text-sm text-gray-600 w-16 text-right">
+                  <span className="text-sm text-gray-400 w-16 text-right">
                     {count} ({percentage.toFixed(0)}%)
                   </span>
                 </div>
@@ -339,7 +367,7 @@ export default function AdminReviewsPage() {
       )}
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div className="bg-white/5 border border-white/10 rounded-xl shadow-sm p-4 mb-6">
         <div className="flex flex-wrap items-center gap-4">
           {/* Search */}
           <div className="flex-1 min-w-[250px]">
@@ -348,7 +376,7 @@ export default function AdminReviewsPage() {
               <input
                 type="text"
                 placeholder="Search by product, user, or comment..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2 bg-black/20 border border-white/10 text-gray-200 rounded-md focus:outline-none focus:border-white/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -357,7 +385,7 @@ export default function AdminReviewsPage() {
 
           {/* Status Filter */}
           <select
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-black/20 border border-white/10 text-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212] [&>option]:text-gray-300"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as any)}
           >
@@ -369,7 +397,7 @@ export default function AdminReviewsPage() {
 
           {/* Verified Filter */}
           <select
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-black/20 border border-white/10 text-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212] [&>option]:text-gray-300"
             value={verifiedFilter}
             onChange={(e) => setVerifiedFilter(e.target.value as any)}
           >
@@ -380,7 +408,7 @@ export default function AdminReviewsPage() {
 
           {/* Rating Filter */}
           <select
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-black/20 border border-white/10 text-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-white/30 [&>option]:bg-[#121212] [&>option]:text-gray-300"
             value={ratingFilter}
             onChange={(e) => setRatingFilter(e.target.value === "All" ? "All" : Number(e.target.value))}
           >
@@ -401,7 +429,7 @@ export default function AdminReviewsPage() {
               setRatingFilter("All");
               setSearchQuery("");
             }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 bg-transparent border-white/10 text-gray-300 hover:bg-white/10 hover:text-white"
           >
             <Filter className="w-4 h-4" />
             Reset
@@ -409,74 +437,74 @@ export default function AdminReviewsPage() {
         </div>
 
         {/* Active Filters Summary */}
-        <div className="mt-3 text-sm text-gray-600">
+        <div className="mt-3 text-sm text-gray-400">
           Showing <span className="font-bold">{filteredReviews.length}</span> of{" "}
           <span className="font-bold">{totalCount}</span> reviews
         </div>
       </div>
 
       {/* Reviews Table */}
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div className="bg-transparent overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-gray-100 border-b">
+          <table className="w-full text-sm bg-white/5 backdrop-blur-md shadow-none rounded-xl border border-white/10 overflow-hidden">
+            <thead className="bg-white/10 border-b border-white/10">
               <tr>
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Product</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Customer</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Rating</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Comment</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Status</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-600">Date</th>
-                <th className="text-center py-3 px-4 font-medium text-gray-600">Actions</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Product</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Customer</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Rating</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Comment</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Status</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Date</th>
+                <th className="text-center py-3 px-4 font-medium text-gray-400">Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredReviews.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-12 text-gray-500">
+                  <td colSpan={7} className="text-center py-12 text-gray-400">
                     No reviews found
                   </td>
                 </tr>
               ) : (
                 filteredReviews.map((review) => (
-                  <tr key={review.id} className="border-b hover:bg-gray-50">
+                  <tr key={review.id} className="border-b border-white/5 hover:bg-white/5 text-gray-300 transition-colors">
                     <td className="py-3 px-4">
                       <div>
-                        <p className="font-medium text-gray-900">{review.productName}</p>
-                        <p className="text-xs text-gray-500">ID: {review.productId}</p>
+                        <p className="font-medium text-gray-100">{review.productName}</p>
+                        <p className="text-xs text-gray-400">ID: {review.productId}</p>
                       </div>
                     </td>
                     <td className="py-3 px-4">
                       <div>
-                        <p className="font-medium text-gray-900 flex items-center gap-1">
+                        <p className="font-medium text-gray-100 flex items-center gap-1">
                           {review.userName}
                           {review.isVerifiedPurchase && (
-                            <ShieldCheck className="w-4 h-4 text-green-600" aria-label="Verified Purchase" />
+                            <ShieldCheck className="w-4 h-4 text-green-500" aria-label="Verified Purchase" />
                           )}
                         </p>
-                        <p className="text-xs text-gray-500">{review.userEmail}</p>
+                        <p className="text-xs text-gray-400">{review.userEmail}</p>
                       </div>
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-2">
                         {renderStars(review.rating)}
-                        <span className="text-xs font-medium text-gray-600">
+                        <span className="text-xs font-medium text-gray-400">
                           {review.rating}/5
                         </span>
                       </div>
                     </td>
                     <td className="py-3 px-4 max-w-xs">
-                      <p className="text-gray-700 line-clamp-2">{review.comment}</p>
+                      <p className="text-gray-300 line-clamp-2">{review.comment}</p>
                     </td>
                     <td className="py-3 px-4">{getStatusBadge(review.status)}</td>
-                    <td className="py-3 px-4 text-xs text-gray-500">
+                    <td className="py-3 px-4 text-xs text-gray-400">
                       {new Date(review.createdAt).toLocaleDateString("vi-VN")}
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleViewDetail(review)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded"
+                          className="p-2 text-blue-400 hover:bg-blue-500/10 rounded transition-colors"
                           aria-label="View Details"
                         >
                           <Eye size={16} />
@@ -485,7 +513,7 @@ export default function AdminReviewsPage() {
                         {review.status !== "Approved" && (
                           <button
                             onClick={() => handleApprove(review.id)}
-                            className="p-2 text-green-600 hover:bg-green-50 rounded"
+                            className="p-2 text-green-400 hover:bg-green-500/10 rounded transition-colors"
                             aria-label="Approve"
                           >
                             <CheckCircle size={16} />
@@ -495,7 +523,7 @@ export default function AdminReviewsPage() {
                         {review.status !== "Rejected" && (
                           <button
                             onClick={() => handleReject(review.id)}
-                            className="p-2 text-red-600 hover:bg-red-50 rounded"
+                            className="p-2 text-red-400 hover:bg-red-500/10 rounded transition-colors"
                             aria-label="Reject"
                           >
                             <XCircle size={16} />
@@ -511,94 +539,120 @@ export default function AdminReviewsPage() {
         </div>
 
         {/* Pagination */}
-        {totalCount > pageSize && (
-          <div className="flex items-center justify-between px-4 py-3 border-t">
-            <div className="text-sm text-gray-600">
-              Page {page} of {Math.ceil(totalCount / pageSize)}
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={page === 1}
-                onClick={() => setPage(page - 1)}
-              >
-                Previous
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={page >= Math.ceil(totalCount / pageSize)}
-                onClick={() => setPage(page + 1)}
-              >
-                Next
-              </Button>
-            </div>
-          </div>
+        {totalPages > 1 && (
+          <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden mb-4">
+            <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage((prev) => Math.max(prev - 1, 1));
+                  }}
+                />
+              </PaginationItem>
+
+              {getVisiblePages().map((p, i) => (
+                <PaginationItem key={i}>
+                  {p === -1 ? (
+                    <PaginationEllipsis className="text-gray-500" />
+                  ) : (
+                    <PaginationLink
+                      href="#"
+                      isActive={page === p}
+                      className={`cursor-pointer transition-colors ${
+                        page === p
+                          ? "bg-primary text-black hover:bg-primary/90"
+                          : "text-gray-300 hover:text-white hover:bg-gray-800"
+                      }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setPage(p);
+                      }}
+                    >
+                      {p}
+                    </PaginationLink>
+                  )}
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage((prev) => Math.min(prev + 1, totalPages));
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         )}
       </div>
 
       {/* Detail Modal */}
       {openDetail && selectedReview && (
         <Dialog open={openDetail} onOpenChange={setOpenDetail}>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="bg-[#121212] backdrop-blur-md border border-white/10 rounded-xl shadow-2xl text-gray-200 max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Review Details</DialogTitle>
             </DialogHeader>
 
             <div className="space-y-4 mt-4">
               {/* Product Info */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm font-medium text-gray-600 mb-1">Product</p>
-                <p className="text-lg font-semibold text-gray-900">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                <p className="text-sm font-medium text-gray-400 mb-1">Product</p>
+                <p className="text-lg font-semibold text-gray-100">
                   {selectedReview.productName}
                 </p>
-                <p className="text-xs text-gray-500">Product ID: {selectedReview.productId}</p>
+                <p className="text-xs text-gray-400">Product ID: {selectedReview.productId}</p>
               </div>
 
               {/* Customer Info */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm font-medium text-gray-600 mb-2">Customer</p>
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                <p className="text-sm font-medium text-gray-400 mb-2">Customer</p>
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="font-medium text-gray-900">{selectedReview.userName}</p>
+                  <p className="font-medium text-gray-100">{selectedReview.userName}</p>
                   {selectedReview.isVerifiedPurchase && (
-                    <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                    <span className="flex items-center gap-1 text-xs bg-green-500/10 text-green-500 border border-green-500/20 px-2 py-1 rounded">
                       <ShieldCheck className="w-3 h-3" />
                       Verified Purchase
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-600">{selectedReview.userEmail}</p>
-                <p className="text-xs text-gray-500 mt-1">User ID: {selectedReview.userId}</p>
+                <p className="text-sm text-gray-400">{selectedReview.userEmail}</p>
+                <p className="text-xs text-gray-400 mt-1">User ID: {selectedReview.userId}</p>
               </div>
 
               {/* Rating & Comment */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-sm font-medium text-gray-600">Rating & Review</p>
+                  <p className="text-sm font-medium text-gray-400">Rating & Review</p>
                   {getStatusBadge(selectedReview.status)}
                 </div>
                 <div className="flex items-center gap-2 mb-3">
                   {renderStars(selectedReview.rating)}
-                  <span className="text-lg font-bold text-gray-900">
+                  <span className="text-lg font-bold text-gray-100">
                     {selectedReview.rating}/5
                   </span>
                 </div>
-                <p className="text-gray-700 whitespace-pre-wrap">{selectedReview.comment}</p>
+                <p className="text-gray-300 whitespace-pre-wrap">{selectedReview.comment}</p>
               </div>
 
               {/* Timestamps */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 mb-1">Created At</p>
-                  <p className="text-sm text-gray-900">
+                  <p className="text-sm font-medium text-gray-400 mb-1">Created At</p>
+                  <p className="text-sm text-gray-100">
                     {new Date(selectedReview.createdAt).toLocaleString("vi-VN")}
                   </p>
                 </div>
                 {selectedReview.updatedAt && (
                   <div>
-                    <p className="text-sm font-medium text-gray-600 mb-1">Updated At</p>
-                    <p className="text-sm text-gray-900">
+                    <p className="text-sm font-medium text-gray-400 mb-1">Updated At</p>
+                    <p className="text-sm text-gray-100">
                       {new Date(selectedReview.updatedAt).toLocaleString("vi-VN")}
                     </p>
                   </div>
@@ -606,8 +660,8 @@ export default function AdminReviewsPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex justify-end gap-3 pt-4 border-t">
-                <Button variant="outline" onClick={() => setOpenDetail(false)}>
+              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+                <Button variant="outline" onClick={() => setOpenDetail(false)} className="bg-transparent border-white/10 text-gray-300 hover:bg-white/10 hover:text-white">
                   Close
                 </Button>
                 {selectedReview.status !== "Approved" && (
@@ -616,7 +670,7 @@ export default function AdminReviewsPage() {
                       handleApprove(selectedReview.id);
                       setOpenDetail(false);
                     }}
-                    className="bg-green-600 hover:bg-green-700"
+                    className="bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20"
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
                     Approve
@@ -629,7 +683,7 @@ export default function AdminReviewsPage() {
                       handleReject(selectedReview.id);
                       setOpenDetail(false);
                     }}
-                    className="text-red-600 border-red-600 hover:bg-red-50"
+                    className="bg-transparent border-red-500/20 text-red-400 hover:bg-red-500/10"
                   >
                     <XCircle className="w-4 h-4 mr-2" />
                     Reject

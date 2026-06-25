@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AddToCartPayload, cartApi } from "@/services/cart";
+import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
+import { AddToCartPayload, cartApi } from '@/services/cart';
 
 export interface CartItem {
   id: number;
@@ -72,7 +72,26 @@ const normalizeCartResponse = (response: CartResponse): CartResponse => {
   };
 };
 
-export function useCart() {
+interface CartContextType {
+  cart: CartResponse | null;
+  items: CartItem[];
+  loading: boolean;
+  error: string | null;
+  fetchCart: () => Promise<void>;
+  addToCart: (variantId: number, quantity: number) => Promise<void>;
+  removeFromCart: (variantId: number) => Promise<void>;
+  cleanCart: () => Promise<boolean>;
+  updateQuantity: (variantId: number, quantity: number) => Promise<boolean>;
+  getTotalPrice: () => number;
+  SubTotalPrice: number;
+  getTotalItems: () => number;
+  getItemCount: (variantId: number) => number;
+  getGroupItems: () => CartItem[];
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -187,20 +206,34 @@ export function useCart() {
     fetchCart();
   }, []);
 
-  return {
-    cart,
-    items,
-    loading,
-    error,
-    fetchCart,
-    addToCart,
-    removeFromCart,
-    cleanCart,
-    updateQuantity,
-    getTotalPrice,
-    SubTotalPrice,
-    getTotalItems,
-    getItemCount,
-    getGroupItems,
-  };
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        items,
+        loading,
+        error,
+        fetchCart,
+        addToCart,
+        removeFromCart,
+        cleanCart,
+        updateQuantity,
+        getTotalPrice,
+        SubTotalPrice,
+        getTotalItems,
+        getItemCount,
+        getGroupItems,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    return context as CartContextType;
+  }
+  return context;
 }

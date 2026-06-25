@@ -12,7 +12,7 @@ export default function Actions({ onEdit, onDelete }: any) {
           e.stopPropagation();   // ⛔ Chặn click nổi lên <tr>
           onEdit();
         }}
-        className="text-blue-600 hover:text-blue-800"
+        className="text-green-400 hover:text-green-300 hover:bg-green-400/10"
       >
         <Pencil className="w-4 h-4" />
       </Button>
@@ -25,7 +25,7 @@ export default function Actions({ onEdit, onDelete }: any) {
           e.stopPropagation();   // ⛔ Chặn click nổi lên <tr>
           onDelete();
         }}
-        className="text-red-600 hover:text-red-800"
+        className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
       >
         <Trash className="w-4 h-4" />
       </Button>
