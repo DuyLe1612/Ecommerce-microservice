@@ -15,41 +15,44 @@ export default function ProductInCart({
 }) {
   const productName = product.productName ?? product.name ?? `Variant #${product.variantId}`;
   const lineTotal = product.totalPrice ?? Number(product.price) * Number(product.quantity);
+  const productHref = product.productSlug ? `/products/${product.productSlug}` : "/products";
 
   return (
-    <div className="flex p-4 items-center justify-between gap-6 w-full">
-      <div className="flex items-center gap-4 h-24 md:h-36 shrink-0">
-        {product?.primaryImage && product?.productSlug && (
+    <div className="flex p-2.5 items-center justify-between gap-5 w-full">
+      <div className="flex flex-1 items-start gap-2 h-26 md:h-44 max-w-60">
+        {product?.primaryImage ? (
           <Link
-            href={`/products/${product?.productSlug}`}
-            className="block border border-white/10 bg-black/40 p-2 rounded-xl overflow-hidden group hover:border-primary/50 transition-colors"
+            href={productHref}
+            className="border p-0.5 md:p-1 mr-2 rounded-md overflow-hidden group"
           >
             <Image
               src={product.primaryImage}
-              alt="product image"
-              width={140}
-              height={140}
+              alt={productName}
+              width={500}
+              height={500}
               loading="lazy"
               className="w-20 md:w-32 h-20 md:h-32 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
             />
           </Link>
+        ) : (
+          <div className="w-32 md:w-40 h-32 md:h-40 border border-white/10 bg-white/5 rounded-md" aria-hidden="true" />
         )}
       </div>
       <div className="h-full flex flex-1 flex-col justify-between py-1">
-        <div className="flex flex-col gap-1.5 md:gap-2">
-          <Link href={`/products/${product?.productSlug}`} className="hover:text-primary transition-colors">
-            <h2 className="text-base md:text-lg font-semibold line-clamp-2 text-white/90">
+        <div className="flex flex-col gap-0.5 md:gap-1.5">
+          <Link href={productHref} className="hover:text-primary transition-colors">
+            <h2 className="text-base font-semibold line-clamp-2">
               {productName}
             </h2>
           </Link>
-          
-          <div className="flex flex-wrap gap-2">
-            {product.attributes?.map((attr) => (
-              <span key={attr.name} className="text-xs md:text-sm capitalize px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-white/70">
-                {attr.name}: <span className="font-medium text-white/90">{attr.value}</span>
-              </span>
-            ))}
-          </div>
+          {product.sku ? (
+            <p className="text-xs md:text-sm text-gray-400 font-mono">{product.sku}</p>
+          ) : null}
+          {product.attributes?.map((attr) => (
+            <p key={attr.name} className="text-sm capitalize">
+              {attr.name}: <span className="font-normal">{attr.value}</span>
+            </p>
+          ))}
         </div>
 
         <div className="flex items-end justify-between mt-4">

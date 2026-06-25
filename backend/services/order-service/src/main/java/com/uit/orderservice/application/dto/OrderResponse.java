@@ -1,9 +1,10 @@
 package com.uit.orderservice.application.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Full order details including items")
 public record OrderResponse(
@@ -34,6 +35,24 @@ public record OrderResponse(
     @Schema(description = "Last update timestamp")
     LocalDateTime updatedAt,
 
+    @Schema(description = "Shipping address snapshot stored when the order was created")
+    ShippingAddressResponse shippingAddress,
+
     @Schema(description = "List of order items")
     List<OrderItemResponse> items
-) {}
+) {
+    public OrderResponse(
+            Long id,
+            String orderNumber,
+            String userId,
+            String status,
+            String statusName,
+            BigDecimal totalAmount,
+            String currency,
+            LocalDateTime createdAt,
+            LocalDateTime updatedAt,
+            List<OrderItemResponse> items) {
+        this(id, orderNumber, userId, status, statusName, totalAmount, currency,
+            createdAt, updatedAt, null, items);
+    }
+}

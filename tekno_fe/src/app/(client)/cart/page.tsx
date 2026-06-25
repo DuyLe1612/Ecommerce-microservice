@@ -11,6 +11,32 @@ import { ShoppingBag } from "lucide-react";
 import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/services/order";
+import { getProfileAddresses } from "@/services/profile";
+import { ProfileAddress } from "@/type/address";
+
+const fallbackShippingAddress = {
+  recipientName: "Customer",
+  phone: "0900000000",
+  streetAddress: "Default shipping address",
+  city: "Ho Chi Minh",
+  district: "District 1",
+  ward: "Ben Nghe",
+  postalCode: "700000",
+};
+
+function toOrderShippingAddress(address: ProfileAddress | null | undefined) {
+  if (!address) return fallbackShippingAddress;
+
+  return {
+    recipientName: address.recipientName,
+    phone: address.phoneNumber,
+    streetAddress: address.addressLine,
+    city: address.provinceName,
+    district: address.districtName,
+    ward: address.wardName,
+    postalCode: "700000",
+  };
+}
 
 export default function CartPage() {
   const { items, removeFromCart } = useCart();
@@ -61,13 +87,21 @@ export default function CartPage() {
         selectedIds.has(p.variantId)
       ).map((p) => ({
         productId: p.variantId,
+        variantId: p.variantId,
         productName: p.productName ?? p.name ?? `Variant #${p.variantId}`,
+        productImageUrl: p.primaryImage ?? null,
+        productSlug: p.productSlug ?? null,
+        sku: p.sku ?? null,
         quantity: p.quantity,
         unitPrice: Number(p.price) || 0,
         subtotal: Number(p.totalPrice) || Number(p.price) * Number(p.quantity) || 0,
       }));
 
       if (selectedItems.length === 0) return;
+      const addresses = await getProfileAddresses(token).catch(() => []);
+      const shippingAddress = toOrderShippingAddress(
+        addresses.find((address) => address.isDefault) ?? addresses[0]
+      );
 
       const res = await createOrder(
         {
@@ -78,13 +112,9 @@ export default function CartPage() {
           shippingFee: 0,
           currency: ProductsInCart[0]?.currency ?? "VND",
           shippingAddress: {
-            recipientName: user?.username ?? user?.email ?? "Customer",
-            phone: "0900000000",
-            streetAddress: "Default shipping address",
-            city: "Ho Chi Minh",
-            district: "District 1",
-            ward: "Ben Nghe",
-            postalCode: "700000",
+            ...shippingAddress,
+            recipientName:
+              shippingAddress.recipientName || user?.username || user?.email || "Customer",
           },
           notes: "Order from cart",
         },
@@ -92,6 +122,7 @@ export default function CartPage() {
       );
 
       const orderId = res.data.orderId;
+      sessionStorage.setItem(`checkout:order-items:${orderId}`, JSON.stringify(selectedItems));
       router.push(`/checkout?orderId=${orderId}`);
     } catch (error) {
       console.error("Create order error:", error);

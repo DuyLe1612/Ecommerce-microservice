@@ -27,6 +27,7 @@ public record CreateOrderRequest(
     public record ItemRequest(
         @NotNull Long productId,
         @NotBlank String productName,
+        String productImageUrl,
         @NotNull @Positive int quantity,
         @NotNull @Positive BigDecimal unitPrice,
         @NotNull @Positive BigDecimal subtotal

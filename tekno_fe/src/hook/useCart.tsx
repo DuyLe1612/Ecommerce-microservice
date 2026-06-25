@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { cartApi } from '@/services/cart';
+import { useEffect, useRef, useState } from "react";
+import { AddToCartPayload, cartApi } from "@/services/cart";
 
 export interface CartItem {
   id: number;
@@ -95,13 +95,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const hasFetchedCart = useRef(false);
 
   const getToken = () => {
     if (typeof window === "undefined") return null;
     return localStorage.getItem("token");
   };
 
-  // FETCH CART
   const fetchCart = async () => {
     const token = getToken();
     if (!token) return;
@@ -119,16 +119,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // ADD TO CART
-  const addToCart = async (variantId: number, quantity: number) => {
+  const addToCart = async (payload: AddToCartPayload) => {
     const token = getToken();
     if (!token) return alert("Bạn cần đăng nhập!");
 
-    const data = normalizeCartResponse(await cartApi.addToCart(token, { variantId, quantity }));
+    const data = normalizeCartResponse(await cartApi.addToCart(token, payload));
     setCart(data);
   };
 
-  // REMOVE ITEM
   const removeFromCart = async (variantId: number) => {
     const token = getToken();
     if (!token) return;
@@ -137,7 +135,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart(data);
   };
 
-  // CLEAN ENTIRE CART
   const cleanCart = async () => {
     try {
       setLoading(true);
@@ -149,7 +146,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
       setCart(null);
       return true;
-
     } catch (err) {
       console.error(err);
       return false;
@@ -158,7 +154,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // UPDATE QUANTITY
   const updateQuantity = async (variantId: number, quantity: number) => {
     try {
       setLoading(true);
@@ -206,39 +201,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
+    if (hasFetchedCart.current) return;
+    hasFetchedCart.current = true;
     fetchCart();
   }, []);
 
-  return (
-    <CartContext.Provider
-      value={{
-        cart,
-        items,
-        loading,
-        error,
-        fetchCart,
-        addToCart,
-        removeFromCart,
-        cleanCart,
-        updateQuantity,
-        getTotalPrice,
-        SubTotalPrice,
-        getTotalItems,
-        getItemCount,
-        getGroupItems,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
-}
-
-export function useCart() {
-  const context = useContext(CartContext);
-  if (context === undefined) {
-    // Return a dummy context or gracefully degrade if not wrapped in CartProvider
-    // But since it's required for global state, we just return the context and assume it's wrapped
-    return context as CartContextType;
-  }
-  return context;
+  return {
+    cart,
+    items,
+    loading,
+    error,
+    fetchCart,
+    addToCart,
+    removeFromCart,
+    cleanCart,
+    updateQuantity,
+    getTotalPrice,
+    SubTotalPrice,
+    getTotalItems,
+    getItemCount,
+    getGroupItems,
+  };
 }

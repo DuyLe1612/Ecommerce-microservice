@@ -2,6 +2,22 @@ import { CartResponse } from "@/hook/useCart";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
+export type AddToCartPayload = {
+  variantId: number;
+  quantity: number;
+  productId?: number;
+  productName?: string;
+  productSlug?: string;
+  primaryImage?: string;
+  brandName?: string;
+  sku?: string;
+  availableStock?: number;
+  attributes?: {
+    name: string;
+    value: string;
+  }[];
+};
+
 export const cartApi = {
   getCart: async (token: string): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart`, {
@@ -16,7 +32,7 @@ export const cartApi = {
 
   addToCart: async (
     token: string,
-    { variantId, quantity }: { variantId: number; quantity: number }
+    payload: AddToCartPayload
   ): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart/items`, {
       method: "POST",
@@ -24,7 +40,7 @@ export const cartApi = {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({ variantId, quantity }),
+      body: JSON.stringify(payload),
     });
 
     if (!res.ok) throw new Error("Failed to add to cart");

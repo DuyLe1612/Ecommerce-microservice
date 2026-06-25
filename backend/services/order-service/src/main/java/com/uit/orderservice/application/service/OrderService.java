@@ -1,22 +1,36 @@
 package com.uit.orderservice.application.service;
 
-import com.uit.orderservice.application.dto.CreateOrderRequest;
-import com.uit.orderservice.application.dto.OrderItemResponse;
-import com.uit.orderservice.application.dto.OrderResponse;
-import com.uit.orderservice.application.exception.ProductValidationException;
-import com.uit.orderservice.domain.event.*;
-import com.uit.orderservice.domain.model.*;
-import com.uit.orderservice.domain.repository.OrderRepository;
-import com.uit.orderservice.infrastructure.external.ProductServiceClient;
-import com.uit.orderservice.infrastructure.messaging.OrderEventPublisher;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.LocalDateTime;
-import java.util.List;
+
+import com.uit.orderservice.application.dto.CreateOrderRequest;
+import com.uit.orderservice.application.dto.OrderItemResponse;
+import com.uit.orderservice.application.dto.OrderResponse;
+import com.uit.orderservice.application.dto.ShippingAddressResponse;
+import com.uit.orderservice.application.exception.ProductValidationException;
+import com.uit.orderservice.domain.event.OrderCancelledEvent;
+import com.uit.orderservice.domain.event.OrderCompletedEvent;
+import com.uit.orderservice.domain.event.OrderCreatedEvent;
+import com.uit.orderservice.domain.event.OrderDeliveredEvent;
+import com.uit.orderservice.domain.event.OrderShippedEvent;
+import com.uit.orderservice.domain.model.Money;
+import com.uit.orderservice.domain.model.Order;
+import com.uit.orderservice.domain.model.OrderItem;
+import com.uit.orderservice.domain.model.OrderStatus;
+import com.uit.orderservice.domain.model.ShippingAddress;
+import com.uit.orderservice.domain.repository.OrderRepository;
+import com.uit.orderservice.infrastructure.external.ProductServiceClient;
+import com.uit.orderservice.infrastructure.messaging.OrderEventPublisher;
 
 @Service
 @Transactional
@@ -40,10 +54,17 @@ public class OrderService {
     public OrderResponse createOrder(CreateOrderRequest request) {
         log.info("Creating order for userId={}", request.userId());
 
-        validateOrderItems(request.items());
+        Map<Long, ProductServiceClient.ItemValidationResult> validatedItems = validateOrderItems(request.items());
 
         List<OrderItem> items = request.items().stream()
-            .map(i -> new OrderItem(i.productId(), i.productName(), i.quantity(), i.unitPrice(), i.subtotal()))
+            .map(i -> new OrderItem(
+                i.productId(),
+                i.productName(),
+                productImageUrlFor(i, validatedItems),
+                i.quantity(),
+                i.unitPrice(),
+                i.subtotal()
+            ))
             .toList();
 
         ShippingAddress address = new ShippingAddress(
@@ -89,7 +110,7 @@ public class OrderService {
             order.getCouponCode()
         ));
 
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional
@@ -108,7 +129,7 @@ public class OrderService {
         }
         order = orderRepository.save(order);
         log.info("Order {} status updated to {} by admin", orderId, newStatus);
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional(readOnly = true)
@@ -117,10 +138,10 @@ public class OrderService {
             LocalDateTime fromDate, LocalDateTime toDate,
             Pageable pageable) {
         return orderRepository.findAll(status, userId, fromDate, toDate, pageable)
-                .map(this::toResponse);
+                .map(this::toResponseWithSnapshots);
     }
 
-    private void validateOrderItems(List<CreateOrderRequest.ItemRequest> items) {
+    private Map<Long, ProductServiceClient.ItemValidationResult> validateOrderItems(List<CreateOrderRequest.ItemRequest> items) {
         List<ProductServiceClient.ProductItemRequest> productRequests = items.stream()
             .map(i -> new ProductServiceClient.ProductItemRequest(i.productId(), i.quantity()))
             .toList();
@@ -151,19 +172,35 @@ public class OrderService {
         }
 
         log.info("All {} order items validated successfully", items.size());
+        return result.results().stream()
+            .collect(Collectors.toMap(
+                ProductServiceClient.ItemValidationResult::productId,
+                Function.identity(),
+                (left, right) -> left
+            ));
+    }
+
+    private String productImageUrlFor(
+            CreateOrderRequest.ItemRequest item,
+            Map<Long, ProductServiceClient.ItemValidationResult> validatedItems) {
+        ProductServiceClient.ItemValidationResult validation = validatedItems.get(item.productId());
+        String productImageUrl = validation != null ? validation.productImageUrl() : null;
+        return productImageUrl != null && !productImageUrl.isBlank()
+            ? productImageUrl
+            : item.productImageUrl();
     }
 
     @Transactional(readOnly = true)
     public OrderResponse getOrderByNumber(String orderNumber) {
         return orderRepository.findByOrderNumber(orderNumber)
-            .map(this::toResponse)
+            .map(this::toResponseWithSnapshots)
             .orElseThrow(() -> new OrderNotFoundException(orderNumber));
     }
 
     @Transactional(readOnly = true)
     public OrderResponse getOrderById(Long orderId) {
         return orderRepository.findById(orderId)
-            .map(this::toResponse)
+            .map(this::toResponseWithSnapshots)
             .orElseThrow(() -> new OrderNotFoundException(orderId));
     }
 
@@ -171,7 +208,7 @@ public class OrderService {
     public List<OrderResponse> getOrderHistory(String userId) {
         log.info("Getting order history for userId={}", userId);
         return orderRepository.findByUserId(userId).stream()
-            .map(this::toResponse)
+            .map(this::toResponseWithSnapshots)
             .toList();
     }
 
@@ -180,7 +217,7 @@ public class OrderService {
         log.info("Getting paginated order history for userId={}, page={}, size={}",
             userId, pageable.getPageNumber(), pageable.getPageSize());
         return orderRepository.findByUserId(userId, pageable)
-            .map(this::toResponse);
+            .map(this::toResponseWithSnapshots);
     }
 
     @Transactional
@@ -203,7 +240,7 @@ public class OrderService {
         log.info("Order {} cancelled by {}", orderId,
             userId != null ? "user " + userId : "admin");
 
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional
@@ -220,7 +257,7 @@ public class OrderService {
             order.getId(), order.getOrderNumber(), order.getUserId(), trackingNumber));
         log.info("Order {} shipped with tracking {}", orderId, trackingNumber);
 
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional
@@ -237,7 +274,7 @@ public class OrderService {
             order.getId(), order.getOrderNumber(), order.getUserId()));
 
         log.info("Order {} delivered and completed", orderId);
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional(readOnly = true)
@@ -268,6 +305,46 @@ public class OrderService {
             order.getTotalAmount().currency(),
             order.getCreatedAt(),
             order.getUpdatedAt(),
+            items
+        );
+    }
+
+    private OrderResponse toResponseWithSnapshots(Order order) {
+        List<OrderItemResponse> items = order.getItems().stream()
+            .map(i -> new OrderItemResponse(
+                i.productId(),
+                i.productId(),
+                i.productName(),
+                i.quantity(),
+                i.unitPrice(),
+                i.subtotal(),
+                i.productImageUrl()
+            ))
+            .toList();
+
+        ShippingAddressResponse shippingAddress = order.getShippingAddress() != null
+            ? new ShippingAddressResponse(
+                order.getShippingAddress().recipientName(),
+                order.getShippingAddress().phone(),
+                order.getShippingAddress().streetAddress(),
+                order.getShippingAddress().city(),
+                order.getShippingAddress().district(),
+                order.getShippingAddress().ward(),
+                order.getShippingAddress().postalCode()
+            )
+            : null;
+
+        return new OrderResponse(
+            order.getId(),
+            order.getOrderNumber(),
+            order.getUserId(),
+            order.getStatus().name(),
+            order.getStatus().displayName(),
+            order.getTotalAmount().amount(),
+            order.getTotalAmount().currency(),
+            order.getCreatedAt(),
+            order.getUpdatedAt(),
+            shippingAddress,
             items
         );
     }
