@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import { Loader2 } from "lucide-react";
 import { processPayment, triggerSimulatorCallback } from "@/services/payment";
 
@@ -16,11 +16,15 @@ function PaymentContent() {
 
   const [isProcessing, setIsProcessing] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const initiated = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
 
     async function run() {
+      if (initiated.current) return;
+      initiated.current = true;
+
       try {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -74,7 +78,7 @@ function PaymentContent() {
 
     run();
     return () => { cancelled = true; };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [orderId, gateway, amount, currency]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

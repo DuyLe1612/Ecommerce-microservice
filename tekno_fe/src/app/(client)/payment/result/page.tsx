@@ -31,12 +31,14 @@ function PaymentResultContent() {
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const pollRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Clean up sessionStorage on mount (keep idempotencyKey for reference)
+  // Clean up sessionStorage on unmount (keep idempotencyKey for reference)
   useEffect(() => {
-    sessionStorage.removeItem("payment_orderId");
-    sessionStorage.removeItem("payment_transactionId");
-    sessionStorage.removeItem("payment_gatewayType");
-    // payment_idempotencyKey intentionally kept for debugging
+    return () => {
+      sessionStorage.removeItem("payment_orderId");
+      sessionStorage.removeItem("payment_transactionId");
+      sessionStorage.removeItem("payment_gatewayType");
+      // payment_idempotencyKey intentionally kept for debugging
+    };
   }, []);
 
   const pollOrder = async (token: string): Promise<Order | null> => {

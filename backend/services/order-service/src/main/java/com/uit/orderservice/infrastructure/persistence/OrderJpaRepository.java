@@ -29,8 +29,8 @@ public interface OrderJpaRepository extends JpaRepository<OrderJpaEntity, Long> 
     @Query("SELECT o FROM OrderJpaEntity o WHERE " +
            "(:status IS NULL OR o.status = :status) AND " +
            "(:userId IS NULL OR o.userId = :userId) AND " +
-           "(:fromDate IS NULL OR o.createdAt >= :fromDate) AND " +
-           "(:toDate IS NULL OR o.createdAt <= :toDate)")
+           "(cast(:fromDate as timestamp) IS NULL OR o.createdAt >= :fromDate) AND " +
+           "(cast(:toDate as timestamp) IS NULL OR o.createdAt <= :toDate)")
     Page<OrderJpaEntity> findAll(@Param("status") OrderStatus status,
                                   @Param("userId") String userId,
                                   @Param("fromDate") LocalDateTime fromDate,
