@@ -1,9 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Product } from "@/type/product";
 import { Heart } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useFavor from "@/hook/useFavor";
 
 export default function AddToFavorButton({
@@ -13,46 +12,46 @@ export default function AddToFavorButton({
   productId: number;
   className?: string;
 }) {
-  console.log(productId);
+  const { items, addToFavor, removeFavor } = useFavor();
 
-  const { items, addToFavor, removeFavor, checkFavor } = useFavor();
-
-  // Kiểm tra sản phẩm có trong danh sách yêu thích hay chưa
   const exists = items.some((item) => item.id === productId);
-  // const [exists, setExists] = useState(false);
-  // useEffect(() => {
-  //   const check = async () => {
-  //     if (!productId) return;
-
-  //     const exists = await checkFavor(productId);
-  //     setExists(exists);
-  //   };
-
-  //   check();
-  // }, [productId]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFavor = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation();
+    
     if (!productId) return;
-    console.log(productId);
+    if (isLoading) return;
 
-    if (exists) {
-      await removeFavor(productId); // Đã tồn tại -> remove
-    } else {
-      await addToFavor(productId); // Chưa tồn tại -> add
+    setIsLoading(true);
+    try {
+      if (exists) {
+        await removeFavor(productId);
+      } else {
+        await addToFavor(productId);
+      }
+    } catch (error) {
+      console.error("Error updating favorite:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className={cn("", className)}>
       <button
-        className="flex items-center justify-center p-3.5 rounded-full border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-primary/50 hover:bg-primary/5 hover:scale-105 active:scale-95 transition-all duration-300 text-gray-500"
+        className={`flex items-center justify-center p-3.5 rounded-full border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-red-500/50 hover:bg-red-50 hover:scale-105 active:scale-95 transition-all duration-300 ${
+          isLoading ? "opacity-50 cursor-wait" : ""
+        }`}
         onClick={handleFavor}
+        disabled={isLoading}
+        aria-label={exists ? "Remove from favorites" : "Add to favorites"}
       >
         {exists ? (
           <Heart fill="#EF4444" size={22} className="text-red-500" />
         ) : (
-          <Heart size={22} className="text-gray-400 group-hover:text-primary" />
+          <Heart size={22} className="text-gray-400 hover:text-red-500" />
         )}
       </button>
     </div>
