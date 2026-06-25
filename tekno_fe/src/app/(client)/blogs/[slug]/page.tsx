@@ -57,7 +57,7 @@ export default async function BlogDetail({
           <div className="flex flex-col space-y-2 ">
             <p className="text-xl font-bold">Tags</p>
             <div className="flex flex-wrap gap-2">
-              {blog.tags.map((tag) => (
+              {blog.tags?.map((tag) => (
                 <div
                   key={tag}
                   className="py-2 px-5 border border-primary-900 rounded-lg"

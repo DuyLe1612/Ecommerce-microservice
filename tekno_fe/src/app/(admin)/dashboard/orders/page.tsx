@@ -12,7 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Eye, Truck, CheckCircle, XCircle, ChevronLeft, ChevronRight, Package, Search, Filter } from "lucide-react";
+import { Eye, Truck, CheckCircle, XCircle, Package, Search } from "lucide-react";
 import { toast } from "sonner";
 import {
   getAdminOrders,
@@ -22,6 +22,7 @@ import {
   Order,
   OrderStatus,
   OrderStatusLabels,
+  OrderStatusColors,
 } from "@/services/orders";
 import OrderDetail from "@/components/admin/OrderDetail";
 
@@ -38,8 +39,8 @@ export default function OrdersPage() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(1);
+  // Pagination (0-based for Spring Data)
+  const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -48,13 +49,7 @@ export default function OrdersPage() {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [carrier, setCarrier] = useState("");
 
-  // ✅ Wrap loadOrders bằng useCallback (ĐẶT TRƯỚC useEffect)
   const loadOrders = useCallback(async () => {
-      console.log("🔍 loadOrders called with:", {
-    keyword: searchKeyword,
-    status: statusFilter,
-    page: currentPage,
-  });
     try {
       setLoading(true);
       
@@ -77,14 +72,15 @@ export default function OrdersPage() {
         sortOrder: "desc",
       });
       
-      const responseData = res?.data || res;
-      const list = responseData?.data || [];
+      // Handle Spring Data Page structure
+      const pageData = res?.content || res?.data || res || {};
+      const list = Array.isArray(pageData) ? pageData : (pageData?.content || pageData?.data || []);
       
       setOrders(list);
-      setTotalCount(responseData?.totalCount || 0);
-      setTotalPages(responseData?.totalPages || 1);
+      setTotalCount(pageData?.totalElements || pageData?.totalCount || list.length);
+      setTotalPages(pageData?.totalPages || 1);
     } catch (err) {
-      console.error("❌ Failed to load orders:", err);
+      console.error("Failed to load orders:", err);
       
       if ((err as any)?.status === 401) {
         toast.error("Session expired. Please login again!");
@@ -98,13 +94,12 @@ export default function OrdersPage() {
     }
   }, [statusFilter, searchKeyword, startDate, endDate, currentPage, pageSize]);
 
-  // ✅ useEffect gọi loadOrders
   useEffect(() => {
     loadOrders();
-  }, [loadOrders]); // ✅ CHỈ loadOrders - vì loadOrders đã wrap các dependencies khác
+  }, [loadOrders]);
 
   const handleSearch = () => {
-    setCurrentPage(1); // ✅ Thay đổi currentPage → loadOrders tạo lại → useEffect trigger
+    setCurrentPage(0);
   };
 
   const handleResetFilters = () => {
@@ -112,9 +107,8 @@ export default function OrdersPage() {
     setSearchKeyword("");
     setStartDate("");
     setEndDate("");
-    setCurrentPage(1); // ✅ Reset page → loadOrders trigger
+    setCurrentPage(0);
   };
-
 
   const handleCancelOrder = async (orderId: number) => {
     const reason = prompt("Enter cancellation reason (optional):");
@@ -164,25 +158,14 @@ export default function OrdersPage() {
     }
   };
 
-  const getStatusColor = (status: OrderStatus) => {
-    switch (status) {
-      case OrderStatus.Pending:
-        return "bg-yellow-100 text-yellow-800";
-      case OrderStatus.Processing:
-        return "bg-blue-100 text-blue-800";
-      case OrderStatus.Shipping:
-        return "bg-purple-100 text-purple-800";
-      case OrderStatus.Delivered:
-        return "bg-green-100 text-green-800";
-      case OrderStatus.Cancelled:
-        return "bg-red-100 text-red-800";
-      case OrderStatus.RefundRequested:
-        return "bg-orange-100 text-orange-800";
-      case OrderStatus.Refunded:
-        return "bg-gray-100 text-gray-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
+  const getStatusBadge = (status: OrderStatus) => {
+    const colorClass = OrderStatusColors[status] || "bg-gray-500/20 text-gray-400 border-gray-500/30";
+    const label = OrderStatusLabels[status] || status;
+    return (
+      <span className={`px-2 py-1 rounded text-xs font-medium border ${colorClass}`}>
+        {label}
+      </span>
+    );
   };
 
   const formatDate = (dateString: string) => {
@@ -194,7 +177,7 @@ export default function OrdersPage() {
   };
 
   const handlePageChange = (newPage: number) => {
-    if (newPage >= 1 && newPage <= totalPages) {
+    if (newPage >= 0 && newPage < totalPages) {
       setCurrentPage(newPage);
     }
   };
@@ -202,69 +185,87 @@ export default function OrdersPage() {
   const getVisiblePages = () => {
     const pages = [];
     if (totalPages <= 5) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i);
+      for (let i = 0; i < totalPages; i++) pages.push(i);
     } else {
       if (currentPage <= 3) {
-        pages.push(1, 2, 3, 4, -1, totalPages);
-      } else if (currentPage >= totalPages - 2) {
-        pages.push(1, -1, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        pages.push(0, 1, 2, 3, -1, totalPages - 1);
+      } else if (currentPage >= totalPages - 3) {
+        pages.push(0, -1, totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1);
       } else {
-        pages.push(1, -1, currentPage - 1, currentPage, currentPage + 1, -1, totalPages);
+        pages.push(0, -1, currentPage - 1, currentPage, currentPage + 1, -1, totalPages - 1);
       }
     }
     return pages;
   };
 
+  const canShip = (status: OrderStatus) => status === OrderStatus.PROCESSING;
+  const canDeliver = (status: OrderStatus) => status === OrderStatus.SHIPPING;
+  const canCancel = (status: OrderStatus) => 
+    status === OrderStatus.PENDING_PAYMENT || status === OrderStatus.PROCESSING;
+
   return (
-    <div className="p-6">
+    <div className="p-6 bg-black/5 min-h-screen">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Orders Management</h2>
+        <h2 className="text-xl font-semibold text-white">Quản lý đơn hàng</h2>
+        <div className="text-sm text-gray-400">
+          Tổng: {totalCount} đơn hàng
+        </div>
       </div>
 
       {/* Filters */}
-      <div className="mb-4 space-y-3">
-        <div className="flex gap-3">
-          <div className="flex-1">
+      <div className="mb-4 space-y-3 bg-white/5 backdrop-blur-md rounded-xl p-4 border border-white/10">
+        <div className="flex gap-3 flex-wrap">
+          <div className="flex-1 min-w-[200px]">
             <Input
-              placeholder="Search by order number (ORD-20241222) or user ID (123)..."
+              placeholder="Tìm kiếm theo mã đơn hàng..."
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+              className="bg-white/10 border-white/20 text-white placeholder:text-gray-500"
             />
           </div>
 
           <select
-            className="bg-black/20 border border-white/10 text-gray-300 rounded px-3 py-2 min-w-[150px] focus:outline-none focus:border-white/30"
-            value={statusFilter === null ? "" : statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value === "" ? null : Number(e.target.value) as OrderStatus)}
+            className="bg-white/10 border border-white/20 text-gray-300 rounded px-3 py-2 min-w-[180px] focus:outline-none focus:border-white/40"
+            value={statusFilter || ""}
+            onChange={(e) => {
+              setStatusFilter(e.target.value as OrderStatus || null);
+              setCurrentPage(0);
+            }}
           >
-            <option value="">All Status</option>
-            <option value={OrderStatus.Pending}>Pending</option>
-            <option value={OrderStatus.Processing}>Processing</option>
-            <option value={OrderStatus.Shipping}>Shipping</option>
-            <option value={OrderStatus.Delivered}>Delivered</option>
-            <option value={OrderStatus.Cancelled}>Cancelled</option>
-            <option value={OrderStatus.RefundRequested}>Refund Requested</option>
-            <option value={OrderStatus.Refunded}>Refunded</option>
+            <option value="">Tất cả trạng thái</option>
+            <option value={OrderStatus.PENDING_PAYMENT}>Chờ thanh toán</option>
+            <option value={OrderStatus.PROCESSING}>Đang xử lý</option>
+            <option value={OrderStatus.SHIPPING}>Đang giao</option>
+            <option value={OrderStatus.DELIVERED}>Đã giao</option>
+            <option value={OrderStatus.CANCELLED}>Đã hủy</option>
+            <option value={OrderStatus.REFUND_REQUESTED}>Yêu cầu hoàn tiền</option>
+            <option value={OrderStatus.REFUNDED}>Đã hoàn tiền</option>
           </select>
 
-          <Button variant="outline" onClick={handleResetFilters}>Reset</Button>
+          <Button 
+            variant="outline" 
+            onClick={handleResetFilters}
+            className="border-white/20 text-gray-300 hover:bg-white/10"
+          >
+            Đặt lại
+          </Button>
         </div>
 
-        <div className="flex gap-3 items-center">
-          <label className="text-sm font-medium">Date Range:</label>
+        <div className="flex gap-3 items-center flex-wrap">
+          <label className="text-sm font-medium text-gray-400">Ngày:</label>
           <Input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="w-auto"
+            className="w-auto bg-white/10 border-white/20 text-white"
           />
-          <span className="text-sm text-gray-400">to</span>
+          <span className="text-sm text-gray-500">đến</span>
           <Input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="w-auto"
+            className="w-auto bg-white/10 border-white/20 text-white"
           />
         </div>
       </div>
@@ -272,110 +273,93 @@ export default function OrdersPage() {
       {/* Orders Table */}
       {loading ? (
         <div className="flex justify-center items-center py-12">
-          <p className="text-gray-400">Loading orders...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+          <p className="ml-3 text-gray-400">Đang tải đơn hàng...</p>
         </div>
       ) : (
         <>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm bg-white/5 backdrop-blur-md shadow-none rounded-xl border border-white/10 overflow-hidden">
+          <div className="overflow-x-auto rounded-xl border border-white/10">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="bg-white/10 text-left text-gray-200 border-b border-white/10">
-                  <th className="p-2">Order #</th>
-                  <th>User ID</th>
-                  <th>Customer</th>
-                  <th>Status</th>
-                  <th>Total</th>
-                  <th>Payment</th>
-                  <th>Date</th>
-                  <th>Actions</th>
+                <tr className="bg-white/10 text-left text-gray-300 border-b border-white/10">
+                  <th className="p-3 font-medium">Mã đơn</th>
+                  <th className="p-3 font-medium">Khách hàng</th>
+                  <th className="p-3 font-medium">Trạng thái</th>
+                  <th className="p-3 font-medium">Tổng tiền</th>
+                  <th className="p-3 font-medium">Ngày tạo</th>
+                  <th className="p-3 font-medium">Thao tác</th>
                 </tr>
               </thead>
 
               <tbody>
                 {orders.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="p-8 text-center text-gray-400">
-                      No orders found
+                    <td colSpan={6} className="p-8 text-center text-gray-500">
+                      Không tìm thấy đơn hàng nào
                     </td>
                   </tr>
                 ) : (
                   orders.map((order) => (
                     <tr
                       key={order.id}
-                      className="hover:bg-white/5 border-b border-white/5 cursor-pointer text-gray-300 transition-colors"
+                      className="border-b border-white/5 hover:bg-white/5 cursor-pointer text-gray-300 transition-colors"
                       onClick={() => setSelectedOrderId(order.id)}
                     >
-                      <td className="p-2 font-medium text-blue-600">{order.orderNumber}</td>
-                      <td className="p-2 text-gray-400">#{order.userId}</td>
-                      <td className="p-2">
+                      <td className="p-3 font-medium text-white">{order.orderNumber}</td>
+                      <td className="p-3">
                         <div>
-                          <p className="font-medium">{order.userName || "N/A"}</p>
-                          <p className="text-xs text-gray-400">{order.userEmail}</p>
-                          <p className="text-xs text-gray-400">{order.phoneNumber}</p>
+                          <p className="font-medium text-white">
+                            {order.shippingAddress?.recipientName || "N/A"}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {order.shippingAddress?.phone || ""}
+                          </p>
                         </div>
                       </td>
-                      <td className="p-2">
-                        <span
-                          className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(
-                            order.status
-                          )}`}
-                        >
-                          {OrderStatusLabels[order.status]}
-                        </span>
+                      <td className="p-3">
+                        {getStatusBadge(order.status)}
                       </td>
-                      <td className="p-2 font-medium">
+                      <td className="p-3 font-medium text-white">
                         {formatCurrency(order.totalAmount)}
                       </td>
-                      <td className="p-2">
-                        <div>
-                          <p className="text-xs">{order.paymentMethod || "N/A"}</p>
-                          <span
-                            className={`text-xs px-1 py-0.5 rounded ${
-                              order.paymentStatus === "Paid"
-                                ? "bg-green-100 text-green-700"
-                                : "bg-yellow-100 text-yellow-700"
-                            }`}
-                          >
-                            {order.paymentStatus || "Pending"}
-                          </span>
-                        </div>
+                      <td className="p-3 text-xs text-gray-400">
+                        {formatDate(order.createdAt)}
                       </td>
-                      <td className="p-2 text-xs">{formatDate(order.createdAt)}</td>
-                      <td className="p-2">
+                      <td className="p-3">
                         <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                           <button
                             onClick={() => setSelectedOrderId(order.id)}
-                            className="p-1 text-blue-600 hover:bg-blue-50 rounded"
-                            title="View Details"
+                            className="p-2 text-blue-400 hover:bg-blue-500/20 rounded-lg transition-colors"
+                            title="Xem chi tiết"
                           >
                             <Eye size={16} />
                           </button>
 
-                          {order.status === OrderStatus.Processing && (
+                          {canShip(order.status) && (
                             <button
                               onClick={() => openShipForm(order)}
-                              className="p-1 text-purple-600 hover:bg-purple-50 rounded"
-                              title="Ship Order"
+                              className="p-2 text-purple-400 hover:bg-purple-500/20 rounded-lg transition-colors"
+                              title="Giao hàng"
                             >
                               <Truck size={16} />
                             </button>
                           )}
 
-                          {order.status === OrderStatus.Shipping && (
+                          {canDeliver(order.status) && (
                             <button
                               onClick={() => handleDeliverOrder(order.id)}
-                              className="p-1 text-green-600 hover:bg-green-50 rounded"
-                              title="Mark as Delivered"
+                              className="p-2 text-green-400 hover:bg-green-500/20 rounded-lg transition-colors"
+                              title="Đánh dấu đã giao"
                             >
                               <CheckCircle size={16} />
                             </button>
                           )}
 
-                          {[OrderStatus.Pending, OrderStatus.Processing].includes(order.status) && (
+                          {canCancel(order.status) && (
                             <button
                               onClick={() => handleCancelOrder(order.id)}
-                              className="p-1 text-red-600 hover:bg-red-50 rounded"
-                              title="Cancel Order"
+                              className="p-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors"
+                              title="Hủy đơn"
                             >
                               <XCircle size={16} />
                             </button>
@@ -391,16 +375,17 @@ export default function OrdersPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <Pagination className="mt-8 flex flex-wrap justify-center overflow-hidden mb-4">
-              <PaginationContent className="flex-wrap gap-1 sm:gap-2">
+            <Pagination className="mt-6 flex justify-center">
+              <PaginationContent className="flex gap-1">
                 <PaginationItem>
                   <PaginationPrevious
                     href="#"
-                    className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                    className="text-gray-300 hover:bg-white/10 cursor-pointer"
                     onClick={(e) => {
                       e.preventDefault();
                       handlePageChange(currentPage - 1);
                     }}
+                    aria-disabled={currentPage === 0}
                   />
                 </PaginationItem>
 
@@ -412,17 +397,17 @@ export default function OrdersPage() {
                       <PaginationLink
                         href="#"
                         isActive={currentPage === p}
-                        className={`cursor-pointer transition-colors ${
+                        className={`cursor-pointer ${
                           currentPage === p
                             ? "bg-primary text-black hover:bg-primary/90"
-                            : "text-gray-300 hover:text-white hover:bg-gray-800"
+                            : "text-gray-300 hover:bg-white/10"
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
                           handlePageChange(p);
                         }}
                       >
-                        {p}
+                        {p + 1}
                       </PaginationLink>
                     )}
                   </PaginationItem>
@@ -431,11 +416,12 @@ export default function OrdersPage() {
                 <PaginationItem>
                   <PaginationNext
                     href="#"
-                    className="text-gray-300 hover:text-white hover:bg-gray-800 cursor-pointer"
+                    className="text-gray-300 hover:bg-white/10 cursor-pointer"
                     onClick={(e) => {
                       e.preventDefault();
                       handlePageChange(currentPage + 1);
                     }}
+                    aria-disabled={currentPage >= totalPages - 1}
                   />
                 </PaginationItem>
               </PaginationContent>
@@ -458,50 +444,56 @@ export default function OrdersPage() {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-[#1a1a1a] border border-white/10 text-gray-200 w-full max-w-md rounded-2xl shadow-2xl p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">Ship Order</h3>
+              <h3 className="text-xl font-semibold">Giao hàng</h3>
               <button
                 onClick={() => setOpenShipModal(false)}
-                className="text-gray-400 hover:text-gray-700"
+                className="text-gray-400 hover:text-white"
               >
                 <XCircle size={24} />
               </button>
             </div>
 
             <p className="text-sm text-gray-400 mb-4">
-              Order: <strong>{shipOrderData.orderNumber}</strong>
+              Đơn hàng: <strong className="text-white">{shipOrderData.orderNumber}</strong>
             </p>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Tracking Number (optional)
+                <label className="block text-sm font-medium mb-1 text-gray-300">
+                  Mã vận đơn (tùy chọn)
                 </label>
                 <Input
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value)}
-                  placeholder="Enter tracking number"
+                  placeholder="Nhập mã vận đơn"
+                  className="bg-white/10 border-white/20 text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Carrier (optional)
+                <label className="block text-sm font-medium mb-1 text-gray-300">
+                  Đơn vị vận chuyển (tùy chọn)
                 </label>
                 <Input
                   value={carrier}
                   onChange={(e) => setCarrier(e.target.value)}
-                  placeholder="e.g., Giao Hàng Nhanh, Viettel Post"
+                  placeholder="VD: Giao Hàng Nhanh, Viettel Post"
+                  className="bg-white/10 border-white/20 text-white"
                 />
               </div>
             </div>
 
             <div className="flex justify-end gap-3 mt-6">
-              <Button variant="outline" onClick={() => setOpenShipModal(false)}>
-                Cancel
+              <Button 
+                variant="outline" 
+                onClick={() => setOpenShipModal(false)}
+                className="border-white/20 text-gray-300"
+              >
+                Hủy
               </Button>
               <Button onClick={handleShipOrder}>
                 <Truck className="w-4 h-4 mr-2" />
-                Ship Order
+                Giao hàng
               </Button>
             </div>
           </div>
