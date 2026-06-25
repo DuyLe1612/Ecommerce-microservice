@@ -115,6 +115,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             OrderItemJpaEntity itemEntity = new OrderItemJpaEntity();
             itemEntity.setProductId(item.productId());
             itemEntity.setProductName(item.productName());
+            itemEntity.setProductImageUrl(item.productImageUrl());
             itemEntity.setQuantity(item.quantity());
             itemEntity.setUnitPrice(item.unitPrice());
             itemEntity.setSubtotal(item.subtotal());
@@ -147,7 +148,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             e.getCreatedAt(), e.getUpdatedAt(),
             e.getItems().stream()
                 .map(ie -> new com.uit.orderservice.domain.model.OrderItem(
-                    ie.getProductId(), ie.getProductName(),
+                    ie.getProductId(), ie.getProductName(), ie.getProductImageUrl(),
                     ie.getQuantity(), ie.getUnitPrice(), ie.getSubtotal()))
                 .toList()
         );

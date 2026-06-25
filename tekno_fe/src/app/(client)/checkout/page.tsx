@@ -169,13 +169,34 @@ function CheckoutContent() {
     [addresses, selectedAddressId]
   );
 
+  const shippingSnapshot = order?.shippingAddress;
+  const shippingDisplay = selectedAddress
+    ? {
+        recipientName: selectedAddress.recipientName,
+        phone: selectedAddress.phoneNumber,
+        address: `${selectedAddress.addressLine}, ${selectedAddress.wardName}, ${selectedAddress.districtName}, ${selectedAddress.provinceName}`,
+      }
+    : shippingSnapshot
+      ? {
+          recipientName: shippingSnapshot.recipientName,
+          phone: shippingSnapshot.phone,
+          address: [
+            shippingSnapshot.streetAddress,
+            shippingSnapshot.ward,
+            shippingSnapshot.district,
+            shippingSnapshot.city,
+            shippingSnapshot.postalCode,
+          ].filter(Boolean).join(", "),
+        }
+      : null;
+
   const subtotal = useMemo(() => {
     if (!order?.items?.length) return 0;
     return order.items.reduce((sum, it) => sum + (it.subtotal ?? (it.unitPrice ?? 0) * it.quantity), 0);
   }, [order]);
 
   const proceedToPayment = async () => {
-    if (!selectedAddressId) {
+    if (!selectedAddressId && !shippingSnapshot) {
       toast.error("Please select a shipping address");
       return;
     }
@@ -203,30 +224,29 @@ function CheckoutContent() {
           {/* Left — address + payment */}
           <div className="lg:col-span-7 space-y-5">
             {/* Shipping address */}
-            <div className="rounded-md p-4 space-y-4 border border-gray-200">
+            <div className="rounded-md p-4 space-y-4 border border-white/10 bg-white/[0.03]">
               <div className="flex items-start gap-3">
                 <span className="text-red-500 mt-1">&#x1F4CD;</span>
                 <div className="flex-1">
                   <div className="text-lg font-semibold text-red-600">Shipping Address</div>
-                  {selectedAddress ? (
+                  {shippingDisplay ? (
                     <div className="mt-2 flex flex-wrap items-center gap-3">
-                      <span className="font-semibold">{selectedAddress.recipientName}</span>
-                      <span className="text-gray-700">
-                        (+84 {String(selectedAddress.phoneNumber).replace(/^0/, "")})
+                      <span className="font-semibold text-white">{shippingDisplay.recipientName}</span>
+                      <span className="text-white/60">
+                        (+84 {String(shippingDisplay.phone).replace(/^0/, "")})
                       </span>
-                      <span className="text-gray-800">
-                        {selectedAddress.addressLine}, {selectedAddress.wardName},{" "}
-                        {selectedAddress.districtName}, {selectedAddress.provinceName}
+                      <span className="text-white/70">
+                        {shippingDisplay.address}
                       </span>
                     </div>
                   ) : (
-                    <div className="mt-2 text-sm text-gray-500">No address selected</div>
+                    <div className="mt-2 text-sm text-white/45">No address selected</div>
                   )}
                 </div>
                 <button
                   type="button"
                   onClick={() => setOpenAddressModal(true)}
-                  className="text-blue-600 hover:underline whitespace-nowrap"
+                  className="text-primary hover:underline whitespace-nowrap"
                 >
                   Change
                 </button>
@@ -237,9 +257,9 @@ function CheckoutContent() {
             {openAddressModal && (
               <div className="fixed inset-0 z-50 flex items-center justify-center">
                 <div className="absolute inset-0 bg-black/30" onClick={() => setOpenAddressModal(false)} />
-                <div className="relative z-10 w-full max-w-2xl rounded-2xl bg-white p-4 md:p-6 shadow-2xl">
+                <div className="relative z-10 w-full max-w-2xl rounded-2xl bg-[#121212] border border-white/10 p-4 md:p-6 shadow-2xl">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-lg font-semibold">Select Address</h3>
+                    <h3 className="text-lg font-semibold text-white">Select Address</h3>
                     <button
                       className="text-sm text-gray-500 hover:text-gray-700"
                       onClick={() => setOpenAddressModal(false)}
@@ -263,7 +283,7 @@ function CheckoutContent() {
                               setOpenAddressModal(false);
                             }}
                             className={`cursor-pointer rounded-lg border transition ${
-                              selected ? "border-yellow-400 bg-yellow-50" : "border-gray-200"
+                              selected ? "border-yellow-400 bg-yellow-400/10" : "border-white/10"
                             }`}
                           >
                             <AddressItem addr={addr} />
@@ -277,8 +297,8 @@ function CheckoutContent() {
             )}
 
             {/* Payment method */}
-            <div className="rounded-md p-4 space-y-4 border border-gray-100">
-              <h2 className="font-semibold text-gray-800">Payment Method</h2>
+            <div className="rounded-md p-4 space-y-4 border border-white/10 bg-white/[0.03]">
+              <h2 className="font-semibold text-white">Payment Method</h2>
               <RadioGroup value={paymentMethod} onValueChange={(value) => setPaymentMethod(value)}>
                 {gateways.map((g) => (
                   <div key={g.type} className="flex items-center gap-2">
@@ -299,15 +319,15 @@ function CheckoutContent() {
 
           {/* Right — order summary */}
           <div className="lg:col-span-5">
-            <div className="rounded-md bg-white p-4 border">
-              <h3 className="font-semibold text-gray-800 mb-4">Order Summary</h3>
+            <div className="rounded-md bg-white/[0.03] p-4 border border-white/10">
+              <h3 className="font-semibold text-white mb-4">Order Summary</h3>
               <div className="space-y-3 max-h-72 overflow-auto">
                 {order.items?.map((it: OrderItem) => {
                   const imageSrc = it.productImageUrl ?? it.product?.primaryImageUrl ?? null;
 
                   return (
                     <div key={it.id ?? it.productId} className="flex items-center gap-3">
-                      <div className="w-16 h-16 rounded-md bg-gray-100 overflow-hidden flex-shrink-0">
+                      <div className="w-16 h-16 rounded-md bg-white/5 overflow-hidden flex-shrink-0 border border-white/10">
                         {imageSrc ? (
                           <Image
                             src={imageSrc}
@@ -317,18 +337,18 @@ function CheckoutContent() {
                             className="w-16 h-16 object-cover"
                           />
                         ) : (
-                          <div className="w-16 h-16 flex items-center justify-center text-[10px] text-gray-400">
+                          <div className="w-16 h-16 flex items-center justify-center text-[10px] text-white/35">
                             No image
                           </div>
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium line-clamp-2">
+                        <div className="text-sm font-medium line-clamp-2 text-white">
                           {it.productName ?? "Product"}
                         </div>
-                        <div className="text-xs text-gray-500">x{it.quantity}</div>
+                        <div className="text-xs text-white/45">x{it.quantity}</div>
                       </div>
-                      <div className="text-sm text-gray-700 flex-shrink-0">
+                      <div className="text-sm text-white/70 flex-shrink-0">
                         <FormattedPrice price={it.unitPrice ?? it.subtotal ?? 0} />
                       </div>
                     </div>
@@ -338,12 +358,12 @@ function CheckoutContent() {
 
               <div className="mt-4 space-y-2 text-sm border-t pt-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="text-gray-800">
+                  <span className="text-white/50">Subtotal</span>
+                  <span className="text-white">
                     <FormattedPrice price={subtotal} />
                   </span>
                 </div>
-                <div className="flex justify-between font-semibold pt-2 border-t">
+                <div className="flex justify-between font-semibold pt-2 border-t border-white/10 text-white">
                   <span>Total</span>
                   <span>
                     <FormattedPrice price={Number(order.totalAmount ?? subtotal)} />
@@ -353,7 +373,7 @@ function CheckoutContent() {
 
               <button
                 onClick={proceedToPayment}
-                disabled={!selectedAddressId || !paymentMethod}
+                disabled={(!selectedAddressId && !shippingSnapshot) || !paymentMethod}
                 className="mt-4 w-full bg-yellow-400 hover:bg-yellow-500 text-white font-medium py-3 rounded-md disabled:bg-yellow-300"
               >
                 Proceed to Payment

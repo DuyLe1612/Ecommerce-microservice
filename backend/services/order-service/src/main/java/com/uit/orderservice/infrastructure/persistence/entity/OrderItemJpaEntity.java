@@ -25,6 +25,9 @@ public class OrderItemJpaEntity {
     @Column(name = "product_name", nullable = false)
     private String productName;
 
+    @Column(name = "product_image_url", columnDefinition = "TEXT")
+    private String productImageUrl;
+
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
@@ -42,6 +45,8 @@ public class OrderItemJpaEntity {
     public void setProductId(Long productId) { this.productId = productId; }
     public String getProductName() { return productName; }
     public void setProductName(String productName) { this.productName = productName; }
+    public String getProductImageUrl() { return productImageUrl; }
+    public void setProductImageUrl(String productImageUrl) { this.productImageUrl = productImageUrl; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public BigDecimal getUnitPrice() { return unitPrice; }

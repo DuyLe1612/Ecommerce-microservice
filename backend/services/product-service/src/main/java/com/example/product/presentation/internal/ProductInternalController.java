@@ -62,6 +62,7 @@ public class ProductInternalController {
                                     variant.getStock(),
                                     item.quantity(),
                                     variant.getPrice(),
+                                    primaryImageUrl(variant.getProduct()),
                                     variant.getStatus(),
                                     null
                             )).orElseGet(() -> new ItemValidationResult(
@@ -70,6 +71,7 @@ public class ProductInternalController {
                                     false,
                                     0,
                                     item.quantity(),
+                                    null,
                                     null,
                                     null,
                                     "Product variant not found"
@@ -94,10 +96,24 @@ public class ProductInternalController {
             int availableStock,
             int requestedQuantity,
             java.math.BigDecimal price,
+            String productImageUrl,
             String status,
             String error
     ) {
         public boolean valid() { return exists && inStock; }
+    }
+
+    private String primaryImageUrl(com.example.product.infrastructure.persistence.entity.ProductJpaEntity product) {
+        if (product == null || product.getImages() == null || product.getImages().isEmpty()) {
+            return null;
+        }
+
+        return product.getImages().stream()
+                .filter(image -> Boolean.TRUE.equals(image.getIsPrimary()))
+                .findFirst()
+                .or(() -> product.getImages().stream().findFirst())
+                .map(com.example.product.infrastructure.persistence.entity.ProductImageJpaEntity::getImageUrl)
+                .orElse(null);
     }
 
     // Reserve stock for order

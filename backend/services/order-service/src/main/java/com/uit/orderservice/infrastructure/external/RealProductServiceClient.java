@@ -72,6 +72,7 @@ public class RealProductServiceClient implements ProductServiceClient {
                             r.availableStock(),
                             r.requestedQuantity(),
                             r.price(),
+                            r.productImageUrl(),
                             r.status(),
                             r.error()
                     ))
@@ -90,7 +91,7 @@ public class RealProductServiceClient implements ProductServiceClient {
         List<ItemValidationResult> results = items.stream()
                 .map(item -> new ItemValidationResult(
                         item.productId(), false, false, 0,
-                        item.quantity(), null, null, error))
+                        item.quantity(), null, null, null, error))
                 .toList();
         return new BatchProductValidationResult(false, results);
     }
@@ -110,6 +111,7 @@ public class RealProductServiceClient implements ProductServiceClient {
             int availableStock,
             int requestedQuantity,
             BigDecimal price,
+            String productImageUrl,
             String status,
             String error
     ) {}

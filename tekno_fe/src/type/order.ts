@@ -41,8 +41,19 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   items?: OrderItem[];
+  shippingAddress?: OrderShippingAddress | null;
   payment?: PaymentStatus;
   delivery?: Delivery;
+};
+
+export type OrderShippingAddress = {
+  recipientName: string;
+  phone: string;
+  streetAddress: string;
+  city: string;
+  district?: string | null;
+  ward?: string | null;
+  postalCode?: string | null;
 };
 
 export type Delivery = {

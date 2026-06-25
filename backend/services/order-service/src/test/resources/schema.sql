@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     order_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
     product_name VARCHAR(255) NOT NULL,
+    product_image_url TEXT,
     quantity INT NOT NULL,
     unit_price DECIMAL(14,2) NOT NULL,
     subtotal DECIMAL(14,2) NOT NULL,
