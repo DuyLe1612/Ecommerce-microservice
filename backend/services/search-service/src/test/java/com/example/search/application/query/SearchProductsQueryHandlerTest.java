@@ -27,10 +27,10 @@ class SearchProductsQueryHandlerTest {
 
     @Test
     void testHandle() {
-        SearchProductsQuery query = new SearchProductsQuery("query", "cat", "brand", 0.0, 100.0, "ACTIVE", 0, 10);
+        SearchProductsQuery query = new SearchProductsQuery("query", "cat", "brand", 0.0, 100.0, "ACTIVE", 0, 10, "createdAt", "DESC");
         
         SearchResponse<ProductDocument> mockResponse = new SearchResponse<>(List.of(new ProductDocument()), 1, 1, 10, 0);
-        when(productSearchRepository.search(any(), any(), any(), any(), any(), any(), anyInt(), anyInt())).thenReturn(mockResponse);
+        when(productSearchRepository.search(any(), any(), any(), any(), any(), any(), any(), any(), anyInt(), anyInt())).thenReturn(mockResponse);
 
         SearchResponse<ProductDocument> result = handler.execute(query);
 

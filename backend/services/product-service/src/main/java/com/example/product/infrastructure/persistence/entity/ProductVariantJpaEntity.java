@@ -24,7 +24,7 @@ public class ProductVariantJpaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ProductId\"", nullable = false)
-    @JsonIgnoreProperties({"variants", "images"})
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private ProductJpaEntity product;
 
     @Column(name = "\"Sku\"", nullable = false, length = 100, unique = true)
@@ -50,6 +50,6 @@ public class ProductVariantJpaEntity {
 
     @Builder.Default
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"VariantId\"")
+    @JoinColumn(name = "\"VariantId\"", nullable = false)
     private java.util.List<ProductVariantAttributeJpaEntity> attributeValues = new java.util.ArrayList<>();
 }

@@ -26,6 +26,12 @@ type VariantAttribute = {
   attributeId: number;
   attributeName?: string;
   value: string;
+  valueId?: number;
+};
+
+type AttrValue = {
+  id: number;
+  value: string;
 };
 
 type Attr = {
@@ -33,7 +39,7 @@ type Attr = {
   name: string;
   inputType: string;
   isGlobal: boolean;
-  availableValues: string[];
+  availableValues: AttrValue[];
   isCustom?: boolean; // Flag for custom attributes
 };
 
@@ -75,6 +81,33 @@ export default function ProductVariants({
     loadAllAttributes();
   }, [categoryId]);
 
+  // ✅ Auto-resolve valueId for variants once attributes are loaded
+  useEffect(() => {
+    if (allAttributes.length > 0 && variants.length > 0) {
+      let changed = false;
+      const updatedVariants = variants.map(v => {
+        const newAttrs = v.attributes.map(a => {
+          if (!a.valueId) {
+            const attrDef = allAttributes.find(def => def.id === a.attributeId);
+            if (attrDef) {
+              const valObj = attrDef.availableValues.find((val: any) => typeof val === 'object' ? val.value === String(a.value) : val === String(a.value));
+              if (valObj && typeof valObj === 'object') {
+                changed = true;
+                return { ...a, valueId: valObj.id };
+              }
+            }
+          }
+          return a;
+        });
+        return { ...v, attributes: newAttrs };
+      });
+      if (changed) {
+        setVariants(updatedVariants);
+        onChange(JSON.parse(JSON.stringify(updatedVariants)));
+      }
+    }
+  }, [allAttributes, variants.length]);
+
   const loadAllAttributes = async () => {
     try {
       setLoading(true);
@@ -115,7 +148,7 @@ export default function ProductVariants({
               name: attr.name,
               inputType: attr.inputType || "text",
               isGlobal: attr.isGlobal,
-              availableValues: Array.isArray(valuesResponse?.values) ? valuesResponse.values.map((v: any) => v.value) : [],
+              availableValues: Array.isArray(valuesResponse?.values) ? valuesResponse.values : [],
               isCustom: false,
             };
           } catch (error) {
@@ -210,6 +243,9 @@ export default function ProductVariants({
   const updateFormAttribute = (attributeId: number, value: string) => {
     const attr = allAttributes.find((a) => a.id === attributeId);
     if (!attr) return;
+    
+    const valObj = attr.availableValues.find((v: any) => typeof v === 'object' ? v.value === value : v === value);
+    const valueId = valObj && typeof valObj === 'object' ? valObj.id : 0;
 
     const existingIndex = formData.attributes.findIndex(
       (a) => a.attributeId === attributeId
@@ -219,7 +255,7 @@ export default function ProductVariants({
 
     if (existingIndex >= 0) {
       newAttributes = formData.attributes.map((a, idx) =>
-        idx === existingIndex ? { ...a, value } : a
+        idx === existingIndex ? { ...a, value, valueId } : a
       );
     } else {
       newAttributes = [
@@ -228,6 +264,7 @@ export default function ProductVariants({
           attributeId: attr.id,
           attributeName: attr.name,
           value,
+          valueId,
         },
       ];
     }
@@ -588,11 +625,14 @@ export default function ProductVariants({
                           }
                         >
                           <option value="">-- Select {attr.name} --</option>
-                          {attr.availableValues.map((value, idx) => (
-                            <option key={idx} value={value}>
-                              {value}
-                            </option>
-                          ))}
+                          {attr.availableValues.map((valObj: any, idx) => {
+                            const valStr = typeof valObj === 'object' ? valObj.value : valObj;
+                            return (
+                              <option key={idx} value={valStr}>
+                                {valStr}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
 

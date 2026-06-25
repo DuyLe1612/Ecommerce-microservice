@@ -3,23 +3,27 @@ import { ProductSearchResult, PageResponse } from "@/type/product";
 
 export interface SearchParams {
   q?: string;
-  categoryId?: string;
-  brandId?: string;
+  categoryId?: number;
+  brandId?: number;
   minPrice?: number;
   maxPrice?: number;
   status?: string;
   page?: number;  // 0-indexed
   size?: number;
+  sortBy?: string;
+  sortDir?: string;
 }
 
 export async function searchProducts(params: SearchParams): Promise<PageResponse<ProductSearchResult>> {
   const query = new URLSearchParams();
   if (params.q) query.append("q", params.q);
-  if (params.categoryId) query.append("categoryId", params.categoryId);
-  if (params.brandId) query.append("brandId", params.brandId);
+  if (params.categoryId != null) query.append("categoryId", String(params.categoryId));
+  if (params.brandId != null) query.append("brandId", String(params.brandId));
   if (params.minPrice != null) query.append("minPrice", String(params.minPrice));
   if (params.maxPrice != null) query.append("maxPrice", String(params.maxPrice));
   if (params.status) query.append("status", params.status);
+  if (params.sortBy) query.append("sortBy", params.sortBy);
+  if (params.sortDir) query.append("sortDir", params.sortDir);
   query.append("page", String(params.page ?? 0));
   query.append("size", String(params.size ?? 20));
 

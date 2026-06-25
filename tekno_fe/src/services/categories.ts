@@ -210,7 +210,7 @@ export async function getCategoryAttributeValues(
 
 export async function addCategoryAttributeValue(attributeId: number, value: string) {
   try {
-    const body = { AttributeId: attributeId, Value: value };
+    const body = { attributeId: attributeId, value: value };
     return await post(`${API_BASE}/admin/categories/attributes/values`, body);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
@@ -220,11 +220,7 @@ export async function addCategoryAttributeValue(attributeId: number, value: stri
 
 export async function deleteCategoryAttributeValue(valueId: number, value: string) {
   try {
-    const body = { ValueId: valueId, Value: value };
-    return await del(`${API_BASE}/admin/categories/attributes/values/${valueId}`, {
-      body: JSON.stringify(body),
-      headers: { "Content-Type": "application/json" },
-    });
+    return await del(`${API_BASE}/admin/categories/attributes/values/${valueId}`);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);
     throw error;
@@ -233,7 +229,7 @@ export async function deleteCategoryAttributeValue(valueId: number, value: strin
 
 export async function updateCategoryAttributeValues(valueId: number, values: string[]) {
   try {
-    const body = { ValueId: valueId, Values: values };
+    const body = { value: values.length > 0 ? values[0] : "" };
     return await put(`${API_BASE}/admin/categories/attributes/values/${valueId}`, body);
   } catch (error) {
     console.error("❌ Lỗi khi gọi API:", error);

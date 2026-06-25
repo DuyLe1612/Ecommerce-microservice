@@ -370,9 +370,9 @@ export default function ProductPage() {
                 price: variant.price,
                 stock: variant.stock,
                 status: variant.status || "available",
-                attributes: variant.attributes.map((attr: any) => ({
-                  name: attr.attributeName || `Attribute ${attr.attributeId}`,
-                  value: String(Array.isArray(attr.value) ? attr.value[0] || '' : attr.value)
+                attributeValues: variant.attributes.map((attr: any) => ({
+                  attributeId: attr.attributeId,
+                  valueId: attr.valueId || 0
                 }))
               };
               await createProductVariant(variantPayload);
@@ -620,17 +620,10 @@ export default function ProductPage() {
               price: variant.price,
               stock: variant.stock,
               status: variant.status || "available",
-              attributes: variant.attributes.map(attr => {
-                // ✅ Ensure value is string (not array)
-                let valueStr = attr.value;
-                if (Array.isArray(attr.value)) {
-                  valueStr = attr.value[0] || '';
-                }
-
-                // ✅ Use 'name' instead of 'attributeId' for backend
+              attributeValues: variant.attributes.map(attr => {
                 return {
-                  name: attr.attributeName || `Attribute ${attr.attributeId}`,
-                  value: String(valueStr)
+                  attributeId: attr.attributeId,
+                  valueId: attr.valueId || 0
                 };
               })
             };

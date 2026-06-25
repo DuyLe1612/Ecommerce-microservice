@@ -117,13 +117,20 @@ public class ProductSearchRepositoryImpl implements ProductSearchRepository {
 
     @Override
     public com.example.search.application.dto.SearchResponse<ProductDocument> search(
-            String query, String categoryId, String brandId, Double minPrice, Double maxPrice, String status, int page, int size) {
+            String query, String categoryId, String brandId, Double minPrice, Double maxPrice, String status, String sortBy, String sortDir, int page, int size) {
         
         try {
             SearchResponse<ProductDocument> response = client.search(s -> {
                 s.index(ALIAS_NAME)
                  .from(page * size)
                  .size(size);
+
+                if (StringUtils.hasText(sortBy)) {
+                    SortOrder order = "ASC".equalsIgnoreCase(sortDir) ? SortOrder.Asc : SortOrder.Desc;
+                    s.sort(so -> so.field(f -> f.field(sortBy).order(order)));
+                } else {
+                    s.sort(so -> so.field(f -> f.field("createdAt").order(SortOrder.Desc)));
+                }
                 
                 s.query(q -> q.bool(b -> {
                     if (StringUtils.hasText(query)) {
