@@ -159,13 +159,13 @@ public class PayPalSimulator implements PaymentGateway {
         final String paypalOrderId;
         final String transactionId;
         final Long orderId;
-        final Long userId;
+        final String userId;
         final java.math.BigDecimal amount;
         final String currency;
         volatile OrderStatus status;
         final String accessToken;
 
-        SimulatedPayPalOrder(String paypalOrderId, String transactionId, Long orderId, Long userId,
+        SimulatedPayPalOrder(String paypalOrderId, String transactionId, Long orderId, String userId,
                              java.math.BigDecimal amount, String currency, OrderStatus status, String accessToken) {
             this.paypalOrderId = paypalOrderId;
             this.transactionId = transactionId;

@@ -25,6 +25,9 @@ spring:
 server:
   port: ${PORT:8086}
 
+jwt:
+  secret: ${JWT_SECRET:67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0}
+
 payment:
   external:
     auth:
@@ -33,22 +36,22 @@ payment:
       jwt-secret: ${PAYMENT_EXTERNAL_AUTH_JWT_SECRET:${JWT_SECRET:your-256-bit-secret-key-for-jwt-signing-minimum-32-chars}}
     order:
       mode: ${PAYMENT_EXTERNAL_ORDER_MODE:mock}
-      base-url: ${PAYMENT_EXTERNAL_ORDER_BASE_URL:http://order-service:8082}
+      base-url: ${PAYMENT_EXTERNAL_ORDER_BASE_URL:http://order-service:8087}
   simulator:
     vnpay:
-      failure-rate: 0.1
+      failure-rate: 0.0
       processing-delay-ms: 200
     momo:
-      failure-rate: 0.05
+      failure-rate: 0.0
       processing-delay-ms: 150
     zalopay:
-      failure-rate: 0.08
+      failure-rate: 0.0
       processing-delay-ms: 180
     paypal:
-      failure-rate: 0.03
+      failure-rate: 0.0
       processing-delay-ms: 300
     stripe:
-      failure-rate: 0.02
+      failure-rate: 0.0
       processing-delay-ms: 100
   timeout:
     default-minutes: 15

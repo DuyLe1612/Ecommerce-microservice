@@ -21,4 +21,5 @@ public interface PaymentRepository {
     List<PaymentTransaction> findProcessingExpiredBefore(LocalDateTime cutoff);
     Page<PaymentTransaction> findAll(AdminListPaymentsQueryHandler.PaymentFilter filter, Pageable pageable);
     AdminPaymentStatisticsQueryHandler.PaymentStatistics getStatistics(LocalDate from, LocalDate to);
+    List<PaymentTransaction> findByUserId(String userId);
 }

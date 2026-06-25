@@ -2,46 +2,32 @@ import { API_BASE_URL } from "@/lib/apiConfig";
 import { CreateOrderRequest, CreateOrderResponse, Order, OrderHistoryResponse } from "@/type/order";
 import { ApiResponse } from "@/type/share";
 
+// The BE returns Spring Page<> which is a flat object (not wrapped in ApiResponse)
+// Note: BE /history does NOT support status filtering — it returns all user orders
 export async function fetchOrderHistory(
-    status?: number,
-  page = 1,
-  pageSize = 20,
+  page = 0,
+  pageSize = 10,
   accessToken?: string
 ): Promise<OrderHistoryResponse> {
-  const searchParams = new URLSearchParams();
+  const params = new URLSearchParams();
+  params.append("page", String(page));
+  params.append("pageSize", String(pageSize));
 
-      if (status !== undefined) {
-    searchParams.append("status", status.toString());
-  }
-  if (page) {
-    searchParams.append("page", page.toString());
-  }
+  const res = await fetch(`${API_BASE_URL}/orders/history?${params}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+    },
+    cache: "no-store",
+  });
 
-  if (pageSize) {
-    searchParams.append("pageSize", pageSize.toString());
-  }
-
-  const res = await fetch(
-    `${API_BASE_URL}/orders/history?${searchParams.toString()}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      cache: "no-store",
-    }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch order history");
-  }
-
-  const json: ApiResponse<OrderHistoryResponse> = await res.json();
-
-  return json.data;
+  if (!res.ok) throw new Error("Failed to fetch order history");
+  return (await res.json()) as OrderHistoryResponse;
 }
 
+// GET /api/orders/by-id/{orderId}
+// BE returns ApiResponse<OrderResponse> — unwrap to Order
 export async function getOrderByOrderId(token: string, orderId: number): Promise<Order> {
   const res = await fetch(`${API_BASE_URL}/orders/by-id/${orderId}`, {
     method: "GET",
@@ -54,15 +40,10 @@ export async function getOrderByOrderId(token: string, orderId: number): Promise
 
   const json = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(json?.message || "Failed to fetch order by id");
-
-  // API có thể trả về { data: Order } hoặc trực tiếp Order
   return (json?.data ?? json) as Order;
 }
 
-/**
- * GET /api/orders/by-id/{orderId}
- * Trả về chi tiết đơn hàng
- */
+// GET /api/orders/{orderNumber}
 export async function getOrderByOrderNumber(token: string, orderNumber: string): Promise<Order> {
   const res = await fetch(`${API_BASE_URL}/orders/${orderNumber}`, {
     method: "GET",
@@ -74,12 +55,11 @@ export async function getOrderByOrderNumber(token: string, orderNumber: string):
   });
 
   const json = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(json?.message || "Failed to fetch order by id");
-
-  // API có thể trả về { data: Order } hoặc trực tiếp Order
+  if (!res.ok) throw new Error(json?.message || "Failed to fetch order");
   return (json?.data ?? json) as Order;
 }
 
+// POST /api/orders/create
 export async function createOrder(
   payload: CreateOrderRequest,
   token: string
@@ -94,9 +74,7 @@ export async function createOrder(
   });
 
   const json = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    throw new Error(json?.message || "Create order failed");
-  }
+  if (!res.ok) throw new Error(json?.message || "Create order failed");
 
   const order = json?.data ?? json;
   return {

@@ -15,13 +15,14 @@ export default function ProductInCart({
 }) {
   const productName = product.productName ?? product.name ?? `Variant #${product.variantId}`;
   const lineTotal = product.totalPrice ?? Number(product.price) * Number(product.quantity);
+  const productHref = product.productSlug ? `/products/${product.productSlug}` : "/products";
 
   return (
     <div className="flex p-4 items-center justify-between gap-6 w-full">
       <div className="flex items-center gap-4 h-24 md:h-36 shrink-0">
-        {product?.primaryImage && product?.productSlug && (
+        {product?.primaryImage && product?.productSlug ? (
           <Link
-            href={`/products/${product?.productSlug}`}
+            href={`/products/${product.productSlug}`}
             className="block border border-white/10 bg-black/40 p-2 rounded-xl overflow-hidden group hover:border-primary/50 transition-colors"
           >
             <Image
@@ -33,11 +34,13 @@ export default function ProductInCart({
               className="w-20 md:w-32 h-20 md:h-32 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
             />
           </Link>
+        ) : (
+          <div className="w-32 md:w-40 h-32 md:h-40 border border-white/10 bg-white/5 rounded-md" aria-hidden="true" />
         )}
       </div>
       <div className="h-full flex flex-1 flex-col justify-between py-1">
         <div className="flex flex-col gap-1.5 md:gap-2">
-          <Link href={`/products/${product?.productSlug}`} className="hover:text-primary transition-colors">
+          <Link href={productHref} className="hover:text-primary transition-colors">
             <h2 className="text-base md:text-lg font-semibold line-clamp-2 text-white/90">
               {productName}
             </h2>

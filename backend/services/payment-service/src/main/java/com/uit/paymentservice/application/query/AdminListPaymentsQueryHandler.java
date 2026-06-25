@@ -32,7 +32,7 @@ public class AdminListPaymentsQueryHandler {
         PaymentGatewayType gatewayType,
         LocalDate fromDate,
         LocalDate toDate,
-        Long userId,
+        String userId,
         Long orderId
     ) {}
 
@@ -62,7 +62,7 @@ public class AdminListPaymentsQueryHandler {
     public record PaymentSummary(
         Long transactionId,
         Long orderId,
-        Long userId,
+        String userId,
         BigDecimal amount,
         String currency,
         String gatewayType,

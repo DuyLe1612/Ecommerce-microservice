@@ -6,196 +6,158 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { fetchOrderHistory } from "@/services/order";
 import { Order } from "@/type/order";
-import { Badge } from "@/components/ui/badge";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, PackageSearch } from "lucide-react";
 import Link from "next/link";
 import FormattedPrice from "@/components/share/FormattedPriced";
 
-type TabKey =
-  | "all"
-  | "Pending"
-  | "Processing"
-  | "Completed"
-  | "Shipping"
-  | "Delivered"
-  | "Cancelled"
-  | "RefundRequested"
-  | "Refunded";
+type TabKey = "all" | "PENDING_PAYMENT" | "PROCESSING" | "SHIPPING" | "DELIVERED" | "CANCELLED";
+
+const STATUS_LABELS: Record<TabKey, string> = {
+  all: "All",
+  PENDING_PAYMENT: "Pending payment",
+  PROCESSING: "Processing",
+  SHIPPING: "Shipping",
+  DELIVERED: "Delivered",
+  CANCELLED: "Cancelled",
+};
+
+const tabs: TabKey[] = ["all", "PENDING_PAYMENT", "PROCESSING", "SHIPPING", "DELIVERED", "CANCELLED"];
+
+function statusLabel(status?: string, fallback?: string) {
+  const key = status as TabKey;
+  return STATUS_LABELS[key] ?? fallback ?? status ?? "Unknown";
+}
+
+function orderDate(value?: string) {
+  if (!value) return "-";
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  }).format(new Date(value));
+}
 
 export default function OrderHistoryPage() {
   const [tab, setTab] = useState<TabKey>("all");
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const pageSize = 10;
-
-  // map tab -> status code (adjust to your API)
-  const statusMap: Record<TabKey, number | undefined> = {
-    all: undefined,
-    Pending: 1, // Order created, awaiting payment
-    Processing: 2, // Payment received, preparing order
-    Completed: 3, // Legacy - use Shipping/Delivered instead
-    Shipping: 4, // Order shipped, on the way
-    Delivered: 5, // Order delivered to customer
-    Cancelled: 6, // Order cancelled
-    RefundRequested: 7, // Customer requested refund
-    Refunded: 8,
-  };
 
   useEffect(() => {
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") ?? "" : "";
     setLoading(true);
-    console.log("Fetching orders with status:", statusMap[tab]);
 
-    fetchOrderHistory(statusMap[tab], page, pageSize, token)
-      .then((res) => setOrders(res.data))
+    fetchOrderHistory(page, pageSize, token)
+      .then((res) => setOrders(res.content ?? []))
       .catch((err) => console.error("Order history error:", err))
       .finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tab, page]);
+  }, [page]);
 
-  const counts = useMemo(() => {
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("token") ?? "" : "";
-    // Optionally prefetch counts per status; for simplicity show current array length
-    return {
-      all: tab === "all" ? orders.length : 0,
-      processing: tab === "Processing" ? orders.length : 0,
-      delivered: tab === "Delivered" ? orders.length : 0,
-      canceled: tab === "Cancelled" ? orders.length : 0,
-      returned: tab === "Refunded" ? orders.length : 0,
-    };
-  }, [orders, tab]);
+  const filteredOrders = useMemo(
+    () => (tab === "all" ? orders : orders.filter((order) => order.status === tab)),
+    [orders, tab]
+  );
 
   return (
-    <div className="flex flex-col gap-4">
-      <TitleAccount
-        title="Order History"
-        des="Track, return or purchase items"
-      />
+    <div className="flex flex-col gap-5">
+      <TitleAccount title="Order History" des="Track orders, shipping progress, and payment status." />
 
       <Tabs
         value={tab}
-        onValueChange={(v) => setTab(v as TabKey)}
+        onValueChange={(value) => {
+          setTab(value as TabKey);
+          setPage(0);
+        }}
         className="w-full"
       >
-        <TabsList className="flex items-start gap-2">
-          <TabsTrigger value="all">
-            All orders{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.all}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Processing">
-            Processing{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.processing}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Delivered">
-            Delivered{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.delivered}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Canceled">
-            Canceled{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.canceled}
-            </Badge> */}
-          </TabsTrigger>
-          <TabsTrigger value="Returned">
-            Returned{" "}
-            {/* <Badge variant="outline" className="ml-2">
-              {counts.returned}
-            </Badge> */}
-          </TabsTrigger>
+        <TabsList className="flex h-auto items-start gap-2 flex-wrap bg-white/5 border border-white/10 p-1.5 rounded-lg">
+          {tabs.map((key) => (
+            <TabsTrigger
+              key={key}
+              value={key}
+              className="text-white/60 data-[state=active]:bg-primary data-[state=active]:text-black rounded-md"
+            >
+              {STATUS_LABELS[key]}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
         <TabsContent value={tab}>
           {loading ? (
-            <div className="p-6 text-center text-sm text-gray-500">
+            <div className="p-8 text-center text-sm text-white/50 border border-white/10 rounded-lg bg-white/5">
               Loading orders...
             </div>
-          ) : orders.length === 0 ? (
-            <div className="p-10 text-center text-sm text-gray-500">
+          ) : filteredOrders.length === 0 ? (
+            <div className="p-10 text-center text-sm text-white/50 border border-white/10 rounded-lg bg-white/5">
+              <PackageSearch className="w-8 h-8 mx-auto mb-3 text-white/30" />
               No orders found.
             </div>
           ) : (
-            <div className="space-y-6 mt-4">
-              {orders.map((order) => (
+            <div className="space-y-4 mt-4">
+              {filteredOrders.map((order) => (
                 <Link
-                  href={`/account/orders/order-status/${encodeURIComponent(
-                    order.orderNumber
-                  )}`}
-                  key={order.orderNumber}
-                  className="border rounded-xl overflow-hidden"
+                  href={`/account/orders/order-status/${encodeURIComponent(order.orderNumber)}`}
+                  key={order.orderNumber ?? order.id}
+                  className="border border-white/10 rounded-lg overflow-hidden block bg-white/[0.03] hover:border-primary/50 transition-colors"
                 >
-                  {/* header row */}
-                  <div className="grid grid-cols-5 items-start gap-4 bg-gray-50 px-4 py-3 text-sm">
+                  <div className="grid grid-cols-1 md:grid-cols-5 items-start gap-4 bg-white/5 px-4 py-3 text-sm">
                     <div>
-                      <div className="text-gray-500">Order code</div>
-                      <div className="font-medium">
-                        #{order.orderNumber ?? order.id}
+                      <div className="text-white/45">Order code</div>
+                      <div className="font-medium text-white">#{order.orderNumber ?? order.id}</div>
+                    </div>
+                    <div>
+                      <div className="text-white/45">Placed on</div>
+                      <div className="font-medium text-white">{orderDate(order.createdAt)}</div>
+                    </div>
+                    <div>
+                      <div className="text-white/45">Total</div>
+                      <div className="font-medium text-primary">
+                        <FormattedPrice price={Number(order.totalAmount ?? 0)} />
                       </div>
                     </div>
                     <div>
-                      <div className="text-gray-500">Placed on</div>
-                      <div className="font-medium">
-                        {order.createdAt
-                          ? new Date(order.createdAt).toLocaleDateString()
-                          : "-"}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-500">Total</div>
-                      <div className="font-medium">
-                        {typeof order.totalAmount === "number" ? (
-                          <FormattedPrice price={order.totalAmount} />
-                        ) : (
-                          "-"
-                        )}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-gray-500">Delivered</div>
-                      <div className="font-medium">
-                        {order.delivery?.status ? order.delivery?.status : "-"}
+                      <div className="text-white/45">Shipping to</div>
+                      <div className="font-medium text-white line-clamp-1">
+                        {order.shippingAddress?.city ?? order.shippingAddress?.streetAddress ?? "-"}
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-gray-500">Status</div>
-                        <div className="font-medium">
-                          {order.statusName ?? order.payment ?? "—"}
-                        </div>
+                        <div className="text-white/45">Status</div>
+                        <div className="font-medium text-white">{statusLabel(order.status, order.statusName)}</div>
                       </div>
-                      <ChevronDown className="w-4 h-4 text-gray-500" />
+                      <ChevronDown className="w-4 h-4 text-white/40" />
                     </div>
                   </div>
 
-                  {/* items thumbnails row */}
-                  <div className="flex gap-2 p-3 bg-pink-50 flex-wrap">
-                    {(order.items ?? []).slice(0, 6).map((it) => (
-                      <div
-                        key={it.id}
-                        className="w-14 h-14 bg-white rounded-md overflow-hidden border"
-                      >
-                        <Image
-                          src={
-                            it.product.primaryImageUrl ??
-                            "/images/sample/product.jpg"
-                          }
-                          alt={it.product.name ?? "item"}
-                          width={56}
-                          height={56}
-                          className="w-14 h-14 object-cover"
-                        />
-                      </div>
-                    ))}
+                  <div className="flex gap-2 p-3 bg-black/20 flex-wrap">
+                    {(order.items ?? []).slice(0, 6).map((item, index) => {
+                      const imageSrc = item.productImageUrl ?? item.product?.primaryImageUrl ?? null;
+                      return (
+                        <div
+                          key={item.id ?? item.productId ?? index}
+                          className="w-14 h-14 bg-white/5 rounded-md overflow-hidden border border-white/10"
+                        >
+                          {imageSrc ? (
+                            <Image
+                              src={imageSrc}
+                              alt={item.productName ?? "Order item"}
+                              width={56}
+                              height={56}
+                              className="w-14 h-14 object-cover"
+                            />
+                          ) : (
+                            <div className="w-14 h-14 flex items-center justify-center text-[10px] text-white/30">
+                              No image
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                     {order.items && order.items.length > 6 && (
-                      <div className="w-14 h-14 bg-white rounded-md border flex items-center justify-center text-sm text-gray-600">
+                      <div className="w-14 h-14 bg-white/5 rounded-md border border-white/10 flex items-center justify-center text-sm text-white/60">
                         +{order.items.length - 6}
                       </div>
                     )}

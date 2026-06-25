@@ -2,12 +2,60 @@ import { PaymentStatus } from "./payment";
 import { Product, ProductVariant } from "./product";
 
 export type OrderHistoryResponse = {
-  data: Order[];
-  page: number;
-  pageSize: number;
-  totalRecords: number;
+  content: Order[];
+  totalElements: number;
   totalPages: number;
+  size: number;
+  number: number;
+  pageable: object;
+  first: boolean;
+  last: boolean;
+  numberOfElements: number;
+  empty: boolean;
 };
+
+export type OrderItem = {
+  id: number;
+  productId: number;
+  variantId?: number;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  subtotal: number;
+  productImageUrl?: string | null;
+  productSlug?: string | null;
+  sku?: string | null;
+  // For display convenience — populated by FE from product service if needed
+  product?: Product;
+  variant?: ProductVariant;
+};
+
+export type Order = {
+  id: number;
+  orderNumber: string;
+  userId: string;
+  status: string;
+  statusName: string;
+  totalAmount: number;
+  currency: string;
+  createdAt: string;
+  updatedAt: string;
+  items?: OrderItem[];
+  shippingAddress?: OrderShippingAddress | null;
+  payment?: PaymentStatus;
+  delivery?: Delivery;
+};
+
+export type OrderShippingAddress = {
+  recipientName: string;
+  phone: string;
+  streetAddress: string;
+  city: string;
+  district?: string | null;
+  ward?: string | null;
+  postalCode?: string | null;
+};
+
 export type Delivery = {
   status: string;
   trackingNumber: string | null;
@@ -26,33 +74,17 @@ export type Delivery = {
     wardCode: number;
     wardName: string;
   }
-}
-export type Order = {
-  id: number;
-  orderNumber: string;
-  status: number;
-  statusName: string;
-  totalAmount: number;
-  createdAt: string;
-  completedAt: string | null;
-  payment: PaymentStatus | null;
-  items: OrderItem[];
-  delivery: Delivery | null; // need fix
-};
-export type OrderItem = {
-  id: number;
-  quantity: number;
-  price: number;
-  totalPrice: number;
-  product: Product;
-  variant: ProductVariant;
 };
 
 export type CreateOrderRequest = {
-  userId: number;
+  userId: string;
   items: {
     productId: number;
+    variantId?: number;
     productName: string;
+    productImageUrl?: string | null;
+    productSlug?: string | null;
+    sku?: string | null;
     quantity: number;
     unitPrice: number;
     subtotal: number;
@@ -71,14 +103,16 @@ export type CreateOrderRequest = {
     postalCode?: string;
   };
   notes?: string;
+  couponCode?: string;
+  couponId?: number;
 };
 
 export type CreateOrderResponse = {
-    id?: number;
-    orderId: number;
-    orderNumber: string;
-    totalAmount: number;
-    itemsCount: number;
-    status: string;
-    note: string;
+  id?: number;
+  orderId: number;
+  orderNumber: string;
+  totalAmount: number;
+  itemsCount: number;
+  status: string;
+  note: string;
 };

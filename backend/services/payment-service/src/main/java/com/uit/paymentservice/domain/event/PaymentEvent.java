@@ -8,10 +8,10 @@ public abstract sealed class PaymentEvent
             PaymentFailedEvent, PaymentRefundedEvent, PaymentTimedOutEvent {
     public final String transactionId;
     public final Long orderId;
-    public final Long userId;
+    public final String userId;
     public final LocalDateTime occurredAt;
 
-    protected PaymentEvent(String transactionId, Long orderId, Long userId) {
+    protected PaymentEvent(String transactionId, Long orderId, String userId) {
         this.transactionId = transactionId;
         this.orderId = orderId;
         this.userId = userId;

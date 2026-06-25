@@ -4,12 +4,14 @@ import com.example.product.application.dto.ApiResponse;
 import com.example.product.application.dto.ProductDetailResponse;
 import com.example.product.application.dto.ProductVariantResponse;
 import com.example.product.application.usecase.GetProductBySlugUseCase;
+import com.example.product.application.usecase.ProductQueryUseCase;
 import com.example.product.application.usecase.StockManagementUseCase;
 import com.example.product.application.dto.StockReserveRequest;
 import com.example.product.domain.exception.DomainException;
 import com.example.product.infrastructure.persistence.repository.ProductVariantRepository;
 import com.example.product.infrastructure.persistence.repository.SpringDataProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,7 @@ public class ProductInternalController {
 
     // Get product index feed for search-service
     @GetMapping("/index-feed")
-    public ResponseEntity<org.springframework.data.domain.Page<com.example.product.application.usecase.ProductQueryUseCase.ProductIndexFeedResponse>> getIndexFeed(
+    public ResponseEntity<Page<ProductQueryUseCase.ProductIndexFeedResponse>> getIndexFeed(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(required = false) @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) java.time.LocalDateTime updatedAfter) {
@@ -60,6 +62,7 @@ public class ProductInternalController {
                                     variant.getStock(),
                                     item.quantity(),
                                     variant.getPrice(),
+                                    primaryImageUrl(variant.getProduct()),
                                     variant.getStatus(),
                                     null
                             )).orElseGet(() -> new ItemValidationResult(
@@ -68,6 +71,7 @@ public class ProductInternalController {
                                     false,
                                     0,
                                     item.quantity(),
+                                    null,
                                     null,
                                     null,
                                     "Product variant not found"
@@ -92,10 +96,24 @@ public class ProductInternalController {
             int availableStock,
             int requestedQuantity,
             java.math.BigDecimal price,
+            String productImageUrl,
             String status,
             String error
     ) {
         public boolean valid() { return exists && inStock; }
+    }
+
+    private String primaryImageUrl(com.example.product.infrastructure.persistence.entity.ProductJpaEntity product) {
+        if (product == null || product.getImages() == null || product.getImages().isEmpty()) {
+            return null;
+        }
+
+        return product.getImages().stream()
+                .filter(image -> Boolean.TRUE.equals(image.getIsPrimary()))
+                .findFirst()
+                .or(() -> product.getImages().stream().findFirst())
+                .map(com.example.product.infrastructure.persistence.entity.ProductImageJpaEntity::getImageUrl)
+                .orElse(null);
     }
 
     // Reserve stock for order

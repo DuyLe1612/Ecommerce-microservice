@@ -6,6 +6,7 @@ import com.uit.paymentservice.application.dto.ProcessPaymentResponse;
 import com.uit.paymentservice.application.dto.GatewayInfo;
 import com.uit.paymentservice.application.dto.PaymentStatusResponse;
 import com.uit.paymentservice.application.query.GetAvailableGatewaysQueryHandler;
+import com.uit.paymentservice.application.query.GetMyPaymentsQueryHandler;
 import com.uit.paymentservice.application.query.GetOrderPaymentStatusQueryHandler;
 import com.uit.paymentservice.application.query.GetPaymentStatusQueryHandler;
 import com.uit.paymentservice.presentation.dto.ApiResponse;
@@ -15,6 +16,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -30,16 +33,18 @@ public class PaymentController {
     private final GetPaymentStatusQueryHandler getPaymentStatusHandler;
     private final GetOrderPaymentStatusQueryHandler getOrderPaymentStatusHandler;
     private final GetAvailableGatewaysQueryHandler getAvailableGatewaysHandler;
+    private final GetMyPaymentsQueryHandler getMyPaymentsHandler;
 
     public PaymentController(
             ProcessPaymentCommandHandler processPaymentHandler,
             GetPaymentStatusQueryHandler getPaymentStatusHandler,
             GetOrderPaymentStatusQueryHandler getOrderPaymentStatusHandler,
-            GetAvailableGatewaysQueryHandler getAvailableGatewaysHandler) {
+            GetAvailableGatewaysQueryHandler getAvailableGatewaysHandler, GetMyPaymentsQueryHandler getMyPaymentsHandler) {
         this.processPaymentHandler = processPaymentHandler;
         this.getPaymentStatusHandler = getPaymentStatusHandler;
         this.getOrderPaymentStatusHandler = getOrderPaymentStatusHandler;
         this.getAvailableGatewaysHandler = getAvailableGatewaysHandler;
+        this.getMyPaymentsHandler = getMyPaymentsHandler;
     }
 
     @Operation(
@@ -72,38 +77,44 @@ public class PaymentController {
                 description = "UUID idempotency key. Duplicate requests with the same key return the cached response.",
                 required = true,
                 example = "550e8400-e29b-41d4-a716-446655440000")
-            @RequestHeader("Idempotency-Key") String idempotencyKey,
-            @RequestHeader(value = "Authorization", required = false) String authHeader,
-            @Parameter(description = "User ID — set by API gateway after auth")
-            @RequestHeader(value = "X-User-Id", required = false) Long xUserId) {
+            @RequestHeader("Idempotency-Key") String idempotencyKey) {
 
-        // Resolve userId: prefer Authorization mock token, fall back to X-User-Id header
-        Long userId = resolveUserId(authHeader, xUserId);
+        String userId = getCurrentUserId();
         if (userId == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(ApiResponse.error("UNAUTHORIZED", "User identity required: provide Authorization header or X-User-Id"));
+                .body(ApiResponse.error("UNAUTHORIZED", "User identity required"));
         }
 
         ProcessPaymentResponse response = processPaymentHandler.execute(command, userId, idempotencyKey);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
-    private Long resolveUserId(String authHeader, Long xUserId) {
-        if (authHeader != null && authHeader.startsWith("Bearer mock-user-")) {
-            try {
-                // Extract userId from mock token: mock-user-{userId}-{role}
-                String token = authHeader.substring(7); // remove "Bearer "
-                String[] parts = token.split("-");
-                // Format: mock, user, {userId}, {role}
-                if (parts.length >= 4) {
-                    return Long.parseLong(parts[2]);
-                }
-            } catch (NumberFormatException ignored) {
-                // Fall through to xUserId
-            }
+    @Operation(summary = "Get current user's payment history")
+    @GetMapping("/my-payments")
+    public ResponseEntity<ApiResponse<GetMyPaymentsQueryHandler.MyPaymentsResponse>> getMyPayments(
+            @Parameter(description = "Page number (0-based)", example = "0")
+            @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Page size", example = "20")
+            @RequestParam(defaultValue = "20") int pageSize) {
+
+        String userId = getCurrentUserId();
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponse.error("UNAUTHORIZED", "User identity required"));
         }
-        return xUserId;
+
+        var result = getMyPaymentsHandler.execute(userId, page, pageSize);
+        return ResponseEntity.ok(ApiResponse.success(result));
     }
+
+    private String getCurrentUserId() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && auth.getPrincipal() != null) {
+            return auth.getPrincipal().toString();
+        }
+        return null;
+    }
+
 
     @Operation(
         summary = "List available payment gateways",

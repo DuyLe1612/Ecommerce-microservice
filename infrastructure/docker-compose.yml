@@ -258,6 +258,7 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - ORDER_EXTERNAL_PRODUCT_BASE_URL=http://product-service:8082
+      - JWT_SECRET=${JWT_SECRET:-67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0}
     depends_on:
       postgres:
         condition: service_healthy
@@ -291,6 +292,7 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=tekno
       - RABBITMQ_PASSWORD=tekno123
+      - JWT_SECRET=${JWT_SECRET:-67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0}
     depends_on:
       postgres:
         condition: service_healthy

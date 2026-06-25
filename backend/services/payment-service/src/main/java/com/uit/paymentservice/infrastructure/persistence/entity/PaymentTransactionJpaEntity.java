@@ -18,8 +18,8 @@ public class PaymentTransactionJpaEntity {
     @Column(name = "order_id", nullable = false)
     private Long orderId;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "user_id", nullable = false, length = 36)
+    private String userId;
 
     @Column(name = "amount", nullable = false, precision = 18, scale = 2)
     private BigDecimal amount;
@@ -108,7 +108,9 @@ public class PaymentTransactionJpaEntity {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public Long getOrderId() { return orderId; }
-    public Long getUserId() { return userId; }
+    public void setOrderId(Long orderId) { this.orderId = orderId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
     public BigDecimal getAmount() { return amount; }
     public String getCurrency() { return currency; }
     public PaymentGatewayType getGatewayType() { return gatewayType; }

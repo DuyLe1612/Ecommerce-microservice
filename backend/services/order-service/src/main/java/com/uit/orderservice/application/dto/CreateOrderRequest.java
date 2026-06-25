@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public record CreateOrderRequest(
-    @NotNull Long userId,
+    @NotNull String userId,
 
     @NotEmpty List<@Valid ItemRequest> items,
 
@@ -27,6 +27,7 @@ public record CreateOrderRequest(
     public record ItemRequest(
         @NotNull Long productId,
         @NotBlank String productName,
+        String productImageUrl,
         @NotNull @Positive int quantity,
         @NotNull @Positive BigDecimal unitPrice,
         @NotNull @Positive BigDecimal subtotal

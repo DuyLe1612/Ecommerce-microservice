@@ -3,6 +3,7 @@ package com.uit.paymentservice.presentation.rest;
 import com.uit.paymentservice.application.command.RefundPaymentCommand;
 import com.uit.paymentservice.application.command.CheckPaymentTimeoutsCommand;
 import com.uit.paymentservice.application.dto.RefundRequest;
+import com.uit.paymentservice.application.exception.PaymentNotFoundException;
 import com.uit.paymentservice.application.query.AdminListPaymentsQueryHandler;
 import com.uit.paymentservice.application.query.AdminPaymentStatisticsQueryHandler;
 import com.uit.paymentservice.domain.model.PaymentGatewayType;
@@ -57,7 +58,7 @@ public class AdminPaymentController {
             @Parameter(description = "To date (yyyy-MM-dd)", example = "2026-12-31")
             @RequestParam(required = false) @DateTimeFormat LocalDate toDate,
             @Parameter(description = "Filter by user ID")
-            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String userId,
             @Parameter(description = "Filter by order ID")
             @RequestParam(required = false) Long orderId,
             Pageable pageable) {
@@ -76,7 +77,7 @@ public class AdminPaymentController {
             @PathVariable Long id) {
 
         var tx = paymentRepository.findById(id)
-            .orElseThrow(() -> new com.uit.paymentservice.application.exception.PaymentNotFoundException(
+            .orElseThrow(() -> new PaymentNotFoundException(
                 "Payment not found: " + id));
         return ResponseEntity.ok(ApiResponse.success(toSummary(tx)));
     }

@@ -20,8 +20,8 @@ public class OrderJpaEntity {
     @Column(name = "order_number", unique = true, nullable = false)
     private String orderNumber;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "user_id", nullable = false, length = 36)
+    private String userId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -96,8 +96,8 @@ public class OrderJpaEntity {
     public void setId(Long id) { this.id = id; }
     public String getOrderNumber() { return orderNumber; }
     public void setOrderNumber(String orderNumber) { this.orderNumber = orderNumber; }
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
     public OrderStatus getStatus() { return status; }
     public void setStatus(OrderStatus status) { this.status = status; }
     public BigDecimal getSubtotalAmount() { return subtotalAmount; }

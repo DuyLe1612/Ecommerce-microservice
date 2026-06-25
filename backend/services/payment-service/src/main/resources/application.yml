@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:payment_db}
+    username: ${DB_USER:tekno}
+    password: ${DB_PASSWORD:tekno123}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: ${PORT:8086}
+
+jwt:
+  secret: ${JWT_SECRET:67948303ff68727a66d36abd88ce6d248bf9bf7c4f4ad98c7b89d84fc71019b0}
+
+payment:
+  external:
+    auth:
+      mode: ${PAYMENT_EXTERNAL_AUTH_MODE:mock}
+      base-url: ${PAYMENT_EXTERNAL_AUTH_BASE_URL:http://localhost:8081}
+    order:
+      mode: ${PAYMENT_EXTERNAL_ORDER_MODE:mock}
+      base-url: ${PAYMENT_EXTERNAL_ORDER_BASE_URL:http://localhost:8087}
+  simulator:
+    vnpay:
+      failure-rate: 0.0
+      processing-delay-ms: 0
+    momo:
+      failure-rate: 0.0
+      processing-delay-ms: 0
+    zalopay:
+      failure-rate: 0.0
+      processing-delay-ms: 0
+    paypal:
+      failure-rate: 0.0
+      processing-delay-ms: 0
+    stripe:
+      failure-rate: 0.0
+      processing-delay-ms: 0
+  timeout:
+    default-minutes: 15
+    sweep-interval-ms: 60000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.uit.paymentservice: INFO

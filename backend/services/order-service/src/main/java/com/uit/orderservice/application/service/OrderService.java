@@ -1,8 +1,9 @@
 package com.uit.orderservice.application.service;
 
 import com.uit.orderservice.application.dto.CreateOrderRequest;
+import com.uit.orderservice.application.dto.OrderItemResponse;
 import com.uit.orderservice.application.dto.OrderResponse;
-import com.uit.orderservice.application.exception.ProductServiceUnavailableException;
+import com.uit.orderservice.application.dto.ShippingAddressResponse;
 import com.uit.orderservice.application.exception.ProductValidationException;
 import com.uit.orderservice.domain.event.*;
 import com.uit.orderservice.domain.model.*;
@@ -11,9 +12,15 @@ import com.uit.orderservice.infrastructure.external.ProductServiceClient;
 import com.uit.orderservice.infrastructure.messaging.OrderEventPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,11 +44,17 @@ public class OrderService {
     public OrderResponse createOrder(CreateOrderRequest request) {
         log.info("Creating order for userId={}", request.userId());
 
-        // Step 1: Validate all order items against product-service
-        validateOrderItems(request.items());
+        Map<Long, ProductServiceClient.ItemValidationResult> validatedItems = validateOrderItems(request.items());
 
         List<OrderItem> items = request.items().stream()
-            .map(i -> new OrderItem(i.productId(), i.productName(), i.quantity(), i.unitPrice(), i.subtotal()))
+            .map(i -> new OrderItem(
+                i.productId(),
+                i.productName(),
+                productImageUrlFor(i, validatedItems),
+                i.quantity(),
+                i.unitPrice(),
+                i.subtotal()
+            ))
             .toList();
 
         ShippingAddress address = new ShippingAddress(
@@ -68,7 +81,6 @@ public class OrderService {
         order = orderRepository.save(order);
         log.info("Order persisted: id={}, orderNumber={}", order.getId(), order.getOrderNumber());
 
-        // Step 4: Reserve stock — if this fails, cancel the order and surface the error
         try {
             List<ProductServiceClient.StockReservationItem> reservationItems = request.items().stream()
                 .map(i -> new ProductServiceClient.StockReservationItem(i.productId(), i.quantity()))
@@ -82,17 +94,44 @@ public class OrderService {
             throw new RuntimeException("Order cancelled — could not reserve stock: " + ex.getMessage(), ex);
         }
 
-        // Step 5: Publish OrderCreated event (after successful DB save AND stock reservation)
         eventPublisher.publish(new OrderCreatedEvent(
             order.getId(), order.getOrderNumber(), order.getUserId(),
             order.getTotalAmount().amount(), order.getTotalAmount().currency(),
             order.getCouponCode()
         ));
 
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
-    private void validateOrderItems(List<CreateOrderRequest.ItemRequest> items) {
+    @Transactional
+    public OrderResponse updateStatus(Long orderId, OrderStatus newStatus, String notes) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
+
+        if (!order.getStatus().canTransitionTo(newStatus)) {
+            throw new IllegalStateException(
+                    "Cannot transition order " + orderId + " from " + order.getStatus() + " to " + newStatus);
+        }
+
+        order.updateStatus(newStatus);
+        if (notes != null && !notes.isBlank()) {
+            order.setNotes((order.getNotes() != null ? order.getNotes() + "; " : "") + notes);
+        }
+        order = orderRepository.save(order);
+        log.info("Order {} status updated to {} by admin", orderId, newStatus);
+        return toResponseWithSnapshots(order);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<OrderResponse> listOrders(
+            OrderStatus status, String userId,
+            LocalDateTime fromDate, LocalDateTime toDate,
+            Pageable pageable) {
+        return orderRepository.findAll(status, userId, fromDate, toDate, pageable)
+                .map(this::toResponseWithSnapshots);
+    }
+
+    private Map<Long, ProductServiceClient.ItemValidationResult> validateOrderItems(List<CreateOrderRequest.ItemRequest> items) {
         List<ProductServiceClient.ProductItemRequest> productRequests = items.stream()
             .map(i -> new ProductServiceClient.ProductItemRequest(i.productId(), i.quantity()))
             .toList();
@@ -123,35 +162,59 @@ public class OrderService {
         }
 
         log.info("All {} order items validated successfully", items.size());
+        return result.results().stream()
+            .collect(Collectors.toMap(
+                ProductServiceClient.ItemValidationResult::productId,
+                Function.identity(),
+                (left, right) -> left
+            ));
+    }
+
+    private String productImageUrlFor(
+            CreateOrderRequest.ItemRequest item,
+            Map<Long, ProductServiceClient.ItemValidationResult> validatedItems) {
+        ProductServiceClient.ItemValidationResult validation = validatedItems.get(item.productId());
+        String productImageUrl = validation != null ? validation.productImageUrl() : null;
+        return productImageUrl != null && !productImageUrl.isBlank()
+            ? productImageUrl
+            : item.productImageUrl();
     }
 
     @Transactional(readOnly = true)
     public OrderResponse getOrderByNumber(String orderNumber) {
         return orderRepository.findByOrderNumber(orderNumber)
-            .map(this::toResponse)
+            .map(this::toResponseWithSnapshots)
             .orElseThrow(() -> new OrderNotFoundException(orderNumber));
     }
 
     @Transactional(readOnly = true)
     public OrderResponse getOrderById(Long orderId) {
         return orderRepository.findById(orderId)
-            .map(this::toResponse)
+            .map(this::toResponseWithSnapshots)
             .orElseThrow(() -> new OrderNotFoundException(orderId));
     }
 
     @Transactional(readOnly = true)
-    public List<OrderResponse> getOrderHistory(Long userId) {
+    public List<OrderResponse> getOrderHistory(String userId) {
+        log.info("Getting order history for userId={}", userId);
         return orderRepository.findByUserId(userId).stream()
-            .map(this::toResponse)
+            .map(this::toResponseWithSnapshots)
             .toList();
     }
 
+    @Transactional(readOnly = true)
+    public Page<OrderResponse> getOrderHistory(String userId, Pageable pageable) {
+        log.info("Getting paginated order history for userId={}, page={}, size={}",
+            userId, pageable.getPageNumber(), pageable.getPageSize());
+        return orderRepository.findByUserId(userId, pageable)
+            .map(this::toResponseWithSnapshots);
+    }
+
     @Transactional
-    public OrderResponse cancelOrder(Long orderId, Long userId, String reason) {
+    public OrderResponse cancelOrder(Long orderId, String userId, String reason) {
         Order order = orderRepository.findById(orderId)
             .orElseThrow(() -> new OrderNotFoundException(orderId));
 
-        // null userId = admin cancel, skip ownership check
         if (userId != null && !order.isOwnedBy(userId)) {
             throw new UnauthorizedOrderAccessException(
                 "User " + userId + " does not own order " + orderId);
@@ -167,7 +230,7 @@ public class OrderService {
         log.info("Order {} cancelled by {}", orderId,
             userId != null ? "user " + userId : "admin");
 
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional
@@ -184,7 +247,7 @@ public class OrderService {
             order.getId(), order.getOrderNumber(), order.getUserId(), trackingNumber));
         log.info("Order {} shipped with tracking {}", orderId, trackingNumber);
 
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional
@@ -201,24 +264,78 @@ public class OrderService {
             order.getId(), order.getOrderNumber(), order.getUserId()));
 
         log.info("Order {} delivered and completed", orderId);
-        return toResponse(order);
+        return toResponseWithSnapshots(order);
     }
 
     @Transactional(readOnly = true)
-    public boolean hasUserPurchasedProduct(Long userId, Long productId) {
+    public boolean hasUserPurchasedProduct(String userId, Long productId) {
         return orderRepository.hasDeliveredOrderWithProduct(userId, productId);
     }
 
     private OrderResponse toResponse(Order order) {
+        List<OrderItemResponse> items = order.getItems().stream()
+            .map(i -> new OrderItemResponse(
+                i.productId(),           // id (same as productId for display)
+                i.productId(),
+                i.productName(),
+                i.quantity(),
+                i.unitPrice(),
+                i.subtotal(),
+                null                      // productImageUrl — populated separately if needed
+            ))
+            .toList();
+
         return new OrderResponse(
             order.getId(),
             order.getOrderNumber(),
             order.getUserId(),
             order.getStatus().name(),
+            order.getStatus().displayName(),
             order.getTotalAmount().amount(),
             order.getTotalAmount().currency(),
             order.getCreatedAt(),
-            order.getUpdatedAt()
+            order.getUpdatedAt(),
+            items
+        );
+    }
+
+    private OrderResponse toResponseWithSnapshots(Order order) {
+        List<OrderItemResponse> items = order.getItems().stream()
+            .map(i -> new OrderItemResponse(
+                i.productId(),
+                i.productId(),
+                i.productName(),
+                i.quantity(),
+                i.unitPrice(),
+                i.subtotal(),
+                i.productImageUrl()
+            ))
+            .toList();
+
+        ShippingAddressResponse shippingAddress = order.getShippingAddress() != null
+            ? new ShippingAddressResponse(
+                order.getShippingAddress().recipientName(),
+                order.getShippingAddress().phone(),
+                order.getShippingAddress().streetAddress(),
+                order.getShippingAddress().city(),
+                order.getShippingAddress().district(),
+                order.getShippingAddress().ward(),
+                order.getShippingAddress().postalCode()
+            )
+            : null;
+
+        return new OrderResponse(
+            order.getId(),
+            order.getOrderNumber(),
+            order.getUserId(),
+            order.getStatus().name(),
+            order.getStatus().displayName(),
+            order.getTotalAmount().amount(),
+            order.getTotalAmount().currency(),
+            order.getCreatedAt(),
+            order.getUpdatedAt(),
+            shippingAddress,
+            items
         );
     }
 

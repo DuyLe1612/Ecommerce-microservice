@@ -6,9 +6,13 @@ import com.uit.orderservice.domain.model.ShippingAddress;
 import com.uit.orderservice.domain.repository.OrderRepository;
 import com.uit.orderservice.infrastructure.persistence.entity.OrderJpaEntity;
 import com.uit.orderservice.infrastructure.persistence.entity.OrderItemJpaEntity;
-import com.uit.orderservice.infrastructure.persistence.OrderJpaRepository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +51,16 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Order> findByUserId(Long userId) {
+    public List<Order> findByUserId(String userId) {
         return jpaRepository.findByUserIdOrderByCreatedAtDesc(userId)
             .stream().map(this::toDomain).toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Order> findByUserId(String userId, Pageable pageable) {
+        return jpaRepository.findByUserId(userId, pageable)
+            .map(this::toDomain);
     }
 
     @Override
@@ -59,9 +70,17 @@ public class OrderRepositoryImpl implements OrderRepository {
             .stream().map(this::toDomain).toList();
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public Page<Order> findAll(
+            OrderStatus status, String userId, LocalDateTime fromDate, LocalDateTime toDate, Pageable pageable) {
+        return jpaRepository.findAll(status, userId, fromDate, toDate, pageable)
+                .map(this::toDomain);
+    }
+
     @Override
     @Transactional(readOnly = true)
-    public boolean hasDeliveredOrderWithProduct(Long userId, Long productId) {
+    public boolean hasDeliveredOrderWithProduct(String userId, Long productId) {
         return jpaRepository.existsDeliveredOrderWithProduct(userId, productId);
     }
 
@@ -96,6 +115,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             OrderItemJpaEntity itemEntity = new OrderItemJpaEntity();
             itemEntity.setProductId(item.productId());
             itemEntity.setProductName(item.productName());
+            itemEntity.setProductImageUrl(item.productImageUrl());
             itemEntity.setQuantity(item.quantity());
             itemEntity.setUnitPrice(item.unitPrice());
             itemEntity.setSubtotal(item.subtotal());
@@ -128,7 +148,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             e.getCreatedAt(), e.getUpdatedAt(),
             e.getItems().stream()
                 .map(ie -> new com.uit.orderservice.domain.model.OrderItem(
-                    ie.getProductId(), ie.getProductName(),
+                    ie.getProductId(), ie.getProductName(), ie.getProductImageUrl(),
                     ie.getQuantity(), ie.getUnitPrice(), ie.getSubtotal()))
                 .toList()
         );

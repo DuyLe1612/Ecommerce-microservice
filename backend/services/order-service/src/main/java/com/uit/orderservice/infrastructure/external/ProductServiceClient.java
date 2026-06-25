@@ -33,6 +33,7 @@ public interface ProductServiceClient {
             int availableStock,
             int requestedQuantity,
             BigDecimal price,
+            String productImageUrl,
             String status,
             String error
     ) {

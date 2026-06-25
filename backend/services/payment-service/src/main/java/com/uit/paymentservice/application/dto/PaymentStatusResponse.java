@@ -13,8 +13,8 @@ public record PaymentStatusResponse(
     @Schema(description = "Associated order ID", example = "123")
     Long orderId,
 
-    @Schema(description = "User ID who owns this payment", example = "42")
-    Long userId,
+    @Schema(description = "User ID who owns this payment", example = "550e8400-e29b-41d4-a716-446655440000")
+    String userId,
 
     @Schema(description = "Payment amount", example = "100000")
     BigDecimal amount,

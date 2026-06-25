@@ -6,7 +6,7 @@ import java.util.Map;
 public record GatewayPaymentRequest(
     String transactionId,
     Long orderId,
-    Long userId,
+    String userId,
     BigDecimal amount,
     String currency,
     String returnUrl,

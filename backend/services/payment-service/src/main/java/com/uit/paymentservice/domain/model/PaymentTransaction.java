@@ -16,7 +16,7 @@ public class PaymentTransaction {
 
     private Long id;
     private Long orderId;
-    private Long userId;
+    private String userId;
     private BigDecimal amount;
     private String currency;
     private PaymentGatewayType gatewayType;
@@ -35,7 +35,7 @@ public class PaymentTransaction {
 
     protected PaymentTransaction() {}
 
-    public static PaymentTransaction create(Long orderId, Long userId, BigDecimal amount,
+    public static PaymentTransaction create(Long orderId, String userId, BigDecimal amount,
             String currency, PaymentGatewayType gatewayType,PaymentStatus status, String idempotencyKey, LocalDateTime expiredAt) {
         PaymentTransaction tx = new PaymentTransaction();
         tx.orderId = orderId;
@@ -129,7 +129,7 @@ public class PaymentTransaction {
     // Getters
     public Long getId() { return id; }
     public Long getOrderId() { return orderId; }
-    public Long getUserId() { return userId; }
+    public String getUserId() { return userId; }
     public BigDecimal getAmount() { return amount; }
     public String getCurrency() { return currency; }
     public PaymentGatewayType getGatewayType() { return gatewayType; }
@@ -146,6 +146,7 @@ public class PaymentTransaction {
 
     // Setters for JPA
     public void setId(Long id) { this.id = id; }
+    public void setUserId(String userId) { this.userId = userId; }
     public void setGatewayTransactionId(String gatewayTransactionId) {
         this.gatewayTransactionId = gatewayTransactionId;
     }
