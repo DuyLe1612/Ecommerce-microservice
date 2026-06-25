@@ -12,6 +12,7 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+    default-schema: public
   rabbitmq:
     host: ${RABBITMQ_HOST:rabbitmq}
     port: ${RABBITMQ_PORT:5672}
