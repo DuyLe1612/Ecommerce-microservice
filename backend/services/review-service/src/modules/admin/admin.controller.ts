@@ -73,4 +73,25 @@ export class AdminController {
     const data = await this.adminService.rejectReview(reviewId);
     return { success: true, message: 'Review rejected successfully', data };
   }
+
+  // ─────────────────────────────────────────────
+  // GET /api/admin/reviews
+  // ─────────────────────────────────────────────
+  @Get()
+  @ApiOperation({ summary: 'Get all reviews across all products — Admin only' })
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'pageSize', required: false, type: Number })
+  @ApiQuery({ name: 'status', required: false, type: String })
+  async getAllReviews(
+    @Query('page') page: string = '1',
+    @Query('pageSize') pageSize: string = '20',
+    @Query('status') status?: string,
+  ) {
+    const data = await this.adminService.getAllReviews(
+      parseInt(page) || 1,
+      parseInt(pageSize) || 20,
+      status,
+    );
+    return { success: true, data };
+  }
 }

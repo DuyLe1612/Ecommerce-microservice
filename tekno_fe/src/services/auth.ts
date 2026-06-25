@@ -43,15 +43,15 @@ export async function loginApi(data: { email: string; password: string }): Promi
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || "Đăng nhập thất bại");
+    throw new Error(err.message || "Login failed");
   }
 
   const result = await res.json();
-  
+
   // Save tokens
   setAuthToken(result.access_token);
   setRefreshToken(result.refresh_token);
-  
+
   return result;
 }
 
@@ -74,7 +74,7 @@ export async function logoutApi(accessToken: string) {
   try {
     await fetch(`${API_BASE_URL}/auth/logout`, {
       method: "POST",
-      headers: { 
+      headers: {
         "Authorization": `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       },
@@ -88,10 +88,10 @@ export async function logoutApi(accessToken: string) {
 
 export function getStoredUser(): AuthUser | null {
   if (typeof window === 'undefined') return null;
-  
+
   const userStr = localStorage.getItem('user');
   if (!userStr) return null;
-  
+
   try {
     return JSON.parse(userStr);
   } catch {

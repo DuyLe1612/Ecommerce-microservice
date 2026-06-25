@@ -5,6 +5,7 @@ import {
   approveReview,
   rejectReview,
   getAdminProductReviews,
+  getAllAdminReviews,
 } from "@/services/review";
 import { Button } from "@/components/ui/button";
 import {
@@ -79,7 +80,7 @@ export default function AdminReviewsPage() {
   const [pageSize] = useState(20);
 
   // Product ID selector
-  const [productId, setProductId] = useState<number>(1);
+  const [productId, setProductId] = useState<string>("");
 
   // Filters
   const [statusFilter, setStatusFilter] = useState<"All" | "Pending" | "Approved" | "Rejected">("All");
@@ -118,10 +119,15 @@ export default function AdminReviewsPage() {
         return;
       }
 
-      const response = await getAdminProductReviews(token, productId, page, pageSize);
+      let response;
+      if (productId && !isNaN(Number(productId))) {
+        response = await getAdminProductReviews(token, Number(productId), page, pageSize);
+      } else {
+        response = await getAllAdminReviews(token, page, pageSize, statusFilter);
+      }
       
       const reviewsData = response?.data?.reviews || [];
-      const summaryData = response?.data?.summary || null;
+      const summaryData = (response?.data as any)?.summary || null;
       const total = response?.data?.totalCount || 0;
       
       setReviews(reviewsData);
@@ -138,6 +144,14 @@ export default function AdminReviewsPage() {
       setLoading(false);
     }
   };
+
+  // Re-load when statusFilter changes if we are viewing all reviews
+  useEffect(() => {
+    if (!productId) {
+      setPage(1); // Reset page on filter change
+      loadReviews();
+    }
+  }, [statusFilter]);
 
   const handleApprove = async (reviewId: number) => {
     if (!confirm("Are you sure you want to approve this review?")) return;
@@ -288,15 +302,15 @@ export default function AdminReviewsPage() {
         {/* Product ID Input */}
         <div className="bg-white/5 border border-white/10 rounded-xl p-4">
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Product ID
+            Product ID (Optional)
           </label>
           <div className="flex gap-2">
             <input
-              type="number"
-              min="1"
+              type="text"
+              placeholder="All Products"
               className="flex-1 bg-black/20 border border-white/10 text-gray-200 rounded-md px-3 py-2 focus:outline-none focus:border-white/30"
               value={productId}
-              onChange={(e) => setProductId(Number(e.target.value))}
+              onChange={(e) => setProductId(e.target.value)}
             />
             <Button onClick={loadReviews} className="bg-primary hover:bg-primary/90 text-black font-medium">Load</Button>
           </div>
