@@ -54,4 +54,11 @@ export class AdminService {
   async getProductReviews(productId: number, page: number = 1, pageSize: number = 20) {
     return this.reviewService.getAdminProductReviews(productId, page, pageSize);
   }
+
+  // ─────────────────────────────────────────────
+  // GET /api/admin/reviews
+  // ─────────────────────────────────────────────
+  async getAllReviews(page: number = 1, pageSize: number = 20, status?: string) {
+    return this.reviewService.getAllAdminReviews(page, pageSize, status);
+  }
 }

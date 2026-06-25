@@ -401,6 +401,31 @@ export class ReviewService {
   }
 
   // ─────────────────────────────────────────────
+  // Admin: get all reviews across all products
+  // ─────────────────────────────────────────────
+  async getAllAdminReviews(page: number = 1, pageSize: number = 20, status?: string) {
+    const query = this.reviewRepository.createQueryBuilder('review');
+
+    if (status) {
+      query.andWhere('review.status = :status', { status });
+    }
+
+    query
+      .orderBy('review.createdAt', 'DESC')
+      .skip((page - 1) * pageSize)
+      .take(pageSize);
+
+    const [reviews, totalCount] = await query.getManyAndCount();
+
+    return {
+      reviews,
+      totalCount,
+      page,
+      pageSize,
+    };
+  }
+
+  // ─────────────────────────────────────────────
   // Private helper: build rating summary
   // ─────────────────────────────────────────────
   private async buildSummary(productId: number) {

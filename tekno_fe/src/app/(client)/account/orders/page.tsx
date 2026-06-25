@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import TitleAccount from "@/components/account/TitleAccount";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { fetchOrderHistory } from "@/services/order";
 import { Order } from "@/type/order";
-import { ChevronDown, PackageSearch } from "lucide-react";
+import { ChevronDown, PackageSearch, Star } from "lucide-react";
 import Link from "next/link";
 import FormattedPrice from "@/components/share/FormattedPriced";
+import WriteReviewModal from "@/components/review/WriteReviewModal";
+import { generateProductSlug } from "@/lib/utils";
 
 type TabKey = "all" | "PENDING_PAYMENT" | "PROCESSING" | "SHIPPING" | "DELIVERED" | "CANCELLED";
 
@@ -37,12 +39,24 @@ function orderDate(value?: string) {
   }).format(new Date(value));
 }
 
+// Check if an order is delivered — backend can return either casing
+function isDelivered(status?: string) {
+  return status === "DELIVERED" || status === "Delivered" || status === "COMPLETED" || status === "Completed";
+}
+
 export default function OrderHistoryPage() {
   const [tab, setTab] = useState<TabKey>("all");
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState<Order[]>([]);
   const [page, setPage] = useState(0);
   const pageSize = 10;
+
+  // Review modal state
+  const [reviewModal, setReviewModal] = useState<{
+    productId: number;
+    productName: string;
+    productImageUrl?: string | null;
+  } | null>(null);
 
   useEffect(() => {
     const token =
@@ -56,9 +70,13 @@ export default function OrderHistoryPage() {
   }, [page]);
 
   const filteredOrders = useMemo(
-    () => (tab === "all" ? orders : orders.filter((order) => order.status === tab)),
+    () => (tab === "all" ? orders : orders.filter((order) => order.status === tab || (tab === "DELIVERED" && isDelivered(order.status)))),
     [orders, tab]
   );
+
+  const openReviewModal = useCallback((productId: number, productName: string, productImageUrl?: string | null) => {
+    setReviewModal({ productId, productName, productImageUrl });
+  }, []);
 
   return (
     <div className="flex flex-col gap-5">
@@ -96,78 +114,121 @@ export default function OrderHistoryPage() {
             </div>
           ) : (
             <div className="space-y-4 mt-4">
-              {filteredOrders.map((order) => (
-                <Link
-                  href={`/account/orders/order-status/${encodeURIComponent(order.orderNumber)}`}
-                  key={order.orderNumber ?? order.id}
-                  className="border border-white/10 rounded-lg overflow-hidden block bg-white/[0.03] hover:border-primary/50 transition-colors"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-5 items-start gap-4 bg-white/5 px-4 py-3 text-sm">
-                    <div>
-                      <div className="text-white/45">Order code</div>
-                      <div className="font-medium text-white">#{order.orderNumber ?? order.id}</div>
-                    </div>
-                    <div>
-                      <div className="text-white/45">Placed on</div>
-                      <div className="font-medium text-white">{orderDate(order.createdAt)}</div>
-                    </div>
-                    <div>
-                      <div className="text-white/45">Total</div>
-                      <div className="font-medium text-primary">
-                        <FormattedPrice price={Number(order.totalAmount ?? 0)} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-white/45">Shipping to</div>
-                      <div className="font-medium text-white line-clamp-1">
-                        {order.shippingAddress?.city ?? order.shippingAddress?.streetAddress ?? "-"}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
+              {filteredOrders.map((order) => {
+                const delivered = isDelivered(order.status);
+                return (
+                  <div key={order.orderNumber ?? order.id} className="border border-white/10 rounded-lg overflow-hidden bg-white/[0.03]">
+                    {/* Header row — clickable to order detail */}
+                    <Link
+                      href={`/account/orders/order-status/${encodeURIComponent(order.orderNumber)}`}
+                      className="grid grid-cols-1 md:grid-cols-5 items-start gap-4 bg-white/5 px-4 py-3 text-sm hover:bg-white/[0.07] transition-colors block"
+                    >
                       <div>
-                        <div className="text-white/45">Status</div>
-                        <div className="font-medium text-white">{statusLabel(order.status, order.statusName)}</div>
+                        <div className="text-white/45">Order code</div>
+                        <div className="font-medium text-white">#{order.orderNumber ?? order.id}</div>
                       </div>
-                      <ChevronDown className="w-4 h-4 text-white/40" />
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2 p-3 bg-black/20 flex-wrap">
-                    {(order.items ?? []).slice(0, 6).map((item, index) => {
-                      const imageSrc = item.productImageUrl ?? item.product?.primaryImageUrl ?? null;
-                      return (
-                        <div
-                          key={item.id ?? item.productId ?? index}
-                          className="w-14 h-14 bg-white/5 rounded-md overflow-hidden border border-white/10"
-                        >
-                          {imageSrc ? (
-                            <Image
-                              src={imageSrc}
-                              alt={item.productName ?? "Order item"}
-                              width={56}
-                              height={56}
-                              className="w-14 h-14 object-cover"
-                            />
-                          ) : (
-                            <div className="w-14 h-14 flex items-center justify-center text-[10px] text-white/30">
-                              No image
-                            </div>
-                          )}
+                      <div>
+                        <div className="text-white/45">Placed on</div>
+                        <div className="font-medium text-white">{orderDate(order.createdAt)}</div>
+                      </div>
+                      <div>
+                        <div className="text-white/45">Total</div>
+                        <div className="font-medium text-primary">
+                          <FormattedPrice price={Number(order.totalAmount ?? 0)} />
                         </div>
-                      );
-                    })}
-                    {order.items && order.items.length > 6 && (
-                      <div className="w-14 h-14 bg-white/5 rounded-md border border-white/10 flex items-center justify-center text-sm text-white/60">
-                        +{order.items.length - 6}
+                      </div>
+                      <div>
+                        <div className="text-white/45">Shipping to</div>
+                        <div className="font-medium text-white line-clamp-1">
+                          {order.shippingAddress?.city ?? order.shippingAddress?.streetAddress ?? "-"}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-white/45">Status</div>
+                          <div className={`font-medium ${delivered ? "text-green-400" : "text-white"}`}>
+                            {statusLabel(order.status, order.statusName)}
+                          </div>
+                        </div>
+                        <ChevronDown className="w-4 h-4 text-white/40" />
+                      </div>
+                    </Link>
+
+                    {/* Items preview */}
+                    <div className="flex gap-2 p-3 bg-black/20 flex-wrap items-center">
+                      {(order.items ?? []).slice(0, 6).map((item, index) => {
+                        const imageSrc = item.productImageUrl ?? item.product?.primaryImageUrl ?? null;
+                        return (
+                          <Link
+                            href={`/products/${item.productSlug ?? item.product?.slug ?? generateProductSlug(item.productName, item.productId)}`}
+                            key={item.id ?? item.productId ?? index}
+                            className="w-14 h-14 bg-white/5 rounded-md overflow-hidden border border-white/10 shrink-0 hover:border-primary/50 transition-colors block"
+                          >
+                            {imageSrc ? (
+                              <Image
+                                src={imageSrc}
+                                alt={item.productName ?? "Order item"}
+                                width={56}
+                                height={56}
+                                className="w-14 h-14 object-cover"
+                              />
+                            ) : (
+                              <div className="w-14 h-14 flex items-center justify-center text-[10px] text-white/30">
+                                No image
+                              </div>
+                            )}
+                          </Link>
+                        );
+                      })}
+                      {order.items && order.items.length > 6 && (
+                        <div className="w-14 h-14 bg-white/5 rounded-md border border-white/10 flex items-center justify-center text-sm text-white/60">
+                          +{order.items.length - 6}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Review buttons — only for delivered orders */}
+                    {delivered && (order.items ?? []).length > 0 && (
+                      <div className="px-4 py-3 bg-black/10 border-t border-white/5 flex flex-wrap gap-2 items-center">
+                        <span className="text-xs text-white/40 font-medium mr-1">Review products:</span>
+                        {(order.items ?? []).map((item) => (
+                          <button
+                            key={item.productId}
+                            onClick={() =>
+                              openReviewModal(
+                                item.productId,
+                                item.productName,
+                                item.productImageUrl ?? item.product?.primaryImageUrl
+                              )
+                            }
+                            className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70 transition-all active:scale-95"
+                          >
+                            <Star className="w-3 h-3" fill="currentColor" />
+                            {item.productName.length > 24
+                              ? item.productName.slice(0, 24) + "…"
+                              : item.productName}
+                          </button>
+                        ))}
                       </div>
                     )}
                   </div>
-                </Link>
-              ))}
+                );
+              })}
             </div>
           )}
         </TabsContent>
       </Tabs>
+
+      {/* Review Modal */}
+      {reviewModal && (
+        <WriteReviewModal
+          productId={reviewModal.productId}
+          productName={reviewModal.productName}
+          productImageUrl={reviewModal.productImageUrl}
+          onClose={() => setReviewModal(null)}
+          onSuccess={() => setReviewModal(null)}
+        />
+      )}
     </div>
   );
 }

@@ -27,12 +27,34 @@ public class GetProductBySlugUseCase {
     private final BrandRepository brandRepository;
     private final ProductAttributeRepository productAttributeRepository;
     private final AttributeValueRepository attributeValueRepository;
+    private final com.example.product.infrastructure.persistence.repository.ProductVariantRepository variantRepository;
 
     @Cacheable(value = Constants.CACHE_PRODUCT_DETAIL, key = "#slug")
     @Transactional(readOnly = true)
     public ProductDetailResponse execute(String slug) {
         ProductJpaEntity entity = productRepository.findBySlug(slug)
-            .orElseThrow(() -> new RuntimeException("Product not found with slug: " + slug));
+            .orElseGet(() -> {
+                Long extractedId = null;
+                try {
+                    int lastDash = slug.lastIndexOf('-');
+                    if (lastDash >= 0 && lastDash < slug.length() - 1) {
+                        extractedId = Long.parseLong(slug.substring(lastDash + 1));
+                    } else {
+                        extractedId = Long.parseLong(slug);
+                    }
+                } catch (NumberFormatException ignored) {
+                }
+
+                if (extractedId != null) {
+                    Long finalId = extractedId;
+                    return productRepository.findById(finalId)
+                        .orElseGet(() -> variantRepository.findById(finalId)
+                            .map(com.example.product.infrastructure.persistence.entity.ProductVariantJpaEntity::getProduct)
+                            .orElseThrow(() -> new com.example.product.domain.exception.ResourceNotFoundException("Product not found with slug or id: " + slug))
+                        );
+                }
+                throw new com.example.product.domain.exception.ResourceNotFoundException("Product not found with slug: " + slug);
+            });
             
         ProductDetailResponse response = new ProductDetailResponse();
         response.setId(entity.getId());

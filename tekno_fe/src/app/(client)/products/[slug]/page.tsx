@@ -9,6 +9,7 @@ import Comments from "@/components/product/productDetail/Comments";
 import TechnicalDetails from "@/components/product/productDetail/TechnicalDetails";
 import NotFoundPage from "../../not-found";
 import ProductVariantSelectorDynamic from "@/components/product/productDetail/ProductVariantSelectorDynamic";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -21,6 +22,10 @@ export default async function SingleProductPage({ params }: Props) {
   const isStock = product?.variants?.[0]?.stock as any > 0 || false;
 
   if (!product) return <NotFoundPage />;
+
+  if (product.slug && product.slug !== slug) {
+    redirect(`/products/${product.slug}`);
+  }
 
   return (
     <Container className="flex flex-col space-y-6 md:space-y-8 my-6 md:my-10">
@@ -72,6 +77,7 @@ export default async function SingleProductPage({ params }: Props) {
       <SimilarProducts />
       <Comments productId={product.id} />
       <FrequentlyBoughtTogether />
+
     </Container>
   );
 }

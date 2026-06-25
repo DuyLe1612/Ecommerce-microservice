@@ -296,3 +296,38 @@ export async function getAdminProductReviews(
 
   return json as ApiResponse<AdminReviewsResponse>;
 }
+
+// GET /api/admin/reviews
+export async function getAllAdminReviews(
+  token: string,
+  page: number = 1,
+  pageSize: number = 20,
+  status?: string
+): Promise<ApiResponse<Omit<AdminReviewsResponse, 'summary'>>> {
+  const params = new URLSearchParams();
+  params.append("page", page.toString());
+  params.append("pageSize", pageSize.toString());
+  if (status && status !== "All") {
+    params.append("status", status);
+  }
+
+  const res = await fetch(
+    `${API_BASE_URL}/admin/reviews?${params.toString()}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    }
+  );
+
+  const json = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    throw json;
+  }
+
+  return json as ApiResponse<Omit<AdminReviewsResponse, 'summary'>>;
+}
