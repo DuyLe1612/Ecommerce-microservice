@@ -90,20 +90,38 @@ function ProductContent() {
           backendSortBy = "averageRating";
           backendSortDir = "DESC";
         }
-        
-        const res = await getProductsList({
-          categorySlug: selectedCategory,
-          page: page,
-          size: pageSize,
+
+        let categoryId = undefined;
+        if (selectedCategory) {
+          const { getCategoriesList } = await import("@/services/categories");
+          const cats = await getCategoriesList();
+          const cat = cats.find((c: any) => c.slug === selectedCategory);
+          if (cat) categoryId = cat.id;
+        }
+
+        let brandId = undefined;
+        if (selectedBrands.length > 0) {
+          const { getBrandList } = await import("@/services/brand");
+          const brands = await getBrandList();
+          const brand = brands.find((b: any) => selectedBrands.includes(b.slug));
+          if (brand) brandId = brand.id;
+        }
+
+        const { searchProducts } = await import("@/services/search");
+        const res = await searchProducts({
+          q: keyword,
+          categoryId: categoryId,
+          brandId: brandId,
+          minPrice: minPrice > 0 ? minPrice : undefined,
+          maxPrice: maxPrice,
           sortBy: backendSortBy,
           sortDir: backendSortDir,
-          brandSlug: selectedBrands.length > 0 ? selectedBrands.join(",") : undefined,
-          maxPrice: maxPrice,
-          minPrice: minPrice,
-          // filters: filters, // filters logic isn't easily supported without dynamic properties but we send it if supported. Let's omit for now since backend doesn't take attrs
-          keyword,
+          page: page - 1,
+          size: pageSize,
         });
-        const products = res.content ? res.content.map(fromListItem) : [];
+
+        const { fromSearchResult } = await import("@/lib/productAdapter");
+        const products = res.content ? res.content.map(fromSearchResult) : [];
         setproductsList(products);
         setTotalRecords(res.totalElements || 0);
         setTotalPages(res.totalPages || 1);

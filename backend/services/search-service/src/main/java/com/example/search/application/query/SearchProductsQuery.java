@@ -18,4 +18,6 @@ public class SearchProductsQuery {
     private String status;
     private int page;
     private int size;
+    private String sortBy;
+    private String sortDir;
 }

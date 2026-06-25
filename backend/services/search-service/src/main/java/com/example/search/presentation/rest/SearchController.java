@@ -28,6 +28,8 @@ public class SearchController {
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) String status,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String sortDir,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
         
@@ -38,6 +40,8 @@ public class SearchController {
                 .minPrice(minPrice)
                 .maxPrice(maxPrice)
                 .status(status)
+                .sortBy(sortBy)
+                .sortDir(sortDir)
                 .page(page)
                 .size(size)
                 .build();

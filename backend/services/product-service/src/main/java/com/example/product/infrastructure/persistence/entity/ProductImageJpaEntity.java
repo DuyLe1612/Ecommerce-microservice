@@ -21,7 +21,7 @@ public class ProductImageJpaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ProductId\"", nullable = false)
-    @JsonIgnoreProperties({"variants", "images"})
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private ProductJpaEntity product;
 
     @Column(name = "\"ImageUrl\"", nullable = false, columnDefinition = "text")

@@ -94,22 +94,15 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
             throw new DomainException("Slug already exists: " + newSlug);
         }
         
-        Money basePrice = new Money(request.getBasePrice() != null ? request.getBasePrice() : existing.getBasePrice(), "VND");
-        Product product = new Product(
-            request.getCategoryId() != null ? request.getCategoryId() : existing.getCategoryId(),
-            request.getBrandId() != null ? request.getBrandId() : existing.getBrandId(),
-            request.getName() != null ? request.getName() : existing.getName(),
-            newSlug,
-            basePrice
-        );
+        if (request.getCategoryId() != null) existing.setCategoryId(request.getCategoryId());
+        if (request.getBrandId() != null) existing.setBrandId(request.getBrandId());
+        if (request.getName() != null) existing.setName(request.getName());
+        existing.setSlug(newSlug);
+        if (request.getBasePrice() != null) existing.setBasePrice(request.getBasePrice());
+        if (request.getDescription() != null) existing.setDescription(request.getDescription());
+        if (request.getStatus() != null) existing.setStatus(request.getStatus());
         
-        ProductJpaEntity entity = productMapper.toEntity(product);
-        entity.setId(id);
-        entity.setDescription(request.getDescription() != null ? request.getDescription() : existing.getDescription());
-        entity.setStatus(request.getStatus() != null ? request.getStatus() : existing.getStatus());
-        entity.setCreatedAt(existing.getCreatedAt()); // Preserve createdAt
-        
-        ProductJpaEntity saved = productRepository.save(entity);
+        ProductJpaEntity saved = productRepository.save(existing);
         evictProductCache(saved.getSlug());
         return toEvent(saved, "product.updated");
     }
@@ -221,18 +214,22 @@ public class ProductCommandRepositoryImpl implements ProductCommandRepository {
                 .variantSpecsJson(request.getVariantSpecsJson())
                 .build();
 
+        variant = variantRepository.save(variant);
+
         if (request.getAttributeValues() != null) {
+            Long newVariantId = variant.getId();
             List<ProductVariantAttributeJpaEntity> attrEntities = request.getAttributeValues().stream()
                     .map(attr -> new ProductVariantAttributeJpaEntity(
-                            null,
+                            newVariantId,
                             attr.getAttributeId(),
                             attr.getValueId()
                     ))
                     .collect(Collectors.toList());
-            variant.setAttributeValues(attrEntities);
+            variant.getAttributeValues().addAll(attrEntities);
+            variant = variantRepository.save(variant);
         }
 
-        return variantRepository.save(variant);
+        return variant;
     }
 
     @Override

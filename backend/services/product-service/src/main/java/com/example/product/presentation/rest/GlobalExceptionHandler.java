@@ -41,12 +41,16 @@ public class GlobalExceptionHandler {
         return ApiResponse.error("File too large. Maximum size is 10MB.");
     }
 
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(com.example.product.domain.exception.ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse<Void> handleResourceNotFound(com.example.product.domain.exception.ResourceNotFoundException ex) {
+        log.warn("Resource not found", ex);
+        return ApiResponse.error(ex.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<Void> handleRuntimeException(RuntimeException ex) {
-        if (ex.getMessage() != null && ex.getMessage().contains("not found")) {
-            return ApiResponse.error(ex.getMessage());
-        }
         log.error("Runtime exception", ex);
         return ApiResponse.error("Internal error: " + ex.getMessage());
     }

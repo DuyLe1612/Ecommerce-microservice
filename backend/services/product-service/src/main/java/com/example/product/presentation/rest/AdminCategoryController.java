@@ -73,8 +73,18 @@ public class AdminCategoryController {
     @GetMapping("/attributes/{attributeId}")
     public ApiResponse<Object> getAttributeById(@PathVariable Long attributeId) {
         return productAttributeRepository.findById(attributeId)
-            .map(a -> ApiResponse.success((Object) a))
-            .orElse(ApiResponse.error("Attribute not found"));
+            .map(a -> {
+                var values = attributeValueRepository.findByAttributeId(attributeId);
+                java.util.Map<String, Object> response = new java.util.HashMap<>();
+                response.put("id", a.getId());
+                response.put("name", a.getName());
+                response.put("inputType", a.getInputType());
+                response.put("isGlobal", a.getIsGlobal());
+                response.put("categoryId", a.getCategoryId());
+                response.put("values", values);
+                return ApiResponse.success((Object) response);
+            })
+            .orElseThrow(() -> new com.example.product.domain.exception.ResourceNotFoundException("Attribute not found"));
     }
 
     @PutMapping("/attributes/{attributeId}")
@@ -82,7 +92,7 @@ public class AdminCategoryController {
             @PathVariable Long attributeId,
             @RequestBody CategoryAttributeRequest request) {
         var attr = productAttributeRepository.findById(attributeId)
-            .orElseThrow(() -> new RuntimeException("Attribute not found"));
+            .orElseThrow(() -> new com.example.product.domain.exception.ResourceNotFoundException("Attribute not found"));
         attr.setName(request.getName());
         return ApiResponse.success(productAttributeRepository.save(attr));
     }
@@ -97,7 +107,7 @@ public class AdminCategoryController {
     public ApiResponse<Object> createAttribute(@RequestBody CategoryAttributeWithCategoryRequest request) {
         if (request.getCategoryId() != null) {
             categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new com.example.product.domain.exception.ResourceNotFoundException("Category not found"));
         }
         var attr = ProductAttributeJpaEntity.builder()
             .categoryId(request.getCategoryId())
@@ -112,7 +122,7 @@ public class AdminCategoryController {
     public ApiResponse<Object> addAttributeValue(
             @RequestBody AttributeValueRequest request) {
         var attr = productAttributeRepository.findById(request.getAttributeId())
-            .orElseThrow(() -> new RuntimeException("Attribute not found"));
+            .orElseThrow(() -> new com.example.product.domain.exception.ResourceNotFoundException("Attribute not found"));
         var val = AttributeValueJpaEntity.builder()
             .attributeId(attr.getId())
             .value(request.getValue())
@@ -125,7 +135,7 @@ public class AdminCategoryController {
             @PathVariable Long valueId,
             @RequestBody AttributeValueRequest request) {
         var attrVal = attributeValueRepository.findById(valueId)
-            .orElseThrow(() -> new RuntimeException("Attribute value not found"));
+            .orElseThrow(() -> new com.example.product.domain.exception.ResourceNotFoundException("Attribute value not found"));
         if (request.getValue() != null) {
             attrVal.setValue(request.getValue());
         }

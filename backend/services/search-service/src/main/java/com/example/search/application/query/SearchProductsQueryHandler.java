@@ -19,6 +19,8 @@ public class SearchProductsQueryHandler {
             query.getMinPrice(),
             query.getMaxPrice(),
             query.getStatus(),
+            query.getSortBy(),
+            query.getSortDir(),
             query.getPage(),
             query.getSize()
         );
