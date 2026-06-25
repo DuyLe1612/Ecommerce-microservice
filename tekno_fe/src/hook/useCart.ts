@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { cartApi } from '@/services/cart';
+import { useEffect, useRef, useState } from "react";
+import { AddToCartPayload, cartApi } from "@/services/cart";
 
 export interface CartItem {
   id: number;
@@ -76,13 +76,13 @@ export function useCart() {
   const [cart, setCart] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const hasFetchedCart = useRef(false);
 
   const getToken = () => {
     if (typeof window === "undefined") return null;
     return localStorage.getItem("token");
   };
 
-  // FETCH CART
   const fetchCart = async () => {
     const token = getToken();
     if (!token) return;
@@ -100,16 +100,14 @@ export function useCart() {
     }
   };
 
-  // ADD TO CART
-  const addToCart = async (variantId: number, quantity: number) => {
+  const addToCart = async (payload: AddToCartPayload) => {
     const token = getToken();
     if (!token) return alert("Bạn cần đăng nhập!");
 
-    const data = normalizeCartResponse(await cartApi.addToCart(token, { variantId, quantity }));
+    const data = normalizeCartResponse(await cartApi.addToCart(token, payload));
     setCart(data);
   };
 
-  // REMOVE ITEM
   const removeFromCart = async (variantId: number) => {
     const token = getToken();
     if (!token) return;
@@ -118,7 +116,6 @@ export function useCart() {
     setCart(data);
   };
 
-  // CLEAN ENTIRE CART
   const cleanCart = async () => {
     try {
       setLoading(true);
@@ -130,7 +127,6 @@ export function useCart() {
 
       setCart(null);
       return true;
-
     } catch (err) {
       console.error(err);
       return false;
@@ -139,7 +135,6 @@ export function useCart() {
     }
   };
 
-  // UPDATE QUANTITY
   const updateQuantity = async (variantId: number, quantity: number) => {
     try {
       setLoading(true);
@@ -149,9 +144,7 @@ export function useCart() {
       const data = normalizeCartResponse(await cartApi.updateQuantity(variantId, quantity, token));
       setCart(data);
 
-      // refetch lại cart để đồng bộ FE
       return true;
-
     } catch (err) {
       console.error(err);
       return false;
@@ -160,30 +153,19 @@ export function useCart() {
     }
   };
 
-  // =========================
-  // 🔥 HELPER FUNCTIONS
-  // =========================
-
-  // Items array
   const items = cart?.data?.items ?? [];
 
-  // Lấy số lượng của 1 item theo variantId
-const getItemCount = (variantId: number) => {
-  const item = cart?.data?.items?.find(i => i.variantId === variantId);
-  return item ? item.quantity : 0;
-};
+  const getItemCount = (variantId: number) => {
+    const item = cart?.data?.items?.find((i) => i.variantId === variantId);
+    return item ? item.quantity : 0;
+  };
 
-
-  // Tổng tiền (subtotal từ BE)
   const SubTotalPrice = cart?.data?.subtotal ?? 0;
 
-  // Tổng tiền có thể bao gồm thuế/ship nếu có
   const getTotalPrice = () => cart?.data?.subtotal ?? 0;
 
-  // Tổng số item
   const getTotalItems = () => cart?.data?.totalItems ?? 0;
 
-  // Gom nhóm theo variantId (nếu muốn xử lý UI)
   const getGroupItems = () => {
     const map = new Map<number, CartItem>();
 
@@ -200,6 +182,8 @@ const getItemCount = (variantId: number) => {
   };
 
   useEffect(() => {
+    if (hasFetchedCart.current) return;
+    hasFetchedCart.current = true;
     fetchCart();
   }, []);
 
@@ -208,15 +192,11 @@ const getItemCount = (variantId: number) => {
     items,
     loading,
     error,
-
-    // APIs
     fetchCart,
     addToCart,
     removeFromCart,
     cleanCart,
     updateQuantity,
-
-    // Helpers
     getTotalPrice,
     SubTotalPrice,
     getTotalItems,

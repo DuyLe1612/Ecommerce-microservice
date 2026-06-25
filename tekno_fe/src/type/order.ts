@@ -17,11 +17,14 @@ export type OrderHistoryResponse = {
 export type OrderItem = {
   id: number;
   productId: number;
+  variantId?: number;
   productName: string;
   quantity: number;
   unitPrice: number;
   subtotal: number;
-  productImageUrl: string | null;
+  productImageUrl?: string | null;
+  productSlug?: string | null;
+  sku?: string | null;
   // For display convenience — populated by FE from product service if needed
   product?: Product;
   variant?: ProductVariant;
@@ -66,7 +69,11 @@ export type CreateOrderRequest = {
   userId: string;
   items: {
     productId: number;
+    variantId?: number;
     productName: string;
+    productImageUrl?: string | null;
+    productSlug?: string | null;
+    sku?: string | null;
     quantity: number;
     unitPrice: number;
     subtotal: number;

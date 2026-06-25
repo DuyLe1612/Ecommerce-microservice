@@ -1,7 +1,9 @@
 package com.example.cart.infrastructure.product;
 
+import com.example.cart.application.dto.CartItemAttribute;
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,9 +46,21 @@ public class ProductServiceClient implements ProductClient {
 
         Long productId = numberAsLong(firstPresent(raw, "productId", "id"));
         BigDecimal price = numberAsBigDecimal(firstPresent(raw, "price", "basePrice"));
-        String name = String.valueOf(valueOrDefault(raw.get("name"), "Variant " + variantId));
+        String sku = stringOrNull(raw.get("sku"));
+        String name = String.valueOf(valueOrDefault(raw.get("name"), valueOrDefault(sku, "Variant " + variantId)));
         String currency = String.valueOf(valueOrDefault(raw.get("currency"), "VND"));
-        return new VariantInfo(variantId, productId == null ? variantId.intValue() : productId.intValue(), name, price, currency);
+        Integer availableStock = numberAsInteger(raw.get("stock"));
+        List<CartItemAttribute> attributes = parseAttributes(raw.get("attributes"));
+        return new VariantInfo(
+            variantId,
+            productId == null ? variantId.intValue() : productId.intValue(),
+            name,
+            price,
+            currency,
+            sku,
+            availableStock,
+            attributes
+        );
     }
 
     @Override
@@ -95,5 +109,29 @@ public class ProductServiceClient implements ProductClient {
 
     private Object valueOrDefault(Object value, Object fallback) {
         return value == null ? fallback : value;
+    }
+
+    private Integer numberAsInteger(Object value) {
+        Long number = numberAsLong(value);
+        return number == null ? null : number.intValue();
+    }
+
+    private String stringOrNull(Object value) {
+        return value == null ? null : String.valueOf(value);
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<CartItemAttribute> parseAttributes(Object value) {
+        if (!(value instanceof List<?> list)) {
+            return List.of();
+        }
+        return list.stream()
+            .filter(Map.class::isInstance)
+            .map(item -> {
+                Map<String, Object> attribute = (Map<String, Object>) item;
+                return new CartItemAttribute(stringOrNull(attribute.get("name")), stringOrNull(attribute.get("value")));
+            })
+            .filter(attribute -> attribute.name() != null && attribute.value() != null)
+            .toList();
     }
 }

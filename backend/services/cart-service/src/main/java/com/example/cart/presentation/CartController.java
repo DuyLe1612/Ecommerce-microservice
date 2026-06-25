@@ -42,7 +42,12 @@ public class CartController {
             @RequestHeader(value = "X-User-Id", required = false) String xUserId,
             @Valid @RequestBody AddCartItemRequest request) {
         String userId = requireUser(authHeader, xUserId);
-        return ResponseEntity.ok(ApiResponse.success(cartService.addItem(userId, request.variantId(), request.quantity())));
+        return ResponseEntity.ok(ApiResponse.success(cartService.addItem(
+            userId,
+            request.variantId(),
+            request.quantity(),
+            request.toSnapshot()
+        )));
     }
 
     @PutMapping("/items/{variantId}")

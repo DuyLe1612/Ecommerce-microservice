@@ -6,6 +6,7 @@ import FormattedPrice from "@/components/share/FormattedPriced";
 import AddressItem from "@/components/share/AddressItem";
 import { getOrderByOrderId } from "@/services/order";
 import { getPaymentGateways } from "@/services/payment";
+import { getProductsList } from "@/services/products";
 import { getProfileAddresses } from "@/services/profile";
 import { Order, OrderItem } from "@/type/order";
 import { PaymentGateway } from "@/type/payment";
@@ -19,6 +20,78 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+
+type PendingOrderItemSnapshot = {
+  productId: number;
+  variantId?: number;
+  productName?: string;
+  productImageUrl?: string | null;
+  productSlug?: string | null;
+  sku?: string | null;
+};
+
+function readPendingOrderItems(orderId: string): PendingOrderItemSnapshot[] {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const raw = sessionStorage.getItem(`checkout:order-items:${orderId}`);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+async function findProductSnapshot(productName?: string) {
+  if (!productName) return null;
+
+  try {
+    const page = await getProductsList({ keyword: productName, page: 0, size: 1 });
+    const product = page.content?.[0];
+    if (!product) return null;
+
+    return {
+      productImageUrl: product.primaryImageUrl ?? null,
+      productSlug: product.slug ?? null,
+    };
+  } catch (error) {
+    console.warn("Unable to hydrate order item image", error);
+    return null;
+  }
+}
+
+async function enrichOrderItems(order: Order, orderId: string): Promise<Order> {
+  if (!order.items?.length) return order;
+
+  const snapshots = readPendingOrderItems(orderId);
+  const snapshotByProductId = new Map(
+    snapshots.map((item) => [item.productId, item])
+  );
+
+  const items = await Promise.all(
+    order.items.map(async (item) => {
+      const snapshot = snapshotByProductId.get(item.productId);
+      const productImageUrl =
+        item.productImageUrl ?? snapshot?.productImageUrl ?? null;
+      const productSlug = item.productSlug ?? snapshot?.productSlug ?? null;
+      const sku = item.sku ?? snapshot?.sku ?? null;
+
+      if (productImageUrl) {
+        return { ...item, productImageUrl, productSlug, sku };
+      }
+
+      const product = await findProductSnapshot(item.productName);
+      return {
+        ...item,
+        productImageUrl: product?.productImageUrl ?? productImageUrl,
+        productSlug: product?.productSlug ?? productSlug,
+        sku,
+      };
+    })
+  );
+
+  return { ...order, items };
+}
 
 function CheckoutContent() {
   const searchParams = useSearchParams();
@@ -43,7 +116,8 @@ function CheckoutContent() {
       try {
         const token = localStorage.getItem("token") || "";
         const data = await getOrderByOrderId(token, Number(orderId));
-        if (mounted) setOrder(data);
+        const enrichedOrder = await enrichOrderItems(data, orderId);
+        if (mounted) setOrder(enrichedOrder);
       } catch (e) {
         console.error("Fetch order error:", e);
         toast.error("Failed to load order");
@@ -228,28 +302,38 @@ function CheckoutContent() {
             <div className="rounded-md bg-white p-4 border">
               <h3 className="font-semibold text-gray-800 mb-4">Order Summary</h3>
               <div className="space-y-3 max-h-72 overflow-auto">
-                {order.items?.map((it: OrderItem) => (
-                  <div key={it.id ?? it.productId} className="flex items-center gap-3">
-                    <div className="w-16 h-16 rounded-md bg-gray-100 overflow-hidden flex-shrink-0">
-                      <Image
-                        src={it.productImageUrl ?? "/images/sample/product.jpg"}
-                        alt={it.productName ?? "product"}
-                        width={64}
-                        height={64}
-                        className="w-16 h-16 object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-medium line-clamp-2">
-                        {it.productName ?? "Product"}
+                {order.items?.map((it: OrderItem) => {
+                  const imageSrc = it.productImageUrl ?? it.product?.primaryImageUrl ?? null;
+
+                  return (
+                    <div key={it.id ?? it.productId} className="flex items-center gap-3">
+                      <div className="w-16 h-16 rounded-md bg-gray-100 overflow-hidden flex-shrink-0">
+                        {imageSrc ? (
+                          <Image
+                            src={imageSrc}
+                            alt={it.productName ?? "product"}
+                            width={64}
+                            height={64}
+                            className="w-16 h-16 object-cover"
+                          />
+                        ) : (
+                          <div className="w-16 h-16 flex items-center justify-center text-[10px] text-gray-400">
+                            No image
+                          </div>
+                        )}
                       </div>
-                      <div className="text-xs text-gray-500">x{it.quantity}</div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium line-clamp-2">
+                          {it.productName ?? "Product"}
+                        </div>
+                        <div className="text-xs text-gray-500">x{it.quantity}</div>
+                      </div>
+                      <div className="text-sm text-gray-700 flex-shrink-0">
+                        <FormattedPrice price={it.unitPrice ?? it.subtotal ?? 0} />
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-700 flex-shrink-0">
-                      <FormattedPrice price={it.unitPrice ?? it.subtotal ?? 0} />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="mt-4 space-y-2 text-sm border-t pt-4">

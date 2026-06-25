@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
 import { ProductDetail } from "@/type/product";
 import { useCart } from "@/hook/useCart";
 import { toast } from "sonner";
@@ -8,13 +7,11 @@ import { toast } from "sonner";
 export default function AddToCartButton({
   product,
   selectedVariant, // prop variant đã chọn
-  className,
 }: {
   product: ProductDetail;
   selectedVariant?: ProductDetail["variants"][number] | null;
-  className?: string;
 }) {
-  const { addToCart, getItemCount } = useCart();
+  const { addToCart } = useCart();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +32,23 @@ export default function AddToCartButton({
     setError(null);
 
     try {
-      await addToCart(selectedVariant.id, 1);
+      const primaryImage =
+        product.primaryImageUrl ??
+        product.images?.find((image) => image.isPrimary)?.imageUrl ??
+        product.images?.[0]?.imageUrl;
+
+      await addToCart({
+        variantId: selectedVariant.id,
+        quantity: 1,
+        productId: product.id,
+        productName: product.name,
+        productSlug: product.slug,
+        primaryImage,
+        brandName: product.brand?.name,
+        sku: selectedVariant.sku,
+        availableStock: selectedVariant.stock,
+        attributes: selectedVariant.attributes ?? [],
+      });
       toast.success(`${product.name} added to cart`);
     } catch (err: any) {
       console.error(err);
