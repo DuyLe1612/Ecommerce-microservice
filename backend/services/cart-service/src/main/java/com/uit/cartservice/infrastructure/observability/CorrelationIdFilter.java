@@ -1,4 +1,4 @@
-package com.example.product.infrastructure.observability;
+package com.uit.cartservice.infrastructure.observability;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
