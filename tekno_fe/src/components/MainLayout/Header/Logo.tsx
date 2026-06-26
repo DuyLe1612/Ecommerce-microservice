@@ -10,6 +10,7 @@ export default function Logo({ className }: { className?: string }) {
       <Image
         src={logo}
         alt="Logo"
+        priority
         className={cn("w-10 lg:w-12 hoverEffect", className)}
       />
     </Link>
