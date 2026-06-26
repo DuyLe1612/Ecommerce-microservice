@@ -1,3 +1,5 @@
+import { LoggerModule } from 'nestjs-pino';
+import { randomUUID } from 'crypto';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -10,6 +12,31 @@ import { LocationModule } from './modules/location/location.module';
 
 @Module({
   imports: [
+    LoggerModule.forRoot({
+      pinoHttp: {
+        genReqId: (req) => {
+          let id = req.headers['x-correlation-id'];
+          if (!id) {
+            id = randomUUID();
+            req.headers['x-correlation-id'] = id;
+            console.log(JSON.stringify({level: "INFO", message: "correlation_id generated locally, missing from upstream: " + id, correlation_id: id}));
+          }
+          return id;
+        },
+        customProps: (req, res) => {
+          return {
+            correlation_id: req.id
+          };
+        },
+
+        formatters: {
+          level: (label) => {
+            return { level: label.toUpperCase() };
+          },
+        },
+        messageKey: 'message',
+      },
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
