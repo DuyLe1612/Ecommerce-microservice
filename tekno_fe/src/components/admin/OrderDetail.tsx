@@ -126,7 +126,7 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
         <div className="bg-[#1a1a1a] p-8 rounded-xl border border-white/10">
           <div className="flex items-center gap-3">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-            <p className="text-gray-300">Đang tải chi tiết đơn hàng...</p>
+            <p className="text-gray-300">Loading order details...</p>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
       <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
         <div className="bg-[#1a1a1a] p-6 rounded-xl border border-white/10 max-w-md">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-semibold text-red-400">Lỗi</h3>
+            <h3 className="text-xl font-semibold text-red-400">Error</h3>
             <button onClick={onClose} className="text-gray-400 hover:text-white">
               <X size={24} />
             </button>
@@ -146,9 +146,9 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
           <p className="text-gray-300 mb-4">{error}</p>
           <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={onClose} className="border-white/20 text-gray-300">
-              Đóng
+              close
             </Button>
-            <Button onClick={loadOrderDetail}>Thử lại</Button>
+            <Button onClick={loadOrderDetail}>Retry</Button>
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
         {/* Header */}
         <div className="sticky top-0 bg-[#1a1a1a] border-b border-white/10 px-6 py-4 flex justify-between items-center z-10">
           <div>
-            <h2 className="text-2xl font-bold text-white">Chi tiết đơn hàng</h2>
+            <h2 className="text-2xl font-bold text-white">Order Details</h2>
             <p className="text-sm text-gray-400">{order.orderNumber}</p>
           </div>
           <button
@@ -182,10 +182,10 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
             {getStatusIcon(order.status)}
             <div className="flex-1">
               <p className="font-semibold text-lg">{order.statusName || OrderStatusLabels[order.status]}</p>
-              <p className="text-sm opacity-80">Đơn hàng {order.orderNumber}</p>
+              <p className="text-sm opacity-80">Order {order.orderNumber}</p>
             </div>
             <div className="text-right text-sm">
-              <p className="opacity-80">Ngày tạo</p>
+              <p className="opacity-80">Date</p>
               <p className="font-medium">{formatDate(order.createdAt)}</p>
             </div>
           </div>
@@ -195,7 +195,7 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
             <div className="bg-white/5 border border-white/10 rounded-lg p-4">
               <h3 className="font-semibold text-lg mb-3 flex items-center gap-2 text-white">
                 <User className="w-5 h-5" />
-                Thông tin khách hàng
+                Customer Information
               </h3>
               <div className="space-y-2 text-sm">
                 <div>
@@ -213,19 +213,19 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
               </h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-gray-400">Người nhận</p>
+                  <p className="text-gray-400">Recipient</p>
                   <p className="font-medium text-white">
                     {order.shippingAddress?.recipientName || "N/A"}
                   </p>
                 </div>
                 <div>
-                  <p className="text-gray-400">Số điện thoại</p>
+                  <p className="text-gray-400">Phone number</p>
                   <p className="font-medium text-white">
                     {order.shippingAddress?.phone || "N/A"}
                   </p>
                 </div>
                 <div>
-                  <p className="text-gray-400">Địa chỉ</p>
+                  <p className="text-gray-400">Address</p>
                   <p className="font-medium text-white">{formatAddress(order.shippingAddress)}</p>
                 </div>
               </div>
@@ -273,9 +273,9 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
 
                   {/* Price Info */}
                   <div className="text-right flex-shrink-0">
-                    <p className="text-sm text-gray-400">Đơn giá</p>
+                    <p className="text-sm text-gray-400">Unit Price</p>
                     <p className="font-medium text-white">{formatCurrency(item.unitPrice)}</p>
-                    <p className="text-sm text-gray-400 mt-1">Số lượng: x{item.quantity}</p>
+                    <p className="text-sm text-gray-400 mt-1">Quantity: x{item.quantity}</p>
                     <p className="font-bold text-primary mt-1">
                       {formatCurrency(item.subtotal)}
                     </p>
@@ -289,7 +289,7 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
           <div className="bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 rounded-lg p-6">
             <div className="flex justify-between items-center">
               <span className="text-xl font-semibold text-white">
-                Tổng cộng
+                Total 
               </span>
               <span className="text-3xl font-bold text-primary">
                 {formatCurrency(order.totalAmount)}
@@ -304,14 +304,14 @@ export default function OrderDetail({ orderId, onClose, onActionComplete }: Orde
               onClick={onClose}
               className="border-white/20 text-gray-300 hover:bg-white/10"
             >
-              Đóng
+              close
             </Button>
             {onActionComplete && (
               <Button 
                 onClick={loadOrderDetail}
                 className="bg-white/10 hover:bg-white/20 text-white"
               >
-                Làm mới
+                refresh
               </Button>
             )}
           </div>
