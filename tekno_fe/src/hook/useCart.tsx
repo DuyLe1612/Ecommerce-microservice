@@ -1,7 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
-import { AddToCartPayload, cartApi } from '@/services/cart';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+} from "react";
+import { useAuthContext } from "@/context/AuthContext";
+import { AddToCartPayload, cartApi } from "@/services/cart";
 
 export interface CartItem {
   id: number;
@@ -91,18 +100,36 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const isUnauthorized = (err: unknown) =>
+  (err as Error & { status?: number })?.status === 401;
+
 export function CartProvider({ children }: { children: ReactNode }) {
+  const { user, isLoading: authLoading } = useAuthContext();
   const [cart, setCart] = useState<CartResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const hasFetchedCart = useRef(false);
+  const fetchedTokenRef = useRef<string | null>(null);
 
-  const getToken = () => {
+  const getToken = useCallback(() => {
     if (typeof window === "undefined") return null;
-    return localStorage.getItem("token");
-  };
+    return user?.token ?? localStorage.getItem("token");
+  }, [user?.token]);
 
-  const fetchCart = async () => {
+  const handleUnauthorized = useCallback(() => {
+    setCart(null);
+    setError(null);
+    fetchedTokenRef.current = null;
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("auth-expired"));
+    }
+  }, []);
+
+  const fetchCart = useCallback(async () => {
+    if (authLoading || !user) {
+      setCart(null);
+      return;
+    }
+
     const token = getToken();
     if (!token) return;
 
@@ -112,42 +139,65 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const data = normalizeCartResponse(await cartApi.getCart(token));
       setCart(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (isUnauthorized(err)) {
+        handleUnauthorized();
+        return;
+      }
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }
-  };
+  }, [authLoading, user, getToken, handleUnauthorized]);
 
   const addToCart = async (payload: AddToCartPayload) => {
     const token = getToken();
-    if (!token) return alert("Bạn cần đăng nhập!");
+    if (!token || !user) {
+      alert("Please sign in to add products to cart.");
+      return;
+    }
 
-    const data = normalizeCartResponse(await cartApi.addToCart(token, payload));
-    setCart(data);
+    try {
+      const data = normalizeCartResponse(await cartApi.addToCart(token, payload));
+      setCart(data);
+    } catch (err: unknown) {
+      if (isUnauthorized(err)) {
+        handleUnauthorized();
+        throw new Error("Please sign in again.");
+      }
+      throw err;
+    }
   };
 
   const removeFromCart = async (variantId: number) => {
     const token = getToken();
-    if (!token) return;
+    if (!token || !user) return;
 
-    const data = normalizeCartResponse(await cartApi.removeFromCart(token, variantId));
-    setCart(data);
+    try {
+      const data = normalizeCartResponse(await cartApi.removeFromCart(token, variantId));
+      setCart(data);
+    } catch (err: unknown) {
+      if (isUnauthorized(err)) {
+        handleUnauthorized();
+        return;
+      }
+      throw err;
+    }
   };
 
   const cleanCart = async () => {
     try {
       setLoading(true);
       const token = getToken();
-      if (!token) throw new Error("Không tìm thấy token");
+      if (!token || !user) throw new Error("Token not found");
 
       const res = await cartApi.cleanCart(token);
-      if (!res.success) throw new Error("Xoá giỏ hàng thất bại");
+      if (!res.success) throw new Error("Failed to clear cart");
 
       setCart(null);
       return true;
-    } catch (err) {
-      console.error(err);
+    } catch (err: unknown) {
+      if (isUnauthorized(err)) handleUnauthorized();
       return false;
     } finally {
       setLoading(false);
@@ -158,14 +208,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       setLoading(true);
       const token = getToken();
-      if (!token) throw new Error("Token not found");
+      if (!token || !user) throw new Error("Token not found");
 
-      const data = normalizeCartResponse(await cartApi.updateQuantity(variantId, quantity, token));
+      const data = normalizeCartResponse(
+        await cartApi.updateQuantity(variantId, quantity, token)
+      );
       setCart(data);
 
       return true;
-    } catch (err) {
-      console.error(err);
+    } catch (err: unknown) {
+      if (isUnauthorized(err)) handleUnauthorized();
       return false;
     } finally {
       setLoading(false);
@@ -201,10 +253,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    if (hasFetchedCart.current) return;
-    hasFetchedCart.current = true;
+    if (authLoading) return;
+    if (!user) {
+      setCart(null);
+      fetchedTokenRef.current = null;
+      return;
+    }
+
+    const token = getToken();
+    if (!token || fetchedTokenRef.current === token) return;
+
+    fetchedTokenRef.current = token;
     fetchCart();
-  }, []);
+  }, [authLoading, user, getToken, fetchCart]);
 
   return (
     <CartContext.Provider

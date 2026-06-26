@@ -6,14 +6,13 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { getCategoriesTree } from "@/services/categories";
 import { Category } from "@/type/categories";
-import { AlignLeft, X, ChevronRight, ChevronDown } from "lucide-react";
+import { AlignLeft, ChevronRight, ChevronDown } from "lucide-react";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -30,7 +29,6 @@ export default function MobileMenu() {
       try {
         const data = await getCategoriesTree();
         setCategories(data);
-        console.log("Categories loaded:", data); // Debug log
       } catch (error) {
         console.error("Failed to fetch categories:", error);
       }
@@ -39,17 +37,14 @@ export default function MobileMenu() {
   }, []);
 
   const handleCategoryToggle = (categoryId: number) => {
-    console.log("Toggling category:", categoryId); // Debug log
     setExpandedCategory(expandedCategory === categoryId ? null : categoryId);
   };
 
   const handleProductsToggle = () => {
-    console.log("Toggling products:", !isProductsExpanded); // Debug log
     setIsProductsExpanded(!isProductsExpanded);
   };
 
   const handleLinkClick = () => {
-    console.log("Link clicked, closing menu"); // Debug log
     setIsOpen(false);
   };
 

@@ -18,15 +18,22 @@ export type AddToCartPayload = {
   }[];
 };
 
+const readCartError = async (res: Response, fallback: string) => {
+  const text = await res.text().catch(() => "");
+  const error = new Error(text || fallback);
+  (error as Error & { status?: number }).status = res.status;
+  return error;
+};
+
 export const cartApi = {
   getCart: async (token: string): Promise<CartResponse> => {
     const res = await fetch(`${BASE_URL}/cart`, {
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!res.ok) throw new Error("Failed to fetch cart");
+    if (!res.ok) throw await readCartError(res, "Failed to fetch cart");
     return res.json();
   },
 
@@ -38,12 +45,12 @@ export const cartApi = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(payload),
     });
 
-    if (!res.ok) throw new Error("Failed to add to cart");
+    if (!res.ok) throw await readCartError(res, "Failed to add to cart");
     return res.json();
   },
 
@@ -51,34 +58,28 @@ export const cartApi = {
     const res = await fetch(`${BASE_URL}/cart/items/${variantId}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!res.ok) throw new Error("Failed to remove from cart");
+    if (!res.ok) throw await readCartError(res, "Failed to remove from cart");
     return res.json();
   },
 
-cleanCart: async (token: string): Promise<CartResponse> => {
-  const res = await fetch(`${BASE_URL}/cart`, {
-    method: "DELETE",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  cleanCart: async (token: string): Promise<CartResponse> => {
+    const res = await fetch(`${BASE_URL}/cart`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
 
-  if (!res.ok) {
-    const errorText = await res.text(); // log chi tiết lỗi backend
-    throw new Error(`Failed to delete cart: ${errorText}`);
-  }
-
-  // Một số API DELETE không trả JSON → check trước khi parse
-
-    return await res.json();
-  
+    if (!res.ok) throw await readCartError(res, "Failed to delete cart");
+    return res.json();
   },
-updateQuantity: async (
+
+  updateQuantity: async (
     variantId: number,
     quantity: number,
     token: string
@@ -87,17 +88,12 @@ updateQuantity: async (
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ quantity }),
     });
 
-    if (!res.ok) {
-      const error = await res.text();
-      throw new Error("Failed to update quantity: " + error);
-    }
-
+    if (!res.ok) throw await readCartError(res, "Failed to update quantity");
     return res.json();
   },
-
 };
