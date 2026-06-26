@@ -326,7 +326,10 @@ export default function ProductVariants({
       name: customAttrName.trim(),
       inputType: "select",
       isGlobal: false,
-      availableValues: [...customAttrValues],
+      availableValues: customAttrValues.map((value, index) => ({
+        id: customId - index,
+        value,
+      })),
       isCustom: true,
     };
 

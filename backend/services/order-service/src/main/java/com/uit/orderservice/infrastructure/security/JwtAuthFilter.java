@@ -37,8 +37,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             try {
-                log.info("Attempting to authenticate using Bearer token: " + token);
-                log.info("SECRET:"+ jwtSecret);
                 if(true){
 //                if (verifyJwtSignature(token, jwtSecret)) {
                     String payload = new String(Base64.getUrlDecoder().decode(token.split("\\.")[1]));

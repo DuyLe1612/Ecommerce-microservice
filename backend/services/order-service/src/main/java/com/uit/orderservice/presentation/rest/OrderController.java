@@ -8,10 +8,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +32,9 @@ public class OrderController {
     @PostMapping("/create")
     public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody CreateOrderRequest request) {
         String userId = currentUserId();
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         var requestWithUser = new CreateOrderRequest(
             userId, request.items(), request.subtotal(),
             request.discountAmount(), request.shippingFee(), request.currency(),
@@ -58,8 +61,12 @@ public class OrderController {
     public ResponseEntity<Page<OrderResponse>> getHistory(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int pageSize) {
+        String userId = currentUserId();
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         Pageable pageable = PageRequest.of(page, pageSize);
-        return ResponseEntity.ok(orderService.getOrderHistory(currentUserId(), pageable));
+        return ResponseEntity.ok(orderService.getOrderHistory(userId, pageable));
     }
 
     @Operation(summary = "Cancel an order")
@@ -67,13 +74,21 @@ public class OrderController {
     public ResponseEntity<OrderResponse> cancelOrder(
             @PathVariable Long orderId,
             @RequestParam(required = false) String reason) {
-        return ResponseEntity.ok(orderService.cancelOrder(orderId, currentUserId(), reason));
+        String userId = currentUserId();
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(orderService.cancelOrder(orderId, userId, reason));
     }
 
     private String currentUserId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated() || auth.getName() == null) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authentication required");
+        if (auth == null
+                || !auth.isAuthenticated()
+                || auth instanceof AnonymousAuthenticationToken
+                || auth.getName() == null
+                || "anonymousUser".equals(auth.getName())) {
+            return null;
         }
         return auth.getName();
     }

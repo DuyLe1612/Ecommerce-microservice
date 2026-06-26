@@ -32,7 +32,9 @@ export default function AddToFavorButton({
         await addToFavor(productId);
       }
     } catch (error) {
-      console.error("Error updating favorite:", error);
+      if ((error as Error).message !== "User identity required") {
+        console.error("Error updating favorite:", error);
+      }
     } finally {
       setIsLoading(false);
     }
