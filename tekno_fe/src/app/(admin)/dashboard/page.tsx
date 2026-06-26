@@ -334,15 +334,15 @@ export default function AdminStatisticsPage() {
       const token = getToken();
 
       if (!token) {
-        toast.error("Vui lòng đăng nhập để làm mới cache");
+        toast.error("Login required to refresh cache");
         return;
       }
 
       await invalidateStatisticsCache(token);
       await loadStatistics();
-      toast.success("Đã làm mới cache thành công!");
+      toast.success("Successfully refreshed cache!");
     } catch (err: unknown) {
-      toast.error("Không thể làm mới cache");
+      toast.error("Failed to refresh cache");
     } finally {
       setRefreshing(false);
     }
@@ -357,7 +357,7 @@ export default function AdminStatisticsPage() {
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-gray-400">Đang tải thống kê...</p>
+          <p className="text-gray-400">Loading statistics...</p>
         </div>
       </div>
     );
@@ -366,7 +366,7 @@ export default function AdminStatisticsPage() {
   if (!statistics) {
     return (
       <div className="p-6">
-        <p className="text-gray-500">Không có dữ liệu thống kê</p>
+        <p className="text-gray-500">No statistics data available</p>
       </div>
     );
   }
@@ -385,11 +385,11 @@ export default function AdminStatisticsPage() {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white">Thống kê Dashboard</h1>
+          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
           <p className="text-sm text-gray-400 mt-1">
-            Tổng quan về hoạt động cửa hàng của bạn
+            Overview of your store's performance and key metrics
             {usingMockData && (
-              <span className="ml-2 text-yellow-500">(Dữ liệu demo)</span>
+              <span className="ml-2 text-yellow-500">()</span>
             )}
           </p>
         </div>
@@ -417,19 +417,19 @@ export default function AdminStatisticsPage() {
               value={selectedPeriod}
               onChange={(e) => setSelectedPeriod(e.target.value as DatePeriod)}
             >
-              <option value="Today">Hôm nay</option>
-              <option value="Yesterday">Hôm qua</option>
-              <option value="Last7Days">7 ngày qua</option>
-              <option value="Last30Days">30 ngày qua</option>
-              <option value="ThisWeek">Tuần này</option>
-              <option value="LastWeek">Tuần trước</option>
-              <option value="ThisMonth">Tháng này</option>
-              <option value="LastMonth">Tháng trước</option>
-              <option value="ThisQuarter">Quý này</option>
-              <option value="LastQuarter">Quý trước</option>
-              <option value="ThisYear">Năm nay</option>
-              <option value="LastYear">Năm trước</option>
-              <option value="Custom">Tùy chỉnh</option>
+              <option value="Today">Today</option>
+              <option value="Yesterday">Yesterday</option>
+              <option value="Last7Days">Last 7 Days</option>
+              <option value="Last30Days">Last 30 Days</option>
+              <option value="ThisWeek">This Week</option>
+              <option value="LastWeek">Last Week</option>
+              <option value="ThisMonth">This Month</option>
+              <option value="LastMonth">Last Month</option>
+              <option value="ThisQuarter">This Quarter</option>
+              <option value="LastQuarter">Last Quarter</option>
+              <option value="ThisYear">This Year</option>
+              <option value="LastYear">Last Year</option>
+              <option value="Custom">Custom</option>
             </select>
           </div>
 
@@ -467,7 +467,7 @@ export default function AdminStatisticsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-400">Tổng doanh thu</p>
+            <p className="text-sm font-medium text-gray-400">Total Revenue</p>
             <DollarSign className="w-5 h-5 text-green-400" />
           </div>
           <p className="text-2xl font-bold text-white">
@@ -493,7 +493,7 @@ export default function AdminStatisticsPage() {
 
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-400">Tổng đơn hàng</p>
+            <p className="text-sm font-medium text-gray-400">Total Orders</p>
             <ShoppingCart className="w-5 h-5 text-blue-400" />
           </div>
           <p className="text-2xl font-bold text-white">
@@ -519,7 +519,7 @@ export default function AdminStatisticsPage() {
 
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-400">Tổng khách hàng</p>
+            <p className="text-sm font-medium text-gray-400">Total Customers</p>
             <Users className="w-5 h-5 text-purple-400" />
           </div>
           <p className="text-2xl font-bold text-white">
@@ -529,7 +529,7 @@ export default function AdminStatisticsPage() {
 
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-400">Giá trị đơn TB</p>
+            <p className="text-sm font-medium text-gray-400">Average Order Value</p>
             <Package className="w-5 h-5 text-orange-400" />
           </div>
           <p className="text-2xl font-bold text-white">
@@ -543,7 +543,7 @@ export default function AdminStatisticsPage() {
         <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-yellow-400 uppercase tracking-wide">Chờ xử lý</p>
+              <p className="text-xs font-medium text-yellow-400 uppercase tracking-wide">Pending</p>
               <p className="text-2xl font-bold text-yellow-300">{overview.pendingOrders}</p>
             </div>
             <ShoppingCart className="w-8 h-8 text-yellow-400/50" />
@@ -552,7 +552,7 @@ export default function AdminStatisticsPage() {
         <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-blue-400 uppercase tracking-wide">Đang xử lý</p>
+              <p className="text-xs font-medium text-blue-400 uppercase tracking-wide">Processing</p>
               <p className="text-2xl font-bold text-blue-300">{overview.processingOrders}</p>
             </div>
             <Package className="w-8 h-8 text-blue-400/50" />
@@ -561,7 +561,7 @@ export default function AdminStatisticsPage() {
         <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-green-400 uppercase tracking-wide">Hoàn thành</p>
+              <p className="text-xs font-medium text-green-400 uppercase tracking-wide">Completed</p>
               <p className="text-2xl font-bold text-green-300">{overview.completedOrders}</p>
             </div>
             <CheckCircle className="w-8 h-8 text-green-400/50" />
@@ -570,7 +570,7 @@ export default function AdminStatisticsPage() {
         <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-red-400 uppercase tracking-wide">Đã hủy</p>
+              <p className="text-xs font-medium text-red-400 uppercase tracking-wide">Cancelled</p>
               <p className="text-2xl font-bold text-red-300">{overview.cancelledOrders}</p>
             </div>
             <XCircle className="w-8 h-8 text-red-400/50" />
@@ -583,7 +583,7 @@ export default function AdminStatisticsPage() {
         {/* Revenue Chart */}
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Doanh thu</h3>
+            <h3 className="text-lg font-semibold text-white">Revenue</h3>
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={revenueChart[chartType] || []}>
@@ -630,7 +630,7 @@ export default function AdminStatisticsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6">
           <h3 className="text-lg font-semibold text-white mb-4">
-            Doanh thu theo danh mục
+            Revenue by Category
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -668,29 +668,29 @@ export default function AdminStatisticsPage() {
         {/* Product Performance */}
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6">
           <h3 className="text-lg font-semibold text-white mb-4">
-            Hiệu suất sản phẩm
+            Product Performance
           </h3>
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
-              <p className="text-sm text-blue-400 font-medium mb-1">Tổng sản phẩm</p>
+              <p className="text-sm text-blue-400 font-medium mb-1">Total Products</p>
               <p className="text-2xl font-bold text-white">
                 {productPerformance.totalProducts}
               </p>
             </div>
             <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4">
-              <p className="text-sm text-green-400 font-medium mb-1">Đang bán</p>
+              <p className="text-sm text-green-400 font-medium mb-1">Active Products</p>
               <p className="text-2xl font-bold text-white">
                 {productPerformance.activeProducts}
               </p>
             </div>
             <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
-              <p className="text-sm text-red-400 font-medium mb-1">Hết hàng</p>
+              <p className="text-sm text-red-400 font-medium mb-1">Out of Stock</p>
               <p className="text-2xl font-bold text-white">
                 {productPerformance.outOfStock}
               </p>
             </div>
             <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-4">
-              <p className="text-sm text-orange-400 font-medium mb-1">Sắp hết</p>
+              <p className="text-sm text-orange-400 font-medium mb-1">Low Stock</p>
               <p className="text-2xl font-bold text-white">
                 {productPerformance.lowStock}
               </p>
@@ -702,7 +702,7 @@ export default function AdminStatisticsPage() {
             <div className="border-t border-white/10 pt-4">
               <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-orange-400" />
-                Cảnh báo sắp hết hàng
+                Low Stock Alerts
               </h4>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {lowStockAlerts.slice(0, 5).map((lowStockAlert) => (
@@ -720,15 +720,15 @@ export default function AdminStatisticsPage() {
       {/* Top Products */}
       <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 mb-6">
         <h3 className="text-lg font-semibold text-white mb-4">
-          Sản phẩm bán chạy
+          Top sold products
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left py-3 px-4 font-medium text-gray-400">Sản phẩm</th>
-                <th className="text-center py-3 px-4 font-medium text-gray-400">Đã bán</th>
-                <th className="text-right py-3 px-4 font-medium text-gray-400">Doanh thu</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-400">Product</th>
+                <th className="text-center py-3 px-4 font-medium text-gray-400">Units Sold</th>
+                <th className="text-right py-3 px-4 font-medium text-gray-400">Revenue</th>
               </tr>
             </thead>
             <tbody>
@@ -758,7 +758,7 @@ export default function AdminStatisticsPage() {
         {/* Top Customers */}
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6">
           <h3 className="text-lg font-semibold text-white mb-4">
-            Khách hàng hàng đầu
+            top customers
           </h3>
           <div className="space-y-3">
             {topCustomers.map((customer, idx) => (
@@ -792,7 +792,7 @@ export default function AdminStatisticsPage() {
         {/* Recent Orders */}
         <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6">
           <h3 className="text-lg font-semibold text-white mb-4">
-            Đơn hàng gần đây
+            recent orders
           </h3>
           <div className="space-y-3">
             {recentOrders.map((order) => (

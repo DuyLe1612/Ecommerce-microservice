@@ -206,9 +206,9 @@ export default function OrdersPage() {
   return (
     <div className="p-6 bg-black/5 min-h-screen">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-white">Quản lý đơn hàng</h2>
+        <h2 className="text-xl font-semibold text-white">order management</h2>
         <div className="text-sm text-gray-400">
-          Tổng: {totalCount} đơn hàng
+          total: {totalCount} orders | page {currentPage + 1} of {totalPages}
         </div>
       </div>
 
@@ -217,7 +217,7 @@ export default function OrdersPage() {
         <div className="flex gap-3 flex-wrap">
           <div className="flex-1 min-w-[200px]">
             <Input
-              placeholder="Tìm kiếm theo mã đơn hàng..."
+              placeholder="Search by Order ID..."
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSearch()}
@@ -234,13 +234,13 @@ export default function OrdersPage() {
             }}
           >
             <option value="">Tất cả trạng thái</option>
-            <option value={OrderStatus.PENDING_PAYMENT}>Chờ thanh toán</option>
-            <option value={OrderStatus.PROCESSING}>Đang xử lý</option>
-            <option value={OrderStatus.SHIPPING}>Đang giao</option>
-            <option value={OrderStatus.DELIVERED}>Đã giao</option>
-            <option value={OrderStatus.CANCELLED}>Đã hủy</option>
-            <option value={OrderStatus.REFUND_REQUESTED}>Yêu cầu hoàn tiền</option>
-            <option value={OrderStatus.REFUNDED}>Đã hoàn tiền</option>
+            <option value={OrderStatus.PENDING_PAYMENT}>`PENDING_PAYMENT`</option>
+            <option value={OrderStatus.PROCESSING}>`PROCESSING`</option>
+            <option value={OrderStatus.SHIPPING}>`SHIPPING`</option>
+            <option value={OrderStatus.DELIVERED}>`DELIVERED`</option>
+            <option value={OrderStatus.CANCELLED}>`CANCELLED`</option>
+            <option value={OrderStatus.REFUND_REQUESTED}>`REFUND_REQUESTED`</option>
+            <option value={OrderStatus.REFUNDED}>`REFUNDED`</option>
           </select>
 
           <Button 
@@ -253,14 +253,14 @@ export default function OrdersPage() {
         </div>
 
         <div className="flex gap-3 items-center flex-wrap">
-          <label className="text-sm font-medium text-gray-400">Ngày:</label>
+          <label className="text-sm font-medium text-gray-400">Date:</label>
           <Input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             className="w-auto bg-white/10 border-white/20 text-white"
           />
-          <span className="text-sm text-gray-500">đến</span>
+          <span className="text-sm text-gray-500">to</span>
           <Input
             type="date"
             value={endDate}
@@ -274,7 +274,7 @@ export default function OrdersPage() {
       {loading ? (
         <div className="flex justify-center items-center py-12">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-          <p className="ml-3 text-gray-400">Đang tải đơn hàng...</p>
+          <p className="ml-3 text-gray-400">Loading orders...</p>
         </div>
       ) : (
         <>
@@ -282,12 +282,12 @@ export default function OrdersPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-white/10 text-left text-gray-300 border-b border-white/10">
-                  <th className="p-3 font-medium">Mã đơn</th>
-                  <th className="p-3 font-medium">Khách hàng</th>
-                  <th className="p-3 font-medium">Trạng thái</th>
-                  <th className="p-3 font-medium">Tổng tiền</th>
-                  <th className="p-3 font-medium">Ngày tạo</th>
-                  <th className="p-3 font-medium">Thao tác</th>
+                  <th className="p-3 font-medium">ID</th>
+                  <th className="p-3 font-medium">Customer</th>
+                  <th className="p-3 font-medium">status</th>
+                  <th className="p-3 font-medium">Amount</th>
+                  <th className="p-3 font-medium">date</th>
+                  <th className="p-3 font-medium">actions</th>
                 </tr>
               </thead>
 
@@ -295,7 +295,7 @@ export default function OrdersPage() {
                 {orders.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="p-8 text-center text-gray-500">
-                      Không tìm thấy đơn hàng nào
+                      Cannot find any orders. Try adjusting your filters or search criteria.
                     </td>
                   </tr>
                 ) : (
@@ -330,7 +330,7 @@ export default function OrdersPage() {
                           <button
                             onClick={() => setSelectedOrderId(order.id)}
                             className="p-2 text-blue-400 hover:bg-blue-500/20 rounded-lg transition-colors"
-                            title="Xem chi tiết"
+                            title="View details"
                           >
                             <Eye size={16} />
                           </button>
@@ -339,7 +339,7 @@ export default function OrdersPage() {
                             <button
                               onClick={() => openShipForm(order)}
                               className="p-2 text-purple-400 hover:bg-purple-500/20 rounded-lg transition-colors"
-                              title="Giao hàng"
+                              title="Ship order"
                             >
                               <Truck size={16} />
                             </button>
@@ -349,7 +349,7 @@ export default function OrdersPage() {
                             <button
                               onClick={() => handleDeliverOrder(order.id)}
                               className="p-2 text-green-400 hover:bg-green-500/20 rounded-lg transition-colors"
-                              title="Đánh dấu đã giao"
+                              title="Mark as delivered"
                             >
                               <CheckCircle size={16} />
                             </button>
@@ -359,7 +359,7 @@ export default function OrdersPage() {
                             <button
                               onClick={() => handleCancelOrder(order.id)}
                               className="p-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors"
-                              title="Hủy đơn"
+                              title="cancel order"
                             >
                               <XCircle size={16} />
                             </button>
@@ -444,7 +444,7 @@ export default function OrdersPage() {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-[#1a1a1a] border border-white/10 text-gray-200 w-full max-w-md rounded-2xl shadow-2xl p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold">Giao hàng</h3>
+              <h3 className="text-xl font-semibold">delivery</h3>
               <button
                 onClick={() => setOpenShipModal(false)}
                 className="text-gray-400 hover:text-white"
@@ -454,13 +454,13 @@ export default function OrdersPage() {
             </div>
 
             <p className="text-sm text-gray-400 mb-4">
-              Đơn hàng: <strong className="text-white">{shipOrderData.orderNumber}</strong>
+              order: <strong className="text-white">{shipOrderData.orderNumber}</strong>
             </p>
 
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1 text-gray-300">
-                  Mã vận đơn (tùy chọn)
+                  Tracking Number (Optional)
                 </label>
                 <Input
                   value={trackingNumber}
@@ -472,7 +472,7 @@ export default function OrdersPage() {
 
               <div>
                 <label className="block text-sm font-medium mb-1 text-gray-300">
-                  Đơn vị vận chuyển (tùy chọn)
+                  shipping unit (optional)
                 </label>
                 <Input
                   value={carrier}
@@ -489,11 +489,11 @@ export default function OrdersPage() {
                 onClick={() => setOpenShipModal(false)}
                 className="border-white/20 text-gray-300"
               >
-                Hủy
+                cancel
               </Button>
               <Button onClick={handleShipOrder}>
                 <Truck className="w-4 h-4 mr-2" />
-                Giao hàng
+                delivery
               </Button>
             </div>
           </div>
