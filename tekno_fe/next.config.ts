@@ -41,6 +41,7 @@
 const nextConfig = {
   images: {
     // Tắt hoàn toàn tính năng xác thực hostname
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

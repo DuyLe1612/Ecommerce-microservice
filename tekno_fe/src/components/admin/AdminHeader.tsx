@@ -49,7 +49,7 @@ const AdminHeader = () => {
               <User size={18} className="text-primary" />
             </div>
             <span className="text-gray-300 select-none">
-              Hello, <span className="text-primary font-semibold">{user?.firstName || "admin"}</span>
+              Hello, <span className="text-primary font-semibold">{user?.username || user?.email || "admin"}</span>
             </span>
             <ChevronDown size={16} className={`text-gray-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
           </div>

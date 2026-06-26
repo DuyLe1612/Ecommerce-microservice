@@ -69,6 +69,7 @@ type ProductVariant = {
     attributeId: number;
     attributeName?: string;
     value: string;
+    valueId?: number;
   }[];
 };
 

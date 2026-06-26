@@ -78,7 +78,7 @@ interface CartContextType {
   loading: boolean;
   error: string | null;
   fetchCart: () => Promise<void>;
-  addToCart: (variantId: number, quantity: number) => Promise<void>;
+  addToCart: (payload: AddToCartPayload) => Promise<void>;
   removeFromCart: (variantId: number) => Promise<void>;
   cleanCart: () => Promise<boolean>;
   updateQuantity: (variantId: number, quantity: number) => Promise<boolean>;
@@ -233,7 +233,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 export function useCart() {
   const context = useContext(CartContext);
   if (context === undefined) {
-    return context as CartContextType;
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 }
